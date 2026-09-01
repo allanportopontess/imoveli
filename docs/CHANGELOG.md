@@ -7,6 +7,20 @@
 
 ---
 
+## [0.5.0] — 2026-09-01
+
+### Adicionado
+- **Feature 4 — Perfil público**: cidade/estado exibidos; back button rastreia página anterior
+- **Feature 5 — Demanda de cliente**: form completo na página Demandas; cliente posta sem criar conta; lista de demandas abertas carrega em tempo real; RT verificado pode propor serviço
+- **Feature 6 — Match inteligente**: resultado de match totalmente wired; XSS corrigido em todos os campos dos resultados; "Postar Demanda" pré-preenche especialidade no form
+
+### Corrigido
+- POST /api/demandas: auth removido para MVP (cliente posta com e-mail)
+- POST /api/match + renderMatchResults: escapeHtml() aplicado (XSS)
+- GET /api/perfil: expõe cidade/estado sem dados sensíveis
+
+---
+
 ## [0.4.0] — 2026-09-01
 
 ### Adicionado

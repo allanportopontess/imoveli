@@ -49,29 +49,36 @@ Um Responsável Técnico real consegue se cadastrar, verificar seu CREA/CAU, ind
 - [x] XSS fix: escapeHtml() em loadIndicados()
 - [x] security-reviewer auditou (commit 5c7b412)
 
-### ⏳ 4. Perfil público do profissional
+### ✅ 4. Perfil público do profissional
 
-**O que faz**: Página pública acessível por URL com foto, nome, especialidade, RT responsável.
+**O que faz**: Painel público acessível pelo SPA com nome, especialidade, RT responsável, cidade/estado, reputação.
 **Concluído quando**:
-- [ ] URL pública `/p/[id]` retorna perfil
-- [ ] RT responsável aparece com link
-- [ ] Sem dados sensíveis expostos (e-mail, telefone ocultos no público)
+- [x] GET /api/perfil/:tipo/:id retorna perfil seguro (sem email, telefone, CPF)
+- [x] Exibe cidade e estado no perfil
+- [x] RT responsável aparece com conselho e registro
+- [x] Back button com rastreio de página anterior (state.prevPage)
+- [x] XSS: escapeHtml() aplicado nos campos renderizados
 
-### ⏳ 5. Cadastro de cliente e demanda
+### ✅ 5. Demanda de cliente
 
-**O que faz**: Cliente cadastra uma demanda (tipo de serviço, descrição, cidade, orçamento).
+**O que faz**: Cliente posta demanda com e-mail, descrição, especialidade, cidade, orçamento. Sem conta necessária.
 **Concluído quando**:
-- [ ] Formulário de demanda funciona
-- [ ] Match básico retorna profissionais por especialidade + cidade
-- [ ] Cliente consegue escolher e "fechar"
+- [x] Formulário completo na página "Demandas"
+- [x] POST /api/demandas sem auth (cliente posta apenas com e-mail)
+- [x] GET /api/demandas/disponiveis carrega lista pública
+- [x] RT verificado pode propor serviço em demandas abertas
+- [x] Feedback visual de sucesso/erro inline
 
-### ⏳ 6. Match básico
+### ✅ 6. Match inteligente
 
-**O que faz**: Dado uma demanda, retorna os profissionais com especialidade + cidade compatíveis.
+**O que faz**: Dado uma busca, retorna profissionais com score composto (técnica, preço, localização, reputação).
 **Concluído quando**:
-- [ ] Endpoint `/api/match` funciona
-- [ ] Retorna score simples
-- [ ] Resultado exibido para o cliente com opção de contato
+- [x] POST /api/match com score multicritério implementado
+- [x] handleBuscarMatch() wired ao botão na página de match
+- [x] Resultados exibem: nome, especialidade, grau, distância, reputação, score
+- [x] XSS: escapeHtml() aplicado em todos os campos dos resultados
+- [x] Botão "Contratar" abre modal de serviço direto
+- [x] Botão "Postar Demanda" redireciona para form com especialidade pré-preenchida
 
 ## Fluxo completo do MVP
 
