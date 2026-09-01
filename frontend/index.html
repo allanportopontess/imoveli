@@ -1237,6 +1237,10 @@
                         <input type="text" id="prestadorNome" placeholder="Nome completo">
                     </div>
                     <div class="form-group">
+                        <label>E-mail <span style="font-size:11px;color:var(--neutral-500);">(opcional)</span></label>
+                        <input type="email" id="prestadorEmail" placeholder="profissional@email.com">
+                    </div>
+                    <div class="form-group">
                         <label>Telefone / WhatsApp</label>
                         <input type="text" id="prestadorTelefone" placeholder="(00) 00000-0000">
                     </div>
@@ -1357,7 +1361,26 @@
                         <input type="hidden" id="prestadorEspecialidade">
                     </div>
 
-                    <div class="form-group">
+                    <div style="display:flex;gap:12px;">
+                        <div class="form-group" style="flex:2;margin-bottom:0;">
+                            <label>Cidade</label>
+                            <input type="text" id="prestadorCidade" placeholder="São Paulo">
+                        </div>
+                        <div class="form-group" style="flex:1;margin-bottom:0;">
+                            <label>Estado (UF)</label>
+                            <select id="prestadorEstado">
+                                <option value="">UF</option>
+                                <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                <option>SP</option><option>SE</option><option>TO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:12px;">
                         <label>Escopo de serviços autorizados</label>
                         <textarea id="prestadorEscopo" rows="2" placeholder="ex: Reparos elétricos residenciais de baixa tensão"></textarea>
                     </div>
@@ -1514,6 +1537,10 @@ function authHeaders(extra = {}) {
     const headers = { 'Content-Type': 'application/json', ...extra };
     if (token) headers['Authorization'] = `Bearer ${token}`;
     return headers;
+}
+
+function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
 // Wrapper fetch que injeta o token automaticamente
@@ -2068,21 +2095,23 @@ document.addEventListener('click', function(e) {
 
 async function handleIndicarPrestador() {
     const nome = document.getElementById('prestadorNome').value.trim();
+    const email = document.getElementById('prestadorEmail').value.trim();
     const telefone = document.getElementById('prestadorTelefone').value.trim();
     const selectedCats = getTaxonomiaSelected();
     const especialidade = selectedCats.join(', ');
+    const cidade = document.getElementById('prestadorCidade').value.trim();
+    const estado = document.getElementById('prestadorEstado').value.trim();
     const escopo = document.getElementById('prestadorEscopo').value.trim();
 
-    if (!nome || !telefone || selectedCats.length === 0) {
-        alert('Preencha nome, telefone e selecione ao menos uma categoria profissional');
-        return;
-    }
+    if (!nome) { showInlineError('prestadorNome', 'Nome é obrigatório'); return; }
+    if (!telefone) { showInlineError('prestadorTelefone', 'Telefone é obrigatório'); return; }
+    if (selectedCats.length === 0) { alert('Selecione ao menos uma categoria profissional'); return; }
 
     try {
         const response = await apiFetch(`/api/fiadores/${state.fiador.id}/indicar`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nome, telefone, especialidade, escopo })
+            body: JSON.stringify({ nome, email: email || null, telefone, especialidade, cidade: cidade || null, estado: estado || null, escopo })
         });
         const data = await response.json();
 
@@ -2092,7 +2121,10 @@ async function handleIndicarPrestador() {
         }
 
         document.getElementById('prestadorNome').value = '';
+        document.getElementById('prestadorEmail').value = '';
         document.getElementById('prestadorTelefone').value = '';
+        document.getElementById('prestadorCidade').value = '';
+        document.getElementById('prestadorEstado').value = '';
         document.getElementById('prestadorEscopo').value = '';
         document.querySelectorAll('#taxonomiaDropdown input[type=checkbox]:checked').forEach(c => c.checked = false);
         updateTaxonomiaLabel();
@@ -2101,6 +2133,15 @@ async function handleIndicarPrestador() {
     } catch (error) {
         alert('Erro ao conectar com servidor.');
     }
+}
+
+function showInlineError(inputId, msg) {
+    const el = document.getElementById(inputId);
+    if (!el) return;
+    el.style.borderColor = 'var(--danger, #e53e3e)';
+    el.focus();
+    el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+    alert(msg);
 }
 
 async function renderFiadorStats(indicados) {
@@ -2457,19 +2498,25 @@ async function loadIndicados() {
         const statusLabel = { pendente: '⏳ Aguardando aceite', aceita: '✓ Vínculo ativo', recusada: '✕ Recusado' };
         const statusColor = { pendente: 'var(--warning)', aceita: 'var(--moss)', recusada: 'var(--brick)' };
 
-        list.innerHTML = data.indicados.map(ind => `
+        list.innerHTML = data.indicados.map(ind => {
+            const nome = escapeHtml(ind.prestador.nome || '');
+            const especialidade = escapeHtml(ind.prestador.especialidade || '');
+            const escopo = escapeHtml(ind.escopo || '');
+            const indId = escapeHtml(ind.id || '');
+            const prestId = escapeHtml(ind.prestador.id || '');
+            return `
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 4px; border-top: 1px solid var(--mist); text-align: left;">
                 <div>
-                    <div style="font-weight: 500;">${ind.prestador.nome}</div>
-                    <div style="font-size: 12.5px; color: var(--neutral-600);">${ind.prestador.especialidade} · ${ind.escopo}</div>
+                    <div style="font-weight: 500;">${nome}</div>
+                    <div style="font-size: 12.5px; color: var(--neutral-600);">${especialidade} · ${escopo}</div>
                 </div>
                 <div style="text-align: right;">
-                    <div style="font-size: 12.5px; font-weight: 600; color: ${statusColor[ind.status]};">${statusLabel[ind.status]}</div>
-                    ${ind.status === 'pendente' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="simularAceite('${ind.id}')">Simular aceite</button>` : ''}
-                    ${ind.status === 'aceita' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="abrirEditorPerfil('prestador', '${ind.prestador.id}', '${ind.prestador.nome.replace(/'/g, "\\'")}')">✏️ Editar perfil</button>` : ''}
+                    <div style="font-size: 12.5px; font-weight: 600; color: ${statusColor[ind.status]};">${statusLabel[ind.status] || ind.status}</div>
+                    ${ind.status === 'pendente' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="simularAceite('${indId}')">Simular aceite</button>` : ''}
+                    ${ind.status === 'aceita' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="abrirEditorPerfil('prestador', '${prestId}', '${nome.replace(/'/g, "\\'")}')">✏️ Editar perfil</button>` : ''}
                 </div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
     } catch (error) {
         console.error('Load indicados error:', error);
     }

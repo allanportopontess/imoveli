@@ -310,33 +310,94 @@ app.get('/api/fiadores/:id', async (req, res) => {
 // INDICAÇÃO DE PRESTADORES
 // ============================================
 
-app.post('/api/fiadores/:id/indicar', async (req, res) => {
-  const { rows: f } = await query('SELECT * FROM fiadores WHERE id=$1', [req.params.id]);
-  if (!f.length) return res.status(404).json({ success: false, error: 'Fiador não encontrado' });
-  if (f[0].status !== 'verificado') return res.status(403).json({ success: false, error: 'Fiador ainda não verificado' });
+app.post('/api/fiadores/:id/indicar', auth, async (req, res) => {
+  try {
+    // Ownership: um fiador só pode indicar em seu próprio cadastro
+    if (req.user.id !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
 
-  const { nome, telefone, especialidade, escopo } = req.body;
-  if (!nome || !telefone || !especialidade) return res.status(400).json({ success: false, error: 'Nome, telefone e especialidade são obrigatórios' });
+    const { rows: f } = await query('SELECT * FROM fiadores WHERE id=$1', [req.params.id]);
+    if (!f.length) return res.status(404).json({ success: false, error: 'Fiador não encontrado' });
+    if (f[0].status !== 'verificado') return res.status(403).json({ success: false, error: 'Fiador ainda não verificado' });
 
-  const { rows: countR } = await query('SELECT COUNT(*) FROM prestadores');
-  const seq = parseInt(countR[0].count) + 1;
-  const carteirinha = `IMV-${new Date().getFullYear()}-${String(seq).padStart(6, '0')}`;
-  const prestId = 'prestador_' + Date.now();
-  const indId = 'indicacao_' + Date.now();
+    const { nome, email, telefone, especialidade, cidade, estado, escopo } = req.body;
 
-  const { rows: pRows } = await query(
-    `INSERT INTO prestadores (id,nome,telefone,especialidade,carteirinha,status) VALUES ($1,$2,$3,$4,$5,'pendente') RETURNING *`,
-    [prestId, nome, telefone, especialidade, carteirinha]
-  );
-  const { rows: iRows } = await query(
-    `INSERT INTO indicacoes (id,fiador_id,prestador_id,escopo,status) VALUES ($1,$2,$3,$4,'pendente') RETURNING *`,
-    [indId, req.params.id, prestId, escopo || 'Geral']
-  );
+    // Validações
+    if (!nome?.trim()) return res.status(400).json({ success: false, error: 'Nome é obrigatório' });
+    if (!telefone?.trim()) return res.status(400).json({ success: false, error: 'Telefone é obrigatório' });
+    if (!especialidade?.trim()) return res.status(400).json({ success: false, error: 'Selecione ao menos uma categoria profissional' });
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ success: false, error: 'E-mail inválido' });
+    }
 
-  res.json({ success: true, prestador: rowToPrestador(pRows[0]), indicacao: iRows[0] });
+    const { rows: countR } = await query('SELECT COUNT(*) FROM prestadores');
+    const seq = parseInt(countR[0].count) + 1;
+    const carteirinha = `IMV-${new Date().getFullYear()}-${String(seq).padStart(6, '0')}`;
+    const prestId = 'prestador_' + Date.now();
+    const indId = 'indicacao_' + Date.now();
+
+    const { rows: pRows } = await query(
+      `INSERT INTO prestadores
+         (id, nome, email, telefone, especialidade, cidade, estado, carteirinha, status)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'pendente') RETURNING *`,
+      [prestId, nome.trim(), (email || '').trim().toLowerCase() || null,
+       telefone.trim(), especialidade.trim(),
+       (cidade || '').trim() || null, (estado || '').trim().toUpperCase() || null,
+       carteirinha]
+    );
+    const { rows: iRows } = await query(
+      `INSERT INTO indicacoes (id,fiador_id,prestador_id,escopo,status) VALUES ($1,$2,$3,$4,'pendente') RETURNING *`,
+      [indId, req.params.id, prestId, (escopo || 'Geral').trim()]
+    );
+
+    res.json({ success: true, prestador: rowToPrestador(pRows[0]), indicacao: iRows[0] });
+  } catch (err) {
+    console.error('[POST /indicar]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno ao indicar profissional' });
+  }
 });
 
-app.get('/api/fiadores/:id/indicados', async (req, res) => {
+// Atualizar perfil de profissional indicado
+app.put('/api/prestadores/:id/perfil', auth, async (req, res) => {
+  try {
+    // Ownership: só o fiador que indicou este prestador pode editar o perfil
+    const { rows: own } = await query(
+      'SELECT 1 FROM indicacoes WHERE prestador_id=$1 AND fiador_id=$2',
+      [req.params.id, req.user.id]
+    );
+    if (!own.length) return res.status(403).json({ success: false, error: 'Acesso negado' });
+
+    const { nome, email, telefone, especialidade, cidade, estado } = req.body;
+
+    if (!nome?.trim()) return res.status(400).json({ success: false, error: 'Nome é obrigatório' });
+    if (!telefone?.trim()) return res.status(400).json({ success: false, error: 'Telefone é obrigatório' });
+    if (!especialidade?.trim()) return res.status(400).json({ success: false, error: 'Profissão é obrigatória' });
+    if (!cidade?.trim()) return res.status(400).json({ success: false, error: 'Cidade é obrigatória' });
+    if (!estado?.trim()) return res.status(400).json({ success: false, error: 'Estado é obrigatório' });
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ success: false, error: 'E-mail inválido' });
+    }
+
+    const { rows } = await query(
+      `UPDATE prestadores
+       SET nome=$1, email=$2, telefone=$3, especialidade=$4, cidade=$5, estado=$6
+       WHERE id=$7 RETURNING *`,
+      [nome.trim(), (email || '').trim().toLowerCase() || null,
+       telefone.trim(), especialidade.trim(),
+       cidade.trim(), estado.trim().toUpperCase(),
+       req.params.id]
+    );
+
+    if (!rows.length) return res.status(404).json({ success: false, error: 'Profissional não encontrado' });
+    res.json({ success: true, prestador: rowToPrestador(rows[0]) });
+  } catch (err) {
+    console.error('[PUT /prestadores/:id/perfil]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno ao atualizar perfil' });
+  }
+});
+
+app.get('/api/fiadores/:id/indicados', auth, async (req, res) => {
+  // Ownership: só o próprio fiador pode ver seus indicados
+  if (req.user.id !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
   const { rows } = await query(
     `SELECT i.*, row_to_json(p) as prestador FROM indicacoes i JOIN prestadores p ON p.id=i.prestador_id WHERE i.fiador_id=$1`,
     [req.params.id]
@@ -344,18 +405,39 @@ app.get('/api/fiadores/:id/indicados', async (req, res) => {
   res.json({ success: true, indicados: rows });
 });
 
-app.post('/api/indicacoes/:id/aceitar', async (req, res) => {
-  const { rows: i } = await query('UPDATE indicacoes SET status=\'aceita\' WHERE id=$1 RETURNING *', [req.params.id]);
-  if (!i.length) return res.status(404).json({ success: false, error: 'Indicação não encontrada' });
-  const { rows: p } = await query('UPDATE prestadores SET status=\'ativo\' WHERE id=$1 RETURNING *', [i[0].prestador_id]);
-  res.json({ success: true, indicacao: i[0], prestador: p[0] ? rowToPrestador(p[0]) : null });
+app.post('/api/indicacoes/:id/aceitar', auth, async (req, res) => {
+  try {
+    // Só o fiador responsável pela indicação pode aceitá-la
+    const { rows: check } = await query(
+      'SELECT i.id FROM indicacoes i WHERE i.id=$1 AND i.fiador_id=$2',
+      [req.params.id, req.user.id]
+    );
+    if (!check.length) return res.status(403).json({ success: false, error: 'Acesso negado ou indicação não encontrada' });
+
+    const { rows: i } = await query("UPDATE indicacoes SET status='aceita' WHERE id=$1 RETURNING *", [req.params.id]);
+    const { rows: p } = await query("UPDATE prestadores SET status='ativo' WHERE id=$1 RETURNING *", [i[0].prestador_id]);
+    res.json({ success: true, indicacao: i[0], prestador: p[0] ? rowToPrestador(p[0]) : null });
+  } catch (err) {
+    console.error('[POST /indicacoes/:id/aceitar]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
 });
 
-app.post('/api/indicacoes/:id/recusar', async (req, res) => {
-  const { rows: i } = await query('UPDATE indicacoes SET status=\'recusada\' WHERE id=$1 RETURNING *', [req.params.id]);
-  if (!i.length) return res.status(404).json({ success: false, error: 'Indicação não encontrada' });
-  await query('UPDATE prestadores SET status=\'recusado\' WHERE id=$1', [i[0].prestador_id]);
-  res.json({ success: true, indicacao: i[0] });
+app.post('/api/indicacoes/:id/recusar', auth, async (req, res) => {
+  try {
+    const { rows: check } = await query(
+      'SELECT i.id FROM indicacoes i WHERE i.id=$1 AND i.fiador_id=$2',
+      [req.params.id, req.user.id]
+    );
+    if (!check.length) return res.status(403).json({ success: false, error: 'Acesso negado ou indicação não encontrada' });
+
+    const { rows: i } = await query("UPDATE indicacoes SET status='recusada' WHERE id=$1 RETURNING *", [req.params.id]);
+    await query("UPDATE prestadores SET status='recusado' WHERE id=$1", [i[0].prestador_id]);
+    res.json({ success: true, indicacao: i[0] });
+  } catch (err) {
+    console.error('[POST /indicacoes/:id/recusar]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
 });
 
 // ============================================

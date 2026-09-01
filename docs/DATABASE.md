@@ -141,6 +141,27 @@ CREATE INDEX idx_fiadores_status ON fiadores(status);
 
 ## Migrations (histórico)
 
+### Migration 003 — Campos de perfil completo em prestadores
+**Data**: 2026-09-01
+**Script**:
+```sql
+ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS email TEXT;
+ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS cidade TEXT DEFAULT '';
+ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS estado TEXT DEFAULT '';
+ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS conta_id INTEGER REFERENCES contas(id);
+CREATE INDEX IF NOT EXISTS idx_prestadores_email ON prestadores(email);
+CREATE INDEX IF NOT EXISTS idx_prestadores_cidade ON prestadores(cidade);
+```
+**Rollback**:
+```sql
+DROP INDEX IF EXISTS idx_prestadores_email;
+DROP INDEX IF EXISTS idx_prestadores_cidade;
+ALTER TABLE prestadores DROP COLUMN IF EXISTS email;
+ALTER TABLE prestadores DROP COLUMN IF EXISTS cidade;
+ALTER TABLE prestadores DROP COLUMN IF EXISTS estado;
+ALTER TABLE prestadores DROP COLUMN IF EXISTS conta_id;
+```
+
 ### Migration 001 — Schema inicial
 **Data**: 2026-01
 **Descrição**: Criação de todas as tabelas base
