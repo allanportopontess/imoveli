@@ -5,8 +5,20 @@
 
 ## [Unreleased]
 
-### Em construção
-- Cadastro completo do perfil do profissional (nome, e-mail, telefone, profissão, especialidades, cidade, estado)
+---
+
+## [0.4.0] — 2026-09-01
+
+### Adicionado
+- **Cadastro completo do profissional**: formulário de indicação agora coleta e-mail, cidade e estado (UF dropdown)
+- **PUT /api/prestadores/:id/perfil**: endpoint para atualizações futuras de perfil
+- **escapeHtml()**: função utilitária adicionada ao frontend; aplicada em todos os campos renderizados via `innerHTML`
+
+### Corrigido (security)
+- **IDOR em PUT /prestadores/:id/perfil**: ownership check via `indicacoes` — só o fiador responsável pode editar o perfil
+- **Falta de ownership em POST /fiadores/:id/indicar**: `req.user.id !== req.params.id` agora bloqueia indicação em nome de outro fiador
+- **Endpoints sem auth**: `GET /indicados`, `POST aceitar`, `POST recusar` agora exigem JWT válido
+- **XSS em loadIndicados()**: nome, especialidade, escopo e IDs escapados com `escapeHtml()`
 
 ---
 

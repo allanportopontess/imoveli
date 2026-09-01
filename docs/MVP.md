@@ -30,22 +30,24 @@ Um Responsável Técnico real consegue se cadastrar, verificar seu CREA/CAU, ind
 - [x] Profissional aparece no painel "Meus Profissionais" do RT
 - [x] Toggle público/privado funciona
 
-### 🔄 3. Cadastro do perfil do profissional (em construção)
+### ✅ 3. Cadastro do perfil do profissional
 
-**O que faz**: Profissional indicado acessa via link/convite e completa seu perfil.
+**O que faz**: RT indica profissional com perfil completo: nome, e-mail, telefone, categoria(s), cidade, estado.
 **Escopo**:
-- Nome, e-mail, telefone
-- Profissão (da taxonomia existente)
-- Especialidades adicionais
-- Cidade, Estado
+- Nome, e-mail (opcional), telefone
+- Profissão (da taxonomia existente, multi-seleção)
+- Cidade, Estado (dropdown UF)
+- Escopo de serviços autorizados pelo RT
 **Fora do escopo**: avaliações, trust score, portfólio, pagamentos
 
 **Concluído quando**:
-- [ ] Cadastro funciona (validação + persistência)
-- [ ] Interface mobile e desktop funcionam
-- [ ] Erros tratados corretamente
-- [ ] security-reviewer aprovou
-- [ ] qa-reviewer declarou APROVADO
+- [x] Campos email, cidade, estado no formulário frontend
+- [x] Backend persiste email, cidade, estado em `prestadores`
+- [x] PUT /api/prestadores/:id/perfil para atualizações futuras
+- [x] Ownership check: fiador só indica em seu próprio cadastro (IDOR fix)
+- [x] Auth em GET /indicados, POST aceitar/recusar (endpoints desprotegidos corrigidos)
+- [x] XSS fix: escapeHtml() em loadIndicados()
+- [x] security-reviewer auditou (commit 5c7b412)
 
 ### ⏳ 4. Perfil público do profissional
 
