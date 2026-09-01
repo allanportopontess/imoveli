@@ -1139,11 +1139,55 @@
             <div class="header">
                 <div>
                     <h1>Demanda de Serviços</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Profissionais da rede propõem, você escolhe</p>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Descreva o que precisa — profissionais verificados da rede vão propor</p>
                 </div>
             </div>
-            <div class="section" id="demandasList">
-                <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhuma demanda aberta.</div>
+
+            <!-- Formulário de nova demanda -->
+            <div class="section">
+                <h2>Publicar nova demanda</h2>
+                <p style="color: var(--neutral-600); font-size: 13px; margin-bottom: 16px;">Sem conta necessária — só seu e-mail para receber as propostas.</p>
+
+                <div class="form-group">
+                    <label>Seu e-mail de contato</label>
+                    <input type="email" id="demandaEmail" placeholder="voce@email.com">
+                </div>
+                <div class="form-group">
+                    <label>O que você precisa?</label>
+                    <textarea id="demandaDescricao" rows="3" placeholder="ex: Preciso reformar o banheiro — trocar azulejo, piso e instalação elétrica de um ponto de luz..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de profissional</label>
+                    <input type="text" id="demandaEspecialidade" placeholder="ex: Eletricista, Pedreiro, Arquiteto...">
+                </div>
+                <div style="display:flex;gap:12px;">
+                    <div class="form-group" style="flex:2;margin-bottom:0;">
+                        <label>Cidade</label>
+                        <input type="text" id="demandaCidade" placeholder="Recife">
+                    </div>
+                    <div class="form-group" style="flex:1;margin-bottom:0;">
+                        <label>Orçamento máx. (R$)</label>
+                        <input type="number" id="demandaOrcamento" placeholder="opcional">
+                    </div>
+                </div>
+                <div id="demandaErro" style="color: var(--coral, #e53e3e); font-size: 13px; display:none; margin-top: 12px;"></div>
+                <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="handlePublicarDemanda()">
+                    Publicar Demanda
+                </button>
+                <div id="demandaSucesso" style="display:none; margin-top: 12px; padding: 12px 14px; background: var(--green-wash, #f0fff4); border: 1px solid var(--moss); border-radius: 12px; font-size: 13.5px; color: var(--moss);">
+                    Demanda publicada! Profissionais da rede vão propor — confira abaixo ou no seu e-mail.
+                </div>
+            </div>
+
+            <!-- Lista de demandas abertas -->
+            <div class="section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+                    <h2 style="margin:0;">Demandas Abertas</h2>
+                    <button class="btn btn-secondary" style="padding: 5px 12px; font-size: 12px;" onclick="loadDemandasAbertas()">Atualizar</button>
+                </div>
+                <div id="demandasList">
+                    <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Carregando...</div>
+                </div>
             </div>
         </div>
 
@@ -1494,7 +1538,10 @@
         <!-- PERFIL PÚBLICO -->
         <div data-page="perfil-publico">
             <div class="header">
-                <h1>Perfil Profissional</h1>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <button class="btn btn-secondary" style="padding:6px 14px;font-size:13px;" onclick="showPage(state.prevPage || 'command')">← Voltar</button>
+                    <h1>Perfil Profissional</h1>
+                </div>
             </div>
             <div id="perfilPublicoContent" class="section">Carregando...</div>
         </div>
@@ -1571,7 +1618,8 @@ const state = {
     editingProfile: null,
     viewingProfile: null,
     matchContext: { categoria: '' },
-    currentPage: 'dashboard'
+    currentPage: 'dashboard',
+    prevPage: 'command'
 };
 
 // ============================================
@@ -1784,6 +1832,7 @@ function showPage(pageName) {
     const menuItem = document.querySelector(`[data-menu="${pageName}"]`);
     if (menuItem) menuItem.classList.add('active');
 
+    state.prevPage = state.currentPage;
     state.currentPage = pageName;
     toggleDrawer(false);
     renderLembretePerfilIncompleto(pageName);
@@ -1802,7 +1851,7 @@ function showPage(pageName) {
         const el = document.getElementById('matchEspecialidade');
         if (el) el.value = state.matchContext.categoria;
     }
-    if (pageName === 'demandas') loadMinhasDemandas();
+    if (pageName === 'demandas') loadDemandasAbertas();
     if (pageName === 'services') loadMyServices();
 }
 
@@ -2719,13 +2768,14 @@ async function loadPerfilPublico() {
                     ${p.nome.substring(0, 1)}
                 </div>
                 <div>
-                    <div style="font-weight: 700; font-size: 18px; font-family: var(--font-display);">${p.nome}</div>
-                    <div style="font-size: 13.5px; color: var(--neutral-600);">${p.especialidade}${p.registro ? ` · ${p.registro}` : ''}</div>
+                    <div style="font-weight: 700; font-size: 18px; font-family: var(--font-display);">${escapeHtml(p.nome)}</div>
+                    <div style="font-size: 13.5px; color: var(--neutral-600);">${escapeHtml(p.especialidade || '')}${p.registro ? ` · ${escapeHtml(p.registro)}` : ''}</div>
+                    ${(p.cidade || p.estado) ? `<div style="font-size: 12.5px; color: var(--neutral-500); margin-top: 2px;">📍 ${escapeHtml([p.cidade, p.estado].filter(Boolean).join(' — '))}</div>` : ''}
                 </div>
             </div>
 
             <div style="display: inline-block; font-size: 11.5px; color: var(--ink-soft); background: var(--mist); padding: 4px 10px; border-radius: 999px; margin-bottom: 16px; font-family: var(--font-display); font-weight: 600;">
-                🪪 ${p.carteirinha}
+                🪪 ${escapeHtml(p.carteirinha || '—')}
             </div>
 
             ${p.fiadorResponsavel ? `<div style="font-size: 12.5px; color: var(--moss); margin-bottom: 16px;">✅ Avalizado por ${p.fiadorResponsavel.nome} (${p.fiadorResponsavel.conselho} ${p.fiadorResponsavel.registro})</div>` : ''}
@@ -2935,113 +2985,174 @@ function renderMatchResults(candidatos, semLocalizacao) {
         ? `<div class="alert alert-info" style="margin-bottom: 12px;">📍 Sem acesso à sua localização — o critério de distância ficou neutro no cálculo. Permita localização no navegador para um match mais preciso.</div>`
         : '';
 
-    container.innerHTML = avisoLocalizacao + candidatos.map((c, i) => `
+    container.innerHTML = avisoLocalizacao + candidatos.map((c, i) => {
+        const nome = escapeHtml(c.nome || '');
+        const especialidade = escapeHtml(c.especialidade || '');
+        const profileTipo = escapeHtml(c.profileTipo || '');
+        const profileId = escapeHtml(c.profileId || '');
+        const hireType = escapeHtml(c.hireType || '');
+        const hireId = escapeHtml(c.hireId || '');
+        return `
         <div class="section" style="${i === 0 ? 'border: 2px solid var(--violet);' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
                 <div>
                     ${i === 0 ? '<div style="font-size: 11px; font-weight: 700; color: var(--violet); margin-bottom: 4px;">⭐ MELHOR MATCH</div>' : ''}
-                    <div style="font-weight: 700; font-size: 16px; cursor: pointer;" onclick="verPerfilPublico('${c.profileTipo}', '${c.profileId}')">${c.nome}</div>
-                    <div style="font-size: 13px; color: var(--neutral-600);">${c.especialidade} · ${c.grau === 1 ? '1º grau' : '2º grau'}</div>
+                    <div style="font-weight: 700; font-size: 16px; cursor: pointer;" onclick="verPerfilPublico('${profileTipo}', '${profileId}')">${nome}</div>
+                    <div style="font-size: 13px; color: var(--neutral-600);">${especialidade} · ${c.grau === 1 ? '1º grau' : '2º grau'}</div>
                     ${c.distanciaKm !== null ? `<div style="font-size: 12.5px; color: var(--moss); margin-top: 4px;">📍 ${c.distanciaKm} km de você</div>` : ''}
-                    ${c.reputacao.totalServicos > 0 ? `<div style="font-size: 12.5px; color: var(--warning); margin-top: 2px;">★ ${c.reputacao.mediaNota} (${c.reputacao.totalServicos} serviços)</div>` : ''}
+                    ${c.reputacao?.totalServicos > 0 ? `<div style="font-size: 12.5px; color: var(--warning); margin-top: 2px;">★ ${c.reputacao.mediaNota} (${c.reputacao.totalServicos} serviços)</div>` : ''}
                 </div>
                 <div style="text-align: center; flex-shrink: 0;">
-                    <div style="font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--violet);">${c.scoreFinal}</div>
+                    <div style="font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--violet);">${c.scoreFinal ?? '-'}</div>
                     <div style="font-size: 10px; color: var(--neutral-600);">SCORE</div>
                 </div>
             </div>
 
+            ${c.detalhes ? `
             <details style="margin-top: 10px;">
                 <summary style="font-size: 12.5px; color: var(--violet); cursor: pointer; font-weight: 600;">Por que esse profissional?</summary>
                 <div style="margin-top: 8px; font-size: 12px; color: var(--neutral-600);">
                     Técnica: ${c.detalhes.aderenciaTecnica}% · Preço: ${c.detalhes.preco}% · Localização: ${c.detalhes.localizacao}% · Avaliação: ${c.detalhes.avaliacao}% · Experiência: ${c.detalhes.experiencia}%
                 </div>
-            </details>
+            </details>` : ''}
 
-            <button class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="abrirModalContratar('${c.hireType}', '${c.hireId}', '${c.nome.replace(/'/g, "\\'")}')">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="abrirModalContratar('${hireType}', '${hireId}', '${nome.replace(/'/g, "\\'")}')">
                 Contratar
             </button>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 }
 
-async function handleAbrirDemanda() {
-    if (!state.user) return;
-    const descricao = prompt('Descreva o problema para os profissionais:');
-    if (!descricao || !descricao.trim()) return;
-
-    const precoMin = document.getElementById('matchPrecoMin').value || null;
-    const precoMax = document.getElementById('matchPrecoMax').value || null;
-    const loc = await obterLocalizacaoAtual();
-
-    try {
-        const response = await apiFetch(`/api/demandas`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                clienteEmail: state.user.email,
-                descricao: descricao.trim(),
-                categoriaOuEspecialidade: state.matchContext.categoria,
-                precoMin: precoMin ? Number(precoMin) : null,
-                precoMax: precoMax ? Number(precoMax) : null,
-                userLat: loc?.lat ?? null,
-                userLng: loc?.lng ?? null
-            })
-        });
-        const data = await response.json();
-        if (!data.success) {
-            alert(data.error);
-            return;
-        }
-        showPage('demandas');
-    } catch (error) {
-        alert('Erro ao conectar com servidor.');
+// Redireciona o botão da página de match para a página de demandas com form
+function handleAbrirDemanda() {
+    showPage('demandas');
+    // pré-preenche especialidade se houver no contexto de match
+    const especialidadeEl = document.getElementById('demandaEspecialidade');
+    if (especialidadeEl && state.matchContext.categoria) {
+        especialidadeEl.value = state.matchContext.categoria;
     }
 }
 
 // ============================================
-// MINHAS DEMANDAS (leilão reverso — lado do cliente)
+// DEMANDAS (leilão reverso)
 // ============================================
 
-async function loadMinhasDemandas() {
-    if (!state.user) return;
-    const list = document.getElementById('demandasList');
+async function handlePublicarDemanda() {
+    const email = (document.getElementById('demandaEmail')?.value || '').trim();
+    const descricao = (document.getElementById('demandaDescricao')?.value || '').trim();
+    const especialidade = (document.getElementById('demandaEspecialidade')?.value || '').trim();
+    const cidade = (document.getElementById('demandaCidade')?.value || '').trim();
+    const orcamento = document.getElementById('demandaOrcamento')?.value || null;
+
+    const erroEl = document.getElementById('demandaErro');
+    const sucessoEl = document.getElementById('demandaSucesso');
+    erroEl.style.display = 'none';
+    sucessoEl.style.display = 'none';
+
+    if (!email) { erroEl.textContent = 'Informe seu e-mail de contato.'; erroEl.style.display = 'block'; return; }
+    if (!descricao) { erroEl.textContent = 'Descreva o que você precisa.'; erroEl.style.display = 'block'; return; }
 
     try {
-        const response = await apiFetch(`/api/clientes/${encodeURIComponent(state.user.email)}/demandas`);
+        const response = await fetch(`${API_BASE_URL}/api/demandas`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                clienteEmail: email,
+                descricao,
+                categoriaOuEspecialidade: especialidade || cidade,
+                cidade: cidade || null,
+                precoMax: orcamento ? Number(orcamento) : null
+            })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            erroEl.textContent = data.error;
+            erroEl.style.display = 'block';
+            return;
+        }
+        // Limpa o form
+        ['demandaEmail', 'demandaDescricao', 'demandaEspecialidade', 'demandaCidade', 'demandaOrcamento'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+        sucessoEl.style.display = 'block';
+        loadDemandasAbertas();
+    } catch (error) {
+        erroEl.textContent = 'Erro ao conectar com servidor.';
+        erroEl.style.display = 'block';
+    }
+}
+
+async function loadDemandasAbertas() {
+    const list = document.getElementById('demandasList');
+    if (!list) return;
+    list.innerHTML = '<div style="color: var(--neutral-600); text-align: center; padding: 16px;">Carregando...</div>';
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/demandas/disponiveis`);
         const data = await response.json();
 
         if (!data.success || !data.demandas.length) {
-            list.innerHTML = 'Nenhuma demanda aberta.';
+            list.innerHTML = '<div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhuma demanda aberta no momento.</div>';
             return;
         }
 
         list.innerHTML = data.demandas
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map(d => `
-                <div style="padding: 14px 4px; border-top: 1px solid var(--mist);">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="font-weight: 600;">${d.descricao}</div>
-                        <span class="badge" style="background: ${d.status === 'aberta' ? 'rgba(224,149,46,0.12)' : 'rgba(22,179,120,0.12)'}; color: ${d.status === 'aberta' ? 'var(--warning)' : 'var(--mint)'};">
-                            ${d.status === 'aberta' ? '🔵 Aberta' : '✓ Fechada'}
-                        </span>
-                    </div>
-                    <div style="font-size: 12.5px; color: var(--neutral-600); margin: 6px 0;">
-                        ${d.candidaturas.length} proposta${d.candidaturas.length !== 1 ? 's' : ''} recebida${d.candidaturas.length !== 1 ? 's' : ''}
-                    </div>
-                    ${d.status === 'aberta' && d.candidaturas.length > 0 ? d.candidaturas.map(c => `
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--paper); padding: 10px; border-radius: 10px; margin-top: 6px;">
-                            <div>
-                                <div style="font-weight: 600; font-size: 13px;">${c.nome}</div>
-                                <div style="font-size: 12px; color: var(--neutral-600);">R$ ${c.precoProposto} ${c.mensagem ? `· "${c.mensagem}"` : ''}</div>
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map(d => {
+                const desc = escapeHtml(d.descricao || '');
+                const cat = escapeHtml(d.categoria_especialidade || '');
+                const dataCriacao = d.created_at ? new Date(d.created_at).toLocaleDateString('pt-BR') : '';
+                const orcamento = d.preco_max ? `R$ ${Number(d.preco_max).toLocaleString('pt-BR')}` : 'A combinar';
+                const podeCandidatar = state.fiador?.status === 'verificado' || state.fiador;
+                return `
+                <div style="padding: 14px 0; border-top: 1px solid var(--mist);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 14px; line-height: 1.4;">${desc}</div>
+                            ${cat ? `<div style="font-size: 12px; color: var(--violet); margin-top: 4px; font-weight: 600;">${cat}</div>` : ''}
+                            <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">
+                                ${orcamento} · ${dataCriacao}
                             </div>
-                            <button class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;" onclick="handleEscolherCandidatura('${d.id}', '${c.id}')">Escolher</button>
                         </div>
-                    `).join('') : ''}
-                </div>
-            `).join('');
+                        ${podeCandidatar ? `
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px; flex-shrink: 0;" onclick="abrirModalCandidatar('${escapeHtml(d.id)}', '${desc.replace(/'/g, "\\'")}')">
+                            Propor
+                        </button>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
     } catch (error) {
-        list.innerHTML = 'Erro ao conectar com servidor.';
+        list.innerHTML = '<div style="color: var(--coral);">Erro ao carregar demandas.</div>';
+    }
+}
+
+async function abrirModalCandidatar(demandaId, descricao) {
+    const precoStr = prompt(`Proposta para: "${descricao}"\n\nQual seu preço proposto (R$)?`);
+    if (!precoStr || isNaN(Number(precoStr))) return;
+    const mensagem = prompt('Mensagem para o cliente (opcional):') || '';
+    const nome = state.fiador?.nome || state.user?.nomeProfissional || '';
+
+    try {
+        const response = await apiFetch(`/api/demandas/${demandaId}/candidatar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hireType: state.fiador ? 'fiador' : 'indicacao',
+                hireId: state.fiador?.id || '',
+                nome,
+                precoProposto: Number(precoStr),
+                mensagem: mensagem.trim()
+            })
+        });
+        const data = await response.json();
+        if (data.success) {
+            alert('Proposta enviada! O cliente vai receber e poderá escolher.');
+        } else {
+            alert(data.error);
+        }
+    } catch {
+        alert('Erro ao enviar proposta.');
     }
 }
 

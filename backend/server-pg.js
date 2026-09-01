@@ -663,6 +663,7 @@ app.get('/api/perfil/:tipo/:id', async (req, res) => {
     if (ind.length) fiadorResponsavel = { id: ind[0].fiador_id, nome: ind[0].fiador_nome, conselho: ind[0].conselho, registro: ind[0].registro };
   }
 
+  // Campos seguros para exposição pública — sem email, telefone, CPF
   res.json({
     success: true,
     perfil: {
@@ -670,6 +671,8 @@ app.get('/api/perfil/:tipo/:id', async (req, res) => {
       especialidade: tipo === 'fiador' ? (alvo.conselho === 'CAU' ? 'Arquitetura e Urbanismo' : 'Engenharia') : alvo.especialidade,
       registro: tipo === 'fiador' ? `${alvo.conselho} ${alvo.registro}` : null,
       carteirinha: alvo.carteirinha,
+      cidade: alvo.cidade || (alvo.localizacao?.cidade) || null,
+      estado: alvo.estado || alvo.uf || (alvo.localizacao?.uf) || null,
       grau: tipo === 'fiador' ? 1 : 2,
       bio: alvo.bio, skills: alvo.skills, areasInteresse: alvo.areas_interesse,
       servicosOferecidos: alvo.servicos_oferecidos, acervo: alvo.acervo,
@@ -773,15 +776,31 @@ app.post('/api/match', async (req, res) => {
 // LEILÃO REVERSO
 // ============================================
 
-app.post('/api/demandas', auth, async (req, res) => {
-  const { clienteEmail, descricao, categoriaOuEspecialidade, precoMin, precoMax, userLat, userLng, diagnosisId } = req.body;
-  if (!clienteEmail || !descricao) return res.status(400).json({ success: false, error: 'clienteEmail e descricao são obrigatórios' });
-  const id = 'demanda_' + Date.now();
-  const { rows } = await query(
-    `INSERT INTO demandas (id,cliente_email,descricao,categoria_especialidade,preco_min,preco_max,user_lat,user_lng,diagnosis_id,status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,'aberta') RETURNING *`,
-    [id, clienteEmail, descricao, categoriaOuEspecialidade || '', precoMin ?? null, precoMax ?? null, userLat ?? null, userLng ?? null, diagnosisId || null]
-  );
-  res.json({ success: true, demanda: rows[0] });
+// POST /api/demandas — sem auth obrigatório (MVP: cliente pode postar sem conta)
+app.post('/api/demandas', async (req, res) => {
+  try {
+    const { clienteEmail, clienteNome, descricao, categoriaOuEspecialidade, cidade, precoMin, precoMax, userLat, userLng, diagnosisId } = req.body;
+    if (!clienteEmail?.trim() || !descricao?.trim()) {
+      return res.status(400).json({ success: false, error: 'E-mail e descrição são obrigatórios' });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clienteEmail)) {
+      return res.status(400).json({ success: false, error: 'E-mail inválido' });
+    }
+    const id = 'demanda_' + Date.now();
+    const { rows } = await query(
+      `INSERT INTO demandas
+         (id, cliente_email, descricao, categoria_especialidade, preco_min, preco_max, user_lat, user_lng, diagnosis_id, status)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,'aberta') RETURNING *`,
+      [id, clienteEmail.trim().toLowerCase(), descricao.trim(),
+       (categoriaOuEspecialidade || cidade || '').trim(),
+       precoMin ?? null, precoMax ?? null,
+       userLat ?? null, userLng ?? null, diagnosisId || null]
+    );
+    res.json({ success: true, demanda: rows[0] });
+  } catch (err) {
+    console.error('[POST /demandas]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno ao publicar demanda' });
+  }
 });
 
 app.get('/api/demandas/disponiveis', async (req, res) => {
