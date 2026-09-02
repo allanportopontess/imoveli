@@ -1062,9 +1062,32 @@ async function runMigrations() {
   }
 }
 
+async function seedConhecimentoSeVazio() {
+  try {
+    const { rows } = await query('SELECT COUNT(*) FROM base_conhecimento');
+    if (parseInt(rows[0].count) > 0) return; // já populado
+
+    const dados = require('./seed-conhecimento-data.js');
+    let n = 0;
+    for (const k of dados) {
+      const tags = k.tags ? `{${k.tags.map(t => `"${t.replace(/"/g, '\\"')}"`).join(',')}}` : '{}';
+      await query(
+        `INSERT INTO base_conhecimento (categoria, titulo, numero, descricao, conteudo, tags, vigente, fonte_url)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT DO NOTHING`,
+        [k.categoria, k.titulo, k.numero || null, k.descricao, k.conteudo, tags, k.vigente !== false, k.fonte_url || null]
+      );
+      n++;
+    }
+    console.log(`📚 Base de conhecimento: ${n} registros inseridos.`);
+  } catch (err) {
+    console.error('⚠️  Seed conhecimento:', err.message);
+  }
+}
+
 testConnection().then(async ok => {
   if (!ok) { console.error('❌ Abortando: sem conexão com PostgreSQL'); process.exit(1); }
   await runMigrations();
+  await seedConhecimentoSeVazio();
   app.listen(PORT, () => {
     console.log(`✅ IMOVELI Backend (PostgreSQL) rodando em http://localhost:${PORT}`);
     console.log(`🗄️  Banco: ${process.env.DATABASE_URL ? 'Railway' : (process.env.PG_DATABASE || 'imoveli')}`);
