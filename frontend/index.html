@@ -1569,7 +1569,10 @@
 // CONFIG
 // ============================================
 
-const API_BASE_URL = 'http://127.0.0.1:3001';
+// Em produção (Vercel) o rewrite /api/* → Railway; em dev aponta direto para o backend local
+const API_BASE_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+  ? 'http://127.0.0.1:3001'
+  : '';
 
 // ============================================
 // JWT — helper para todas as chamadas autenticadas

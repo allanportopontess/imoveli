@@ -3,14 +3,22 @@
 // ============================================
 const { Pool } = require('pg');
 
-const pool = new Pool({
-  host:     process.env.PG_HOST     || 'localhost',
-  port:     parseInt(process.env.PG_PORT || '5432'),
-  database: process.env.PG_DATABASE || 'imoveli',
-  user:     process.env.PG_USER     || 'postgres',
-  password: process.env.PG_PASSWORD || '',
-  ssl:      process.env.PG_SSL === 'true' ? { rejectUnauthorized: false } : false
-});
+// Railway injeta DATABASE_URL automaticamente; variáveis individuais para dev local
+const poolConfig = process.env.DATABASE_URL
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    }
+  : {
+      host:     process.env.PG_HOST     || '127.0.0.1',
+      port:     parseInt(process.env.PG_PORT || '5432'),
+      database: process.env.PG_DATABASE || 'imoveli',
+      user:     process.env.PG_USER     || 'postgres',
+      password: process.env.PG_PASSWORD || '',
+      ssl:      process.env.PG_SSL === 'true' ? { rejectUnauthorized: false } : false
+    };
+
+const pool = new Pool(poolConfig);
 
 pool.on('error', (err) => {
   console.error('PostgreSQL pool error:', err.message);
