@@ -313,11 +313,11 @@ app.get('/api/fiadores/:id', async (req, res) => {
 app.post('/api/fiadores/:id/indicar', auth, async (req, res) => {
   try {
     // Ownership: um fiador só pode indicar em seu próprio cadastro
-    if (req.user.id !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
+    if (req.user.fiadorId !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
 
     const { rows: f } = await query('SELECT * FROM fiadores WHERE id=$1', [req.params.id]);
     if (!f.length) return res.status(404).json({ success: false, error: 'Fiador não encontrado' });
-    if (f[0].status !== 'verificado') return res.status(403).json({ success: false, error: 'Fiador ainda não verificado' });
+    if (!['verificado', 'pendente_manual'].includes(f[0].status)) return res.status(403).json({ success: false, error: 'Cadastro de RT ainda não liberado' });
 
     const { nome, email, telefone, especialidade, cidade, estado, escopo } = req.body;
 
@@ -362,7 +362,7 @@ app.put('/api/prestadores/:id/perfil', auth, async (req, res) => {
     // Ownership: só o fiador que indicou este prestador pode editar o perfil
     const { rows: own } = await query(
       'SELECT 1 FROM indicacoes WHERE prestador_id=$1 AND fiador_id=$2',
-      [req.params.id, req.user.id]
+      [req.params.id, req.user.fiadorId]
     );
     if (!own.length) return res.status(403).json({ success: false, error: 'Acesso negado' });
 
@@ -397,7 +397,7 @@ app.put('/api/prestadores/:id/perfil', auth, async (req, res) => {
 
 app.get('/api/fiadores/:id/indicados', auth, async (req, res) => {
   // Ownership: só o próprio fiador pode ver seus indicados
-  if (req.user.id !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
+  if (req.user.fiadorId !== req.params.id) return res.status(403).json({ success: false, error: 'Acesso negado' });
   const { rows } = await query(
     `SELECT i.*, row_to_json(p) as prestador FROM indicacoes i JOIN prestadores p ON p.id=i.prestador_id WHERE i.fiador_id=$1`,
     [req.params.id]
@@ -410,7 +410,7 @@ app.post('/api/indicacoes/:id/aceitar', auth, async (req, res) => {
     // Só o fiador responsável pela indicação pode aceitá-la
     const { rows: check } = await query(
       'SELECT i.id FROM indicacoes i WHERE i.id=$1 AND i.fiador_id=$2',
-      [req.params.id, req.user.id]
+      [req.params.id, req.user.fiadorId]
     );
     if (!check.length) return res.status(403).json({ success: false, error: 'Acesso negado ou indicação não encontrada' });
 
@@ -427,7 +427,7 @@ app.post('/api/indicacoes/:id/recusar', auth, async (req, res) => {
   try {
     const { rows: check } = await query(
       'SELECT i.id FROM indicacoes i WHERE i.id=$1 AND i.fiador_id=$2',
-      [req.params.id, req.user.id]
+      [req.params.id, req.user.fiadorId]
     );
     if (!check.length) return res.status(403).json({ success: false, error: 'Acesso negado ou indicação não encontrada' });
 
@@ -967,11 +967,35 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 3001;
 
-testConnection().then(ok => {
+async function runMigrations() {
+  const fs = require('fs');
+  const path = require('path');
+  const schemaPath = path.join(__dirname, 'schema.sql');
+  if (!fs.existsSync(schemaPath)) return;
+  try {
+    const sql = fs.readFileSync(schemaPath, 'utf8');
+    await query(sql);
+    console.log('🗄️  Schema aplicado com sucesso.');
+  } catch (err) {
+    console.error('⚠️  Erro ao aplicar schema (pode já existir):', err.message);
+  }
+  // Migrações incrementais — ADD COLUMN IF NOT EXISTS é idempotente
+  const alterations = [
+    `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS email TEXT`,
+    `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS cidade TEXT`,
+    `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS estado TEXT`,
+  ];
+  for (const sql of alterations) {
+    try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
+  }
+}
+
+testConnection().then(async ok => {
   if (!ok) { console.error('❌ Abortando: sem conexão com PostgreSQL'); process.exit(1); }
+  await runMigrations();
   app.listen(PORT, () => {
     console.log(`✅ IMOVELI Backend (PostgreSQL) rodando em http://localhost:${PORT}`);
-    console.log(`🗄️  Banco: ${process.env.PG_DATABASE || 'imoveli'} @ ${process.env.PG_HOST || 'localhost'}`);
+    console.log(`🗄️  Banco: ${process.env.DATABASE_URL ? 'Railway' : (process.env.PG_DATABASE || 'imoveli')}`);
     console.log(`🏗️  Endpoints prontos para uso`);
   });
 });
