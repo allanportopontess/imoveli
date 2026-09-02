@@ -137,6 +137,24 @@ CREATE TABLE IF NOT EXISTS candidaturas (
   created_at    TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- ============ BASE DE CONHECIMENTO (Chatbot IA) ============
+CREATE TABLE IF NOT EXISTS base_conhecimento (
+  id            SERIAL PRIMARY KEY,
+  categoria     TEXT NOT NULL,  -- NR | NBR | Lei Federal | Decreto | Resolucao | Codigo | Pratica
+  titulo        TEXT NOT NULL,
+  numero        TEXT,           -- ex: "NR-18", "NBR 15575", "Lei 6766/79"
+  descricao     TEXT NOT NULL,  -- resumo curto (1-3 frases)
+  conteudo      TEXT NOT NULL,  -- texto detalhado usado como contexto pelo chatbot
+  tags          TEXT[],         -- palavras-chave para busca
+  vigente       BOOLEAN DEFAULT TRUE,
+  fonte_url     TEXT,
+  created_at    TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_bk_categoria ON base_conhecimento(categoria);
+CREATE INDEX IF NOT EXISTS idx_bk_vigente ON base_conhecimento(vigente);
+CREATE INDEX IF NOT EXISTS idx_bk_titulo ON base_conhecimento USING gin(to_tsvector('portuguese', titulo || ' ' || COALESCE(numero,'') || ' ' || descricao));
+
 -- Índices para queries comuns
 CREATE INDEX IF NOT EXISTS idx_contas_email ON contas(email);
 CREATE INDEX IF NOT EXISTS idx_indicacoes_fiador ON indicacoes(fiador_id);

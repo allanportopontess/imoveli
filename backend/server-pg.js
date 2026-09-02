@@ -906,6 +906,41 @@ const CHAT_SYSTEM_PROMPT = `Você é o Assistente Técnico da IMOVELI — plataf
 5. Nunca invente números de normas ou prazos legais.
 6. Respostas entre 3 e 15 linhas, salvo pedido de elaboração.`;
 
+// Busca contexto técnico relevante no banco de conhecimento
+async function buscarContextoConhecimento(pergunta) {
+  try {
+    const termos = pergunta.toLowerCase()
+      .replace(/[^a-záéíóúãõâêîôûàèìòùç\s0-9\-\/]/gi, ' ')
+      .split(/\s+/)
+      .filter(t => t.length > 3)
+      .slice(0, 8);
+    if (!termos.length) return '';
+
+    const condicoes = termos.map((t, i) => `(
+      titulo ILIKE $${i + 1} OR
+      numero ILIKE $${i + 1} OR
+      descricao ILIKE $${i + 1} OR
+      conteudo ILIKE $${i + 1} OR
+      $${i + 1} ILIKE ANY(tags)
+    )`).join(' OR ');
+    const params = termos.map(t => `%${t}%`);
+
+    const { rows } = await query(
+      `SELECT titulo, numero, categoria, descricao, conteudo FROM base_conhecimento
+       WHERE vigente = TRUE AND (${condicoes})
+       LIMIT 4`,
+      params
+    );
+    if (!rows.length) return '';
+
+    return '\n\n## Base de Conhecimento Técnico Relevante\nUse estas referências ao responder:\n\n' +
+      rows.map(r => `### ${r.titulo}\n${r.conteudo}`).join('\n\n---\n\n');
+  } catch (err) {
+    console.error('Erro ao buscar base_conhecimento:', err.message);
+    return '';
+  }
+}
+
 app.post('/api/chat', async (req, res) => {
   if (!anthropicClient) return res.status(503).json({ success: false, error: 'Chatbot indisponível — configure ANTHROPIC_API_KEY no .env' });
   const { mensagens, contexto } = req.body;
@@ -915,6 +950,13 @@ app.post('/api/chat', async (req, res) => {
   let systemFinal = CHAT_SYSTEM_PROMPT;
   if (contexto && typeof contexto === 'string') {
     systemFinal += `\n\n## Contexto do usuário atual\n${contexto}`;
+  }
+
+  // Busca contexto técnico no banco de conhecimento com base na última mensagem do usuário
+  const ultimaMensagem = [...mensagens].reverse().find(m => m.role === 'user');
+  if (ultimaMensagem) {
+    const ctxConhecimento = await buscarContextoConhecimento(ultimaMensagem.content);
+    if (ctxConhecimento) systemFinal += ctxConhecimento;
   }
 
   try {
@@ -929,6 +971,21 @@ app.post('/api/chat', async (req, res) => {
     console.error('Chat IA error:', err.message);
     res.status(502).json({ success: false, error: 'Erro ao conectar com a IA.' });
   }
+});
+
+// Listar / buscar base de conhecimento
+app.get('/api/base-conhecimento', async (req, res) => {
+  const { q, categoria } = req.query;
+  let sql = `SELECT id, categoria, titulo, numero, descricao, tags, vigente, fonte_url FROM base_conhecimento WHERE vigente = TRUE`;
+  const params = [];
+  if (categoria) { params.push(categoria); sql += ` AND categoria ILIKE $${params.length}`; }
+  if (q) {
+    params.push(`%${q}%`);
+    sql += ` AND (titulo ILIKE $${params.length} OR numero ILIKE $${params.length} OR descricao ILIKE $${params.length})`;
+  }
+  sql += ` ORDER BY categoria, titulo LIMIT 100`;
+  const { rows } = await query(sql, params);
+  res.json({ success: true, total: rows.length, itens: rows });
 });
 
 // ============================================
@@ -984,6 +1041,21 @@ async function runMigrations() {
     `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS email TEXT`,
     `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS cidade TEXT`,
     `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS estado TEXT`,
+    // Base de conhecimento para o chatbot
+    `CREATE TABLE IF NOT EXISTS base_conhecimento (
+      id SERIAL PRIMARY KEY,
+      categoria TEXT NOT NULL,
+      titulo TEXT NOT NULL,
+      numero TEXT,
+      descricao TEXT NOT NULL,
+      conteudo TEXT NOT NULL,
+      tags TEXT[],
+      vigente BOOLEAN DEFAULT TRUE,
+      fonte_url TEXT,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_bk_categoria ON base_conhecimento(categoria)`,
+    `CREATE INDEX IF NOT EXISTS idx_bk_vigente ON base_conhecimento(vigente)`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
