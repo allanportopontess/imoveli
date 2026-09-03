@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite IMOVELI — Você foi convidado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet: #6E30D9;
+      --violet-deep: #4B1F94;
+      --violet-wash: #F2ECFC;
+      --ink: #161616;
+      --ink-soft: #6B6B70;
+      --paper: #FAFAFA;
+      --paper-raised: #FFFFFF;
+      --mint: #16B378;
+      --coral: #FF4B5C;
+      --mist: #EAE8ED;
+      --mist-strong: #D6D3DC;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeUp .5s ease both;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--violet);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .vip-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #333;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span { color: var(--violet); }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .convidado-por {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--violet-wash);
+      border: 1px solid #D8C8F8;
+      color: var(--violet-deep);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 99px;
+      margin-top: 16px;
+    }
+
+    /* ─── Card ─── */
+    .card {
+      background: var(--paper-raised);
+      border: 1px solid var(--mist);
+      border-radius: 20px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      animation: fadeUp .5s .1s ease both;
+    }
+
+    .card-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-sub {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--mist-strong);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--paper);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .field input:focus {
+      border-color: var(--violet);
+      background: #fff;
+    }
+
+    .field input.error { border-color: var(--coral); }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: var(--violet);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      margin-top: 8px;
+    }
+
+    .btn-primary:hover:not(:disabled) { background: var(--violet-deep); }
+    .btn-primary:active:not(:disabled) { transform: scale(.98); }
+    .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+    .divider {
+      height: 1px;
+      background: var(--mist);
+      margin: 20px 0;
+    }
+
+    .perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .perk-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--violet-wash);
+      color: var(--violet);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Estados ─── */
+    .state-loading, .state-invalid, .state-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .state-loading.active, .state-invalid.active, .state-success.active { display: block; }
+
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--mist);
+      border-top-color: var(--violet);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    .error-msg {
+      background: #FFF0F1;
+      border: 1px solid #FFCDD2;
+      color: var(--coral);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      margin-top: 12px;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, var(--mint), #0ea271);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+    }
+
+    .success-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .success-msg {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--violet);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-secondary:hover { background: var(--violet-deep); }
+
+    .login-link {
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-top: 20px;
+    }
+
+    .login-link a {
+      color: var(--violet);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero" id="heroSection">
+    <div class="logo-badge">🏗️ IMOVELI</div>
+    <div class="vip-badge">✦ Convite VIP</div>
+    <h1>Você foi convidado<br>para entrar na <span>rede</span></h1>
+    <p>A IMOVELI conecta profissionais da construção civil com base em confiança e responsabilidade técnica.</p>
+    <div class="convidado-por" id="convidadoPorBadge" style="display:none">
+      🤝 Convite de <strong id="criadorNome"></strong>
+    </div>
+  </div>
+
+  <!-- Card principal -->
+  <div class="card" id="mainCard">
+
+    <!-- Loading -->
+    <div class="state-loading active" id="stateLoading">
+      <div class="spinner"></div>
+      <p style="color:var(--ink-soft)">Validando seu convite...</p>
+    </div>
+
+    <!-- Inválido -->
+    <div class="state-invalid" id="stateInvalid">
+      <div style="font-size:48px;margin-bottom:16px">🚫</div>
+      <div class="card-title">Convite inválido</div>
+      <p class="card-sub" id="invalidMsg">Este link de convite não é válido ou já expirou.</p>
+    </div>
+
+    <!-- Formulário -->
+    <div id="stateForm" style="display:none">
+      <div class="card-title">Complete seu cadastro</div>
+      <p class="card-sub">Preencha os dados abaixo para entrar na rede IMOVELI.</p>
+
+      <ul class="perks">
+        <li>
+          <div class="perk-icon">✓</div>
+          <span>Perfil verificado na rede de profissionais</span>
+        </li>
+        <li>
+          <div class="perk-icon">✓</div>
+          <span>Receba indicações e apareça nas buscas</span>
+        </li>
+        <li>
+          <div class="perk-icon">✓</div>
+          <span>Acesso ao chatbot técnico de construção civil</span>
+        </li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <form id="conviteForm">
+        <div class="field">
+          <label for="nome">Nome completo *</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="profissao">Profissão / Especialidade *</label>
+          <input type="text" id="profissao" name="profissao" placeholder="Ex: Encanador, Eletricista, Pedreiro...">
+        </div>
+        <div class="field">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="senha">Crie uma senha *</label>
+          <input type="password" id="senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+          <div class="field-hint">Você usará essa senha para fazer login.</div>
+        </div>
+
+        <div class="error-msg" id="formError"></div>
+
+        <button type="submit" class="btn-primary" id="btnSubmit">
+          Entrar na rede IMOVELI
+        </button>
+      </form>
+
+      <p class="login-link">Já tem conta? <a href="/index.html">Fazer login</a></p>
+    </div>
+
+    <!-- Sucesso -->
+    <div class="state-success" id="stateSuccess">
+      <div class="success-icon">🎉</div>
+      <div class="success-title" id="successTitle">Bem-vindo(a) à IMOVELI!</div>
+      <p class="success-msg" id="successMsg">Você já faz parte da rede. Complete seu perfil para aparecer nas buscas e receber indicações.</p>
+      <a href="/index.html" class="btn-secondary" id="btnEntrar">Acessar meu perfil</a>
+    </div>
+
+  </div>
+
+  <script>
+    const API = '';  // relativo — Vercel rewrite cuida do proxy
+
+    function getToken() {
+      return new URLSearchParams(window.location.search).get('token');
+    }
+
+    function showState(state) {
+      ['stateLoading', 'stateInvalid', 'stateForm', 'stateSuccess'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.display = (id === state) ? 'block' : 'none';
+          if (el.classList) {
+            el.classList.toggle('active', id === state);
+          }
+        }
+      });
+    }
+
+    async function validarConvite() {
+      const token = getToken();
+      if (!token) { showState('stateInvalid'); return; }
+
+      showState('stateLoading');
+      try {
+        const r = await fetch(`${API}/api/convites/${token}`);
+        const data = await r.json();
+        if (!data.success) {
+          document.getElementById('invalidMsg').textContent = data.error || 'Convite inválido.';
+          showState('stateInvalid');
+          return;
+        }
+        // Mostra quem convidou
+        if (data.criadorNome) {
+          document.getElementById('criadorNome').textContent = data.criadorNome;
+          document.getElementById('convidadoPorBadge').style.display = 'inline-flex';
+        }
+        showState('stateForm');
+      } catch (e) {
+        document.getElementById('invalidMsg').textContent = 'Erro ao validar convite. Tente novamente.';
+        showState('stateInvalid');
+      }
+    }
+
+    document.getElementById('conviteForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = getToken();
+      const btn = document.getElementById('btnSubmit');
+      const errEl = document.getElementById('formError');
+      errEl.classList.remove('show');
+
+      const nome = document.getElementById('nome').value.trim();
+      const profissao = document.getElementById('profissao').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const senha = document.getElementById('senha').value;
+
+      if (!nome || !email || !senha) {
+        errEl.textContent = 'Preencha nome, email e senha.';
+        errEl.classList.add('show');
+        return;
+      }
+      if (senha.length < 6) {
+        errEl.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+        errEl.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Cadastrando...';
+
+      try {
+        const r = await fetch(`${API}/api/convites/${token}/usar`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, profissao, email, telefone, senha })
+        });
+        const data = await r.json();
+
+        if (!data.success) {
+          errEl.textContent = data.error || 'Erro ao cadastrar.';
+          errEl.classList.add('show');
+          btn.disabled = false;
+          btn.textContent = 'Entrar na rede IMOVELI';
+          return;
+        }
+
+        // Salva token JWT
+        localStorage.setItem('imoveli_token', data.token);
+        localStorage.setItem('imoveli_user', JSON.stringify(data.usuario));
+
+        // Sucesso
+        document.getElementById('successTitle').textContent = `Bem-vindo(a), ${data.usuario.nome.split(' ')[0]}! 🎉`;
+        document.getElementById('successMsg').textContent = data.mensagem;
+        showState('stateSuccess');
+
+        // Redireciona após 3s
+        setTimeout(() => { window.location.href = '/index.html'; }, 3000);
+
+      } catch (err) {
+        errEl.textContent = 'Erro de conexão. Tente novamente.';
+        errEl.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Entrar na rede IMOVELI';
+      }
+    });
+
+    // Máscara de telefone
+    document.getElementById('telefone').addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      else if (v.length > 0) v = `(${v}`;
+      this.value = v;
+    });
+
+    validarConvite();
+  </script>
+</body>
+</html>

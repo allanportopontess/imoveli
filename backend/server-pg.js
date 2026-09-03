@@ -973,6 +973,111 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// ============================================
+// CONVITES VIP
+// ============================================
+
+// Gerar link de convite (usuário autenticado)
+app.post('/api/convites', auth, async (req, res) => {
+  const { usos_max = 1, dias_validade = 30 } = req.body;
+  const token = crypto.randomUUID();
+  const criadorId = req.user.fiadorId || req.user.email;
+
+  // Busca nome do criador
+  let criadorNome = req.user.nomeProfissional || req.user.email;
+  if (req.user.fiadorId) {
+    const { rows } = await query('SELECT nome FROM fiadores WHERE id=$1', [req.user.fiadorId]);
+    if (rows.length) criadorNome = rows[0].nome;
+  }
+
+  await query(
+    `INSERT INTO convites (token, criador_id, criador_nome, usos_max, expires_at)
+     VALUES ($1, $2, $3, $4, NOW() + ($5 || ' days')::INTERVAL)`,
+    [token, criadorId, criadorNome, Math.min(parseInt(usos_max) || 1, 100), parseInt(dias_validade) || 30]
+  );
+
+  const link = `${process.env.FRONTEND_URL || 'https://imoveli-completo.vercel.app'}/convite.html?token=${token}`;
+  res.json({ success: true, token, link, expiresEm: `${dias_validade} dias`, usosMax: usos_max });
+});
+
+// Validar token de convite (público)
+app.get('/api/convites/:token', async (req, res) => {
+  const { rows } = await query(
+    `SELECT token, criador_nome, usos_max, usos_atual, expires_at FROM convites WHERE token=$1`,
+    [req.params.token]
+  );
+  if (!rows.length) return res.status(404).json({ success: false, error: 'Convite não encontrado.' });
+  const c = rows[0];
+  if (new Date(c.expires_at) < new Date()) return res.status(410).json({ success: false, error: 'Este convite expirou.' });
+  if (c.usos_atual >= c.usos_max) return res.status(410).json({ success: false, error: 'Este convite já atingiu o limite de usos.' });
+  res.json({ success: true, criadorNome: c.criador_nome, usosRestantes: c.usos_max - c.usos_atual, expiresAt: c.expires_at });
+});
+
+// Usar convite — cadastro + entrada na rede
+app.post('/api/convites/:token/usar', async (req, res) => {
+  const { nome, email, telefone, profissao, senha } = req.body;
+  if (!nome || !email || !senha) return res.status(400).json({ success: false, error: 'Nome, email e senha são obrigatórios.' });
+  if (!EMAIL_REGEX.test(email)) return res.status(400).json({ success: false, error: 'Email inválido.' });
+  if (senha.length < 6) return res.status(400).json({ success: false, error: 'Senha mínima de 6 caracteres.' });
+
+  // Valida token
+  const { rows: conv } = await query(
+    `SELECT * FROM convites WHERE token=$1 AND expires_at > NOW() AND usos_atual < usos_max`,
+    [req.params.token]
+  );
+  if (!conv.length) return res.status(410).json({ success: false, error: 'Convite inválido ou expirado.' });
+
+  // Verifica se email já existe
+  const { rows: existe } = await query('SELECT id FROM contas WHERE email=$1', [email]);
+  if (existe.length) return res.status(409).json({ success: false, error: 'Este email já está cadastrado. Faça login.' });
+
+  // Cria conta confirmada (sem precisar de verificação por email — o convite é o fator de confiança)
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.createHmac('sha256', salt).update(senha).digest('hex');
+
+  await query(
+    `INSERT INTO contas (email, nome_profissional, senha_hash, senha_salt, confirmado)
+     VALUES ($1, $2, $3, $4, TRUE)`,
+    [email.toLowerCase(), nome, hash, salt]
+  );
+
+  // Registra uso do convite
+  await query(`UPDATE convites SET usos_atual = usos_atual + 1 WHERE token=$1`, [req.params.token]);
+
+  // Gera token JWT
+  const token = signToken({ email: email.toLowerCase(), nomeProfissional: nome, fiadorId: null });
+
+  console.log(`🎟️  Convite usado: ${email} via token ${req.params.token} (criado por ${conv[0].criador_nome})`);
+  res.json({
+    success: true,
+    token,
+    mensagem: `Bem-vindo(a) à IMOVELI, ${nome}! Você já faz parte da rede. Complete seu perfil para aparecer nas buscas.`,
+    usuario: { email: email.toLowerCase(), nome, profissao: profissao || '', telefone: telefone || '' }
+  });
+});
+
+// Listar convites do usuário logado
+app.get('/api/meus-convites', auth, async (req, res) => {
+  const criadorId = req.user.fiadorId || req.user.email;
+  const { rows } = await query(
+    `SELECT token, usos_max, usos_atual, expires_at, created_at FROM convites WHERE criador_id=$1 ORDER BY created_at DESC`,
+    [criadorId]
+  );
+  const baseUrl = process.env.FRONTEND_URL || 'https://imoveli-completo.vercel.app';
+  res.json({
+    success: true,
+    convites: rows.map(c => ({
+      token: c.token,
+      link: `${baseUrl}/convite.html?token=${c.token}`,
+      usosMax: c.usos_max,
+      usosAtual: c.usos_atual,
+      expiresAt: c.expires_at,
+      createdAt: c.created_at,
+      status: new Date(c.expires_at) < new Date() ? 'expirado' : c.usos_atual >= c.usos_max ? 'esgotado' : 'ativo'
+    }))
+  });
+});
+
 // Listar / buscar base de conhecimento
 app.get('/api/base-conhecimento', async (req, res) => {
   const { q, categoria } = req.query;
@@ -1056,6 +1161,17 @@ async function runMigrations() {
     )`,
     `CREATE INDEX IF NOT EXISTS idx_bk_categoria ON base_conhecimento(categoria)`,
     `CREATE INDEX IF NOT EXISTS idx_bk_vigente ON base_conhecimento(vigente)`,
+    // Convites VIP
+    `CREATE TABLE IF NOT EXISTS convites (
+      token       TEXT PRIMARY KEY,
+      criador_id  TEXT,
+      criador_nome TEXT,
+      usos_max    INTEGER DEFAULT 1,
+      usos_atual  INTEGER DEFAULT 0,
+      expires_at  TIMESTAMPTZ DEFAULT NOW() + INTERVAL '30 days',
+      created_at  TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_convites_criador ON convites(criador_id)`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
