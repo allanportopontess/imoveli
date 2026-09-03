@@ -996,7 +996,7 @@ app.post('/api/convites', auth, async (req, res) => {
     [token, criadorId, criadorNome, Math.min(parseInt(usos_max) || 1, 100), parseInt(dias_validade) || 30]
   );
 
-  const link = `${process.env.FRONTEND_URL || 'https://imoveli-completo.vercel.app'}/convite.html?token=${token}`;
+  const link = `${process.env.FRONTEND_URL || 'https://imoveli.vercel.app'}/convite.html?token=${token}`;
   res.json({ success: true, token, link, expiresEm: `${dias_validade} dias`, usosMax: usos_max });
 });
 
@@ -1063,7 +1063,7 @@ app.get('/api/meus-convites', auth, async (req, res) => {
     `SELECT token, usos_max, usos_atual, expires_at, created_at FROM convites WHERE criador_id=$1 ORDER BY created_at DESC`,
     [criadorId]
   );
-  const baseUrl = process.env.FRONTEND_URL || 'https://imoveli-completo.vercel.app';
+  const baseUrl = process.env.FRONTEND_URL || 'https://imoveli.vercel.app';
   res.json({
     success: true,
     convites: rows.map(c => ({
