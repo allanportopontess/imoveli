@@ -1,0 +1,3623 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="app-version" content="2.0-convites">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMOVELI — Rede de profissionais baseada em confiança</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta — energia Nubank, clareza Apple */
+            --paper: #FAFAFA;        /* fundo limpo, muito espaço em branco */
+            --paper-raised: #FFFFFF; /* superfícies elevadas / cards */
+            --ink: #161616;          /* texto principal */
+            --ink-soft: #6B6B70;     /* texto secundário */
+            --violet: #6E30D9;       /* ação primária */
+            --violet-deep: #4B1F94;
+            --violet-wash: #F2ECFC;  /* fundo suave para destaques */
+            --coral: #FF4B5C;        /* urgência / emergência */
+            --mint: #16B378;         /* verificado / sucesso */
+            --mist: #EAE8ED;         /* bordas e divisores */
+            --mist-strong: #D6D3DC;
+
+            /* Compat: nomes antigos apontando para a nova paleta */
+            --primary: var(--violet);
+            --secondary: var(--coral);
+            --success: var(--mint);
+            --danger: var(--coral);
+            --warning: #E0952E;
+            --neutral-50: var(--paper);
+            --neutral-100: var(--paper-raised);
+            --neutral-200: var(--mist);
+            --neutral-400: var(--mist-strong);
+            --neutral-600: var(--ink-soft);
+            --neutral-800: var(--ink);
+            --border-color: var(--mist);
+            /* aliases do tema anterior ainda referenciados em alguns componentes */
+            --blueprint: var(--violet);
+            --blueprint-deep: var(--violet-deep);
+            --brick: var(--coral);
+            --moss: var(--mint);
+            --stone: var(--paper);
+            --stone-raised: var(--paper-raised);
+
+            --font-display: 'Sora', 'Inter', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, .display {
+            font-family: var(--font-display);
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1200px;
+
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* LAYOUT GERAL */
+        .app-wrapper {
+            display: none;
+            min-height: 100vh;
+            background: var(--stone);
+            position: relative;
+        }
+
+        .app-wrapper.visible {
+            display: block;
+        }
+
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 23, 26, 0.45);
+            z-index: 998;
+        }
+
+        .drawer-overlay.open {
+            display: block;
+        }
+
+        .sidebar {
+            background: var(--blueprint-deep);
+            color: white;
+            padding: 24px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 270px;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar h2 {
+            font-size: 19px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-menu a {
+            color: rgba(255, 255, 255, 0.78);
+            text-decoration: none;
+            display: block;
+            padding: 12px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+        }
+
+        .main-content {
+            padding: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--mist-strong);
+            background: var(--stone-raised);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: white;
+            border-color: var(--ink-soft);
+        }
+
+        /* ===== CHATBOT IA (flutuante, sempre ativo) ===== */
+
+        .chat-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: var(--violet);
+            color: white;
+            border: none;
+            font-size: 24px;
+            box-shadow: 0 6px 20px rgba(110,48,217,0.4);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.06);
+        }
+
+        .chat-panel {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 360px;
+            max-width: calc(100vw - 32px);
+            height: 480px;
+            max-height: calc(100vh - 140px);
+            background: var(--paper-raised);
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(22,22,22,0.25);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .chat-panel.open {
+            display: flex;
+        }
+
+        .chat-panel-header {
+            background: var(--violet);
+            color: white;
+            padding: 14px 16px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-panel-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 9px 13px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            line-height: 1.4;
+        }
+
+        .chat-bubble.user {
+            align-self: flex-end;
+            background: var(--violet);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-bubble.assistant {
+            align-self: flex-start;
+            background: var(--mist);
+            color: var(--ink);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-panel-input {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid var(--mist);
+        }
+
+        .chat-panel-input input {
+            flex: 1;
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 13.5px;
+            font-family: inherit;
+        }
+
+        .chat-panel-input button {
+            background: var(--violet);
+            color: white;
+            border: none;
+            width: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .emergency-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 999px;
+            background: var(--brick);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        .emergency-pill:hover {
+            transform: scale(1.03);
+        }
+
+        .emergency-pill::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: white;
+            animation: pulse-dot 1.6s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        /* ===== COMMAND HOME ===== */
+
+        .command-home {
+            min-height: calc(100vh - 72px);
+            padding: 32px 20px 60px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .command-greeting {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--violet);
+            margin-bottom: 6px;
+        }
+
+        .command-headline {
+            font-family: var(--font-display);
+            font-size: clamp(26px, 5vw, 34px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .command-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 6px 6px 20px;
+            background: var(--paper-raised);
+            border: none;
+            box-shadow: 0 2px 10px rgba(22,22,22,0.07);
+            border-radius: 20px;
+        }
+
+        .command-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: 16px;
+            padding: 15px 0;
+            color: var(--ink);
+        }
+
+        .command-bar button {
+            background: var(--violet);
+            color: white;
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .command-bar button:active {
+            transform: scale(0.92);
+        }
+
+        .command-bar button:hover {
+            background: var(--violet-deep);
+        }
+
+        /* Grade fotográfica — a ação principal da tela, estilo cartão grande tocável */
+        .tile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .tile-grid .tile:first-child {
+            grid-column: 1 / -1;
+        }
+
+        .tile {
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 16px rgba(22,22,22,0.10);
+            transition: transform 0.2s;
+        }
+
+        .tile:first-child {
+            aspect-ratio: 21 / 9;
+        }
+
+        .tile:active {
+            transform: scale(0.98);
+        }
+
+        .tile::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
+        }
+
+        .tile-label {
+            position: absolute;
+            left: 16px;
+            bottom: 14px;
+            right: 16px;
+            z-index: 1;
+            color: white;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .tile-sub {
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            z-index: 1;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.22);
+            backdrop-filter: blur(6px);
+            padding: 5px 11px;
+            border-radius: 999px;
+        }
+
+        .tile.tile-emergency .tile-sub {
+            background: var(--coral);
+        }
+
+        .command-more-label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--ink-soft);
+            margin: 32px 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .command-index-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 4px;
+            border-top: 1px solid var(--mist);
+            cursor: pointer;
+        }
+
+        .command-index-row:last-child {
+            border-bottom: 1px solid var(--mist);
+        }
+
+        .command-index-row:hover .command-index-title {
+            color: var(--violet);
+        }
+
+        .command-index-icon {
+            font-size: 18px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .command-index-title {
+            font-weight: 600;
+            font-size: 14.5px;
+            transition: color 0.15s;
+        }
+
+        .command-index-sub {
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            margin-top: 1px;
+        }
+
+        .command-index-arrow {
+            margin-left: auto;
+            color: var(--mist-strong);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 13px 24px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 15px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+            min-height: 44px;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--blueprint-deep);
+            box-shadow: 0 4px 12px rgba(27, 58, 92, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(26, 115, 232, 0.05);
+        }
+
+        .section {
+            background: var(--paper-raised);
+            border: none;
+            box-shadow: 0 1px 3px rgba(22,22,22,0.06), 0 1px 2px rgba(22,22,22,0.04);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--paper-raised);
+            border: none;
+            box-shadow: 0 1px 3px rgba(22,22,22,0.05);
+            border-radius: 18px;
+            padding: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22,22,22,0.08);
+        }
+
+        .card-value {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .card-label {
+            font-size: 12.5px;
+            color: var(--neutral-600);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: inherit;
+            min-height: 44px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--violet-wash);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--violet);
+            border-radius: 18px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--violet-wash);
+        }
+
+        .upload-area:hover {
+            background: rgba(27, 58, 92, 0.06);
+            border-color: var(--blueprint-deep);
+        }
+
+        .upload-area p {
+            color: var(--neutral-600);
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        .preview-image {
+            max-width: 300px;
+            max-height: 300px;
+            margin-top: 16px;
+            border-radius: 8px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .table th {
+            background: var(--neutral-100);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--neutral-600);
+        }
+
+        .table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: rgba(13, 101, 45, 0.1);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(249, 171, 0, 0.1);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background: rgba(211, 59, 39, 0.1);
+            color: var(--danger);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--neutral-600);
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .alert-info {
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(26, 115, 232, 0.2);
+        }
+
+        .alert-success {
+            background: rgba(13, 101, 45, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(13, 101, 45, 0.2);
+        }
+
+        .login-screen {
+            display: none;
+            min-height: 100vh;
+            background:
+                linear-gradient(180deg, rgba(75,31,148,0.55), rgba(22,22,22,0.75)),
+                url('https://source.unsplash.com/1600x1200/?architects,blueprint,office&sig=3') center/cover;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-screen.visible {
+            display: flex;
+        }
+
+        .login-box {
+            background: var(--paper-raised);
+            border-radius: 28px;
+            padding: 40px 32px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        .login-box h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(26, 115, 232, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-600);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Hide initial screens */
+        [data-page] {
+            display: none;
+        }
+
+        [data-page].active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .command-index-sub {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen visible" id="loginScreen">
+    <div class="login-box">
+        <h1 style="font-size: 30px; text-align: center;">🏠 IMOVELI</h1>
+        <p style="text-align: center; color: var(--neutral-600); margin-bottom: 28px; font-size: 15px;">Rede de profissionais baseada em confiança.</p>
+
+        <!-- PASSO: LOGIN -->
+        <div id="stepLogin">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="loginPassword" placeholder="sua senha">
+            </div>
+            <div id="loginMsg"></div>
+            <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="handleLogin()">Entrar</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="mostrarPassoAuth('signup')">Criar Conta</button>
+        </div>
+
+        <!-- PASSO: CRIAR CONTA -->
+        <div id="stepSignup" style="display: none;">
+            <div class="form-group">
+                <label>Nome profissional completo</label>
+                <input type="text" id="signupNome" placeholder="Como você quer ser reconhecido na rede">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signupEmail" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="text" id="signupTelefone" placeholder="(00) 00000-0000">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="signupSenha" placeholder="mínimo 6 caracteres">
+            </div>
+            <div id="signupMsg"></div>
+            <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="handleSignup()">Criar Conta</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="mostrarPassoAuth('login')">Já tenho conta</button>
+        </div>
+
+        <!-- PASSO: CONFIRMAR EMAIL -->
+        <div id="stepConfirmar" style="display: none;">
+            <p style="font-size: 13.5px; color: var(--neutral-600); margin-bottom: 16px; text-align: center;">
+                Enviamos um código de 6 dígitos para <strong id="confirmarEmailDisplay"></strong>
+            </p>
+            <div class="form-group">
+                <label>Código de confirmação</label>
+                <input type="text" id="confirmarCodigo" placeholder="000000" maxlength="6" style="text-align: center; font-size: 22px; letter-spacing: 6px; font-family: var(--font-display);">
+            </div>
+            <div id="confirmarMsg"></div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="handleConfirmarEmail()">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app-wrapper" id="appWrapper">
+    <!-- DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer(false)"></div>
+
+    <!-- SIDEBAR (gaveta) -->
+    <div class="sidebar" id="sidebar">
+        <h2>🏠 IMOVELI</h2>
+        <ul class="sidebar-menu">
+            <li><a onclick="showPage('command')" data-menu="command" class="active">💬 Início</a></li>
+            <li><a onclick="showPage('dashboard')" data-menu="dashboard">📊 Painel Geral</a></li>
+            <li><a onclick="showPage('fiador')" data-menu="fiador">🛡️ Meu Perfil Profissional</a></li>
+            <li><a onclick="showPage('hire')" data-menu="hire">🔎 Buscar Profissional</a></li>
+            <li><a onclick="showPage('services')" data-menu="services">📁 Registros de Colaboração</a></li>
+            <li><a onclick="showPage('demandas')" data-menu="demandas">📢 Demanda de Serviços</a></li>
+            <li><a onclick="showPage('convites')" data-menu="convites">🔗 Convidar Profissional</a></li>
+            <li><a onclick="handleLogout()" style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 12px;">🚪 Sair</a></li>
+        </ul>
+    </div>
+
+    <!-- TOPBAR (sempre visível) -->
+    <div class="topbar">
+        <button class="icon-btn" onclick="toggleDrawer(true)" aria-label="Abrir menu">☰</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div id="lembretePerfilBanner"></div>
+
+        <!-- COMANDO (tela inicial) -->
+        <div data-page="command" class="active">
+            <div class="command-home">
+                <div class="command-greeting" id="commandGreeting">BOM DIA</div>
+                <h1 class="command-headline" id="commandHeadline">O que você precisa na rede hoje?</h1>
+
+                <div class="command-bar">
+                    <input type="text" id="commandInput" placeholder="ex: preciso de um calculista estrutural"
+                           onkeydown="if(event.key==='Enter') handleCommandSubmit()">
+                    <button onclick="handleCommandSubmit()" aria-label="Enviar">→</button>
+                </div>
+
+                <div class="tile-grid">
+                    <div class="tile" style="background-image: url('https://source.unsplash.com/1200x500/?architecture,blueprint,office&sig=21')" onclick="showPage('fiador')">
+                        <div class="tile-sub">🛡️ Sua identidade técnica</div>
+                        <div class="tile-label">Meu perfil e portfólio</div>
+                    </div>
+                    <div class="tile" style="background-image: url('https://source.unsplash.com/700x440/?engineer,handshake,meeting&sig=41')" onclick="routeIntent('hire')">
+                        <div class="tile-label">Buscar Profissional</div>
+                    </div>
+                    <div class="tile" style="background-image: url('https://source.unsplash.com/700x440/?construction,worker,recommendation&sig=42')" onclick="showPage('fiador')">
+                        <div class="tile-label">Indicar um profissional</div>
+                    </div>
+                    <div class="tile" style="background-image: url('https://source.unsplash.com/700x440/?architecture,drawing,plan&sig=43')" onclick="showPage('demandas')">
+                        <div class="tile-label">Demandas de projeto</div>
+                    </div>
+                </div>
+
+                <div class="command-more-label">Mais opções</div>
+                <div>
+                    <div class="command-index-row" onclick="showPage('dashboard')">
+                        <div class="command-index-icon">📊</div>
+                        <div>
+                            <div class="command-index-title">Painel geral</div>
+                            <div class="command-index-sub">Sua rede e reputação</div>
+                        </div>
+                        <div class="command-index-arrow">›</div>
+                    </div>
+                    <div class="command-index-row" onclick="showPage('services')">
+                        <div class="command-index-icon">📁</div>
+                        <div>
+                            <div class="command-index-title">Registros de colaboração</div>
+                            <div class="command-index-sub">Serviços documentados com quem você contratou</div>
+                        </div>
+                        <div class="command-index-arrow">›</div>
+                    </div>
+                    <div class="command-index-row" onclick="showPage('match')">
+                        <div class="command-index-icon">🎯</div>
+                        <div>
+                            <div class="command-index-title">Match Inteligente</div>
+                            <div class="command-index-sub">Achar o especialista certo pro seu projeto</div>
+                        </div>
+                        <div class="command-index-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div data-page="dashboard">
+            <div class="header">
+                <div>
+                    <h1>Painel Geral</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Sua rede e reputação técnica</p>
+                </div>
+                <button class="btn btn-primary" onclick="showPage('fiador')">+ Indicar Profissional</button>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-value" id="statIndicados">0</div>
+                    <div class="card-label">Profissionais Indicados</div>
+                </div>
+                <div class="card">
+                    <div class="card-value" id="statVinculosAtivos" style="color: var(--success);">0</div>
+                    <div class="card-label">Vínculos Ativos</div>
+                </div>
+                <div class="card">
+                    <div class="card-value" id="statReputacao" style="color: var(--violet);">—</div>
+                    <div class="card-label">Reputação Verificada</div>
+                </div>
+                <div class="card">
+                    <div class="card-value" id="statRede">—</div>
+                    <div class="card-label">Profissionais na Rede</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Registros de Colaboração Recentes</h2>
+                <div id="recentServicos" style="color: var(--neutral-600); text-align: center; padding: 32px;">
+                    Nenhum registro ainda. Contrate ou seja contratado para começar a construir histórico.
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTRATAR SERVIÇO -->
+        <div data-page="hire">
+            <div class="header">
+                <div>
+                    <h1>Buscar Profissional</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Apenas profissionais indicados e avalizados por um Responsável Técnico verificado</p>
+                </div>
+            </div>
+            <div class="section" id="hireList">
+                <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Carregando profissionais...</div>
+            </div>
+        </div>
+
+        <!-- REGISTROS DE COLABORAÇÃO -->
+        <div data-page="services">
+            <div class="header">
+                <div>
+                    <h1>Registros de Colaboração</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Documentação técnica de cada trabalho com quem você contratou</p>
+                </div>
+            </div>
+            <div class="section" id="servicesList">
+                <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhum registro ainda.</div>
+            </div>
+        </div>
+
+        <!-- MATCH INTELIGENTE -->
+        <div data-page="match">
+            <div class="header">
+                <div>
+                    <h1>Match Inteligente</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">O especialista certo pro seu projeto, considerando técnica, preço, distância e avaliação</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="form-group">
+                    <label>O que você precisa? (especialidade ou skill)</label>
+                    <input type="text" id="matchEspecialidade" placeholder="ex: cálculo estrutural, projeto elétrico">
+                </div>
+                <div class="form-group">
+                    <label>Faixa de honorário que você espera pagar (opcional)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="matchPrecoMin" placeholder="Mínimo R$">
+                        <input type="number" id="matchPrecoMax" placeholder="Máximo R$">
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="handleBuscarMatch()">🔍 Buscar Melhores Profissionais</button>
+                <div id="matchLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 12px;">Calculando o melhor match...</p>
+                </div>
+            </div>
+
+            <div id="matchResults"></div>
+
+            <div class="section" style="text-align: center;">
+                <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 12px;">Prefere receber propostas de vários profissionais e escolher a melhor?</p>
+                <button class="btn btn-secondary" onclick="handleAbrirDemanda()">📢 Postar Demanda de Projeto</button>
+            </div>
+        </div>
+
+        <!-- DEMANDAS DE PROJETO -->
+        <div data-page="demandas">
+            <div class="header">
+                <div>
+                    <h1>Demanda de Serviços</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Descreva o que precisa — profissionais verificados da rede vão propor</p>
+                </div>
+            </div>
+
+            <!-- Formulário de nova demanda -->
+            <div class="section">
+                <h2>Publicar nova demanda</h2>
+                <p style="color: var(--neutral-600); font-size: 13px; margin-bottom: 16px;">Sem conta necessária — só seu e-mail para receber as propostas.</p>
+
+                <div class="form-group">
+                    <label>Seu e-mail de contato</label>
+                    <input type="email" id="demandaEmail" placeholder="voce@email.com">
+                </div>
+                <div class="form-group">
+                    <label>O que você precisa?</label>
+                    <textarea id="demandaDescricao" rows="3" placeholder="ex: Preciso reformar o banheiro — trocar azulejo, piso e instalação elétrica de um ponto de luz..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de profissional</label>
+                    <input type="text" id="demandaEspecialidade" placeholder="ex: Eletricista, Pedreiro, Arquiteto...">
+                </div>
+                <div style="display:flex;gap:12px;">
+                    <div class="form-group" style="flex:2;margin-bottom:0;">
+                        <label>Cidade</label>
+                        <input type="text" id="demandaCidade" placeholder="Recife">
+                    </div>
+                    <div class="form-group" style="flex:1;margin-bottom:0;">
+                        <label>Orçamento máx. (R$)</label>
+                        <input type="number" id="demandaOrcamento" placeholder="opcional">
+                    </div>
+                </div>
+                <div id="demandaErro" style="color: var(--coral, #e53e3e); font-size: 13px; display:none; margin-top: 12px;"></div>
+                <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="handlePublicarDemanda()">
+                    Publicar Demanda
+                </button>
+                <div id="demandaSucesso" style="display:none; margin-top: 12px; padding: 12px 14px; background: var(--green-wash, #f0fff4); border: 1px solid var(--moss); border-radius: 12px; font-size: 13.5px; color: var(--moss);">
+                    Demanda publicada! Profissionais da rede vão propor — confira abaixo ou no seu e-mail.
+                </div>
+            </div>
+
+            <!-- Lista de demandas abertas -->
+            <div class="section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+                    <h2 style="margin:0;">Demandas Abertas</h2>
+                    <button class="btn btn-secondary" style="padding: 5px 12px; font-size: 12px;" onclick="loadDemandasAbertas()">Atualizar</button>
+                </div>
+                <div id="demandasList">
+                    <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Carregando...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsável Técnico -->
+        <div data-page="fiador">
+            <div class="header">
+                <div>
+                    <h1>Sou Profissional</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Cadastre-se como Responsável Técnico e indique sua equipe</p>
+                </div>
+            </div>
+
+            <div id="fiadorNotRegistered" class="section">
+                <h2>Cadastro de Responsável Técnico</h2>
+                <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 20px;">
+                    Responsável Técnico é o engenheiro ou arquiteto (registro ativo em CAU/CREA) que assina tecnicamente
+                    pelos prestadores que indica. Verificamos seu registro antes de liberar indicações.
+                </p>
+
+                <div class="form-group">
+                    <label>Nome completo</label>
+                    <input type="text" id="fiadorNome" placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="fiadorEmail" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Conselho</label>
+                    <select id="fiadorConselho">
+                        <option value="CAU">CAU — Arquiteto/Urbanista</option>
+                        <option value="CREA">CREA — Engenheiro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>UF do registro</label>
+                    <input type="text" id="fiadorUf" placeholder="ex: PE" maxlength="2" style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                    <label>Número de registro</label>
+                    <input type="text" id="fiadorRegistro" placeholder="ex: A12345-6 ou 123456789-0">
+                </div>
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="fiadorCpf" placeholder="000.000.000-00">
+                </div>
+
+                <div id="fiadorLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 16px;">Consultando registro no conselho profissional...</p>
+                </div>
+
+                <button class="btn btn-primary" onclick="handleFiadorRegister()">Verificar e Cadastrar</button>
+
+                <div id="fiadorResult"></div>
+            </div>
+
+            <div id="fiadorDashboard" style="display: none;">
+                <div class="section" id="fiadorStatusCard"></div>
+
+                <div class="grid" id="fiadorStatsGrid" style="margin-bottom: 24px;"></div>
+
+                <!-- Mini Dashboard charts -->
+                <div id="miniDashboard" style="margin-bottom: 20px;"></div>
+
+                <!-- Meus Profissionais buddy panel -->
+                <div class="section" id="meusProfissionaisPanel" style="margin-bottom: 20px; padding: 0; overflow: hidden;">
+                    <div onclick="toggleMeusProfissionais()" style="padding: 16px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 16px;">👥</span>
+                            <span style="font-weight: 700; font-size: 15px;">Meus Profissionais</span>
+                            <span id="meusProfCount" style="font-size: 11px; background: var(--violet); color: white; border-radius: 999px; padding: 1px 8px; font-weight: 600;"></span>
+                        </div>
+                        <span id="meusProfArrow" style="font-size: 11px; color: var(--neutral-500); transition: transform 0.2s;">▼</span>
+                    </div>
+                    <div id="meusProfBody" style="display: none; border-top: 1px solid var(--neutral-200); padding: 12px 16px 16px;">
+                        <div id="meusProfList" style="display: flex; flex-direction: column; gap: 10px;">
+                            <p style="font-size: 13px; color: var(--neutral-500);">Carregando…</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="fiadorIndicarSection" style="display: none;">
+                    <h2>Indicar Profissional</h2>
+                    <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
+                        Você assina tecnicamente por quem indicar. A reputação dele afeta a sua.
+                    </p>
+
+                    <div class="form-group">
+                        <label>Nome do profissional</label>
+                        <input type="text" id="prestadorNome" placeholder="Nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail <span style="font-size:11px;color:var(--neutral-500);">(opcional)</span></label>
+                        <input type="email" id="prestadorEmail" placeholder="profissional@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone / WhatsApp</label>
+                        <input type="text" id="prestadorTelefone" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categoria profissional <span style="font-size:11px;color:var(--neutral-500);">(selecione uma ou mais)</span></label>
+                        <div id="taxonomiaSelector" style="border:1px solid var(--neutral-300);border-radius:10px;overflow:hidden;">
+                            <div onclick="toggleTaxonomia()" style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--neutral-100);">
+                                <span id="taxonomiaLabel" style="font-size:13.5px;color:var(--neutral-500);">Selecionar categorias…</span>
+                                <span id="taxonomiaArrow" style="font-size:11px;transition:transform 0.2s;">▼</span>
+                            </div>
+                            <div id="taxonomiaDropdown" style="display:none;max-height:340px;overflow-y:auto;border-top:1px solid var(--neutral-200);">
+                                <style>
+                                .tax-group { padding: 6px 0; }
+                                .tax-group-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--neutral-500); padding: 8px 14px 4px; }
+                                .tax-item { display: flex; align-items: center; gap: 8px; padding: 5px 14px; font-size: 13px; cursor: pointer; transition: background 0.1s; }
+                                .tax-item:hover { background: var(--neutral-100); }
+                                .tax-item input { margin: 0; accent-color: var(--primary); width: 15px; height: 15px; }
+                                </style>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">🏛️ Arquitetura e Projeto</div>
+                                    <label class="tax-item"><input type="checkbox" value="Arquiteto e Urbanista"> Arquiteto e Urbanista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Arquiteto de Interiores"> Arquiteto de Interiores</label>
+                                    <label class="tax-item"><input type="checkbox" value="Arquiteto Paisagista"> Arquiteto Paisagista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Designer de Interiores"> Designer de Interiores</label>
+                                    <label class="tax-item"><input type="checkbox" value="Projetista BIM"> Projetista BIM</label>
+                                    <label class="tax-item"><input type="checkbox" value="Projetista / Desenhista Técnico"> Projetista / Desenhista Técnico</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">⚙️ Engenharia</div>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Civil"> Engenheiro Civil</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Estrutural"> Engenheiro Estrutural</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Eletricista"> Engenheiro Eletricista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Mecânico"> Engenheiro Mecânico</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Sanitarista"> Engenheiro Sanitarista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Ambiental"> Engenheiro Ambiental</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro de Automação"> Engenheiro de Automação</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro de Segurança do Trabalho"> Engenheiro de Segurança do Trabalho</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">📐 Levantamento e Terreno</div>
+                                    <label class="tax-item"><input type="checkbox" value="Topógrafo"> Topógrafo</label>
+                                    <label class="tax-item"><input type="checkbox" value="Engenheiro Agrimensor"> Engenheiro Agrimensor</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Topografia"> Técnico em Topografia</label>
+                                    <label class="tax-item"><input type="checkbox" value="Geólogo / Geotécnico"> Geólogo / Geotécnico</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">🔧 Técnicos</div>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Edificações"> Técnico em Edificações</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Eletrotécnica"> Técnico em Eletrotécnica</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Automação"> Técnico em Automação</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Segurança do Trabalho"> Técnico em Segurança do Trabalho</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico em Saneamento"> Técnico em Saneamento</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">🏗️ Execução de Obra</div>
+                                    <label class="tax-item"><input type="checkbox" value="Mestre de Obras"> Mestre de Obras</label>
+                                    <label class="tax-item"><input type="checkbox" value="Construtor / Empreiteiro"> Construtor / Empreiteiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Pedreiro"> Pedreiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Eletricista"> Eletricista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Encanador / Bombeiro Hidráulico"> Encanador / Bombeiro Hidráulico</label>
+                                    <label class="tax-item"><input type="checkbox" value="Gesseiro"> Gesseiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Drywalleiro"> Drywalleiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Pintor"> Pintor</label>
+                                    <label class="tax-item"><input type="checkbox" value="Azulejista / Revestidor"> Azulejista / Revestidor</label>
+                                    <label class="tax-item"><input type="checkbox" value="Assentador de pisos"> Assentador de pisos</label>
+                                    <label class="tax-item"><input type="checkbox" value="Impermeabilizador"> Impermeabilizador</label>
+                                    <label class="tax-item"><input type="checkbox" value="Telhadista"> Telhadista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Carpinteiro"> Carpinteiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Marceneiro"> Marceneiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Serralheiro"> Serralheiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Vidraceiro"> Vidraceiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Marmorista"> Marmorista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Soldador"> Soldador</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de piso vinílico/laminado"> Instalador de piso vinílico/laminado</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">⚡ Instalações e Tecnologia</div>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de ar-condicionado / HVAC"> Instalador de ar-condicionado / HVAC</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de energia solar"> Instalador de energia solar</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de câmeras/CFTV"> Instalador de câmeras/CFTV</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de alarmes"> Instalador de alarmes</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de rede estruturada"> Instalador de rede estruturada</label>
+                                    <label class="tax-item"><input type="checkbox" value="Integrador de automação residencial"> Integrador de automação residencial</label>
+                                    <label class="tax-item"><input type="checkbox" value="Instalador de carregador veículo elétrico"> Instalador de carregador veículo elétrico</label>
+                                    <label class="tax-item"><input type="checkbox" value="Integrador de áudio e vídeo"> Integrador de áudio e vídeo</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico de telecomunicações"> Técnico de telecomunicações</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">🔍 Diagnóstico, Inspeção e Manutenção</div>
+                                    <label class="tax-item"><input type="checkbox" value="Inspetor Predial"> Inspetor Predial</label>
+                                    <label class="tax-item"><input type="checkbox" value="Perito de Engenharia"> Perito de Engenharia</label>
+                                    <label class="tax-item"><input type="checkbox" value="Avaliador de Imóveis"> Avaliador de Imóveis</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Patologias das Construções"> Especialista em Patologias</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Infiltração"> Especialista em Infiltração</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Fachadas"> Especialista em Fachadas</label>
+                                    <label class="tax-item"><input type="checkbox" value="Termografista"> Termografista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Técnico de manutenção predial"> Técnico de manutenção predial</label>
+                                    <label class="tax-item"><input type="checkbox" value="Paisagista"> Paisagista</label>
+                                    <label class="tax-item"><input type="checkbox" value="Jardineiro"> Jardineiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Piscineiro"> Piscineiro</label>
+                                    <label class="tax-item"><input type="checkbox" value="Dedetizador / Controle de pragas"> Dedetizador / Controle de pragas</label>
+                                    <label class="tax-item"><input type="checkbox" value="Decorador"> Decorador</label>
+                                </div>
+                                <div class="tax-group">
+                                    <div class="tax-group-title">📋 Documentação e Regularização</div>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Regularização Imobiliária"> Especialista em Regularização Imobiliária</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Usucapião Técnico"> Especialista em Usucapião Técnico</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Regularização Fundiária"> Especialista em Regularização Fundiária</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em Aprovação de Projetos"> Especialista em Aprovação de Projetos</label>
+                                    <label class="tax-item"><input type="checkbox" value="Especialista em AVCB / Incêndio"> Especialista em AVCB / Incêndio</label>
+                                    <label class="tax-item"><input type="checkbox" value="Despachante Imobiliário"> Despachante Imobiliário</label>
+                                    <label class="tax-item"><input type="checkbox" value="Advogado Imobiliário"> Advogado Imobiliário</label>
+                                    <label class="tax-item"><input type="checkbox" value="Advogado especialista em Usucapião"> Advogado especialista em Usucapião</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="prestadorEspecialidade">
+                    </div>
+
+                    <div style="display:flex;gap:12px;">
+                        <div class="form-group" style="flex:2;margin-bottom:0;">
+                            <label>Cidade</label>
+                            <input type="text" id="prestadorCidade" placeholder="São Paulo">
+                        </div>
+                        <div class="form-group" style="flex:1;margin-bottom:0;">
+                            <label>Estado (UF)</label>
+                            <select id="prestadorEstado">
+                                <option value="">UF</option>
+                                <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                <option>SP</option><option>SE</option><option>TO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:12px;">
+                        <label>Escopo de serviços autorizados</label>
+                        <textarea id="prestadorEscopo" rows="2" placeholder="ex: Reparos elétricos residenciais de baixa tensão"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="handleIndicarPrestador()">Enviar Convite</button>
+                </div>
+
+                <div class="section">
+                    <h2>Meu Perfil Profissional</h2>
+                    <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
+                        O que outros profissionais da rede veem antes de contratar você.
+                    </p>
+                    <button class="btn btn-secondary" onclick="abrirEditorPerfil('fiador', state.fiador.id, state.fiador.nome)">✏️ Editar meu perfil</button>
+                    <button class="btn btn-secondary" onclick="verPerfilPublico('fiador', state.fiador.id)">👁️ Ver como o cliente vê</button>
+                </div>
+
+                <div class="section">
+                    <h2>Localização e Preço</h2>
+                    <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
+                        Usado pelo Match Inteligente para calcular distância e compatibilidade de preço.
+                    </p>
+                    <button class="btn btn-secondary" onclick="handleUsarLocalizacaoAtual('fiador', state.fiador.id)">📍 Usar minha localização atual</button>
+                    <div id="fiadorLocalizacaoStatus" style="font-size: 12.5px; color: var(--neutral-600); margin-top: 8px;"></div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 16px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Preço mínimo típico (R$)</label>
+                            <input type="number" id="fiadorPrecoMin">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Preço máximo típico (R$)</label>
+                            <input type="number" id="fiadorPrecoMax">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="handleSalvarFaixaPreco('fiador', state.fiador.id)">Salvar Faixa de Preço</button>
+                </div>
+
+                <div class="section">
+                    <h2>Demandas Disponíveis (Leilão Reverso)</h2>
+                    <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
+                        Clientes com problemas parecidos com sua especialidade. Envie uma proposta.
+                    </p>
+                    <div id="demandasDisponiveisList" style="color: var(--neutral-600); text-align: center; padding: 24px;">
+                        Nenhuma demanda disponível no momento.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Prestadores Indicados</h2>
+                    <div id="indicadosList" style="color: var(--neutral-600); text-align: center; padding: 24px;">
+                        Nenhum prestador indicado ainda.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDITOR DE PERFIL (self ou prestador indicado) -->
+        <div data-page="editor-perfil">
+            <div class="header">
+                <h1 id="editorPerfilTitulo">Editar Perfil</h1>
+            </div>
+
+            <div class="section">
+                <div class="form-group">
+                    <label>Bio (breve apresentação)</label>
+                    <textarea id="perfilBio" rows="3" placeholder="Ex: Eletricista com 10 anos de experiência em instalações residenciais."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Skills (separadas por vírgula)</label>
+                    <input type="text" id="perfilSkills" placeholder="Ex: Instalação elétrica, Quadro de disjuntores">
+                </div>
+                <div class="form-group">
+                    <label>Áreas de interesse (separadas por vírgula)</label>
+                    <input type="text" id="perfilAreas" placeholder="Ex: Reforma residencial, Automação">
+                </div>
+                <div class="form-group">
+                    <label>Serviços oferecidos (separados por vírgula)</label>
+                    <input type="text" id="perfilServicos" placeholder="Ex: Reparo elétrico, Instalação de tomadas">
+                </div>
+                <button class="btn btn-primary" onclick="handleSalvarPerfilEdicao()">Salvar Perfil</button>
+                <div id="perfilEdicaoMsg"></div>
+            </div>
+
+            <div class="section">
+                <h2>Acervo Técnico</h2>
+                <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">Projetos, obras ou serviços já realizados.</p>
+                <div class="form-group">
+                    <label>Título do projeto</label>
+                    <input type="text" id="acervoTitulo" placeholder="Ex: Reforma elétrica completa — Casa em Caruaru">
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="acervoDescricao" rows="2" placeholder="O que foi feito"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Foto (opcional)</label>
+                    <input type="file" accept="image/*" id="acervoFoto">
+                </div>
+                <button class="btn btn-secondary" onclick="handleAdicionarAcervo()">Adicionar ao Acervo</button>
+                <div id="acervoList" style="margin-top: 16px;"></div>
+            </div>
+
+            <div class="section">
+                <h2>Mural de Fotos</h2>
+                <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">Fotos gerais do seu trabalho — sem descrição, só o visual.</p>
+                <input type="file" accept="image/*" id="muralFoto" onchange="handleAdicionarMural()">
+                <div id="muralGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px;"></div>
+            </div>
+        </div>
+
+        <!-- CONVITES VIP -->
+        <div data-page="convites">
+            <div class="header">
+                <h1>🔗 Convidar Profissional</h1>
+            </div>
+            <div class="section">
+                <p style="color:var(--ink-soft);margin-bottom:20px;">Gere um link exclusivo e compartilhe com quem você quer trazer para a rede IMOVELI. Quem clicar entra direto — sem burocracia.</p>
+                <button class="btn btn-primary" onclick="handleGerarConvite()" id="btnGerarConvite">
+                    ✦ Gerar Link de Convite VIP
+                </button>
+                <div id="conviteGeradoBox" style="display:none;margin-top:20px;padding:16px;background:var(--violet-wash);border:1px solid #D8C8F8;border-radius:12px;">
+                    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:8px;">Link gerado — compartilhe com quem você quer convidar:</p>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input id="conviteLinkInput" type="text" readonly style="flex:1;padding:10px 12px;border:1.5px solid var(--mist-strong);border-radius:8px;font-size:13px;background:#fff;color:var(--ink);">
+                        <button class="btn btn-secondary" style="padding:10px 14px;white-space:nowrap;" onclick="copiarConvite()">📋 Copiar</button>
+                    </div>
+                    <p id="conviteCopiadoMsg" style="display:none;font-size:12px;color:var(--mint);margin-top:6px;">✓ Link copiado!</p>
+                    <p style="font-size:12px;color:var(--ink-soft);margin-top:8px;">Válido por 30 dias · 1 uso</p>
+                </div>
+                <div id="conviteErroMsg" style="display:none;margin-top:12px;padding:10px 14px;background:#FFF0F1;border:1px solid #FFCDD2;border-radius:8px;color:var(--coral);font-size:14px;"></div>
+            </div>
+
+            <div class="section" style="margin-top:24px;">
+                <h2>Meus Convites</h2>
+                <div id="meusConvitesLista" style="margin-top:12px;">
+                    <p style="color:var(--ink-soft);font-size:14px;">Carregando...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERFIL PÚBLICO -->
+        <div data-page="perfil-publico">
+            <div class="header">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <button class="btn btn-secondary" style="padding:6px 14px;font-size:13px;" onclick="showPage(state.prevPage || 'command')">← Voltar</button>
+                    <h1>Perfil Profissional</h1>
+                </div>
+            </div>
+            <div id="perfilPublicoContent" class="section">Carregando...</div>
+        </div>
+    </div>
+
+    <!-- CHATBOT IA — flutuante, sempre ativo -->
+    <button class="chat-fab" onclick="toggleChat()" aria-label="Abrir assistente IA">💬</button>
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-panel-header">
+            <span>🤖 Assistente IMOVELI</span>
+            <span style="cursor: pointer;" onclick="toggleChat()">✕</span>
+        </div>
+        <div class="chat-panel-messages" id="chatMessages">
+            <div class="chat-bubble assistant">Oi! Posso ajudar com dúvidas técnicas, sobre a plataforma, ou orientação profissional. O que você precisa?</div>
+        </div>
+        <div class="chat-panel-input">
+            <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeydown="if(event.key==='Enter') handleEnviarChat()">
+            <button onclick="handleEnviarChat()">→</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================
+// CONFIG
+// ============================================
+
+// Em produção (Vercel) o rewrite /api/* → Railway; em dev aponta direto para o backend local
+const API_BASE_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+  ? 'http://127.0.0.1:3001'
+  : '';
+
+// ============================================
+// JWT — helper para todas as chamadas autenticadas
+// ============================================
+
+function getToken() {
+    return localStorage.getItem('imoveli_token') || null;
+}
+
+function authHeaders(extra = {}) {
+    const token = getToken();
+    const headers = { 'Content-Type': 'application/json', ...extra };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    return headers;
+}
+
+function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Wrapper fetch que injeta o token automaticamente
+async function apiFetch(path, options = {}) {
+    const opts = { ...options, headers: authHeaders(options.headers || {}) };
+    const response = await fetch(`${API_BASE_URL}${path}`, opts);
+    // Só redireciona para login se receber 401 E já havia um token salvo
+    // (sessão expirada). Em rotas de auth o 401 é resposta legítima ao caller.
+    if (response.status === 401 && getToken()) {
+        localStorage.removeItem('imoveli_token');
+        localStorage.removeItem('imoveli_user');
+        localStorage.removeItem('imoveli_fiador');
+        state.user = null; state.fiador = null;
+        if (typeof showLogin === 'function') showLogin();
+        throw new Error('Sessão expirada. Faça login novamente.');
+    }
+    return response;
+}
+
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+
+const state = {
+    user: null,
+    fiador: null,
+    pendingAuth: null,
+    editingProfile: null,
+    viewingProfile: null,
+    matchContext: { categoria: '' },
+    currentPage: 'dashboard',
+    prevPage: 'command'
+};
+
+// ============================================
+// AUTHENTICATION
+// ============================================
+
+function mostrarPassoAuth(step) {
+    document.getElementById('stepLogin').style.display = step === 'login' ? 'block' : 'none';
+    document.getElementById('stepSignup').style.display = step === 'signup' ? 'block' : 'none';
+    document.getElementById('stepConfirmar').style.display = step === 'confirmar' ? 'block' : 'none';
+}
+
+async function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginPassword').value;
+    const msgEl = document.getElementById('loginMsg');
+    msgEl.innerHTML = '';
+
+    if (!email || !senha) {
+        msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">Preencha email e senha</div>`;
+        return;
+    }
+
+    try {
+        const response = await apiFetch(`/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, senha })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">${data.error}</div>`;
+            return;
+        }
+
+        if (data.token) localStorage.setItem('imoveli_token', data.token);
+        await finalizarLoginComConta(data.conta);
+    } catch (error) {
+        msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+async function handleSignup() {
+    const nomeProfissional = document.getElementById('signupNome').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const telefone = document.getElementById('signupTelefone').value.trim();
+    const senha = document.getElementById('signupSenha').value;
+    const msgEl = document.getElementById('signupMsg');
+    msgEl.innerHTML = '';
+
+    try {
+        const response = await apiFetch(`/api/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nomeProfissional, email, telefone, senha })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">${data.error}</div>`;
+            return;
+        }
+
+        state.pendingAuth = { email, senha };
+        document.getElementById('confirmarEmailDisplay').textContent = email;
+
+        if (data.codigoDebug) {
+            // Modo simulado (sem provedor de email configurado) — mostra o código
+            // na tela pra você conseguir testar o fluxo sem precisar de email real.
+            document.getElementById('confirmarMsg').innerHTML = `
+                <div class="alert alert-info" style="margin-bottom: 12px;">
+                    ⚠️ Modo simulado (nenhum provedor de email configurado): seu código é <strong>${data.codigoDebug}</strong>
+                </div>`;
+        }
+
+        mostrarPassoAuth('confirmar');
+    } catch (error) {
+        msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+async function handleConfirmarEmail() {
+    const codigo = document.getElementById('confirmarCodigo').value.trim();
+    const msgEl = document.getElementById('confirmarMsg');
+
+    try {
+        const response = await apiFetch(`/api/auth/confirmar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: state.pendingAuth.email, codigo })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">${data.error}</div>`;
+            return;
+        }
+
+        // Login automático usando a senha que ainda está em memória desta sessão de cadastro
+        const loginResponse = await apiFetch(`/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: state.pendingAuth.email, senha: state.pendingAuth.senha })
+        });
+        const loginData = await loginResponse.json();
+        state.pendingAuth = null;
+
+        if (!loginData.success) {
+            mostrarPassoAuth('login');
+            return;
+        }
+        if (loginData.token) localStorage.setItem('imoveli_token', loginData.token);
+        await finalizarLoginComConta(loginData.conta);
+    } catch (error) {
+        msgEl.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-bottom: 12px;">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+async function finalizarLoginComConta(conta) {
+    state.user = conta;
+    localStorage.setItem('imoveli_user', JSON.stringify(state.user));
+
+    // Se a conta já tem um Fiador vinculado, carrega o perfil dele
+    if (conta.fiadorId) {
+        try {
+            const response = await apiFetch(`/api/fiadores/${conta.fiadorId}`);
+            const data = await response.json();
+            if (data.success) {
+                state.fiador = data.fiador;
+                localStorage.setItem('imoveli_fiador', JSON.stringify(state.fiador));
+            }
+        } catch (error) {
+            console.error('Erro ao carregar fiador vinculado:', error);
+        }
+    }
+
+    showApp();
+}
+
+function handleLogout() {
+    localStorage.removeItem('imoveli_user');
+    localStorage.removeItem('imoveli_fiador');
+    localStorage.removeItem('imoveli_token');
+    state.user = null;
+    state.fiador = null;
+    showLogin();
+}
+
+// ============================================
+// UI NAVIGATION
+// ============================================
+
+function showLogin() {
+    document.getElementById('loginScreen').classList.add('visible');
+    document.getElementById('appWrapper').classList.remove('visible');
+}
+
+function showApp() {
+    document.getElementById('loginScreen').classList.remove('visible');
+    document.getElementById('appWrapper').classList.add('visible');
+    updateStats();
+    setGreeting();
+    showPage('command');
+}
+
+function renderLembretePerfilIncompleto(pageName) {
+    const banner = document.getElementById('lembretePerfilBanner');
+    if (!banner) return;
+
+    if (state.fiador || pageName === 'fiador') {
+        banner.innerHTML = '';
+        return;
+    }
+
+    banner.innerHTML = `
+        <div style="background: var(--violet-wash); border: 1px solid var(--violet); color: var(--violet-deep); padding: 12px 16px; border-radius: 14px; margin-bottom: 16px; font-size: 13.5px; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <span>🛡️ Complete seu perfil de Responsável Técnico (CAU/CREA) para indicar profissionais e criar sua rede de confiança.</span>
+            <button class="btn btn-primary" style="padding: 6px 14px; font-size: 12.5px; flex-shrink: 0;" onclick="showPage('fiador')">Completar</button>
+        </div>
+    `;
+}
+
+function setGreeting() {
+    const hour = new Date().getHours();
+    const greetingEl = document.getElementById('commandGreeting');
+    const headlineEl = document.getElementById('commandHeadline');
+    if (!greetingEl || !headlineEl) return;
+
+    let period = 'BOA NOITE';
+    if (hour >= 5 && hour < 12) period = 'BOM DIA';
+    else if (hour >= 12 && hour < 18) period = 'BOA TARDE';
+
+    const firstName = state.fiador?.nome?.split(' ')[0] || (state.user?.email || '').split('@')[0];
+    greetingEl.textContent = firstName ? `${period}, ${firstName.toUpperCase()}` : period;
+    headlineEl.textContent = state.fiador ? 'O que você precisa na rede hoje?' : 'Bem-vindo — comece criando seu perfil profissional';
+}
+
+function showPage(pageName) {
+    // Sem trava de navegação — só um lembrete visual se o perfil não estiver completo (ver abaixo)
+    // Hide all pages
+    document.querySelectorAll('[data-page]').forEach(p => p.classList.remove('active'));
+
+    // Show selected page
+    const target = document.querySelector(`[data-page="${pageName}"]`);
+    if (target) target.classList.add('active');
+
+    // Update menu
+    document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+    const menuItem = document.querySelector(`[data-menu="${pageName}"]`);
+    if (menuItem) menuItem.classList.add('active');
+
+    state.prevPage = state.currentPage;
+    state.currentPage = pageName;
+    toggleDrawer(false);
+    renderLembretePerfilIncompleto(pageName);
+
+    // Load page-specific data
+    if (pageName === 'command') setGreeting();
+    if (pageName === 'fiador' && state.fiador) renderFiadorDashboard();
+    if (pageName === 'fiador' && !state.fiador && state.user) {
+        const nomeEl = document.getElementById('fiadorNome');
+        const emailEl = document.getElementById('fiadorEmail');
+        if (nomeEl && !nomeEl.value) nomeEl.value = state.user.nomeProfissional || '';
+        if (emailEl && !emailEl.value) emailEl.value = state.user.email || '';
+    }
+    if (pageName === 'hire') loadHireDirectory();
+    if (pageName === 'match' && state.matchContext.categoria) {
+        const el = document.getElementById('matchEspecialidade');
+        if (el) el.value = state.matchContext.categoria;
+    }
+    if (pageName === 'demandas') loadDemandasAbertas();
+    if (pageName === 'services') loadMyServices();
+    if (pageName === 'convites') carregarMeusConvites();
+}
+
+// ============================================
+// GAVETA (DRAWER)
+// ============================================
+
+function toggleDrawer(open) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('drawerOverlay');
+    if (!sidebar || !overlay) return;
+    sidebar.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+}
+
+// ============================================
+// BARRA DE COMANDO — classificação de intenção
+// ============================================
+
+const INTENT_RULES = [
+    { page: 'hire', keywords: ['profissional', 'especialista', 'calculista', 'contratar', 'engenheiro', 'arquiteto', 'preciso de'] },
+    { page: 'match', keywords: ['projeto', 'orçamento', 'orcamento', 'honorário', 'honorario'] },
+    { page: 'demandas', keywords: ['demanda', 'proposta', 'leilão', 'leilao'] },
+    { page: 'fiador', keywords: ['indicar', 'indicação', 'indicacao', 'perfil', 'portfólio', 'portfolio', 'acervo'] },
+];
+
+function classifyIntent(text) {
+    const normalized = text.toLowerCase();
+    for (const rule of INTENT_RULES) {
+        if (rule.keywords.some(k => normalized.includes(k))) {
+            return { type: 'page', page: rule.page };
+        }
+    }
+    return { type: 'unknown' };
+}
+
+function handleCommandSubmit() {
+    const input = document.getElementById('commandInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const intent = classifyIntent(text);
+
+    if (intent.type === 'page') {
+        if (intent.page === 'match') {
+            state.matchContext = { categoria: text };
+        }
+        showPage(intent.page);
+        input.value = '';
+        return;
+    }
+
+    // Não reconhecido: não adivinha — orienta para os atalhos
+    input.placeholder = 'Não entendi — tente um dos atalhos abaixo';
+    input.value = '';
+}
+
+function routeIntent(page) {
+    document.getElementById('commandInput').value = '';
+    showPage(page);
+}
+
+// ============================================
+// Responsável Técnico
+// ============================================
+
+async function handleFiadorRegister() {
+    const nome = document.getElementById('fiadorNome').value.trim();
+    const email = document.getElementById('fiadorEmail').value.trim();
+    const conselho = document.getElementById('fiadorConselho').value;
+    const uf = document.getElementById('fiadorUf').value.trim().toUpperCase();
+    const registro = document.getElementById('fiadorRegistro').value.trim();
+    const cpf = document.getElementById('fiadorCpf').value.trim();
+
+    if (!nome || !email || !uf || !registro || !cpf) {
+        alert('Preencha todos os campos');
+        return;
+    }
+
+    document.getElementById('fiadorLoading').classList.add('active');
+
+    try {
+        const response = await apiFetch(`/api/fiadores/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, email, conselho, uf, registro, cpf })
+        });
+        const data = await response.json();
+
+        document.getElementById('fiadorLoading').classList.remove('active');
+
+        if (!data.success) {
+            document.getElementById('fiadorResult').innerHTML = `
+                <div class="alert" style="background: rgba(166,61,46,0.08); color: var(--brick); border: 1px solid var(--brick); margin-top: 16px;">
+                    ${data.error}
+                </div>`;
+            return;
+        }
+
+        state.fiador = data.fiador;
+        localStorage.setItem('imoveli_fiador', JSON.stringify(state.fiador));
+
+        // Vincula essa conta de login ao Fiador recém-criado
+        if (state.user?.email) {
+            try {
+                await apiFetch(`/api/auth/vincular-fiador`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: state.user.email, fiadorId: state.fiador.id })
+                });
+                state.user.fiadorId = state.fiador.id;
+                localStorage.setItem('imoveli_user', JSON.stringify(state.user));
+            } catch (err) {
+                console.error('Erro ao vincular conta ao fiador:', err);
+            }
+        }
+
+        renderLembretePerfilIncompleto(state.currentPage);
+        renderFiadorDashboard();
+        setGreeting();
+
+    } catch (error) {
+        document.getElementById('fiadorLoading').classList.remove('active');
+        document.getElementById('fiadorResult').innerHTML = `
+            <div class="alert" style="background: rgba(166,61,46,0.08); color: var(--brick); border: 1px solid var(--brick); margin-top: 16px;">
+                Erro ao conectar com servidor. Certifique-se que o backend está rodando.
+            </div>`;
+    }
+}
+
+function renderFiadorDashboard() {
+    if (!state.fiador) return;
+
+    document.getElementById('fiadorNotRegistered').style.display = 'none';
+    document.getElementById('fiadorDashboard').style.display = 'block';
+
+    const isVerified = state.fiador.status === 'verificado';
+    const statusCard = document.getElementById('fiadorStatusCard');
+
+    const fotoPerfil = state.fiador.foto_url || '';
+    statusCard.innerHTML = `
+        <div style="background: linear-gradient(135deg, var(--violet) 0%, var(--violet-deep) 100%); border-radius: 20px; padding: 24px; color: white; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -30px; right: -30px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08);"></div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; gap: 16px;">
+                <div style="display:flex;gap:14px;align-items:center;">
+                    <div style="position:relative;flex-shrink:0;">
+                        <div id="fotoPerfil" style="width:62px;height:62px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.15);overflow:hidden;cursor:pointer;" onclick="document.getElementById('fotoPerfilInput').click()" title="Clique para alterar foto">
+                            ${fotoPerfil
+                                ? `<img src="${fotoPerfil}" style="width:100%;height:100%;object-fit:cover;">`
+                                : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:24px;">👤</div>`}
+                        </div>
+                        <div style="position:absolute;bottom:0;right:0;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;pointer-events:none;">📷</div>
+                        <input type="file" id="fotoPerfilInput" accept="image/*" style="display:none;" onchange="handleFotoPerfilUpload(event)">
+                    </div>
+                    <div>
+                        <div style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 4px;">Perfil Profissional IMOVELI</div>
+                        <div style="font-family: var(--font-display); font-weight: 700; font-size: 20px;">${state.fiador.nome}</div>
+                        <div style="font-size: 13px; opacity: 0.9; margin-top: 2px;">${state.fiador.conselho} · ${state.fiador.uf}</div>
+                    </div>
+                </div>
+                <div style="font-size: 28px;flex-shrink:0;">🛡️</div>
+            </div>
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <div style="font-size: 10px; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Número de identificação</div>
+                    <div style="font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: 0.03em;">${state.fiador.carteirinha}</div>
+                </div>
+                <div style="text-align: right;">
+                    ${isVerified
+                        ? `<span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">✓ Verificado</span>`
+                        : `<span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">⏳ Em análise</span>`}
+                </div>
+            </div>
+        </div>
+        ${!isVerified ? `<p style="font-size: 13px; color: var(--neutral-600); margin-top: 12px;">${state.fiador.motivo || ''}</p>` : ''}
+    `;
+
+    document.getElementById('fiadorIndicarSection').style.display = isVerified ? 'block' : 'none';
+
+    if (isVerified) {
+        loadIndicados();
+        loadDemandasDisponiveis();
+        const precoMinEl = document.getElementById('fiadorPrecoMin');
+        const precoMaxEl = document.getElementById('fiadorPrecoMax');
+        if (precoMinEl && state.fiador.faixaPreco) {
+            precoMinEl.value = state.fiador.faixaPreco.min ?? '';
+            precoMaxEl.value = state.fiador.faixaPreco.max ?? '';
+        }
+    }
+}
+
+function toggleMeusProfissionais() {
+    const body = document.getElementById('meusProfBody');
+    const arrow = document.getElementById('meusProfArrow');
+    const open = body.style.display === 'none';
+    body.style.display = open ? 'block' : 'none';
+    arrow.style.transform = open ? 'rotate(180deg)' : '';
+    if (open) renderMeusProfissionais();
+}
+
+async function renderMeusProfissionais() {
+    const list = document.getElementById('meusProfList');
+    if (!list || !state.fiador) return;
+    try {
+        const resp = await apiFetch(`/api/fiadores/${state.fiador.id}/indicados`);
+        const data = await resp.json();
+        const indicados = data.indicados || [];
+        const count = document.getElementById('meusProfCount');
+        if (count) count.textContent = indicados.length;
+
+        if (indicados.length === 0) {
+            list.innerHTML = '<p style="font-size:13px;color:var(--neutral-500);">Nenhum profissional indicado ainda.</p>';
+            return;
+        }
+
+        list.innerHTML = indicados.map(p => {
+            const initials = (p.nome || '?').split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+            const cats = p.especialidade || '';
+            const isPublic = p.status === 'ativo';
+            return `
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--neutral-50);border:1px solid var(--neutral-200);position:relative;overflow:hidden;">
+                <div style="position:absolute;right:-4px;bottom:-6px;font-size:42px;opacity:0.05;font-weight:900;white-space:nowrap;pointer-events:none;">${cats.split(',')[0] || 'Profissional'}</div>
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">${initials}</div>
+                <div style="flex:1;min-width:0;">
+                    <div style="font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.nome}</div>
+                    <div style="font-size:11.5px;color:var(--neutral-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cats}</div>
+                </div>
+                <div>
+                    <span onclick="toggleVisibilidadeProfissional('${p.id}', ${isPublic}, this)" style="font-size:10px;cursor:pointer;padding:3px 9px;border-radius:999px;background:${isPublic ? 'var(--green-light,#d1fae5)' : 'var(--neutral-200)'};color:${isPublic ? 'var(--green-dark,#065f46)' : 'var(--neutral-600)'};">
+                        ${isPublic ? '🌐 Público' : '🔒 Privado'}
+                    </span>
+                </div>
+            </div>`;
+        }).join('');
+    } catch {
+        const list2 = document.getElementById('meusProfList');
+        if (list2) list2.innerHTML = '<p style="font-size:13px;color:var(--neutral-500);">Erro ao carregar profissionais.</p>';
+    }
+}
+
+async function toggleVisibilidadeProfissional(prestadorId, atualmentePublico, btn) {
+    const novoStatus = atualmentePublico ? 'inativo' : 'ativo';
+    try {
+        await apiFetch(`/api/prestadores/${prestadorId}/status`, {
+            method: 'PUT',
+            body: JSON.stringify({ status: novoStatus })
+        });
+        renderMeusProfissionais();
+    } catch {
+        alert('Erro ao alterar visibilidade.');
+    }
+}
+
+function toggleTaxonomia() {
+    const dropdown = document.getElementById('taxonomiaDropdown');
+    const arrow = document.getElementById('taxonomiaArrow');
+    const open = dropdown.style.display === 'none';
+    dropdown.style.display = open ? 'block' : 'none';
+    arrow.style.transform = open ? 'rotate(180deg)' : '';
+}
+
+function getTaxonomiaSelected() {
+    const checkboxes = document.querySelectorAll('#taxonomiaDropdown input[type=checkbox]:checked');
+    return Array.from(checkboxes).map(c => c.value);
+}
+
+function updateTaxonomiaLabel() {
+    const selected = getTaxonomiaSelected();
+    const label = document.getElementById('taxonomiaLabel');
+    if (selected.length === 0) label.textContent = 'Selecionar categorias…';
+    else if (selected.length === 1) label.textContent = selected[0];
+    else label.textContent = `${selected[0]} + ${selected.length - 1} mais`;
+}
+
+document.addEventListener('change', function(e) {
+    if (e.target.closest('#taxonomiaDropdown')) updateTaxonomiaLabel();
+});
+
+document.addEventListener('click', function(e) {
+    const sel = document.getElementById('taxonomiaSelector');
+    if (sel && !sel.contains(e.target)) {
+        const dropdown = document.getElementById('taxonomiaDropdown');
+        const arrow = document.getElementById('taxonomiaArrow');
+        if (dropdown && dropdown.style.display !== 'none') {
+            dropdown.style.display = 'none';
+            if (arrow) arrow.style.transform = '';
+        }
+    }
+});
+
+async function handleIndicarPrestador() {
+    const nome = document.getElementById('prestadorNome').value.trim();
+    const email = document.getElementById('prestadorEmail').value.trim();
+    const telefone = document.getElementById('prestadorTelefone').value.trim();
+    const selectedCats = getTaxonomiaSelected();
+    const especialidade = selectedCats.join(', ');
+    const cidade = document.getElementById('prestadorCidade').value.trim();
+    const estado = document.getElementById('prestadorEstado').value.trim();
+    const escopo = document.getElementById('prestadorEscopo').value.trim();
+
+    if (!nome) { showInlineError('prestadorNome', 'Nome é obrigatório'); return; }
+    if (!telefone) { showInlineError('prestadorTelefone', 'Telefone é obrigatório'); return; }
+    if (selectedCats.length === 0) { alert('Selecione ao menos uma categoria profissional'); return; }
+
+    try {
+        const response = await apiFetch(`/api/fiadores/${state.fiador.id}/indicar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, email: email || null, telefone, especialidade, cidade: cidade || null, estado: estado || null, escopo })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            alert(data.error);
+            return;
+        }
+
+        document.getElementById('prestadorNome').value = '';
+        document.getElementById('prestadorEmail').value = '';
+        document.getElementById('prestadorTelefone').value = '';
+        document.getElementById('prestadorCidade').value = '';
+        document.getElementById('prestadorEstado').value = '';
+        document.getElementById('prestadorEscopo').value = '';
+        document.querySelectorAll('#taxonomiaDropdown input[type=checkbox]:checked').forEach(c => c.checked = false);
+        updateTaxonomiaLabel();
+
+        loadIndicados();
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+function showInlineError(inputId, msg) {
+    const el = document.getElementById(inputId);
+    if (!el) return;
+    el.style.borderColor = 'var(--danger, #e53e3e)';
+    el.focus();
+    el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+    alert(msg);
+}
+
+async function renderFiadorStats(indicados) {
+    const grid = document.getElementById('fiadorStatsGrid');
+    if (!grid) return;
+
+    const ativos = indicados.filter(i => i.status === 'aceita').length;
+    const pendentes = indicados.filter(i => i.status === 'pendente').length;
+
+    let reputacaoHtml = `<div class="card-value" style="color: var(--neutral-600); font-size: 15px;">Sem serviços ainda</div>`;
+    try {
+        const response = await apiFetch(`/api/fiadores/${state.fiador.id}/reputacao`);
+        const data = await response.json();
+        if (data.success && data.reputacao.totalServicos > 0) {
+            reputacaoHtml = `<div class="card-value" style="color: var(--moss);">★ ${data.reputacao.mediaNota}</div>`;
+        }
+    } catch (error) {
+        console.error('Reputação error:', error);
+    }
+
+    grid.innerHTML = `
+        <div class="card">
+            <div class="card-value">${indicados.length}</div>
+            <div class="card-label">Total Indicados</div>
+        </div>
+        <div class="card">
+            <div class="card-value" style="color: var(--success);">${ativos}</div>
+            <div class="card-label">Vínculos Ativos</div>
+        </div>
+        <div class="card">
+            <div class="card-value" style="color: var(--warning);">${pendentes}</div>
+            <div class="card-label">Aguardando Aceite</div>
+        </div>
+        <div class="card">
+            ${reputacaoHtml}
+            <div class="card-label">Reputação em Cascata</div>
+        </div>
+    `;
+
+    renderMiniDashboard(indicados);
+}
+
+// ============================================
+// MINI DASHBOARD — gráficos Instagram-style
+// ============================================
+
+function renderMiniDashboard(indicados) {
+    const container = document.getElementById('miniDashboard');
+    if (!container) return;
+
+    // Contagem por especialidade (pizza)
+    const catMap = {};
+    indicados.forEach(i => {
+        const cats = (i.especialidade || 'Outros').split(',');
+        cats.forEach(c => {
+            const k = c.trim().split('/')[0].trim().substring(0, 18) || 'Outros';
+            catMap[k] = (catMap[k] || 0) + 1;
+        });
+    });
+    const catEntries = Object.entries(catMap).sort((a, b) => b[1] - a[1]).slice(0, 6);
+
+    // Crescimento simulado (últimos 6 meses) — baseado no total atual
+    const total = indicados.length;
+    const months = ['Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'];
+    const growthData = months.map((m, i) => ({
+        label: m,
+        val: Math.max(0, Math.round(total * (0.4 + 0.12 * i)))
+    }));
+    growthData[months.length - 1].val = total;
+
+    const colors = ['#7c3aed','#a855f7','#c084fc','#e879f9','#f0abfc','#fbcfe8'];
+
+    container.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <!-- Pizza -->
+            <div style="background:var(--paper-raised,#fff);border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--neutral-500);margin-bottom:10px;">Por Especialidade</div>
+                <canvas id="chartPizza" width="120" height="120" style="display:block;margin:0 auto 8px;"></canvas>
+                <div id="pizzaLegend" style="font-size:10px;display:flex;flex-direction:column;gap:3px;"></div>
+            </div>
+            <!-- Linha/crescimento -->
+            <div style="background:var(--paper-raised,#fff);border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--neutral-500);margin-bottom:10px;">Crescimento</div>
+                <canvas id="chartLine" width="120" height="120" style="display:block;margin:0 auto 8px;"></canvas>
+                <div style="font-size:10px;color:var(--neutral-400);text-align:center;">${total} indicados no total</div>
+            </div>
+        </div>
+        <!-- Percentuais (barras horizontais) -->
+        <div style="background:var(--paper-raised,#fff);border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--neutral-500);margin-bottom:12px;">Distribuição Percentual</div>
+            <div id="chartBars" style="display:flex;flex-direction:column;gap:8px;"></div>
+        </div>
+    `;
+
+    // — Gráfico pizza —
+    requestAnimationFrame(() => {
+        const cv = document.getElementById('chartPizza');
+        if (!cv) return;
+        const ctx = cv.getContext('2d');
+        const cx = 60, cy = 60, r = 50;
+        let angle = -Math.PI / 2;
+        const sum = catEntries.reduce((s, e) => s + e[1], 0) || 1;
+
+        catEntries.forEach(([k, v], i) => {
+            const slice = (v / sum) * 2 * Math.PI;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, angle, angle + slice);
+            ctx.closePath();
+            ctx.fillStyle = colors[i % colors.length];
+            ctx.fill();
+            angle += slice;
+        });
+
+        // Hole
+        ctx.beginPath();
+        ctx.arc(cx, cy, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--paper-raised') || '#fff';
+        ctx.fill();
+
+        // Total no centro
+        ctx.fillStyle = '#374151';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(sum, cx, cy);
+
+        const legend = document.getElementById('pizzaLegend');
+        if (legend) {
+            legend.innerHTML = catEntries.slice(0, 4).map(([k, v], i) =>
+                `<div style="display:flex;align-items:center;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:${colors[i]};flex-shrink:0;display:inline-block;"></span><span style="color:var(--neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${k}</span></div>`
+            ).join('');
+        }
+
+        // — Gráfico linha —
+        const cv2 = document.getElementById('chartLine');
+        if (!cv2) return;
+        const ctx2 = cv2.getContext('2d');
+        const W = 120, H = 120, padX = 12, padY = 10;
+        const maxV = Math.max(...growthData.map(d => d.val), 1);
+        const points = growthData.map((d, i) => ({
+            x: padX + i * ((W - padX * 2) / (growthData.length - 1)),
+            y: padY + (1 - d.val / maxV) * (H - padY * 2)
+        }));
+
+        ctx2.strokeStyle = '#7c3aed';
+        ctx2.lineWidth = 2.5;
+        ctx2.lineJoin = 'round';
+        ctx2.beginPath();
+        points.forEach((p, i) => i === 0 ? ctx2.moveTo(p.x, p.y) : ctx2.lineTo(p.x, p.y));
+        ctx2.stroke();
+
+        // Fill
+        const grad = ctx2.createLinearGradient(0, padY, 0, H);
+        grad.addColorStop(0, 'rgba(124,58,237,0.25)');
+        grad.addColorStop(1, 'rgba(124,58,237,0)');
+        ctx2.beginPath();
+        points.forEach((p, i) => i === 0 ? ctx2.moveTo(p.x, p.y) : ctx2.lineTo(p.x, p.y));
+        ctx2.lineTo(points[points.length - 1].x, H - padY);
+        ctx2.lineTo(points[0].x, H - padY);
+        ctx2.closePath();
+        ctx2.fillStyle = grad;
+        ctx2.fill();
+
+        // Dots
+        points.forEach(p => {
+            ctx2.beginPath();
+            ctx2.arc(p.x, p.y, 3, 0, 2 * Math.PI);
+            ctx2.fillStyle = '#7c3aed';
+            ctx2.fill();
+        });
+
+        // Labels
+        ctx2.fillStyle = '#9ca3af';
+        ctx2.font = '8px sans-serif';
+        ctx2.textAlign = 'center';
+        ctx2.textBaseline = 'top';
+        growthData.forEach((d, i) => ctx2.fillText(d.label, points[i].x, H - padY + 2));
+
+        // — Barras percentuais —
+        const barsEl = document.getElementById('chartBars');
+        if (barsEl && catEntries.length) {
+            barsEl.innerHTML = catEntries.map(([k, v], i) => {
+                const pct = Math.round((v / sum) * 100);
+                return `
+                <div>
+                    <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;">
+                        <span style="color:var(--neutral-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%;">${k}</span>
+                        <span style="font-weight:700;color:${colors[i % colors.length]};">${pct}%</span>
+                    </div>
+                    <div style="height:6px;border-radius:999px;background:var(--neutral-200);">
+                        <div style="height:100%;border-radius:999px;background:${colors[i % colors.length]};width:${pct}%;transition:width 0.6s ease;"></div>
+                    </div>
+                </div>`;
+            }).join('');
+        } else if (barsEl) {
+            barsEl.innerHTML = '<p style="font-size:12px;color:var(--neutral-400);">Nenhum dado disponível ainda.</p>';
+        }
+    });
+}
+
+// ============================================
+// GEOLOCALIZAÇÃO
+// ============================================
+
+function obterLocalizacaoAtual() {
+    return new Promise((resolve) => {
+        if (!navigator.geolocation) { resolve(null); return; }
+        navigator.geolocation.getCurrentPosition(
+            pos => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+            () => resolve(null),
+            { timeout: 6000 }
+        );
+    });
+}
+
+async function handleFotoPerfilUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) { alert('Foto muito grande. Use até 4 MB.'); return; }
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        const dataUrl = e.target.result;
+        const container = document.getElementById('fotoPerfil');
+        if (container) container.innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+
+        try {
+            const resp = await apiFetch(`/api/perfil/foto`, {
+                method: 'POST',
+                body: JSON.stringify({ tipo: 'fiador', id: state.fiador.id, foto: dataUrl })
+            });
+            const d = await resp.json();
+            if (d.foto_url) {
+                state.fiador.foto_url = d.foto_url;
+            } else {
+                state.fiador.foto_url = dataUrl;
+            }
+        } catch {
+            state.fiador.foto_url = dataUrl;
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+async function handleUsarLocalizacaoAtual(tipo, id) {
+    const statusEl = document.getElementById('fiadorLocalizacaoStatus');
+    statusEl.textContent = 'Obtendo localização...';
+
+    const loc = await obterLocalizacaoAtual();
+    if (!loc) {
+        statusEl.textContent = '❌ Não foi possível obter sua localização (permissão negada ou indisponível).';
+        return;
+    }
+
+    try {
+        const response = await apiFetch(`/api/perfil/localizacao`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tipo, id, lat: loc.lat, lng: loc.lng })
+        });
+        const data = await response.json();
+        statusEl.textContent = data.success ? '✓ Localização salva' : data.error;
+    } catch (error) {
+        statusEl.textContent = 'Erro ao conectar com servidor.';
+    }
+}
+
+async function handleSalvarFaixaPreco(tipo, id) {
+    const min = document.getElementById('fiadorPrecoMin').value;
+    const max = document.getElementById('fiadorPrecoMax').value;
+    try {
+        const response = await apiFetch(`/api/perfil/faixa-preco`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tipo, id, min, max })
+        });
+        const data = await response.json();
+        if (!data.success) alert(data.error);
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+// ============================================
+// DEMANDAS DISPONÍVEIS (lado do profissional — Fiador)
+// ============================================
+
+async function loadDemandasDisponiveis() {
+    const list = document.getElementById('demandasDisponiveisList');
+    if (!list) return;
+    try {
+        const response = await apiFetch(`/api/demandas/disponiveis`);
+        const data = await response.json();
+        if (!data.success || !data.demandas.length) {
+            list.innerHTML = 'Nenhuma demanda disponível no momento.';
+            return;
+        }
+
+        list.innerHTML = data.demandas.map(d => `
+            <div style="padding: 12px 4px; border-top: 1px solid var(--mist); text-align: left;">
+                <div style="font-weight: 600; font-size: 14px;">${d.descricao}</div>
+                <div style="font-size: 12.5px; color: var(--neutral-600); margin: 4px 0;">
+                    ${d.categoriaOuEspecialidade || 'Categoria não informada'}
+                    ${d.precoMin != null ? ` · Cliente espera pagar entre R$ ${d.precoMin} e R$ ${d.precoMax}` : ''}
+                </div>
+                <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 12px;" onclick="handleCandidatarDemanda('${d.id}')">Enviar Proposta</button>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Load demandas error:', error);
+    }
+}
+
+function handleCandidatarDemanda(demandaId) {
+    const precoProposto = prompt('Qual valor você propõe para esse serviço (R$)?');
+    if (!precoProposto || isNaN(Number(precoProposto))) return;
+    const mensagem = prompt('Mensagem para o cliente (opcional):') || '';
+
+    apiFetch(`/api/demandas/${demandaId}/candidatar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            hireType: 'fiador',
+            hireId: state.fiador.id,
+            nome: state.fiador.nome,
+            precoProposto: Number(precoProposto),
+            mensagem
+        })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (!data.success) { alert(data.error); return; }
+        alert('Proposta enviada!');
+        loadDemandasDisponiveis();
+    })
+    .catch(() => alert('Erro ao conectar com servidor.'));
+}
+
+async function loadIndicados() {
+    try {
+        const response = await apiFetch(`/api/fiadores/${state.fiador.id}/indicados`);
+        const data = await response.json();
+        if (!data.success) return;
+
+        renderFiadorStats(data.indicados);
+
+        const list = document.getElementById('indicadosList');
+        if (!data.indicados.length) {
+            list.innerHTML = 'Nenhum prestador indicado ainda.';
+            return;
+        }
+
+        const statusLabel = { pendente: '⏳ Aguardando aceite', aceita: '✓ Vínculo ativo', recusada: '✕ Recusado' };
+        const statusColor = { pendente: 'var(--warning)', aceita: 'var(--moss)', recusada: 'var(--brick)' };
+
+        list.innerHTML = data.indicados.map(ind => {
+            const nome = escapeHtml(ind.prestador.nome || '');
+            const especialidade = escapeHtml(ind.prestador.especialidade || '');
+            const escopo = escapeHtml(ind.escopo || '');
+            const indId = escapeHtml(ind.id || '');
+            const prestId = escapeHtml(ind.prestador.id || '');
+            return `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 4px; border-top: 1px solid var(--mist); text-align: left;">
+                <div>
+                    <div style="font-weight: 500;">${nome}</div>
+                    <div style="font-size: 12.5px; color: var(--neutral-600);">${especialidade} · ${escopo}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 12.5px; font-weight: 600; color: ${statusColor[ind.status]};">${statusLabel[ind.status] || ind.status}</div>
+                    ${ind.status === 'pendente' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="simularAceite('${indId}')">Simular aceite</button>` : ''}
+                    ${ind.status === 'aceita' ? `<button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; margin-top: 4px;" onclick="abrirEditorPerfil('prestador', '${prestId}', '${nome.replace(/'/g, "\\'")}')">✏️ Editar perfil</button>` : ''}
+                </div>
+            </div>`;
+        }).join('');
+    } catch (error) {
+        console.error('Load indicados error:', error);
+    }
+}
+
+// Em produção, o aceite viria de um link enviado por SMS/WhatsApp ao prestador —
+// este botão simula esse aceite para fins de teste do fluxo no MVP.
+async function simularAceite(indicacaoId) {
+    try {
+        await apiFetch(`/api/indicacoes/${indicacaoId}/aceitar`, { method: 'POST' });
+        loadIndicados();
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+// ============================================
+// PERFIL PROFISSIONAL — edição (self ou prestador indicado) e visualização pública
+// ============================================
+
+function abrirEditorPerfil(tipo, id, nome) {
+    state.editingProfile = { tipo, id, nome };
+    document.getElementById('editorPerfilTitulo').textContent = `Editar Perfil — ${nome}`;
+    showPage('editor-perfil');
+    carregarPerfilParaEdicao();
+}
+
+async function carregarPerfilParaEdicao() {
+    const { tipo, id } = state.editingProfile;
+    try {
+        const response = await apiFetch(`/api/perfil/${tipo}/${id}`);
+        const data = await response.json();
+        if (!data.success) return;
+
+        document.getElementById('perfilBio').value = data.perfil.bio || '';
+        document.getElementById('perfilSkills').value = (data.perfil.skills || []).join(', ');
+        document.getElementById('perfilAreas').value = (data.perfil.areasInteresse || []).join(', ');
+        document.getElementById('perfilServicos').value = (data.perfil.servicosOferecidos || []).join(', ');
+
+        renderAcervoList(data.perfil.acervo || []);
+        renderMuralGrid(data.perfil.mural || []);
+    } catch (error) {
+        console.error('Carregar perfil error:', error);
+    }
+}
+
+function splitCsv(value) {
+    return value.split(',').map(s => s.trim()).filter(Boolean);
+}
+
+async function handleSalvarPerfilEdicao() {
+    const { tipo, id } = state.editingProfile;
+    try {
+        const response = await apiFetch(`/api/perfil`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                tipo, id,
+                bio: document.getElementById('perfilBio').value.trim(),
+                skills: splitCsv(document.getElementById('perfilSkills').value),
+                areasInteresse: splitCsv(document.getElementById('perfilAreas').value),
+                servicosOferecidos: splitCsv(document.getElementById('perfilServicos').value)
+            })
+        });
+        const data = await response.json();
+        const msg = document.getElementById('perfilEdicaoMsg');
+        if (!data.success) {
+            msg.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-top: 12px;">${data.error}</div>`;
+            return;
+        }
+        msg.innerHTML = `<div class="alert alert-success" style="margin-top: 12px;">✓ Perfil salvo</div>`;
+        setTimeout(() => { msg.innerHTML = ''; }, 2500);
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+function renderAcervoList(acervo) {
+    const container = document.getElementById('acervoList');
+    if (!container) return;
+    if (!acervo.length) {
+        container.innerHTML = '<p style="color: var(--neutral-600); font-size: 13px;">Nenhum item no acervo ainda.</p>';
+        return;
+    }
+    container.innerHTML = acervo.map(item => `
+        <div style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--mist);">
+            ${item.fotoBase64 ? `<img src="${item.fotoBase64}" style="width: 64px; height: 64px; object-fit: cover; border-radius: 10px;">` : ''}
+            <div>
+                <div style="font-weight: 600; font-size: 14px;">${item.titulo}</div>
+                <div style="font-size: 12.5px; color: var(--neutral-600);">${item.descricao}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderMuralGrid(mural) {
+    const grid = document.getElementById('muralGrid');
+    if (!grid) return;
+    grid.innerHTML = mural.map(foto => `
+        <img src="${foto.fotoBase64}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px;">
+    `).join('') || '<p style="color: var(--neutral-600); font-size: 13px;">Nenhuma foto no mural ainda.</p>';
+}
+
+async function handleAdicionarAcervo() {
+    const { tipo, id } = state.editingProfile;
+    const titulo = document.getElementById('acervoTitulo').value.trim();
+    const descricao = document.getElementById('acervoDescricao').value.trim();
+    const fotoInput = document.getElementById('acervoFoto');
+
+    if (!titulo) {
+        alert('Informe o título do projeto');
+        return;
+    }
+
+    const enviar = async (fotoBase64) => {
+        try {
+            const response = await apiFetch(`/api/perfil/acervo`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tipo, id, titulo, descricao, fotoBase64 })
+            });
+            const data = await response.json();
+            if (!data.success) {
+                alert(data.error);
+                return;
+            }
+            document.getElementById('acervoTitulo').value = '';
+            document.getElementById('acervoDescricao').value = '';
+            fotoInput.value = '';
+            carregarPerfilParaEdicao();
+        } catch (error) {
+            alert('Erro ao conectar com servidor.');
+        }
+    };
+
+    if (fotoInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => enviar(e.target.result);
+        reader.readAsDataURL(fotoInput.files[0]);
+    } else {
+        enviar(null);
+    }
+}
+
+function handleAdicionarMural() {
+    const { tipo, id } = state.editingProfile;
+    const fotoInput = document.getElementById('muralFoto');
+    const file = fotoInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const response = await apiFetch(`/api/perfil/mural`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tipo, id, fotoBase64: e.target.result })
+            });
+            const data = await response.json();
+            if (!data.success) {
+                alert(data.error);
+                return;
+            }
+            fotoInput.value = '';
+            carregarPerfilParaEdicao();
+        } catch (error) {
+            alert('Erro ao enviar foto.');
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+// ---- Visualização pública ----
+
+function verPerfilPublico(tipo, id) {
+    state.viewingProfile = { tipo, id };
+    showPage('perfil-publico');
+    loadPerfilPublico();
+}
+
+async function loadPerfilPublico() {
+    const { tipo, id } = state.viewingProfile;
+    const container = document.getElementById('perfilPublicoContent');
+    container.innerHTML = 'Carregando...';
+
+    try {
+        const response = await apiFetch(`/api/perfil/${tipo}/${id}`);
+        const data = await response.json();
+        if (!data.success) {
+            container.innerHTML = `<p style="color: var(--coral);">${data.error}</p>`;
+            return;
+        }
+        const p = data.perfil;
+
+        const estrelas = (nota) => '★'.repeat(nota) + '☆'.repeat(5 - nota);
+
+        container.innerHTML = `
+            <div style="display: flex; gap: 14px; align-items: center; margin-bottom: 8px;">
+                <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--violet-wash); color: var(--violet); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; font-family: var(--font-display); flex-shrink: 0;">
+                    ${p.nome.substring(0, 1)}
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 18px; font-family: var(--font-display);">${escapeHtml(p.nome)}</div>
+                    <div style="font-size: 13.5px; color: var(--neutral-600);">${escapeHtml(p.especialidade || '')}${p.registro ? ` · ${escapeHtml(p.registro)}` : ''}</div>
+                    ${(p.cidade || p.estado) ? `<div style="font-size: 12.5px; color: var(--neutral-500); margin-top: 2px;">📍 ${escapeHtml([p.cidade, p.estado].filter(Boolean).join(' — '))}</div>` : ''}
+                </div>
+            </div>
+
+            <div style="display: inline-block; font-size: 11.5px; color: var(--ink-soft); background: var(--mist); padding: 4px 10px; border-radius: 999px; margin-bottom: 16px; font-family: var(--font-display); font-weight: 600;">
+                🪪 ${escapeHtml(p.carteirinha || '—')}
+            </div>
+
+            ${p.fiadorResponsavel ? `<div style="font-size: 12.5px; color: var(--moss); margin-bottom: 16px;">✅ Avalizado por ${p.fiadorResponsavel.nome} (${p.fiadorResponsavel.conselho} ${p.fiadorResponsavel.registro})</div>` : ''}
+
+            <div style="background: var(--violet-wash); border-radius: 14px; padding: 14px; margin-bottom: 20px;">
+                <div style="font-size: 12px; font-weight: 600; color: var(--violet); text-transform: uppercase; margin-bottom: 4px;">Reputação verificada pela IMOVELI</div>
+                ${p.reputacaoVerificada.totalServicos > 0
+                    ? `<div style="font-size: 20px; font-weight: 700;">★ ${p.reputacaoVerificada.mediaNota} <span style="font-size: 13px; font-weight: 400; color: var(--neutral-600);">(${p.reputacaoVerificada.totalServicos} serviço${p.reputacaoVerificada.totalServicos > 1 ? 's' : ''} registrado${p.reputacaoVerificada.totalServicos > 1 ? 's' : ''} no sistema)</span></div>`
+                    : `<div style="font-size: 14px; color: var(--neutral-600);">Ainda sem serviços concluídos e avaliados no sistema.</div>`}
+            </div>
+
+            ${p.bio ? `<p style="font-size: 14.5px; margin-bottom: 20px;">${p.bio}</p>` : ''}
+
+            ${p.skills.length ? `
+                <div style="margin-bottom: 18px;">
+                    <h2 style="font-size: 14px; margin-bottom: 8px;">Skills</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        ${p.skills.map(s => `<span class="badge" style="background: var(--mist); color: var(--ink);">${s}</span>`).join('')}
+                    </div>
+                </div>` : ''}
+
+            ${p.servicosOferecidos.length ? `
+                <div style="margin-bottom: 18px;">
+                    <h2 style="font-size: 14px; margin-bottom: 8px;">Serviços oferecidos</h2>
+                    <ul style="padding-left: 18px; font-size: 14px;">
+                        ${p.servicosOferecidos.map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                </div>` : ''}
+
+            ${p.acervo.length ? `
+                <div style="margin-bottom: 18px;">
+                    <h2 style="font-size: 14px; margin-bottom: 8px;">Acervo técnico</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        ${p.acervo.map(item => `
+                            <div style="border-radius: 14px; overflow: hidden; background: var(--paper);">
+                                ${item.fotoBase64 ? `<img src="${item.fotoBase64}" style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">` : ''}
+                                <div style="padding: 8px 10px;">
+                                    <div style="font-weight: 600; font-size: 13px;">${item.titulo}</div>
+                                    <div style="font-size: 12px; color: var(--neutral-600);">${item.descricao}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>` : ''}
+
+            ${p.mural.length ? `
+                <div style="margin-bottom: 18px;">
+                    <h2 style="font-size: 14px; margin-bottom: 8px;">Mural de fotos</h2>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                        ${p.mural.map(f => `<img src="${f.fotoBase64}" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px;">`).join('')}
+                    </div>
+                </div>` : ''}
+
+            ${p.avaliacoesVerificadas.length ? `
+                <div style="margin-bottom: 18px;">
+                    <h2 style="font-size: 14px; margin-bottom: 8px;">Avaliações verificadas</h2>
+                    ${p.avaliacoesVerificadas.map(a => `
+                        <div style="padding: 10px 0; border-top: 1px solid var(--mist);">
+                            <div style="color: var(--warning); font-size: 13px;">${estrelas(a.nota)}</div>
+                            <div style="font-size: 13px; margin-top: 2px;">${a.comentario || '(sem comentário)'}</div>
+                            <div style="font-size: 11.5px; color: var(--neutral-600); margin-top: 2px;">${a.descricaoServico}</div>
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+
+            ${p.avaliacoesExternas.length ? `
+                <div>
+                    <h2 style="font-size: 14px; margin-bottom: 4px;">Depoimentos</h2>
+                    <p style="font-size: 11.5px; color: var(--warning); margin-bottom: 10px;">⚠ Auto-declarados pelo profissional — não verificados pelo sistema</p>
+                    ${p.avaliacoesExternas.map(a => `
+                        <div style="padding: 10px 0; border-top: 1px solid var(--mist);">
+                            <div style="color: var(--warning); font-size: 13px;">${estrelas(a.nota)}</div>
+                            <div style="font-size: 13px; margin-top: 2px;">"${a.comentario}"</div>
+                            <div style="font-size: 11.5px; color: var(--neutral-600); margin-top: 2px;">— ${a.nome}</div>
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+        `;
+    } catch (error) {
+        container.innerHTML = `<p style="color: var(--coral);">Erro ao conectar com servidor.</p>`;
+    }
+}
+
+// ============================================
+// CONTRATAR SERVIÇO — diretório de prestadores vinculados
+// ============================================
+
+async function loadHireDirectory(bannerText) {
+    const list = document.getElementById('hireList');
+    try {
+        const response = await apiFetch(`/api/prestadores`);
+        const data = await response.json();
+
+        const bannerHtml = bannerText
+            ? `<div style="background: rgba(27,58,92,0.06); border: 1px solid var(--blueprint); color: var(--blueprint); padding: 12px 16px; border-radius: 10px; margin-bottom: 16px; font-size: 13.5px;">${bannerText}</div>`
+            : '';
+
+        if (!data.success || !data.prestadores.length) {
+            list.innerHTML = bannerHtml + `<div style="color: var(--neutral-600); text-align: center; padding: 24px;">
+                Nenhum profissional disponível ainda.
+            </div>`;
+            return;
+        }
+
+        list.innerHTML = bannerHtml + data.prestadores.map(item => `
+            <div style="background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+                    <div style="cursor: pointer;" onclick="verPerfilPublico('${item.profileTipo}', '${item.profileId}')">
+                        <div style="font-weight: 600;">${item.nome} ${item.grau === 1 ? '<span class="badge" style="background: rgba(27,58,92,0.1); color: var(--blueprint); margin-left: 6px;">1º grau</span>' : '<span class="badge" style="background: rgba(79,111,82,0.1); color: var(--moss); margin-left: 6px;">2º grau</span>'}</div>
+                        <div style="font-size: 13px; color: var(--neutral-600); margin-top: 2px;">${item.especialidade} · ${item.escopo}</div>
+                        <div style="font-size: 12px; color: var(--moss); margin-top: 6px;">
+                            ${item.grau === 1
+                                ? `🛡️ Responsável técnico direto (${item.fiador.conselho} ${item.fiador.registro})`
+                                : `🛡️ Avalizado por ${item.fiador.nome} (${item.fiador.conselho} ${item.fiador.registro})`}
+                        </div>
+                        ${item.fiador?.fonte?.includes('demonstração') ? `<div style="font-size: 11px; color: var(--warning); margin-top: 4px;">⚠ Cadastro de demonstração — não verificado via portal oficial</div>` : ''}
+                        <div style="font-size: 12px; color: var(--violet); margin-top: 6px; font-weight: 600;">👁️ Ver perfil</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="abrirModalContratar('${item.hireType}', '${item.hireId}', '${item.nome.replace(/'/g, "\\'")}')">
+                        Contratar
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        list.innerHTML = `<div style="color: var(--brick); text-align: center; padding: 24px;">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+function abrirModalContratar(hireType, hireId, nome) {
+    const descricao = prompt(`Descreva o serviço que ${nome} vai realizar:`);
+    if (!descricao || !descricao.trim()) return;
+    handleAbrirServico(hireType, hireId, descricao.trim());
+}
+
+async function handleAbrirServico(hireType, hireId, descricao) {
+    if (!state.user) return;
+    try {
+        const response = await apiFetch(`/api/servicos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ hireType, hireId, clienteEmail: state.user.email, descricao })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            alert(data.error);
+            return;
+        }
+        showPage('services');
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+// ============================================
+// MATCH INTELIGENTE
+// ============================================
+
+async function handleBuscarMatch() {
+    const especialidadeInput = document.getElementById('matchEspecialidade');
+    if (especialidadeInput && especialidadeInput.value.trim()) {
+        state.matchContext.categoria = especialidadeInput.value.trim();
+    }
+
+    const precoMin = document.getElementById('matchPrecoMin').value || null;
+    const precoMax = document.getElementById('matchPrecoMax').value || null;
+
+    document.getElementById('matchLoading').classList.add('active');
+    document.getElementById('matchResults').innerHTML = '';
+
+    const loc = await obterLocalizacaoAtual();
+
+    try {
+        const response = await apiFetch(`/api/match`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                categoriaOuEspecialidade: state.matchContext.categoria,
+                precoMin: precoMin ? Number(precoMin) : null,
+                precoMax: precoMax ? Number(precoMax) : null,
+                userLat: loc?.lat ?? null,
+                userLng: loc?.lng ?? null
+            })
+        });
+        const data = await response.json();
+        document.getElementById('matchLoading').classList.remove('active');
+
+        if (!data.success) {
+            document.getElementById('matchResults').innerHTML = `<div class="section" style="color: var(--coral);">${data.error}</div>`;
+            return;
+        }
+        renderMatchResults(data.candidatos, !loc);
+    } catch (error) {
+        document.getElementById('matchLoading').classList.remove('active');
+        document.getElementById('matchResults').innerHTML = `<div class="section" style="color: var(--coral);">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+function renderMatchResults(candidatos, semLocalizacao) {
+    const container = document.getElementById('matchResults');
+    if (!candidatos.length) {
+        container.innerHTML = `<div class="section" style="text-align: center; color: var(--neutral-600);">Nenhum profissional disponível no momento.</div>`;
+        return;
+    }
+
+    const avisoLocalizacao = semLocalizacao
+        ? `<div class="alert alert-info" style="margin-bottom: 12px;">📍 Sem acesso à sua localização — o critério de distância ficou neutro no cálculo. Permita localização no navegador para um match mais preciso.</div>`
+        : '';
+
+    container.innerHTML = avisoLocalizacao + candidatos.map((c, i) => {
+        const nome = escapeHtml(c.nome || '');
+        const especialidade = escapeHtml(c.especialidade || '');
+        const profileTipo = escapeHtml(c.profileTipo || '');
+        const profileId = escapeHtml(c.profileId || '');
+        const hireType = escapeHtml(c.hireType || '');
+        const hireId = escapeHtml(c.hireId || '');
+        return `
+        <div class="section" style="${i === 0 ? 'border: 2px solid var(--violet);' : ''}">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+                <div>
+                    ${i === 0 ? '<div style="font-size: 11px; font-weight: 700; color: var(--violet); margin-bottom: 4px;">⭐ MELHOR MATCH</div>' : ''}
+                    <div style="font-weight: 700; font-size: 16px; cursor: pointer;" onclick="verPerfilPublico('${profileTipo}', '${profileId}')">${nome}</div>
+                    <div style="font-size: 13px; color: var(--neutral-600);">${especialidade} · ${c.grau === 1 ? '1º grau' : '2º grau'}</div>
+                    ${c.distanciaKm !== null ? `<div style="font-size: 12.5px; color: var(--moss); margin-top: 4px;">📍 ${c.distanciaKm} km de você</div>` : ''}
+                    ${c.reputacao?.totalServicos > 0 ? `<div style="font-size: 12.5px; color: var(--warning); margin-top: 2px;">★ ${c.reputacao.mediaNota} (${c.reputacao.totalServicos} serviços)</div>` : ''}
+                </div>
+                <div style="text-align: center; flex-shrink: 0;">
+                    <div style="font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--violet);">${c.scoreFinal ?? '-'}</div>
+                    <div style="font-size: 10px; color: var(--neutral-600);">SCORE</div>
+                </div>
+            </div>
+
+            ${c.detalhes ? `
+            <details style="margin-top: 10px;">
+                <summary style="font-size: 12.5px; color: var(--violet); cursor: pointer; font-weight: 600;">Por que esse profissional?</summary>
+                <div style="margin-top: 8px; font-size: 12px; color: var(--neutral-600);">
+                    Técnica: ${c.detalhes.aderenciaTecnica}% · Preço: ${c.detalhes.preco}% · Localização: ${c.detalhes.localizacao}% · Avaliação: ${c.detalhes.avaliacao}% · Experiência: ${c.detalhes.experiencia}%
+                </div>
+            </details>` : ''}
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="abrirModalContratar('${hireType}', '${hireId}', '${nome.replace(/'/g, "\\'")}')">
+                Contratar
+            </button>
+        </div>`;
+    }).join('');
+}
+
+// Redireciona o botão da página de match para a página de demandas com form
+function handleAbrirDemanda() {
+    showPage('demandas');
+    // pré-preenche especialidade se houver no contexto de match
+    const especialidadeEl = document.getElementById('demandaEspecialidade');
+    if (especialidadeEl && state.matchContext.categoria) {
+        especialidadeEl.value = state.matchContext.categoria;
+    }
+}
+
+// ============================================
+// DEMANDAS (leilão reverso)
+// ============================================
+
+async function handlePublicarDemanda() {
+    const email = (document.getElementById('demandaEmail')?.value || '').trim();
+    const descricao = (document.getElementById('demandaDescricao')?.value || '').trim();
+    const especialidade = (document.getElementById('demandaEspecialidade')?.value || '').trim();
+    const cidade = (document.getElementById('demandaCidade')?.value || '').trim();
+    const orcamento = document.getElementById('demandaOrcamento')?.value || null;
+
+    const erroEl = document.getElementById('demandaErro');
+    const sucessoEl = document.getElementById('demandaSucesso');
+    erroEl.style.display = 'none';
+    sucessoEl.style.display = 'none';
+
+    if (!email) { erroEl.textContent = 'Informe seu e-mail de contato.'; erroEl.style.display = 'block'; return; }
+    if (!descricao) { erroEl.textContent = 'Descreva o que você precisa.'; erroEl.style.display = 'block'; return; }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/demandas`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                clienteEmail: email,
+                descricao,
+                categoriaOuEspecialidade: especialidade || cidade,
+                cidade: cidade || null,
+                precoMax: orcamento ? Number(orcamento) : null
+            })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            erroEl.textContent = data.error;
+            erroEl.style.display = 'block';
+            return;
+        }
+        // Limpa o form
+        ['demandaEmail', 'demandaDescricao', 'demandaEspecialidade', 'demandaCidade', 'demandaOrcamento'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+        sucessoEl.style.display = 'block';
+        loadDemandasAbertas();
+    } catch (error) {
+        erroEl.textContent = 'Erro ao conectar com servidor.';
+        erroEl.style.display = 'block';
+    }
+}
+
+async function loadDemandasAbertas() {
+    const list = document.getElementById('demandasList');
+    if (!list) return;
+    list.innerHTML = '<div style="color: var(--neutral-600); text-align: center; padding: 16px;">Carregando...</div>';
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/demandas/disponiveis`);
+        const data = await response.json();
+
+        if (!data.success || !data.demandas.length) {
+            list.innerHTML = '<div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhuma demanda aberta no momento.</div>';
+            return;
+        }
+
+        list.innerHTML = data.demandas
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map(d => {
+                const desc = escapeHtml(d.descricao || '');
+                const cat = escapeHtml(d.categoria_especialidade || '');
+                const dataCriacao = d.created_at ? new Date(d.created_at).toLocaleDateString('pt-BR') : '';
+                const orcamento = d.preco_max ? `R$ ${Number(d.preco_max).toLocaleString('pt-BR')}` : 'A combinar';
+                const podeCandidatar = state.fiador?.status === 'verificado' || state.fiador;
+                return `
+                <div style="padding: 14px 0; border-top: 1px solid var(--mist);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 14px; line-height: 1.4;">${desc}</div>
+                            ${cat ? `<div style="font-size: 12px; color: var(--violet); margin-top: 4px; font-weight: 600;">${cat}</div>` : ''}
+                            <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">
+                                ${orcamento} · ${dataCriacao}
+                            </div>
+                        </div>
+                        ${podeCandidatar ? `
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px; flex-shrink: 0;" onclick="abrirModalCandidatar('${escapeHtml(d.id)}', '${desc.replace(/'/g, "\\'")}')">
+                            Propor
+                        </button>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+    } catch (error) {
+        list.innerHTML = '<div style="color: var(--coral);">Erro ao carregar demandas.</div>';
+    }
+}
+
+async function abrirModalCandidatar(demandaId, descricao) {
+    const precoStr = prompt(`Proposta para: "${descricao}"\n\nQual seu preço proposto (R$)?`);
+    if (!precoStr || isNaN(Number(precoStr))) return;
+    const mensagem = prompt('Mensagem para o cliente (opcional):') || '';
+    const nome = state.fiador?.nome || state.user?.nomeProfissional || '';
+
+    try {
+        const response = await apiFetch(`/api/demandas/${demandaId}/candidatar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hireType: state.fiador ? 'fiador' : 'indicacao',
+                hireId: state.fiador?.id || '',
+                nome,
+                precoProposto: Number(precoStr),
+                mensagem: mensagem.trim()
+            })
+        });
+        const data = await response.json();
+        if (data.success) {
+            alert('Proposta enviada! O cliente vai receber e poderá escolher.');
+        } else {
+            alert(data.error);
+        }
+    } catch {
+        alert('Erro ao enviar proposta.');
+    }
+}
+
+async function handleEscolherCandidatura(demandaId, candidaturaId) {
+    if (!confirm('Confirmar essa proposta? Isso vai gerar um serviço e fechar a demanda.')) return;
+    try {
+        const response = await apiFetch(`/api/demandas/${demandaId}/escolher`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ candidaturaId })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            alert(data.error);
+            return;
+        }
+        showPage('services');
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+
+
+async function loadMyServices() {
+    if (!state.user) return;
+    const list = document.getElementById('servicesList');
+
+    try {
+        const response = await apiFetch(`/api/clientes/${encodeURIComponent(state.user.email)}/servicos`);
+        const data = await response.json();
+
+        if (!data.success || !data.servicos.length) {
+            list.innerHTML = `<div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhum serviço registrado ainda.</div>`;
+            return;
+        }
+
+        list.innerHTML = data.servicos
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map(s => renderServiceCard(s)).join('');
+    } catch (error) {
+        list.innerHTML = `<div style="color: var(--brick); text-align: center; padding: 24px;">Erro ao conectar com servidor.</div>`;
+    }
+}
+
+function renderServiceCard(s) {
+    const statusLabel = { aberto: '🔵 Em andamento', concluido: s.avaliacao ? '✓ Registro completo' : '🟡 Concluído — aguardando avaliação' };
+
+    let actionsHtml = '';
+
+    if (s.status === 'aberto') {
+        actionsHtml = `
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;">
+                <div>
+                    <label style="font-size: 12px; color: var(--neutral-600); display: block; margin-bottom: 4px;">Foto ANTES (${s.fotosAntes.length})</label>
+                    <input type="file" accept="image/*" onchange="handleServiceFoto('${s.id}', 'antes', this)">
+                </div>
+                <div>
+                    <label style="font-size: 12px; color: var(--neutral-600); display: block; margin-bottom: 4px;">Foto DEPOIS (${s.fotosDepois.length})</label>
+                    <input type="file" accept="image/*" onchange="handleServiceFoto('${s.id}', 'depois', this)">
+                </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top: 12px;" onclick="handleConcluirServico('${s.id}')">Marcar como concluído</button>
+        `;
+    } else if (s.status === 'concluido' && !s.avaliacao) {
+        actionsHtml = `
+            <div style="margin-top: 12px; padding: 12px; background: var(--stone); border-radius: 8px;">
+                <label style="font-size: 12px; color: var(--neutral-600); display: block; margin-bottom: 6px;">Avalie o serviço (1 a 5) e assine digitalmente</label>
+                <div id="stars-${s.id}" style="font-size: 22px; cursor: pointer; margin-bottom: 8px;">
+                    ${[1,2,3,4,5].map(n => `<span onclick="setRating('${s.id}', ${n})" data-star="${n}" style="color: var(--mist-strong);">★</span>`).join('')}
+                </div>
+                <textarea id="comentario-${s.id}" rows="2" placeholder="Comentário (opcional)"></textarea>
+                <button class="btn btn-primary" style="margin-top: 8px;" onclick="handleAvaliarServico('${s.id}')">Confirmar avaliação e assinar</button>
+            </div>
+        `;
+    } else if (s.avaliacao) {
+        actionsHtml = `
+            <div style="margin-top: 12px; font-size: 13px; color: var(--neutral-600);">
+                Avaliado com ${'★'.repeat(s.avaliacao.nota)}${'☆'.repeat(5 - s.avaliacao.nota)} · assinado em ${new Date(s.avaliacao.assinadoEm).toLocaleString('pt-BR')}
+            </div>
+            <button class="btn btn-secondary" style="margin-top: 8px;" onclick='baixarRegistroTecnico(${JSON.stringify(s)})'>📄 Baixar registro técnico</button>
+        `;
+    }
+
+    return `
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; margin-bottom: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-weight: 600;">${s.descricao}</div>
+                <span style="font-size: 12.5px; font-weight: 600;">${statusLabel[s.status]}</span>
+            </div>
+            <div style="font-size: 12.5px; color: var(--neutral-600); margin-top: 4px;">
+                Executor: ${s.executor?.nome || '—'} (${s.executor?.especialidade || '—'})${s.grau === 2 ? ` · Avalizado por ${s.fiador?.nome || '—'}` : ' · Responsável técnico direto'}
+            </div>
+            ${actionsHtml}
+        </div>
+    `;
+}
+
+function handleServiceFoto(servicoId, tipo, input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const response = await apiFetch(`/api/servicos/${servicoId}/foto`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tipo, fotoBase64: e.target.result })
+            });
+            const data = await response.json();
+            if (!data.success) {
+                alert(data.error);
+                return;
+            }
+            loadMyServices();
+        } catch (error) {
+            alert('Erro ao enviar foto.');
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+async function handleConcluirServico(servicoId) {
+    try {
+        const response = await apiFetch(`/api/servicos/${servicoId}/concluir`, { method: 'POST' });
+        const data = await response.json();
+        if (!data.success) {
+            alert(data.error);
+            return;
+        }
+        loadMyServices();
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+const pendingRatings = {};
+
+function setRating(servicoId, nota) {
+    pendingRatings[servicoId] = nota;
+    const container = document.getElementById(`stars-${servicoId}`);
+    if (!container) return;
+    container.querySelectorAll('[data-star]').forEach(star => {
+        star.style.color = Number(star.dataset.star) <= nota ? 'var(--warning)' : 'var(--mist-strong)';
+    });
+}
+
+async function handleAvaliarServico(servicoId) {
+    const nota = pendingRatings[servicoId];
+    if (!nota) {
+        alert('Selecione uma nota de 1 a 5 estrelas');
+        return;
+    }
+    const comentario = document.getElementById(`comentario-${servicoId}`).value.trim();
+
+    try {
+        const response = await apiFetch(`/api/servicos/${servicoId}/avaliar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nota, comentario })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            alert(data.error);
+            return;
+        }
+        delete pendingRatings[servicoId];
+        loadMyServices();
+    } catch (error) {
+        alert('Erro ao conectar com servidor.');
+    }
+}
+
+function baixarRegistroTecnico(s) {
+    const lines = [
+        'IMOVELI — REGISTRO TÉCNICO DE SERVIÇO',
+        '(Cadeia de Responsabilidade Técnica)',
+        '=====================================================',
+        `Serviço: ${s.descricao}`,
+        `Categoria: ${s.categoria}`,
+        '',
+        `Executor: ${s.executor?.nome || '—'} (${s.executor?.especialidade || '—'})`,
+        s.grau === 2
+            ? `Avalizado por (Responsável Técnico): ${s.fiador?.nome || '—'} — ${s.fiador?.conselho || ''} ${s.fiador?.registro || ''}`
+            : `Responsável técnico direto — ${s.fiador?.conselho || ''} ${s.fiador?.registro || ''}`,
+        '',
+        `Data de início: ${new Date(s.dataInicio).toLocaleString('pt-BR')}`,
+        `Data de conclusão: ${s.dataConclusao ? new Date(s.dataConclusao).toLocaleString('pt-BR') : '—'}`,
+        `Fotos registradas: ${s.fotosAntes.length} antes / ${s.fotosDepois.length} depois`,
+        '',
+        `Avaliação do cliente: ${s.avaliacao.nota}/5`,
+        `Comentário: ${s.avaliacao.comentario || '(sem comentário)'}`,
+        `Assinado digitalmente em: ${new Date(s.avaliacao.assinadoEm).toLocaleString('pt-BR')}`,
+        '',
+        'Este documento tem valor de registro entre as partes e pode ser usado',
+        'como referência técnica, jurídica ou contratual em caso de disputa.',
+    ].join('\n');
+
+    const blob = new Blob([lines], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `registro-servico-imoveli-${s.id}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+
+// ============================================
+// ESTATÍSTICAS DA REDE
+// ============================================
+
+async function updateStats() {
+    if (!state.fiador) {
+        // Sem cadastro de Fiador ainda — mostra só o tamanho da rede geral
+        document.getElementById('statIndicados').textContent = '—';
+        document.getElementById('statVinculosAtivos').textContent = '—';
+        document.getElementById('statReputacao').textContent = '—';
+    } else {
+        try {
+            const [indicadosRes, reputacaoRes] = await Promise.all([
+                apiFetch(`/api/fiadores/${state.fiador.id}/indicados`).then(r => r.json()),
+                apiFetch(`/api/fiadores/${state.fiador.id}/reputacao`).then(r => r.json())
+            ]);
+
+            if (indicadosRes.success) {
+                document.getElementById('statIndicados').textContent = indicadosRes.indicados.length;
+                const ativos = indicadosRes.indicados.filter(i => i.status === 'aceita').length;
+                document.getElementById('statVinculosAtivos').textContent = ativos;
+            }
+            if (reputacaoRes.success) {
+                const r = reputacaoRes.reputacao;
+                document.getElementById('statReputacao').textContent = r.totalServicos > 0 ? `★ ${r.mediaNota}` : '—';
+            }
+        } catch (error) {
+            console.error('Stats error:', error);
+        }
+    }
+
+    try {
+        const response = await apiFetch(`/api/prestadores`);
+        const data = await response.json();
+        const el = document.getElementById('statRede');
+        if (el && data.success) el.textContent = data.prestadores.length;
+    } catch (error) {
+        console.error('Rede stats error:', error);
+    }
+
+    // Registros de colaboração recentes (se já tiver perfil profissional)
+    if (state.fiador) {
+        try {
+            const response = await apiFetch(`/api/clientes/${encodeURIComponent(state.user.email)}/servicos`);
+            const data = await response.json();
+            const recentDiv = document.getElementById('recentServicos');
+            if (data.success && data.servicos.length > 0 && recentDiv) {
+                const recent = data.servicos.slice(-3).reverse();
+                recentDiv.innerHTML = `
+                    <table class="table">
+                        <thead><tr><th>Data</th><th>Descrição</th><th>Status</th></tr></thead>
+                        <tbody>
+                            ${recent.map(s => `
+                                <tr>
+                                    <td>${new Date(s.createdAt).toLocaleDateString('pt-BR')}</td>
+                                    <td>${s.descricao}</td>
+                                    <td><span class="badge badge-${s.status === 'concluido' ? 'success' : 'warning'}">${s.status}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        } catch (error) {
+            console.error('Recent servicos error:', error);
+        }
+    }
+}
+
+// ============================================
+// INIT
+// ============================================
+
+// ============================================
+// CHATBOT IA
+// ============================================
+
+const chatHistorico = [];
+
+function buildChatContexto() {
+    const parts = [];
+    if (state.user) parts.push(`Usuário logado: ${state.user.nome || 'desconhecido'} (${state.user.tipo || 'cliente'})`);
+    if (state.fiador) {
+        parts.push(`Responsável Técnico: ${state.fiador.nome}, ${state.fiador.conselho}/${state.fiador.uf}, registro ${state.fiador.registro}`);
+        if (state.fiador.bio) parts.push(`Bio: ${state.fiador.bio}`);
+    }
+    return parts.length ? parts.join('\n') : null;
+}
+
+function toggleChat() {
+    document.getElementById('chatPanel').classList.toggle('open');
+}
+
+async function handleEnviarChat() {
+    const input = document.getElementById('chatInput');
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    const messagesEl = document.getElementById('chatMessages');
+    messagesEl.innerHTML += `<div class="chat-bubble user">${texto}</div>`;
+    input.value = '';
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    chatHistorico.push({ role: 'user', content: texto });
+
+    const loadingId = 'chat-loading-' + Date.now();
+    messagesEl.innerHTML += `<div class="chat-bubble assistant" id="${loadingId}">Digitando...</div>`;
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    try {
+        const response = await apiFetch(`/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                mensagens: chatHistorico,
+                contexto: buildChatContexto()
+            })
+        });
+        const data = await response.json();
+
+        const loadingEl = document.getElementById(loadingId);
+        if (!data.success) {
+            loadingEl.textContent = data.error || 'Erro ao conectar com a IA.';
+            return;
+        }
+
+        loadingEl.textContent = data.resposta;
+        chatHistorico.push({ role: 'assistant', content: data.resposta });
+    } catch (error) {
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.textContent = 'Erro ao conectar com servidor.';
+    }
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function init() {
+    const user = localStorage.getItem('imoveli_user');
+    const fiador = localStorage.getItem('imoveli_fiador');
+
+    if (fiador) state.fiador = JSON.parse(fiador);
+
+    if (user) {
+        state.user = JSON.parse(user);
+        showApp();
+    } else {
+        showLogin();
+    }
+}
+
+// ============================================
+// CONVITES VIP
+// ============================================
+
+async function handleGerarConvite() {
+    const btn = document.getElementById('btnGerarConvite');
+    const erroEl = document.getElementById('conviteErroMsg');
+    const boxEl = document.getElementById('conviteGeradoBox');
+    erroEl.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Gerando...';
+    try {
+        const r = await apiFetch(`${API_BASE_URL}/api/convites`, { method: 'POST' });
+        const data = await r.json();
+        if (!data.success) throw new Error(data.error || 'Erro ao gerar convite');
+        const link = `${window.location.origin}/convite.html?token=${data.token}`;
+        document.getElementById('conviteLinkInput').value = link;
+        boxEl.style.display = 'block';
+        carregarMeusConvites();
+    } catch (e) {
+        erroEl.textContent = e.message;
+        erroEl.style.display = 'block';
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '✦ Gerar Link de Convite VIP';
+    }
+}
+
+function copiarConvite() {
+    const input = document.getElementById('conviteLinkInput');
+    navigator.clipboard.writeText(input.value).then(() => {
+        const msg = document.getElementById('conviteCopiadoMsg');
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 2500);
+    });
+}
+
+async function carregarMeusConvites() {
+    const lista = document.getElementById('meusConvitesLista');
+    if (!lista) return;
+    lista.innerHTML = '<p style="color:var(--ink-soft);font-size:14px;">Carregando...</p>';
+    try {
+        const r = await apiFetch(`${API_BASE_URL}/api/meus-convites`);
+        const data = await r.json();
+        if (!data.success || !data.convites.length) {
+            lista.innerHTML = '<p style="color:var(--ink-soft);font-size:14px;">Nenhum convite gerado ainda.</p>';
+            return;
+        }
+        lista.innerHTML = data.convites.map(c => {
+            const link = `${window.location.origin}/convite.html?token=${c.token}`;
+            const usado = c.usos_atual >= c.usos_max;
+            const exp = new Date(c.expires_at).toLocaleDateString('pt-BR');
+            return `<div style="padding:12px 16px;border:1px solid var(--mist);border-radius:10px;margin-bottom:10px;background:var(--paper-raised);">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span style="font-size:13px;color:var(--ink-soft);word-break:break-all;flex:1">${escapeHtml(link)}</span>
+                    <span style="font-size:12px;padding:3px 10px;border-radius:99px;background:${usado ? '#FFF0F1' : 'var(--violet-wash)'};color:${usado ? 'var(--coral)' : 'var(--violet)'}">
+                        ${usado ? 'Usado' : `${c.usos_atual}/${c.usos_max} uso`}
+                    </span>
+                </div>
+                <div style="font-size:11px;color:var(--ink-soft);margin-top:6px;">Expira: ${exp}</div>
+            </div>`;
+        }).join('');
+    } catch (e) {
+        lista.innerHTML = '<p style="color:var(--coral);font-size:14px;">Erro ao carregar convites.</p>';
+    }
+}
+
+// Start app
+init();
+</script>
+
+</body>
+</html>
+
