@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redefinir senha — IMOVELI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6d4fc2;
+      --purple-light: #f0ebff;
+      --coral: #ff4b5c;
+      --neutral-100: #f5f5f5;
+      --neutral-500: #888;
+      --neutral-900: #111;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--neutral-100);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .logo { font-size: 32px; margin-bottom: 8px; }
+    h1 { font-size: 22px; margin-bottom: 6px; color: var(--neutral-900); }
+    p.sub { font-size: 14px; color: var(--neutral-500); margin-bottom: 28px; }
+    .form-group { text-align: left; margin-bottom: 16px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--neutral-900); }
+    input[type=password] {
+      width: 100%; padding: 12px 14px;
+      border: 1.5px solid #e0e0e0; border-radius: 8px;
+      font-size: 15px; outline: none; transition: border-color .2s;
+    }
+    input[type=password]:focus { border-color: var(--purple); }
+    .btn {
+      width: 100%; padding: 13px; border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--purple); color: #fff; margin-bottom: 12px; }
+    .alert { border-radius: 8px; padding: 12px 14px; font-size: 14px; margin-bottom: 16px; }
+    .alert-error { background: rgba(255,75,92,.08); color: var(--coral); }
+    .alert-success { background: rgba(109,79,194,.08); color: var(--purple); }
+    #loading p { color: var(--neutral-500); margin-top: 16px; font-size: 15px; }
+    #invalid p { color: var(--coral); margin-top: 16px; }
+    #success p { margin-top: 16px; font-size: 15px; }
+    #success a { color: var(--purple); font-weight: 600; }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid #e0e0e0;
+      border-top-color: var(--purple); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 12px auto 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">🏠</div>
+  <h1>IMOVELI</h1>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Validando link…</p>
+  </div>
+
+  <!-- Link inválido -->
+  <div id="invalid" style="display:none;">
+    <p style="font-size:40px;">⚠️</p>
+    <p><strong>Link inválido ou expirado.</strong><br>Solicite um novo link na tela de login.</p>
+    <br>
+    <a href="/index.html" style="color:var(--purple);font-weight:600;">Ir para o login</a>
+  </div>
+
+  <!-- Formulário -->
+  <div id="form-section" style="display:none;">
+    <p class="sub">Crie uma nova senha para sua conta.</p>
+    <div class="form-group">
+      <label>Nova senha</label>
+      <input type="password" id="novaSenha" placeholder="Mínimo 6 caracteres">
+    </div>
+    <div class="form-group">
+      <label>Confirmar nova senha</label>
+      <input type="password" id="confirmarSenha" placeholder="Repita a senha">
+    </div>
+    <div id="msg"></div>
+    <button class="btn btn-primary" onclick="redefinirSenha()">Salvar nova senha</button>
+  </div>
+
+  <!-- Sucesso -->
+  <div id="success" style="display:none;">
+    <p style="font-size:40px;">✅</p>
+    <p><strong>Senha redefinida com sucesso!</strong></p>
+    <p style="margin-top:8px;">Redirecionando para o login…</p>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const token = params.get('token');
+
+  function show(id) {
+    ['loading','invalid','form-section','success'].forEach(s => {
+      document.getElementById(s).style.display = s === id ? 'block' : 'none';
+    });
+  }
+
+  async function init() {
+    if (!token) { show('invalid'); return; }
+    // Valida token tentando um GET simples — usamos o endpoint de redefinição com senha vazia
+    // para checar apenas a existência, mas o endpoint não expõe validação GET.
+    // Mostramos o formulário diretamente; erro de token inválido aparece no submit.
+    show('form-section');
+  }
+
+  async function redefinirSenha() {
+    const nova = document.getElementById('novaSenha').value;
+    const confirma = document.getElementById('confirmarSenha').value;
+    const msgEl = document.getElementById('msg');
+    msgEl.innerHTML = '';
+
+    if (nova.length < 6) {
+      msgEl.innerHTML = '<div class="alert alert-error">Senha deve ter pelo menos 6 caracteres.</div>';
+      return;
+    }
+    if (nova !== confirma) {
+      msgEl.innerHTML = '<div class="alert alert-error">As senhas não coincidem.</div>';
+      return;
+    }
+
+    try {
+      const resp = await fetch('/api/auth/redefinir-senha', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ token, nova_senha: nova })
+      });
+      const data = await resp.json();
+      if (data.success) {
+        show('success');
+        setTimeout(() => { location.href = '/index.html'; }, 2500);
+      } else {
+        msgEl.innerHTML = `<div class="alert alert-error">${data.error}</div>`;
+        if (data.error && data.error.includes('inválido')) show('invalid');
+      }
+    } catch (e) {
+      msgEl.innerHTML = '<div class="alert alert-error">Erro de conexão. Tente novamente.</div>';
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

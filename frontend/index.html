@@ -909,7 +909,21 @@
             </div>
             <div id="loginMsg"></div>
             <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="handleLogin()">Entrar</button>
-            <button class="btn btn-secondary" style="width: 100%;" onclick="mostrarPassoAuth('signup')">Criar Conta</button>
+            <button class="btn btn-secondary" style="width: 100%; margin-bottom: 8px;" onclick="mostrarPassoAuth('signup')">Criar Conta</button>
+            <div style="text-align:center;"><a href="#" style="font-size:13px;color:var(--neutral-500);" onclick="mostrarPassoAuth('esqueci');return false;">Esqueci minha senha</a></div>
+        </div>
+
+        <!-- PASSO: ESQUECI MINHA SENHA -->
+        <div id="stepEsqueci" style="display: none;">
+            <h2 style="font-size:18px;margin-bottom:8px;">Recuperar senha</h2>
+            <p style="font-size:13px;color:var(--neutral-500);margin-bottom:16px;">Digite seu email e enviaremos um link para criar uma nova senha.</p>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="esqueciEmail" placeholder="seu@email.com">
+            </div>
+            <div id="esqueciMsg"></div>
+            <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="handleEsqueciSenha()">Enviar link</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="mostrarPassoAuth('login')">Voltar ao login</button>
         </div>
 
         <!-- PASSO: CRIAR CONTA -->
@@ -1665,6 +1679,28 @@ function mostrarPassoAuth(step) {
     document.getElementById('stepLogin').style.display = step === 'login' ? 'block' : 'none';
     document.getElementById('stepSignup').style.display = step === 'signup' ? 'block' : 'none';
     document.getElementById('stepConfirmar').style.display = step === 'confirmar' ? 'block' : 'none';
+    document.getElementById('stepEsqueci').style.display = step === 'esqueci' ? 'block' : 'none';
+}
+
+async function handleEsqueciSenha() {
+    const email = document.getElementById('esqueciEmail').value.trim();
+    const msgEl = document.getElementById('esqueciMsg');
+    msgEl.innerHTML = '';
+    if (!email) {
+        msgEl.innerHTML = `<div class="alert" style="background:rgba(255,75,92,0.08);color:var(--coral);margin-bottom:12px;">Informe seu email</div>`;
+        return;
+    }
+    try {
+        const resp = await fetch('/api/auth/esqueci-senha', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ email })
+        });
+        const data = await resp.json();
+        msgEl.innerHTML = `<div class="alert" style="background:rgba(109,79,194,0.08);color:var(--purple);margin-bottom:12px;">${data.mensagem || 'Link enviado!'}</div>`;
+    } catch (e) {
+        msgEl.innerHTML = `<div class="alert" style="background:rgba(255,75,92,0.08);color:var(--coral);margin-bottom:12px;">Erro ao enviar. Tente novamente.</div>`;
+    }
 }
 
 async function handleLogin() {

@@ -234,6 +234,60 @@ app.post('/api/auth/login', async (req, res) => {
   res.json({ success: true, token, conta });
 });
 
+// ---- ESQUECI MINHA SENHA ----
+
+app.post('/api/auth/esqueci-senha', async (req, res) => {
+  const { email } = req.body;
+  if (!email || !EMAIL_REGEX.test(email)) {
+    return res.status(400).json({ success: false, error: 'Email inválido' });
+  }
+  const emailNorm = email.trim().toLowerCase();
+  const { rows } = await query('SELECT id, nome_profissional FROM contas WHERE email=$1 AND confirmado=true', [emailNorm]);
+
+  if (rows.length) {
+    const token = crypto.randomUUID();
+    const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hora
+    await query(
+      'UPDATE contas SET reset_token=$1, reset_token_expiry=$2 WHERE email=$3',
+      [token, expiry.toISOString(), emailNorm]
+    );
+    const frontendUrl = process.env.FRONTEND_URL || 'https://imoveli.vercel.app';
+    const link = `${frontendUrl}/redefinir-senha.html?token=${token}`;
+    await enviarEmail({
+      to: emailNorm,
+      subject: 'Redefinição de senha — IMOVELI',
+      html: `<p>Olá, ${rows[0].nome_profissional}!</p>
+<p>Clique no link abaixo para criar uma nova senha. O link expira em <strong>1 hora</strong>.</p>
+<p><a href="${link}" style="background:#6d4fc2;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Redefinir minha senha</a></p>
+<p>Se não foi você, ignore este email.</p>
+<p>— Equipe IMOVELI</p>`,
+      textoSimulado: `Link de redefinição: ${link}`
+    });
+  }
+  // Sempre retorna sucesso para não vazar se o email existe
+  res.json({ success: true, mensagem: 'Se o email estiver cadastrado, você receberá um link em breve.' });
+});
+
+app.post('/api/auth/redefinir-senha', async (req, res) => {
+  const { token, nova_senha } = req.body;
+  if (!token || !nova_senha || nova_senha.length < 6) {
+    return res.status(400).json({ success: false, error: 'Token e nova senha (mín. 6 caracteres) são obrigatórios' });
+  }
+  const { rows } = await query(
+    'SELECT email FROM contas WHERE reset_token=$1 AND reset_token_expiry > NOW()',
+    [token]
+  );
+  if (!rows.length) {
+    return res.status(400).json({ success: false, error: 'Link inválido ou expirado. Solicite um novo.' });
+  }
+  const { hash, salt } = hashSenha(nova_senha);
+  await query(
+    'UPDATE contas SET senha_hash=$1, senha_salt=$2, reset_token=NULL, reset_token_expiry=NULL WHERE email=$3',
+    [hash, salt, rows[0].email]
+  );
+  res.json({ success: true, mensagem: 'Senha redefinida com sucesso! Faça login com sua nova senha.' });
+});
+
 // Verifica token e retorna dados do usuário logado
 app.get('/api/auth/me', auth, async (req, res) => {
   const { rows } = await query('SELECT email, telefone, nome_profissional, fiador_id FROM contas WHERE email=$1', [req.user.email]);
@@ -1172,6 +1226,9 @@ async function runMigrations() {
       created_at  TIMESTAMPTZ DEFAULT NOW()
     )`,
     `CREATE INDEX IF NOT EXISTS idx_convites_criador ON convites(criador_id)`,
+    // Reset de senha
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS reset_token TEXT`,
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS reset_token_expiry TIMESTAMPTZ`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
