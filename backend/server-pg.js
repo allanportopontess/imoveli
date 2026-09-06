@@ -1379,7 +1379,27 @@ app.get('/api/base-conhecimento', async (req, res) => {
 
 app.get('/api/health', async (req, res) => {
   const { rows } = await query('SELECT COUNT(*) FROM fiadores');
-  res.json({ status: 'OK', version: '2.0.0', db: 'postgresql', fiadores: parseInt(rows[0].count) });
+  res.json({
+    status: 'OK', version: '2.0.0', db: 'postgresql',
+    fiadores: parseInt(rows[0].count),
+    ai: !!anthropicClient,
+    tavily: !!TAVILY_API_KEY,
+    node: process.version
+  });
+});
+
+// Diagnóstico rápido da IA (só dev — remove em prod)
+app.get('/api/ai-diag', async (req, res) => {
+  if (!anthropicClient) return res.json({ ok: false, error: 'anthropicClient nulo — ANTHROPIC_API_KEY ausente' });
+  try {
+    const r = await anthropicClient.messages.create({
+      model: 'claude-haiku-4-5-20251001', max_tokens: 10,
+      messages: [{ role: 'user', content: 'ok' }]
+    });
+    res.json({ ok: true, model: r.model, id: r.id });
+  } catch (e) {
+    res.json({ ok: false, error: e.message, type: e.constructor?.name, status: e.status });
+  }
 });
 
 // ============================================
