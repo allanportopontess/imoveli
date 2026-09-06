@@ -879,15 +879,22 @@ const MULT_REGIONAL = {
 // Multiplicadores de complexidade
 const MULT_COMPLEXIDADE = { 'simples': 0.80, 'medio': 1.00, 'complexo': 1.35, 'luxo': 1.80 };
 
+function normalizar(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9\s]/g, ' ').trim();
+}
+
 function calcularPrecificacaoBase({ tipoServico, estado, complexidade, areaMq }) {
   const estadoUpper = (estado || 'PE').toUpperCase();
   const multRegional = MULT_REGIONAL[estadoUpper] || 1.0;
   const multComp = MULT_COMPLEXIDADE[complexidade] || 1.0;
 
-  // Busca o tipo de serviço (busca fuzzy)
-  const chave = Object.keys(TABELA_PRECOS).find(k =>
-    tipoServico.toLowerCase().includes(k) || k.includes(tipoServico.toLowerCase())
-  ) || Object.keys(TABELA_PRECOS)[0];
+  // Busca fuzzy com normalização de acentos
+  const tsNorm = normalizar(tipoServico);
+  const chave = Object.keys(TABELA_PRECOS).find(k => {
+    const kNorm = normalizar(k);
+    return tsNorm.includes(kNorm) || kNorm.includes(tsNorm) ||
+      kNorm.split(' ').some(w => w.length > 3 && tsNorm.includes(w));
+  }) || 'pedreiro';
   const ref = TABELA_PRECOS[chave];
 
   const fatorTotal = multRegional * multComp;
@@ -895,18 +902,15 @@ function calcularPrecificacaoBase({ tipoServico, estado, complexidade, areaMq })
   const precoMax = Math.round(ref.max * fatorTotal);
   const precoSugerido = Math.round(ref.base * fatorTotal);
 
-  let totalMin = precoMin, totalMax = precoMax, totalSugerido = precoSugerido;
-  if (areaMq && ref.unidade === 'm²') {
-    totalMin = precoMin * areaMq;
-    totalMax = precoMax * areaMq;
-    totalSugerido = precoSugerido * areaMq;
-  }
-
+  // Total só faz sentido para serviços por m²
+  const temTotal = areaMq && areaMq > 0 && ref.unidade === 'm²';
   return {
     referencia: ref.label,
     unidade: ref.unidade,
     precoMin, precoMax, precoSugerido,
-    totalMin, totalMax, totalSugerido,
+    totalMin: temTotal ? precoMin * areaMq : null,
+    totalMax: temTotal ? precoMax * areaMq : null,
+    totalSugerido: temTotal ? precoSugerido * areaMq : null,
     multRegional, multComplexidade: multComp,
     estado: estadoUpper
   };
@@ -971,6 +975,7 @@ Valores podem variar conforme experiência do profissional, materiais inclusos e
   res.json({
     success: true,
     tipoServico,
+    referencia: base.referencia,
     estado: base.estado,
     cidade: cidade || null,
     complexidade: complexidade || 'medio',
@@ -982,7 +987,7 @@ Valores podem variar conforme experiência do profissional, materiais inclusos e
         max: base.precoMax,
         unidade: base.unidade
       },
-      total: areaMq ? {
+      total: base.totalSugerido != null ? {
         min: base.totalMin,
         sugerido: base.totalSugerido,
         max: base.totalMax
