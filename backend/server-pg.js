@@ -12,6 +12,8 @@ if (process.env.ANTHROPIC_API_KEY) {
   anthropicClient = new Anthropic();
 }
 
+const TAVILY_API_KEY = process.env.TAVILY_API_KEY || null;
+
 const JWT_SECRET = process.env.JWT_SECRET || (() => { throw new Error('JWT_SECRET não configurado no .env'); })();
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 
@@ -958,39 +960,128 @@ const CHAT_SYSTEM_PROMPT = `Você é o Assistente Técnico da IMOVELI — plataf
 3. Plataforma → explique o fluxo de forma clara e prática.
 4. Incerteza → diga: "Recomendo confirmar com o Responsável Técnico vinculado a você na plataforma."
 5. Nunca invente números de normas ou prazos legais.
-6. Respostas entre 3 e 15 linhas, salvo pedido de elaboração.`;
+6. Respostas entre 3 e 15 linhas, salvo pedido de elaboração.
+7. Quando fontes da internet forem fornecidas no contexto, cite-as (ex: "Fonte: [título](url)").`;
 
-// Busca contexto técnico relevante no banco de conhecimento
+// ── BUSCA NA INTERNET (Tavily) ──────────────────────────────────────────────
+// Retorna { ctx: string, results: array } ou null
+async function buscarNaInternet(pergunta) {
+  if (!TAVILY_API_KEY) return null;
+  try {
+    const resp = await fetch('https://api.tavily.com/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        api_key: TAVILY_API_KEY,
+        query: pergunta,
+        search_depth: 'advanced',
+        max_results: 6,
+        include_answer: true,
+        include_domains: [
+          'gov.br', 'cau.org.br', 'confea.org.br', 'crea.org.br',
+          'ibge.gov.br', 'abnt.org.br', 'cef.gov.br', 'noticias.cef.gov.br',
+          'sinduscon.org.br', 'cbic.org.br', 'jusbrasil.com.br', 'planalto.gov.br',
+          'caixa.gov.br', 'receita.fazenda.gov.br', 'registrodeimoveis.org.br'
+        ]
+      }),
+      signal: AbortSignal.timeout(9000)
+    });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const results = (data.results || []).filter(r => r.content && r.title);
+    if (!results.length && !data.answer) return null;
+
+    let ctx = '\n\n## Pesquisa na Internet (tempo real)\n';
+    if (data.answer) ctx += `**Resumo:** ${data.answer}\n\n`;
+    ctx += results.slice(0, 4).map(r =>
+      `### ${r.title}\n${r.content.slice(0, 700)}\nFonte: ${r.url}`
+    ).join('\n\n---\n\n');
+    return { ctx, results };
+  } catch (err) {
+    console.error('Tavily error:', err.message);
+    return null;
+  }
+}
+
+// Auto-aprendizado: salva resultado de busca internet como conhecimento novo
+async function aprenderComInternet(pergunta, results) {
+  if (!results || !results.length) return;
+  try {
+    const top = results[0];
+    if (!top || !top.content || top.content.length < 120) return;
+    // Verifica se já existe artigo similar
+    const palavra = pergunta.split(' ').find(w => w.length > 4) || pergunta.slice(0, 20);
+    const { rows } = await query(
+      `SELECT id FROM base_conhecimento WHERE titulo ILIKE $1 LIMIT 1`,
+      [`%${palavra}%`]
+    );
+    if (rows.length) return;
+    await query(
+      `INSERT INTO base_conhecimento (categoria, titulo, descricao, conteudo, fonte_url, tags, tsv)
+       VALUES ($1,$2,$3,$4,$5,$6, to_tsvector('portuguese', $2 || ' ' || $3 || ' ' || $4))`,
+      [
+        'Pesquisa Web',
+        top.title.slice(0, 200),
+        `Pesquisa automática: ${pergunta.slice(0, 200)}`,
+        top.content.slice(0, 2000),
+        top.url,
+        '{web,auto}'
+      ]
+    );
+  } catch (_) {}
+}
+
+// Busca contexto técnico relevante — full-text search (português) + fallback ILIKE
 async function buscarContextoConhecimento(pergunta) {
   try {
-    const termos = pergunta.toLowerCase()
-      .replace(/[^a-záéíóúãõâêîôûàèìòùç\s0-9\-\/]/gi, ' ')
+    let rows = [];
+
+    // 1. Full-text search com ranking
+    const palavras = pergunta
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9\s]/gi, ' ')
       .split(/\s+/)
-      .filter(t => t.length > 3)
-      .slice(0, 8);
-    if (!termos.length) return '';
+      .filter(t => t.length > 2)
+      .slice(0, 10);
 
-    const condicoes = termos.map((t, i) => `(
-      titulo ILIKE $${i + 1} OR
-      numero ILIKE $${i + 1} OR
-      descricao ILIKE $${i + 1} OR
-      conteudo ILIKE $${i + 1} OR
-      $${i + 1} ILIKE ANY(tags)
-    )`).join(' OR ');
-    const params = termos.map(t => `%${t}%`);
+    if (palavras.length) {
+      const tsq = palavras.join(' | ');
+      try {
+        const r = await query(
+          `SELECT titulo, numero, categoria, conteudo,
+                  ts_rank(tsv, to_tsquery('portuguese', $1)) AS rank
+           FROM base_conhecimento
+           WHERE vigente = TRUE AND tsv @@ to_tsquery('portuguese', $1)
+           ORDER BY rank DESC LIMIT 5`,
+          [tsq]
+        );
+        rows = r.rows;
+      } catch (_) {} // fallback se tsq inválido
+    }
 
-    const { rows } = await query(
-      `SELECT titulo, numero, categoria, descricao, conteudo FROM base_conhecimento
-       WHERE vigente = TRUE AND (${condicoes})
-       LIMIT 4`,
-      params
-    );
+    // 2. Fallback ILIKE se FTS não retornou nada
+    if (!rows.length) {
+      const termos = pergunta.toLowerCase()
+        .replace(/[^a-záéíóúãõâêîôûàèìòùç\s0-9\-\/]/gi, ' ')
+        .split(/\s+/).filter(t => t.length > 3).slice(0, 6);
+      if (termos.length) {
+        const cond = termos.map((_, i) =>
+          `(titulo ILIKE $${i+1} OR descricao ILIKE $${i+1} OR conteudo ILIKE $${i+1} OR numero ILIKE $${i+1})`
+        ).join(' OR ');
+        const r = await query(
+          `SELECT titulo, numero, categoria, conteudo FROM base_conhecimento
+           WHERE vigente=TRUE AND (${cond}) LIMIT 5`,
+          termos.map(t => `%${t}%`)
+        );
+        rows = r.rows;
+      }
+    }
+
     if (!rows.length) return '';
-
-    return '\n\n## Base de Conhecimento Técnico Relevante\nUse estas referências ao responder:\n\n' +
-      rows.map(r => `### ${r.titulo}\n${r.conteudo}`).join('\n\n---\n\n');
+    return '\n\n## Base de Conhecimento Técnico\n\n' +
+      rows.map(r => `### ${r.titulo}${r.numero ? ` — ${r.numero}` : ''}\n${r.conteudo}`).join('\n\n---\n\n');
   } catch (err) {
-    console.error('Erro ao buscar base_conhecimento:', err.message);
+    console.error('Erro buscar conhecimento:', err.message);
     return '';
   }
 }
@@ -1006,11 +1097,14 @@ app.post('/api/chat', async (req, res) => {
     systemFinal += `\n\n## Contexto do usuário atual\n${contexto}`;
   }
 
-  // Busca contexto técnico no banco de conhecimento com base na última mensagem do usuário
   const ultimaMensagem = [...mensagens].reverse().find(m => m.role === 'user');
   if (ultimaMensagem) {
-    const ctxConhecimento = await buscarContextoConhecimento(ultimaMensagem.content);
-    if (ctxConhecimento) systemFinal += ctxConhecimento;
+    const [ctxLocal, webData] = await Promise.all([
+      buscarContextoConhecimento(ultimaMensagem.content),
+      buscarNaInternet(ultimaMensagem.content)
+    ]);
+    if (ctxLocal) systemFinal += ctxLocal;
+    if (webData) systemFinal += webData.ctx;
   }
 
   try {
@@ -1025,6 +1119,138 @@ app.post('/api/chat', async (req, res) => {
     console.error('Chat IA error:', err.message);
     res.status(502).json({ success: false, error: 'Erro ao conectar com a IA.' });
   }
+});
+
+// Streaming via SSE
+app.post('/api/chat/stream', authOptional, async (req, res) => {
+  if (!anthropicClient) {
+    res.status(503).json({ success: false, error: 'Chatbot indisponível' });
+    return;
+  }
+  const { mensagens, contexto, sessao_id } = req.body;
+  if (!Array.isArray(mensagens) || !mensagens.length) {
+    res.status(400).json({ error: 'mensagens obrigatório' });
+    return;
+  }
+
+  res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.flushHeaders();
+
+  let systemFinal = CHAT_SYSTEM_PROMPT;
+  if (contexto) systemFinal += `\n\n## Contexto do usuário\n${contexto}`;
+  const ultimaMensagem = [...mensagens].reverse().find(m => m.role === 'user');
+  let webResults = null;
+  if (ultimaMensagem) {
+    const [ctxLocal, webData] = await Promise.all([
+      buscarContextoConhecimento(ultimaMensagem.content),
+      buscarNaInternet(ultimaMensagem.content)
+    ]);
+    if (ctxLocal) systemFinal += ctxLocal;
+    if (webData) { systemFinal += webData.ctx; webResults = webData.results; }
+  }
+
+  const send = (obj) => res.write(`data: ${JSON.stringify(obj)}\n\n`);
+
+  try {
+    let fullText = '';
+    const stream = anthropicClient.messages.stream({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 2048,
+      system: systemFinal,
+      messages: mensagens.map(m => ({ role: m.role, content: m.content }))
+    });
+
+    stream.on('text', (text) => { fullText += text; send({ type: 'text', text }); });
+    stream.on('finalMessage', async () => {
+      send({ type: 'done' });
+      res.end();
+      // Persistir mensagens na sessão
+      if (sessao_id && fullText && ultimaMensagem) {
+        try {
+          await query('INSERT INTO chat_mensagens (sessao_id, role, content) VALUES ($1,$2,$3)', [sessao_id, 'user', ultimaMensagem.content]);
+          await query('INSERT INTO chat_mensagens (sessao_id, role, content) VALUES ($1,$2,$3)', [sessao_id, 'assistant', fullText]);
+          await query('UPDATE chat_sessoes SET atualizada_em=NOW(), titulo=COALESCE(NULLIF(titulo,\'\'), $2) WHERE id=$1', [sessao_id, ultimaMensagem.content.slice(0, 80)]);
+        } catch (e) { console.error('Persist chat:', e.message); }
+      }
+      // Auto-aprendizado: se buscou na internet, tenta salvar novo conhecimento
+      if (webResults && ultimaMensagem) {
+        setImmediate(() => aprenderComInternet(ultimaMensagem.content, webResults));
+      }
+    });
+    stream.on('error', (err) => { send({ type: 'error', error: err.message }); res.end(); });
+  } catch (err) {
+    send({ type: 'error', error: 'Erro na IA' });
+    res.end();
+  }
+});
+
+// Sessões de chat
+app.post('/api/chat/sessoes', authOptional, async (req, res) => {
+  const email = req.user?.email || null;
+  const { rows } = await query(
+    'INSERT INTO chat_sessoes (email) VALUES ($1) RETURNING id', [email]
+  );
+  res.json({ success: true, sessao_id: rows[0].id });
+});
+
+app.get('/api/chat/sessoes', auth, async (req, res) => {
+  const { rows } = await query(
+    'SELECT id, titulo, criada_em, atualizada_em FROM chat_sessoes WHERE email=$1 ORDER BY atualizada_em DESC LIMIT 30',
+    [req.user.email]
+  );
+  res.json({ success: true, sessoes: rows });
+});
+
+app.get('/api/chat/sessoes/:id', auth, async (req, res) => {
+  const { rows } = await query(
+    'SELECT role, content, criada_em FROM chat_mensagens WHERE sessao_id=$1 ORDER BY criada_em ASC',
+    [req.params.id]
+  );
+  res.json({ success: true, mensagens: rows });
+});
+
+// Gestão da base de conhecimento (admin: só RT autenticado por ora)
+app.get('/api/conhecimento', async (req, res) => {
+  const { rows } = await query(
+    'SELECT id, categoria, titulo, numero, descricao, tags, vigente, fonte_url FROM base_conhecimento ORDER BY categoria, titulo'
+  );
+  res.json({ success: true, total: rows.length, itens: rows });
+});
+
+app.post('/api/conhecimento', auth, async (req, res) => {
+  const { categoria, titulo, numero, descricao, conteudo, tags, fonte_url } = req.body;
+  if (!categoria || !titulo || !descricao || !conteudo) {
+    return res.status(400).json({ success: false, error: 'categoria, titulo, descricao e conteudo são obrigatórios' });
+  }
+  const tagsArr = Array.isArray(tags) ? `{${tags.map(t => `"${t.replace(/"/g,'')}"`)}}` : '{}';
+  const tsv = `to_tsvector('portuguese', $1 || ' ' || $2 || ' ' || $3 || ' ' || COALESCE($4,''))`;
+  const { rows } = await query(
+    `INSERT INTO base_conhecimento (categoria, titulo, numero, descricao, conteudo, tags, fonte_url, tsv)
+     VALUES ($1,$2,$3,$4,$5,$6,$7, to_tsvector('portuguese', $2 || ' ' || $4 || ' ' || $5 || ' ' || COALESCE($3,'')))
+     RETURNING id`,
+    [categoria, titulo, numero || null, descricao, conteudo, tagsArr, fonte_url || null]
+  );
+  res.json({ success: true, id: rows[0].id });
+});
+
+app.put('/api/conhecimento/:id', auth, async (req, res) => {
+  const { categoria, titulo, numero, descricao, conteudo, tags, vigente, fonte_url } = req.body;
+  const tagsArr = Array.isArray(tags) ? `{${tags.map(t => `"${t.replace(/"/g,'')}"`)}}` : '{}';
+  await query(
+    `UPDATE base_conhecimento SET categoria=$1, titulo=$2, numero=$3, descricao=$4, conteudo=$5, tags=$6,
+     vigente=$7, fonte_url=$8, tsv=to_tsvector('portuguese', $2 || ' ' || $4 || ' ' || $5 || ' ' || COALESCE($3,''))
+     WHERE id=$9`,
+    [categoria, titulo, numero || null, descricao, conteudo, tagsArr, vigente !== false, fonte_url || null, req.params.id]
+  );
+  res.json({ success: true });
+});
+
+app.delete('/api/conhecimento/:id', auth, async (req, res) => {
+  await query('DELETE FROM base_conhecimento WHERE id=$1', [req.params.id]);
+  res.json({ success: true });
 });
 
 // ============================================
@@ -1229,6 +1455,25 @@ async function runMigrations() {
     // Reset de senha
     `ALTER TABLE contas ADD COLUMN IF NOT EXISTS reset_token TEXT`,
     `ALTER TABLE contas ADD COLUMN IF NOT EXISTS reset_token_expiry TIMESTAMPTZ`,
+    // Full-text search na base de conhecimento (português)
+    `ALTER TABLE base_conhecimento ADD COLUMN IF NOT EXISTS tsv tsvector`,
+    `CREATE INDEX IF NOT EXISTS idx_bk_tsv ON base_conhecimento USING GIN(tsv)`,
+    // Sessões e mensagens de chat
+    `CREATE TABLE IF NOT EXISTS chat_sessoes (
+      id TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
+      email TEXT,
+      titulo TEXT,
+      criada_em TIMESTAMPTZ DEFAULT NOW(),
+      atualizada_em TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE TABLE IF NOT EXISTS chat_mensagens (
+      id SERIAL PRIMARY KEY,
+      sessao_id TEXT REFERENCES chat_sessoes(id) ON DELETE CASCADE,
+      role TEXT NOT NULL,
+      content TEXT NOT NULL,
+      criada_em TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_cm_sessao ON chat_mensagens(sessao_id)`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
@@ -1245,12 +1490,15 @@ async function seedConhecimentoSeVazio() {
     for (const k of dados) {
       const tags = k.tags ? `{${k.tags.map(t => `"${t.replace(/"/g, '\\"')}"`).join(',')}}` : '{}';
       await query(
-        `INSERT INTO base_conhecimento (categoria, titulo, numero, descricao, conteudo, tags, vigente, fonte_url)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT DO NOTHING`,
+        `INSERT INTO base_conhecimento (categoria, titulo, numero, descricao, conteudo, tags, vigente, fonte_url, tsv)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8, to_tsvector('portuguese', $2 || ' ' || $4 || ' ' || $5 || ' ' || COALESCE($3,'')))
+         ON CONFLICT DO NOTHING`,
         [k.categoria, k.titulo, k.numero || null, k.descricao, k.conteudo, tags, k.vigente !== false, k.fonte_url || null]
       );
       n++;
     }
+    // Popula tsv nos registros já existentes que não têm
+    await query(`UPDATE base_conhecimento SET tsv = to_tsvector('portuguese', titulo || ' ' || descricao || ' ' || conteudo || ' ' || COALESCE(numero,'')) WHERE tsv IS NULL`);
     console.log(`📚 Base de conhecimento: ${n} registros inseridos.`);
   } catch (err) {
     console.error('⚠️  Seed conhecimento:', err.message);

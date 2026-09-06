@@ -310,4 +310,421 @@ Técnico em Edificações (nível médio): execução e fiscalização de obras 
 Registro ativo no CREA obrigatório para exercer. Exercício fora das atribuições: infração ética e legal.`,
     tags: ['CONFEA', 'atribuições', 'engenheiro civil', 'técnico edificações', 'CREA'], vigente: true
   },
+
+  // ── PLATAFORMA IMOVELI ───────────────────────────────────────────────────
+  {
+    categoria: 'IMOVELI', titulo: 'Como funciona a IMOVELI — Guia Completo', numero: null,
+    descricao: 'Rede de profissionais da construção civil baseada em Cadeia de Responsabilidade Técnica (CRT). Responsável Técnico (RT) chancelam os profissionais indicados.',
+    conteudo: `IMOVELI — Plataforma de rede profissional baseada em confiança técnica.
+Responsável Técnico (RT): arquiteto (CAU) ou engenheiro (CREA) com registro ativo. Assina a Cadeia de Responsabilidade Técnica (CRT), assumindo corresponsabilidade técnica pelos profissionais que indica.
+Profissional Indicado: pedreiro, eletricista, encanador, pintor, etc. Aparece na rede após aceite do RT. Perfil vinculado ao RT com número único IMOVELI.
+Cliente: posta demanda → recebe propostas de profissionais verificados pelo RT → contrata com segurança.
+Vantagem: todos os profissionais têm um RT que responde tecnicamente — muito mais seguro que marketplaces sem curadoria.`,
+    tags: ['IMOVELI', 'CRT', 'responsável técnico', 'como funciona', 'plataforma'], vigente: true
+  },
+  {
+    categoria: 'IMOVELI', titulo: 'Cadeia de Responsabilidade Técnica (CRT) — O que é', numero: null,
+    descricao: 'A CRT é o diferencial da IMOVELI. O RT assina uma declaração de responsabilidade técnica pelos profissionais que indica, criando uma hierarquia de confiança verificável.',
+    conteudo: `Cadeia de Responsabilidade Técnica (CRT) — IMOVELI.
+O RT assume responsabilidade técnica compartilhada pelos serviços realizados pelos profissionais que indica. Isso cria responsabilização real e profissionalismo.
+Hierarquia: RT (arquiteto/engenheiro CREA/CAU) → Profissional Indicado → Cliente.
+Documentação: ART ou RRT do RT vincula profissionais indicados às obras. Cliente pode exigir essa documentação.
+Por que importa: em caso de vício de construção (Art. 618 CC), o RT e o profissional respondem solidariamente. Elimina o "jeitinho sem responsabilidade".`,
+    tags: ['CRT', 'responsabilidade técnica', 'ART', 'RRT', 'vício construção', 'IMOVELI'], vigente: true
+  },
+  {
+    categoria: 'IMOVELI', titulo: 'Como se tornar Responsável Técnico (RT) na IMOVELI', numero: null,
+    descricao: 'RT é o arquiteto ou engenheiro civil com CREA/CAU ativo que assina a CRT. Deve ter registro no conselho, ser verificado pela plataforma e aceitar os termos.',
+    conteudo: `Tornando-se RT na IMOVELI.
+Requisitos: registro ativo no CREA (engenheiro) ou CAU (arquiteto/urbanista) + acervo técnico. A plataforma verifica automaticamente no portal do conselho.
+Processo: cadastro → preenchimento de perfil (especialidades, região de atuação, bio) → verificação do conselho → aprovação.
+Vantagens: visibilidade profissional, gestão digital de equipe, acesso a clientes verificados, histórico de indicações.
+Responsabilidades: acompanhar tecnicamente os profissionais indicados, emitir ART/RRT quando necessário, manter registro ativo.`,
+    tags: ['RT', 'responsável técnico', 'CREA', 'CAU', 'cadastro', 'verificação'], vigente: true
+  },
+  {
+    categoria: 'IMOVELI', titulo: 'Leilão Reverso — Como Funciona na IMOVELI', numero: null,
+    descricao: 'Cliente posta a demanda (tipo de serviço, localização, orçamento estimado) e profissionais verificados enviam propostas. Cliente escolhe pelo melhor custo-benefício.',
+    conteudo: `Leilão Reverso IMOVELI.
+1. Cliente cadastra demanda: tipo de serviço, descrição, localização, prazo e orçamento estimado.
+2. Profissionais verificados na região recebem notificação e enviam propostas com valor, prazo e portfólio.
+3. Cliente avalia propostas, vê perfil do profissional, nome do RT responsável e avaliações anteriores.
+4. Cliente escolhe e confirma contrato na plataforma.
+Vantagem competitiva: todos os profissionais são chancelados por um RT — elimina o risco de contratar pedreiro sem responsabilidade técnica.`,
+    tags: ['leilão reverso', 'proposta', 'orçamento', 'contratação', 'IMOVELI'], vigente: true
+  },
+  {
+    categoria: 'IMOVELI', titulo: 'Match Inteligente — Algoritmo de Recomendação IMOVELI', numero: null,
+    descricao: 'O Match Inteligente cruza especialidade, localização (raio geográfico), avaliação, preço médio e disponibilidade para recomendar o profissional mais adequado.',
+    conteudo: `Match Inteligente — IMOVELI.
+Variáveis consideradas: especialidade (pedreiro, eletricista, etc.), distância (raio do cliente), avaliação média, faixa de preço, disponibilidade e histórico de obras.
+RT influencia: profissionais indicados por RT com maior reputação sobem no ranking.
+Para o profissional: manter perfil completo, fotos de obras, responder rapidamente às propostas e ter boas avaliações melhora o ranking de match.
+Para o cliente: quanto mais detalhada a demanda, melhor o match.`,
+    tags: ['match inteligente', 'algoritmo', 'recomendação', 'ranking', 'IMOVELI'], vigente: true
+  },
+
+  // ── REGULARIZAÇÃO E DOCUMENTAÇÃO ────────────────────────────────────────
+  {
+    categoria: 'Regularização', titulo: 'Habite-se — O que é e Como Obter', numero: null,
+    descricao: 'Certidão emitida pela prefeitura atestando que a edificação foi construída conforme o projeto aprovado. Obrigatório para registro, financiamento e venda.',
+    conteudo: `Habite-se (CVCO — Certidão de Vistoria de Conclusão de Obra).
+Emitido pela Prefeitura após vistoria de que a obra foi concluída conforme projeto aprovado.
+Documentos exigidos (variam por município): projeto aprovado, ART/RRT de execução, ART hidráulica e elétrica, AVCB (bombeiros), laudos de ensaios, fotos da obra.
+Sem Habite-se: imóvel irregular, sem registro no CRI, não financia pelo banco, dificulta venda.
+Após Habite-se: averbar no CRI para atualizar a matrícula com a nova construção.`,
+    tags: ['habite-se', 'CVCO', 'certidão', 'prefeitura', 'regularização', 'averbação'], vigente: true
+  },
+  {
+    categoria: 'Regularização', titulo: 'Averbação de Construção no Cartório de Imóveis', numero: null,
+    descricao: 'Após o Habite-se, a construção deve ser averbada na matrícula do imóvel no CRI. Sem averbação, o imóvel financiado não tem a construção reconhecida.',
+    conteudo: `Averbação de construção — CRI (Cartório de Registro de Imóveis).
+Após obter o Habite-se, apresentar ao CRI: Habite-se, ART/RRT de execução, certidão negativa de débitos (INSS/FGTS da obra se necessário).
+Resultado: a matrícula do imóvel passa a registrar a existência da edificação com área, destinação e metragem.
+Importância: imóvel averbado tem valor de mercado real, pode ser financiado (Caixa, Banco do Brasil), transmitido com segurança jurídica.
+RT é responsável pela ART/RRT que embasa a averbação.`,
+    tags: ['averbação', 'cartório', 'CRI', 'matrícula', 'registro imóveis', 'habite-se'], vigente: true
+  },
+  {
+    categoria: 'Regularização', titulo: 'Retificação de Área — Procedimento Extrajudicial e Judicial', numero: null,
+    descricao: 'Corrige divergências de área entre a matrícula e a medição real. Extrajudicial (art. 213 LRP): até 1/20 da área, no cartório. Judicial: para divergências maiores.',
+    conteudo: `Retificação de área — Lei 6015/73, art. 213.
+Extrajudicial: diferença de até 1/20 (5%) da área registrada. Documentos: levantamento planialtimétrico + memorial descritivo por RT (ART/RRT), anuência dos confrontantes.
+Judicial: diferença >5%, sem anuência de confrontantes ou área pública.
+RT faz o levantamento georreferenciado e assina memorial descritivo. CREA/CAU verifica habilitação para georreferenciamento.
+Georreferenciamento rural (zonas rurais): obrigatório pelo INCRA (Decreto 4449/2002).`,
+    tags: ['retificação área', 'georreferenciamento', 'cartório', 'matrícula', 'memorial descritivo'], vigente: true
+  },
+  {
+    categoria: 'Regularização', titulo: 'REURB — Regularização Fundiária Urbana Passo a Passo', numero: null,
+    descricao: 'REURB-S (social, gratuita para baixa renda) e REURB-E (específica). Processo municipal com levantamento por RT, aprovação e registro no CRI.',
+    conteudo: `REURB — Lei 13465/2017. Passo a passo:
+1. Requerimento: ao município ou associação de moradores. REURB-S: isento de custas para baixa renda.
+2. Processamento: município verifica localização, limites, confrontantes, notifica os interessados.
+3. Elaboração do projeto de regularização: RT elabora planta de situação, quadro de áreas, memorial descritivo (ART/RRT obrigatória).
+4. Aprovação pelo município: emite CRF (Certidão de Regularização Fundiária).
+5. Registro no CRI: CRF + projeto aprovado → registro das unidades → emissão de matrículas individuais.
+Instrumentos: legitimação fundiária, legitimação de posse, CUEM, CDRU.`,
+    tags: ['REURB', 'REURB-S', 'regularização fundiária', 'CRF', 'legitimação', 'município'], vigente: true
+  },
+  {
+    categoria: 'Regularização', titulo: 'ART — Anotação de Responsabilidade Técnica — Guia Prático', numero: null,
+    descricao: 'Obrigatória para todo contrato de serviço técnico de engenharia. Deve ser registrada no CREA antes do início. Vincula o profissional à responsabilidade civil e penal.',
+    conteudo: `ART — Anotação de Responsabilidade Técnica (CREA).
+Obrigatória para: projeto, execução, vistoria, laudo, perícia, ensino — todo serviço técnico de engenharia e agronomia.
+Registrar ANTES do início do serviço no portal CREA-NET ou presencialmente.
+Tipos: ART de projeto (antes de entregar), ART de execução (antes de iniciar a obra), ART de vistoria/laudo.
+Valor: proporcional ao contrato (tabela do CREA estadual). Geralmente R$50-R$200 para obras residenciais pequenas.
+Consequência sem ART: infração ética (processo no CREA), multa, suspensão do exercício profissional.
+ART cobre: responsabilidade civil e penal do profissional. Garante ao cliente identificar quem responde pela obra.`,
+    tags: ['ART', 'CREA', 'responsabilidade técnica', 'registro', 'contrato', 'profissional'], vigente: true
+  },
+  {
+    categoria: 'Regularização', titulo: 'RRT — Registro de Responsabilidade Técnica — Guia Prático', numero: null,
+    descricao: 'Equivalente da ART para arquitetos e urbanistas no CAU. Obrigatório para todo serviço técnico de arquitetura. Emitido pelo sistema CAU/BR.',
+    conteudo: `RRT — Registro de Responsabilidade Técnica (CAU).
+Obrigatório para arquitetos e urbanistas: projeto arquitetônico, interiores, paisagismo, patrimônio histórico, gestão de obra.
+Emitido pelo portal CAU/BR antes do início do serviço.
+Valor: tabela anual do CAU. Pode ser por serviço ou anual (RRT anual cobre todos os projetos do ano).
+Acervo técnico: cada RRT emitido compõe o acervo profissional do arquiteto — importante para concursos, habilitações e crédito.
+Diferença ART×RRT: conteúdo equivalente, mas emissores diferentes (CREA vs CAU). Projetos multidisciplinares (arq+eng): ambos emitem o seu.`,
+    tags: ['RRT', 'CAU', 'arquiteto', 'responsabilidade técnica', 'acervo técnico'], vigente: true
+  },
+
+  // ── ORÇAMENTO E GESTÃO DE OBRAS ─────────────────────────────────────────
+  {
+    categoria: 'Orçamento', titulo: 'SINAPI — Sistema Nacional de Pesquisa de Custos e Índices', numero: null,
+    descricao: 'Referencial de custos da Caixa Econômica Federal. Usado em obras públicas e financiamentos. Composições de serviços com insumos, mão de obra e equipamentos.',
+    conteudo: `SINAPI — Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil.
+Gerido pela CEF e IBGE. Referencial obrigatório para obras públicas (Lei 8666/93 e RDC).
+Composições: cada serviço tem código, insumos, produtividade e custo unitário por estado.
+Desonerado (sem encargos patronais) e não-desonerado: usar o correto conforme o regime tributário.
+BDI (Bonificações e Despesas Indiretas): acrescido ao custo direto. Obras públicas: 20-28% (TCU).
+CUB (SINDUSCON): custo unitário básico por m² para orçamento paramétrico inicial.`,
+    tags: ['SINAPI', 'orçamento', 'CUB', 'BDI', 'composições', 'custo obra'], vigente: true
+  },
+  {
+    categoria: 'Orçamento', titulo: 'Curva ABC de Insumos — Como Usar em Obras', numero: null,
+    descricao: 'Pareto aplicado ao orçamento: identifica os 20% de itens que representam 80% do custo. Essencial para controle de compras e negociação.',
+    conteudo: `Curva ABC de insumos — Obras.
+A (vitais): top 20% dos itens = ~80% do custo. Ex: concreto, aço, impermeabilização, esquadrias.
+B (importantes): ~30% dos itens = ~15% do custo. Ex: revestimentos, hidráulica.
+C (triviais): ~50% dos itens = ~5% do custo. Ex: parafusos, fita, selante.
+Uso: focar negociação de preço nos itens A, comprar antecipado, controlar estoque. Software: Sienge, Obra Prima, planilha Excel.
+RT deve analisar curva ABC antes de fechar contratos de grande porte.`,
+    tags: ['curva ABC', 'orçamento', 'insumos', 'controle custo', 'pareto'], vigente: true
+  },
+  {
+    categoria: 'Orçamento', titulo: 'Cronograma Físico-Financeiro — Elaboração e Controle', numero: null,
+    descricao: 'Planeja no tempo o avanço físico (% executado) e financeiro (R$ desembolsado) da obra. Exigido em financiamentos e contratos públicos.',
+    conteudo: `Cronograma Físico-Financeiro.
+Físico: percentual de avanço de cada serviço por período (semana ou mês). Diagrama de Gantt.
+Financeiro: desembolso previsto de recursos por período. Curva S: acumulado financeiro ao longo do tempo.
+Elaboração: WBS (EAP) → sequência de atividades → duração → recursos → custo por período.
+Desvio físico-financeiro (earned value): compara planejado vs executado. IDP (Índice de Desempenho de Prazo) e IDC (Custo).
+Exigido por: CEF, BNDES, obras públicas (Decreto 7983/2013). RT assina o cronograma com ART.`,
+    tags: ['cronograma', 'físico-financeiro', 'curva S', 'planejamento obra', 'earned value'], vigente: true
+  },
+
+  // ── PRÁTICAS CONSTRUTIVAS ────────────────────────────────────────────────
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Concreto — Fck, Resistência, Dosagem e Controle', numero: null,
+    descricao: 'Fck é a resistência característica à compressão. Dosagem ABCP ou experimental. Controle por corpos de prova. Traço em volume ou em massa.',
+    conteudo: `Concreto — Conceitos essenciais.
+Fck: resistência característica à compressão (MPa). Mínimo: 20 MPa (NBR 6118). Estruturas agressivas: 25-35 MPa.
+Relação água/cimento: quanto menor, mais resistente e durável. Máx NBR 6118: 0,50 (CAA I) a 0,45 (CAA IV).
+Controle: corpos de prova cilíndricos 10×20cm, cura 28 dias. Mínimo 2 CP por caminhão betoneira ou a cada 10m³.
+Slump (abatimento): 6-10cm = obra normal. Retemperar com água é proibido. Adicionar aditivo plastificante se necessário.
+Bombeável: slump >10cm. Concreto auto-adensável: sem vibração.
+ART do concreto usinado obrigatória na nota fiscal.`,
+    tags: ['concreto', 'fck', 'resistência', 'slump', 'corpo de prova', 'relação água cimento'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Alvenaria — Blocos Cerâmicos, de Concreto e Estrutural', numero: null,
+    descricao: 'Alvenaria de vedação (não estrutural) vs estrutural. Blocos cerâmicos NBR 15270, blocos de concreto NBR 6136. Amarração, modulação e graute.',
+    conteudo: `Alvenaria — tipos e normas.
+Vedação: não suporta carga vertical além do próprio peso. Blocos cerâmicos (NBR 15270) ou concreto (NBR 6136).
+Estrutural (NBR 16868): suporta cargas de laje e pavimentos superiores. Blocos de concreto ou cerâmicos com vazados grauteados.
+Modulação: planejar em múltiplos do bloco evita quebras e desperdício (projeto de modulação NBR 15961).
+Amarração: cada fiada alterna a posição do bloco para travar as juntas verticais.
+Graute: mistura fluida de concreto bombeada para dentro dos vazados — aumenta resistência da alvenaria estrutural.
+Verga e contraverga: acima e abaixo de vãos (portas, janelas) — evitam fissuras nos cantos.`,
+    tags: ['alvenaria', 'bloco cerâmico', 'alvenaria estrutural', 'graute', 'modulação', 'verga'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Instalação Hidrossanitária — Água Fria, Quente e Esgoto', numero: null,
+    descricao: 'NBR 5626 (água fria), NBR 7198 (água quente), NBR 8160 (esgoto). Pressões, diâmetros, reservatório inferior e superior, recalque e distribuição.',
+    conteudo: `Instalações hidrossanitárias — boas práticas.
+Água fria (NBR 5626): pressão mínima 5 mca, máxima 40 mca. Reservatório: volume mínimo = consumo de 1 dia (200 L/pessoa).
+Reservatório inferior (cisterna) + bomba + reservatório superior = sistema de recalque. Superior: pelo menos 3h de consumo.
+Água quente (NBR 7198): tubulação CPVC ou PEX. Isolamento térm. em áreas externas.
+Barrilete (cobertura): distribui para as colunas de descida. Respeitar declividade mínima e diâmetros mínimos.
+Esgoto: sifão obrigatório em todos os aparelhos. Caixa sifonada no banheiro e caixa de gordura na cozinha.`,
+    tags: ['hidráulica', 'instalação hidrossanitária', 'NBR 5626', 'reservatório', 'esgoto', 'recalque'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Argamassa — Tipos, Traços e Aplicações', numero: null,
+    descricao: 'Argamassa de assentamento, chapisco, emboço, reboco e contrapiso. Traços em volume ou em massa. NBR 13281, NBR 7200.',
+    conteudo: `Argamassa — tipos e traços.
+Chapisco: 1:3 (cimento:areia) com aditivo. Aplicar antes do emboço em superfícies lisas.
+Emboço/reboco: 1:2:8 (cimento:cal:areia) ou argamassa industrializada. Espessura: 2-2,5cm.
+Assentamento de blocos: 1:0,5:4 a 1:1:6 (cimento:cal:areia). Juntas: 10-15mm horizontal, 10mm vertical.
+Assentamento de revestimentos cerâmicos (NBR 14081): argamassa AC-I (paredes internas secas), AC-II (paredes externas/molhadas), AC-III (piscinas, fachadas).
+Contrapiso: 1:4 (cimento:areia) + aditivo. Espessura 3-5cm. Cura 28 dias antes de assentar revestimento.`,
+    tags: ['argamassa', 'chapisco', 'emboço', 'reboco', 'traço', 'assentamento', 'AC-II'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Cobertura — Telhados, Inclinações e Materiais', numero: null,
+    descricao: 'Telhas cerâmicas (30-45%), fibrocimento (10-25%), metálicas (5-35%), shingle. NBR 7190 para estrutura de madeira. Cumeeira, calha e rufos.',
+    conteudo: `Cobertura — telhados.
+Inclinações mínimas: cerâmica 30%, fibrocimento ondulado 10%, fibrocimento trapezoidal 5%, metálica 5%, PVC 3%, shingle 18%.
+Estrutura madeira (NBR 7190): tesoura, caibros (espaçamento ≤0,5m), ripas. ART/RRT estrutural obrigatória.
+Impermeabilização da laje antes da cobertura: manta SBS ou similar (VUP ≥8 anos).
+Calha e rufo: zincado ou PVC. Declividade da calha ≥1%. Saída d'água a cada 40m².
+Telhado verde: sobrecarga ≥150 kg/m² — projeto estrutural específico por engenheiro.
+SPDA (para-raios): obrigatório em edificações >10m de altura (NBR 5419).`,
+    tags: ['cobertura', 'telhado', 'telha cerâmica', 'inclinação', 'calha', 'impermeabilização'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Vedações — Dry Wall, EPS e Sistemas Leves', numero: null,
+    descricao: 'Dry wall (drywall): gesso acartonado em perfis metálicos. NBR 15758. Mais rápido, mais leve, não estrutural. Ideal para divisórias internas e forros.',
+    conteudo: `Dry wall e vedações leves.
+Drywall (NBR 15758): chapas de gesso acartonado (ST normal, RU resistente a umidade, RF resistente ao fogo) em perfis metálicos.
+Espessura parede simples: 2 chapas + perfil 70mm = 100mm total. Dupla: melhor acústica.
+Instalações: embutidas na cavidade. Não rasgar horizontalmente — prejudica resistência estrutural.
+EPS (isopor estrutural): sistema construtivo leve, bom desempenho térmico e acústico. Estrutura de aço com concreto projetado.
+Limitações drywall: não suporta grandes cargas em parede (use buchas especiais ≤ 10kg). Áreas molhadas: usar chapas RU + impermeabilização.`,
+    tags: ['drywall', 'dry wall', 'gesso acartonado', 'vedação leve', 'EPS', 'forro'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Esquadrias — Portas e Janelas: Materiais e Desempenho', numero: null,
+    descricao: 'Alumínio, PVC, madeira, aço e misto. Desempenho: estanqueidade à água (NBR 10821), permeabilidade ao ar, resistência a cargas. Verga obrigatória.',
+    conteudo: `Esquadrias — portas e janelas.
+Materiais: alumínio (NBR 10821), PVC (NBR 15498), madeira (NBR 15930), aço.
+Desempenho NBR 10821: 5 características: resistência à ação do vento, estanqueidade à água, permeabilidade ao ar, resistência a operações de abertura/fechamento, deformação.
+Instalação: verga (acima) e contraverga (abaixo) em alvenaria — obrigatórias para evitar fissuras nos cantos.
+Arremate: impermeabilizar a junta entre esquadria e alvenaria. Peitoril com pingadeira voltada para fora.
+Acessibilidade (NBR 9050): portas ≥80cm livres residencial, ≥90cm coletivo. Maçaneta tipo alavanca.`,
+    tags: ['esquadrias', 'janela', 'porta', 'alumínio', 'verga', 'estanqueidade', 'NBR 10821'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Revestimentos Cerâmicos e Porcelanato — Assentamento e Patologias', numero: null,
+    descricao: 'NBR 13816 (terminologia), NBR 13818 (absorção, PEI), NBR 14081 (argamassa AC). Descolamento, eflorescência e juntas de dilatação.',
+    conteudo: `Revestimentos cerâmicos — assentamento profissional.
+Absorção de água: BIa (porcelanato ≤0,5%), BIb (±3%), BII (6-10%), BIII (>10%). Fachadas: usar BIa ou BIb.
+PEI (resistência ao desgaste): PEI 0 (parede), PEI 1 (banheiro residencial), PEI 3 (sala), PEI 4 (comércio), PEI 5 (indústria).
+Argamassa: AC-I (paredes internas secas), AC-II (externas, piscina), AC-III (fachada com deformação).
+Juntas de movimentação: a cada 3m em pisos internos, 1-2m em fachadas. Rejunte flexível nas juntas.
+Patologias: descolamento (argamassa vencida ou espessura inadequada), eflorescência (umidade atravessando).`,
+    tags: ['cerâmica', 'porcelanato', 'PEI', 'absorção', 'AC-II', 'junta dilatação', 'rejunte'], vigente: true
+  },
+
+  // ── SUSTENTABILIDADE E CERTIFICAÇÕES ────────────────────────────────────
+  {
+    categoria: 'Sustentabilidade', titulo: 'AQUA-HQE — Certificação de Alta Qualidade Ambiental', numero: null,
+    descricao: 'Certificação francesa adaptada ao Brasil pela Fundação Vanzolini. Avalia 14 categorias de desempenho ambiental. Equivalente ao LEED para edifícios brasileiros.',
+    conteudo: `AQUA-HQE — Alta Qualidade Ambiental.
+14 categorias: relação com entorno, escolha de produtos, canteiro baixo impacto, gestão de energia, água, resíduos, manutenção, conforto higrotérmico, acústico, visual, olfativo, qualidade do ar, da água.
+Fases: programa (briefing ambiental), concepção (projeto), realização (obra), operação (pós-entrega).
+Auditoria pela Fundação Vanzolini. RT deve documentar todas as decisões de projeto.
+Incentivos: IPTU verde em muitos municípios, financiamento facilitado, valorização de 10-15% no VGV.`,
+    tags: ['AQUA', 'HQE', 'certificação ambiental', 'sustentabilidade', 'edificação verde'], vigente: true
+  },
+  {
+    categoria: 'Sustentabilidade', titulo: 'LEED — Leadership in Energy and Environmental Design', numero: null,
+    descricao: 'Certificação americana do USGBC. No Brasil: LEED v4 para BD+C (novas construções), O+M (operações) e ID+C (interiores). Créditos em energia, água, materiais, inovação.',
+    conteudo: `LEED — Leadership in Energy and Environmental Design.
+Versão atual: LEED v4.1. Categorias BD+C: local sustentável, eficiência hídrica, energia e atmosfera, materiais e recursos, qualidade ambiental interna, inovação, prioridade regional.
+Pontuação: Certified (40-49pt), Silver (50-59pt), Gold (60-79pt), Platinum (≥80pt).
+Pré-requisitos obrigatórios: redução mínima 20% no uso de água, comissionamento de energia, não uso de CFCs.
+RT que coordena projetos LEED deve conhecer os créditos aplicáveis desde o partido arquitetônico.`,
+    tags: ['LEED', 'certificação', 'sustentabilidade', 'green building', 'eficiência energética'], vigente: true
+  },
+  {
+    categoria: 'Sustentabilidade', titulo: 'Eficiência Energética — NBR 15575 e RTQ-R', numero: null,
+    descricao: 'RTQ-R: regulamento para etiquetagem de eficiência energética residencial (A a E). NBR 15575 define desempenho térmico mínimo por zona bioclimática.',
+    conteudo: `Eficiência energética em edificações residenciais.
+NBR 15575 partes 4 e 5: desempenho térmico por zona bioclimática (1-8). Zona 1-3 (Sul): prioridade retenção calor. Zona 4-8 (Centro-Norte): ventilação e sombreamento.
+RTQ-R (Portaria INMETRO): avalia envoltória (paredes, cobertura, janelas), iluminação e AQS (aquecimento de água solar).
+Etiqueta A (mais eficiente) → E. Etiqueta A exige: transmitância de parede ≤2,0 W/m²K (zona 4), proteção solar das janelas (FS ≤2,0).
+Para arquiteto: ventilação cruzada, proteção solar, cores claras nas fachadas e cobertura reduzem carga térmica.`,
+    tags: ['eficiência energética', 'RTQ-R', 'NBR 15575', 'zona bioclimática', 'transmitância', 'etiqueta'], vigente: true
+  },
+
+  // ── FUNDAÇÕES E SOLO ─────────────────────────────────────────────────────
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Sondagem SPT — Interpretação e Uso no Projeto', numero: null,
+    descricao: 'SPT (Standard Penetration Test): mede resistência do solo a cada metro. NSPT define tipo de fundação. NBR 6484 e 6122.',
+    conteudo: `Sondagem SPT — Standard Penetration Test.
+Ensaio: golpes de 63,5 kg para penetrar 30cm o amostrador. NSPT = número de golpes.
+Interpretação: NSPT 0-4: solo muito mole (sapata impossível); 5-8: mole; 9-19: médio; ≥20: rígido (sapata possível se superficial); ≥40: duro/muito rígido.
+Perfil de sondagem: solo coeso (argila/silte) vs granular (areia/pedregulho). Nível d'água (NA): fundamental para escavação.
+Mínimo de sondagens (NBR 6122): 1 por 200m² ou 1 por bloco isolado, o que for menor.
+RT define o tipo de fundação com base na sondagem: sapata, radier, estaca hélice contínua, estaca raiz, tubulão.`,
+    tags: ['sondagem', 'SPT', 'NSPT', 'fundação', 'solo', 'capacidade de carga'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Estacas — Tipos, Execução e Controle de Qualidade', numero: null,
+    descricao: 'Hélice contínua (HC), estaca raiz, franki, pré-moldada, cravada. Prova de carga estática obrigatória acima de determinado porte. NBR 6122 e 12131.',
+    conteudo: `Estacas — fundações profundas.
+Hélice Contínua Monitorada (HC): mais comum em obras urbanas. Rápida, sem vibração, concreto e armação simultaneamente. Controle: relatório de monitoramento eletrônico.
+Estaca raiz: diâmetro pequeno (15-25cm), altíssima carga, ideal para terrenos difíceis e reforço de fundações.
+Pré-moldada (concreto ou aço): cravada por bate-estaca. Verificar vibração e nível de ruído (licença ambiental em zonas urbanas).
+Franki: adensamento do solo no pé — boa capacidade de carga em areias.
+Prova de carga (NBR 12131): obrigatória em obras >25 estacas ou quando NBR 6122 exigir. RT assina laudo com ART.`,
+    tags: ['estaca', 'hélice contínua', 'estaca raiz', 'prova de carga', 'NBR 12131', 'fundação profunda'], vigente: true
+  },
+
+  // ── AVALIAÇÃO IMOBILIÁRIA ─────────────────────────────────────────────────
+  {
+    categoria: 'Avaliação Imobiliária', titulo: 'Avaliação Imobiliária — NBR 14653 e CREA/CAU', numero: 'NBR 14653',
+    descricao: 'Laudo de avaliação por RT (engenheiro ou arquiteto). Métodos: comparativo, renda, custo. Valor de mercado, locativo, patrimonial. Graus de fundamentação.',
+    conteudo: `Avaliação Imobiliária — NBR 14653.
+Partes: 1 (procedimentos gerais), 2 (imóveis urbanos), 3 (rurais), 4 (empreendimentos), 5 (máquinas e equipamentos).
+Método comparativo: principal para imóveis urbanos. Pesquisa de mercado com ≥3 amostras (grau II) ou ≥5 (grau III).
+Graus de fundamentação: I, II, III. Grau III: 6+ amostras, tratamento estatístico inferencial, variáveis independentes.
+RT assina laudo com ART/RRT. Responsabilidade civil e penal pelo valor atribuído.
+Uso: financiamento (banco), seguro, inventário, desapropriação, imposto causa mortis, divórcio, garantia judicial.`,
+    tags: ['avaliação imobiliária', 'NBR 14653', 'laudo', 'valor de mercado', 'PTAM', 'método comparativo'], vigente: true
+  },
+  {
+    categoria: 'Avaliação Imobiliária', titulo: 'Vistoria Cautelar — O que é e Para que Serve', numero: null,
+    descricao: 'Vistoria realizada pelo RT antes ou durante obra vizinha para documentar o estado do imóvel. Protege o cliente de indenizações indevidas por danos causados por terceiros.',
+    conteudo: `Vistoria Cautelar de Vizinhança.
+Objetivo: documentar o estado do imóvel (rachaduras, trincas, recalques pré-existentes) antes de obra vizinha ou demolição.
+Quando fazer: antes do início de obras de fundação, escavação, demolição ou qualquer atividade que possa gerar vibração ou movimentação do solo.
+Relatório: fotos datadas, descrição das patologias pré-existentes, croqui de localização. RT assina com ART/RRT.
+Valor legal: se o vizinho alegar que a obra causou danos, a vistoria cautelar comprova o que já existia antes.
+NBR 13752 (perícias) e NBR 14653 (avaliações) como referencias técnicas.`,
+    tags: ['vistoria cautelar', 'vizinhança', 'laudo', 'perícia', 'dano obra', 'documentação'], vigente: true
+  },
+
+  // ── DIREITO DE CONSTRUIR ──────────────────────────────────────────────────
+  {
+    categoria: 'Legislação Urbana', titulo: 'Plano Diretor — O que é e Como Afeta o Projeto', numero: null,
+    descricao: 'Lei municipal obrigatória para cidades >20mil hab. Define zonas de uso, coeficientes de aproveitamento, taxas de ocupação, gabaritos e recuos.',
+    conteudo: `Plano Diretor Municipal.
+Obrigatório: municípios >20.000 hab. (art. 182 CF + Estatuto da Cidade).
+Define: zonas de uso (ZR1, ZR2, ZM, ZC, ZI etc.), coeficiente de aproveitamento (CA = área construída / área terreno), taxa de ocupação (TO = projeção / área terreno), gabarito (altura máxima).
+Recuos: afastamento frontal, lateral e de fundos. Variam por zona e por município.
+Taxa de permeabilidade: % mínimo do terreno sem impermeabilização. Permeabilidade e drenagem.
+RT deve consultar a LUOS (Lei de Uso e Ocupação do Solo) e o PD municipal antes de qualquer projeto.`,
+    tags: ['plano diretor', 'zona uso', 'coeficiente aproveitamento', 'taxa ocupação', 'gabarito', 'recuo'], vigente: true
+  },
+  {
+    categoria: 'Legislação Urbana', titulo: 'Aprovação de Projetos na Prefeitura — Passo a Passo', numero: null,
+    descricao: 'Processo de aprovação: projeto arquitetônico → análise urbanística → licença de construção → início da obra → Habite-se. RT coordena toda a documentação.',
+    conteudo: `Aprovação de projetos na Prefeitura.
+1. Consulta prévia: verificar parâmetros (CA, TO, gabarito, recuos) para a zona do terreno.
+2. Projeto arquitetônico: elaborado por arquiteto (RRT) ou engenheiro civil (ART), conforme legislação local.
+3. Protocolo: planta de situação, localização, implantação, planta baixa, cortes, fachadas, memorial descritivo, ART/RRT.
+4. Análise urbanística: verifica conformidade com LUOS e Plano Diretor. Prazo: 30-90 dias (varia por município).
+5. Licença de construção: emitida após aprovação.
+6. Início da obra: RT de execução emite ART antes de iniciar.
+7. Habite-se: solicitado após conclusão da obra.`,
+    tags: ['aprovação projeto', 'licença construção', 'prefeitura', 'habite-se', 'LUOS', 'protocolo'], vigente: true
+  },
+
+  // ── PATOLOGIAS ────────────────────────────────────────────────────────────
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Umidade — Tipos, Causas e Tratamento', numero: null,
+    descricao: 'Umidade de infiltração (cobertura, fachada), ascensional (fundação), condensação (ar úmido em superfície fria), vazamento (instalações). Diagnóstico antes de tratar.',
+    conteudo: `Patologias de umidade — diagnóstico e tratamento.
+Ascensional (capilar): parece mancha em baixo das paredes térreo. Causa: ausência de impermeabilização na fundação. Tratamento: injeção de resina hidrofóbica ou membrana cristalizante na base.
+Infiltração de cobertura: mancha no teto/laje, geralmente após chuva. Causa: manta furada, telha quebrada, rufo mal executado. Tratamento: identificar e reparar o ponto.
+Infiltração de fachada: manchas na parede após chuva com vento. Causa: fissura, rejunte aberto, janela sem pingadeira. Tratamento: selagem com elastomérico + repintura.
+Condensação: bolhas na pintura, mofo (especialmente em banheiro sem ventilação). Tratamento: ventilação, aquecimento, desumidicador.`,
+    tags: ['umidade', 'infiltração', 'ascensional', 'condensação', 'mofo', 'impermeabilização'], vigente: true
+  },
+  {
+    categoria: 'Pratica Construtiva', titulo: 'Corrosão de Armadura — Diagnóstico e Recuperação', numero: null,
+    descricao: 'Corrosão do aço no concreto: manchas ferrosas, delaminação do cobrimento, fissuras horizontais. Causas: carbonatação, cloretos. NBR 6118 e NBR 6209.',
+    conteudo: `Corrosão de armadura — patologia grave.
+Mecanismo: carbonatação (CO2 reduz pH do concreto <9, aço perde passivação) ou cloretos (ambiente marinho, sais de degelo).
+Diagnóstico: mapa de fissuração, fenolftaleína (indicador de carbonatação — rosa=alcalino, incolor=carbonatado), potencial de corrosão (Cu/CuSO4).
+Consequências: expansão do óxido → delaminação do cobrimento → perda de seção transversal → colapso.
+Recuperação (NBR 6209): remover concreto deteriorado, tratar armadura (desoxidante + passivador), corrigir com argamassa de reparo tixotrópica, impermeabilizar.
+RT assina laudo de patologia e projeto de recuperação com ART.`,
+    tags: ['corrosão armadura', 'carbonatação', 'cloreto', 'reparo estrutural', 'NBR 6209', 'patologia'], vigente: true
+  },
+
+  // ── TOPOGRAFIA ────────────────────────────────────────────────────────────
+  {
+    categoria: 'Topografia', titulo: 'Levantamento Planialtimétrico — O que é e Quando Exigir', numero: null,
+    descricao: 'Mapa com curvas de nível (altimetria) e limites do terreno (planimetria). Exigido em projetos de drenagem, terraplanagem, georreferenciamento e usucapião extrajudicial.',
+    conteudo: `Levantamento Planialtimétrico.
+Planimetria: limites, confrontantes, área e servidões do terreno.
+Altimetria: curvas de nível com equidistância 0,5-2m (conforme precisão exigida).
+Instrumentos: estação total, GPS RTK, drone (levantamento aerofotogramétrico).
+Precisão: NBR 13133 (levantamento topográfico). Georreferenciamento rural: padrão INCRA, GPS geodésico.
+Quando exigir: projeto de drenagem, terraplanagem, loteamento, retificação de área, usucapião extrajudicial, REURB.
+RT (engenheiro agrimensor, civil ou arquiteto conforme atribuição) assina com ART/RRT.`,
+    tags: ['topografia', 'levantamento planialtimétrico', 'curva de nível', 'georreferenciamento', 'estação total'], vigente: true
+  },
+
+  // ── GESTÃO E FISCALIZAÇÃO ────────────────────────────────────────────────
+  {
+    categoria: 'Gestão de Obras', titulo: 'Diário de Obra — Importância e Como Preencher', numero: null,
+    descricao: 'Documento diário que registra atividades, efetivo, condições climáticas, ocorrências e avanço físico. Prova contratual em caso de litígio.',
+    conteudo: `Diário de Obra.
+Conteúdo mínimo: data, condição climática, efetivo (mão de obra por função), serviços executados, materiais recebidos, equipamentos em uso, ocorrências (acidentes, paralisações, visitas técnicas).
+Assinatura: RT de execução e representante do cliente/fiscalização.
+Valor legal: prova documental em caso de disputa contratual, rescisão, atraso, acidente de trabalho.
+Formato: caderno físico numerado e rubricado, ou sistema digital com timestamp (SINAPI, Sienge, apps de obra).
+RT deve exigir e manter o diário atualizado diariamente.`,
+    tags: ['diário de obra', 'fiscalização', 'registro', 'RT', 'gestão obra', 'contrato'], vigente: true
+  },
+  {
+    categoria: 'Gestão de Obras', titulo: 'NR-18 — PCMAT — Planejamento do Canteiro de Obras', numero: 'NR-18',
+    descricao: 'Programa de Condições e Meio Ambiente de Trabalho na Indústria da Construção. Obrigatório para obras com ≥20 trabalhadores. Elaborado por técnico ou engenheiro de segurança.',
+    conteudo: `NR-18 — PCMAT — Planejamento do canteiro.
+Layout do canteiro: vestiário, sanitários (1 vaso/20 trabalhadores/sexo), refeitório, cozinha, área de lazer (≥50 trabalhadores).
+EPC (proteção coletiva): guarda-corpo em bordas ≥2m, rede de proteção, tela em fachada (4m x 4m).
+Tapume: altura ≥2,20m, sinalização noturna se junto à via pública.
+Andaime fachadeiro: projeto por RT com ART. Guarda-corpo ≥90cm, rodapé ≥15cm, travamento lateral.
+Grua e elevador de carga: ART de projeto e instalação. Operador habilitado. Inspeção semestral.
+Ordem de serviço de segurança obrigatória para cada trabalhador antes de iniciar.`,
+    tags: ['PCMAT', 'NR-18', 'canteiro obras', 'guarda-corpo', 'andaime', 'segurança obra'], vigente: true
+  },
 ];
+
