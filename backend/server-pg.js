@@ -880,7 +880,12 @@ const MULT_REGIONAL = {
 const MULT_COMPLEXIDADE = { 'simples': 0.80, 'medio': 1.00, 'complexo': 1.35, 'luxo': 1.80 };
 
 function normalizar(s) {
-  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9\s]/g, ' ').trim();
+  // Remove acentos usando mapa explícito — evita problemas de encoding do regex range
+  return s.toLowerCase()
+    .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o')
+    .replace(/[ùúûü]/g, 'u').replace(/[ç]/g, 'c')
+    .replace(/[ñ]/g, 'n').replace(/[^a-z0-9\s]/g, ' ').trim();
 }
 
 function calcularPrecificacaoBase({ tipoServico, estado, complexidade, areaMq }) {
