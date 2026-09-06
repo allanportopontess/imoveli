@@ -2,11 +2,8 @@
   "name": "imoveli",
   "version": "1.0.0",
   "description": "IMOVELI — Rede profissional baseada em confiança técnica",
-  "main": "backend/server-pg.js",
   "scripts": {
-    "start": "node backend/server-pg.js",
-    "build": "echo 'Static frontend — no build required'",
-    "install": "cd backend && npm install --production"
+    "build": "echo 'Static frontend — no build required'"
   },
   "engines": {
     "node": ">=20.0.0"
