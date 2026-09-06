@@ -187,6 +187,7 @@
 
         /* ===== CHATBOT IA (flutuante, sempre ativo) ===== */
 
+        /* ── CHAT FAB ── */
         .chat-fab {
             position: fixed;
             bottom: 24px;
@@ -194,55 +195,85 @@
             width: 58px;
             height: 58px;
             border-radius: 50%;
-            background: var(--violet);
+            background: linear-gradient(135deg, var(--violet), var(--violet-deep));
             color: white;
             border: none;
-            font-size: 24px;
-            box-shadow: 0 6px 20px rgba(110,48,217,0.4);
+            font-size: 22px;
+            box-shadow: 0 6px 24px rgba(110,48,217,0.45);
             cursor: pointer;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(110,48,217,0.55); }
+        .chat-fab-badge {
+            position: absolute;
+            top: -2px; right: -2px;
+            width: 16px; height: 16px;
+            background: var(--mint);
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: pulse-dot 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: .7; }
         }
 
-        .chat-fab:hover {
-            transform: scale(1.06);
-        }
-
+        /* ── CHAT PANEL ── */
         .chat-panel {
             position: fixed;
             bottom: 96px;
             right: 24px;
-            width: 360px;
+            width: 390px;
             max-width: calc(100vw - 32px);
-            height: 480px;
-            max-height: calc(100vh - 140px);
+            height: 560px;
+            max-height: calc(100vh - 130px);
             background: var(--paper-raised);
             border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(22,22,22,0.25);
+            box-shadow: 0 16px 48px rgba(22,22,22,0.22), 0 2px 8px rgba(22,22,22,0.08);
             display: none;
             flex-direction: column;
             overflow: hidden;
             z-index: 1000;
+            transition: height 0.2s, width 0.2s;
         }
-
-        .chat-panel.open {
-            display: flex;
+        .chat-panel.open { display: flex; }
+        .chat-panel.expandido {
+            width: min(700px, calc(100vw - 32px));
+            height: min(700px, calc(100vh - 130px));
         }
 
         .chat-panel-header {
-            background: var(--violet);
+            background: linear-gradient(135deg, var(--violet), var(--violet-deep));
             color: white;
-            padding: 14px 16px;
+            padding: 13px 16px;
             font-family: var(--font-display);
             font-weight: 600;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
+        .chat-header-title { flex: 1; font-size: 14px; display: flex; flex-direction: column; gap: 2px; }
+        .chat-header-badges { display: flex; gap: 4px; margin-top: 2px; }
+        .chat-badge {
+            font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 10px;
+            background: rgba(255,255,255,.2); color: rgba(255,255,255,.9);
+            letter-spacing: .3px; text-transform: uppercase;
+        }
+        .chat-badge.online { background: rgba(22,179,120,.35); color: #7effd4; }
+        .chat-header-actions { display: flex; gap: 6px; }
+        .chat-header-actions button {
+            background: rgba(255,255,255,.15); border: none; color: white;
+            width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 13px;
+            display: flex; align-items: center; justify-content: center; transition: background .15s;
+        }
+        .chat-header-actions button:hover { background: rgba(255,255,255,.28); }
 
+        /* Mensagens */
         .chat-panel-messages {
             flex: 1;
             overflow-y: auto;
@@ -250,23 +281,25 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            scroll-behavior: smooth;
         }
+        .chat-panel-messages::-webkit-scrollbar { width: 4px; }
+        .chat-panel-messages::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 4px; }
 
         .chat-bubble {
-            max-width: 85%;
-            padding: 9px 13px;
-            border-radius: 14px;
+            max-width: 88%;
+            padding: 10px 13px;
+            border-radius: 16px;
             font-size: 13.5px;
-            line-height: 1.4;
+            line-height: 1.55;
+            word-break: break-word;
         }
-
         .chat-bubble.user {
             align-self: flex-end;
-            background: var(--violet);
+            background: linear-gradient(135deg, var(--violet), var(--violet-deep));
             color: white;
             border-bottom-right-radius: 4px;
         }
-
         .chat-bubble.assistant {
             align-self: flex-start;
             background: var(--mist);
@@ -274,30 +307,104 @@
             border-bottom-left-radius: 4px;
         }
 
+        /* Markdown dentro das bolhas */
+        .chat-bubble h3, .chat-bubble h4 {
+            font-size: 13.5px; font-weight: 700; margin: 8px 0 4px;
+            font-family: var(--font-display); color: var(--violet-deep);
+        }
+        .chat-bubble.user h3, .chat-bubble.user h4 { color: rgba(255,255,255,.9); }
+        .chat-bubble ul, .chat-bubble ol { padding-left: 16px; margin: 4px 0; }
+        .chat-bubble li { margin: 2px 0; }
+        .chat-bubble code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: rgba(0,0,0,.07); padding: 1px 5px; border-radius: 4px; font-size: 12px;
+        }
+        .chat-bubble.user code { background: rgba(255,255,255,.2); }
+        .chat-bubble strong { font-weight: 700; }
+        .chat-bubble em { font-style: italic; }
+        .chat-bubble hr { border: none; border-top: 1px solid var(--mist); margin: 8px 0; }
+        .chat-bubble a { color: var(--violet); text-decoration: underline; }
+        .chat-bubble.user a { color: rgba(255,255,255,.85); }
+
+        /* Cursor piscante durante streaming */
+        .chat-cursor::after {
+            content: '▋';
+            display: inline;
+            animation: blink-cursor .6s step-end infinite;
+            color: var(--violet);
+            font-size: 11px;
+        }
+        @keyframes blink-cursor { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Bolha de status (digitando / pesquisando) */
+        .chat-bubble.status {
+            background: transparent;
+            color: var(--ink-soft);
+            font-size: 12px;
+            padding: 4px 6px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .dots span {
+            display: inline-block; width: 5px; height: 5px;
+            background: var(--violet); border-radius: 50%; margin: 0 1px;
+            animation: bounce-dot .9s ease-in-out infinite;
+        }
+        .dots span:nth-child(2) { animation-delay: .15s; }
+        .dots span:nth-child(3) { animation-delay: .30s; }
+        @keyframes bounce-dot { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+
+        /* Badge de fonte */
+        .chat-source-badge {
+            font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+            display: inline-block; margin-top: 5px;
+        }
+        .chat-source-badge.web { background: #e0f7fa; color: #00838f; }
+        .chat-source-badge.ia  { background: var(--violet-wash); color: var(--violet); }
+
+        /* Input */
         .chat-panel-input {
             display: flex;
             gap: 8px;
-            padding: 12px;
+            padding: 10px 12px;
             border-top: 1px solid var(--mist);
+            background: var(--paper-raised);
+            flex-shrink: 0;
         }
-
         .chat-panel-input input {
             flex: 1;
-            border: 1.5px solid var(--border-color);
+            border: 1.5px solid var(--mist);
             border-radius: 12px;
-            padding: 10px 12px;
+            padding: 9px 13px;
             font-size: 13.5px;
             font-family: inherit;
+            color: var(--ink);
+            background: var(--paper);
+            outline: none;
+            transition: border-color .15s;
         }
-
-        .chat-panel-input button {
+        .chat-panel-input input:focus { border-color: var(--violet); }
+        .chat-panel-input input:disabled { opacity: .5; }
+        .chat-send-btn {
             background: var(--violet);
             color: white;
             border: none;
             width: 40px;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
+            transition: opacity .15s;
+            flex-shrink: 0;
+        }
+        .chat-send-btn:hover { opacity: .85; }
+        .chat-send-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+        /* Separator de nova sessão */
+        .chat-separator {
+            text-align: center; font-size: 11px; color: var(--ink-soft);
+            margin: 4px 0; display: flex; align-items: center; gap: 8px;
+        }
+        .chat-separator::before, .chat-separator::after {
+            content: ''; flex: 1; height: 1px; background: var(--mist);
         }
 
         .emergency-pill {
@@ -1612,18 +1719,32 @@
     </div>
 
     <!-- CHATBOT IA — flutuante, sempre ativo -->
-    <button class="chat-fab" onclick="toggleChat()" aria-label="Abrir assistente IA">💬</button>
+    <button class="chat-fab" onclick="toggleChat()" aria-label="Abrir assistente IA" id="chatFab">
+        🤖
+        <span class="chat-fab-badge" id="chatFabBadge" hidden></span>
+    </button>
     <div class="chat-panel" id="chatPanel">
         <div class="chat-panel-header">
-            <span>🤖 Assistente IMOVELI</span>
-            <span style="cursor: pointer;" onclick="toggleChat()">✕</span>
+            <div class="chat-header-title">
+                <span>Assistente IMOVELI</span>
+                <div class="chat-header-badges">
+                    <span class="chat-badge online">● online</span>
+                    <span class="chat-badge">IA</span>
+                    <span class="chat-badge" id="chatBadgeWeb" hidden>🌐 web</span>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button onclick="expandirChat()" title="Expandir" id="chatExpandBtn">⤢</button>
+                <button onclick="limparChat()" title="Nova conversa">🗑</button>
+                <button onclick="toggleChat()" title="Fechar">✕</button>
+            </div>
         </div>
         <div class="chat-panel-messages" id="chatMessages">
-            <div class="chat-bubble assistant">Oi! Posso ajudar com dúvidas técnicas, sobre a plataforma, ou orientação profissional. O que você precisa?</div>
+            <div class="chat-bubble assistant">Oi! Posso ajudar com dúvidas técnicas sobre construção, regularização, NRs, SINAPI, ART/RRT e muito mais — ou tirar dúvidas sobre a plataforma. O que você precisa?</div>
         </div>
         <div class="chat-panel-input">
-            <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeydown="if(event.key==='Enter') handleEnviarChat()">
-            <button onclick="handleEnviarChat()">→</button>
+            <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeydown="if(event.key==='Enter' && !event.shiftKey) handleEnviarChat()">
+            <button class="chat-send-btn" id="chatSendBtn" onclick="handleEnviarChat()" title="Enviar">➤</button>
         </div>
     </div>
 </div>
@@ -3526,10 +3647,11 @@ async function updateStats() {
 // ============================================
 
 // ============================================
-// CHATBOT IA
+// CHATBOT IA — SSE Streaming
 // ============================================
 
 const chatHistorico = [];
+let chatStreaming = false;
 
 function buildChatContexto() {
     const parts = [];
@@ -3541,50 +3663,188 @@ function buildChatContexto() {
     return parts.length ? parts.join('\n') : null;
 }
 
+/* Converte markdown simples → HTML seguro */
+function chatMarkdown(raw) {
+    let s = raw
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        // headers
+        .replace(/^### (.+)$/gm,'<h4>$1</h4>')
+        .replace(/^## (.+)$/gm,'<h3>$1</h3>')
+        .replace(/^# (.+)$/gm,'<h3>$1</h3>')
+        // bold / italic
+        .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g,'<em>$1</em>')
+        // inline code
+        .replace(/`([^`]+)`/g,'<code>$1</code>')
+        // hr
+        .replace(/^---$/gm,'<hr>')
+        // unordered list items
+        .replace(/^[-•] (.+)$/gm,'<li>$1</li>')
+        // ordered list items
+        .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
+        // URLs
+        .replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+
+    // wrap consecutive <li> in <ul>
+    s = s.replace(/(<li>.*?<\/li>\n?)+/gs, m => '<ul>' + m + '</ul>');
+    // line breaks (keep after block elements)
+    s = s.replace(/\n(?!<)/g,'<br>');
+    return s;
+}
+
 function toggleChat() {
-    document.getElementById('chatPanel').classList.toggle('open');
+    const panel = document.getElementById('chatPanel');
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) {
+        document.getElementById('chatFabBadge').hidden = true;
+        setTimeout(() => document.getElementById('chatInput').focus(), 150);
+    }
+}
+
+function expandirChat() {
+    const panel = document.getElementById('chatPanel');
+    const btn = document.getElementById('chatExpandBtn');
+    panel.classList.toggle('expandido');
+    btn.textContent = panel.classList.contains('expandido') ? '⤡' : '⤢';
+}
+
+function limparChat() {
+    chatHistorico.length = 0;
+    document.getElementById('chatMessages').innerHTML =
+        '<div class="chat-separator">Nova conversa</div>' +
+        '<div class="chat-bubble assistant">Tudo limpo! Como posso ajudar?</div>';
+    document.getElementById('chatBadgeWeb').hidden = true;
+}
+
+function chatSetInput(enabled) {
+    document.getElementById('chatInput').disabled = !enabled;
+    document.getElementById('chatSendBtn').disabled = !enabled;
+    chatStreaming = !enabled;
 }
 
 async function handleEnviarChat() {
+    if (chatStreaming) return;
     const input = document.getElementById('chatInput');
     const texto = input.value.trim();
     if (!texto) return;
 
     const messagesEl = document.getElementById('chatMessages');
-    messagesEl.innerHTML += `<div class="chat-bubble user">${texto}</div>`;
+
+    // Bubble do usuário (texto escapado)
+    const userDiv = document.createElement('div');
+    userDiv.className = 'chat-bubble user';
+    userDiv.textContent = texto;
+    messagesEl.appendChild(userDiv);
     input.value = '';
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
     chatHistorico.push({ role: 'user', content: texto });
+    chatSetInput(false);
 
-    const loadingId = 'chat-loading-' + Date.now();
-    messagesEl.innerHTML += `<div class="chat-bubble assistant" id="${loadingId}">Digitando...</div>`;
+    // Bubble de status "digitando..."
+    const statusDiv = document.createElement('div');
+    statusDiv.className = 'chat-bubble status';
+    statusDiv.innerHTML = '<div class="dots"><span></span><span></span><span></span></div> Buscando resposta...';
+    messagesEl.appendChild(statusDiv);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
+    // Bubble da resposta (começa vazia, preenchida por streaming)
+    const assistantDiv = document.createElement('div');
+    assistantDiv.className = 'chat-bubble assistant chat-cursor';
+    assistantDiv.style.display = 'none';
+    messagesEl.appendChild(assistantDiv);
+
+    let fullText = '';
+    let usouWeb = false;
+
     try {
-        const response = await apiFetch(`/api/chat`, {
+        const token = localStorage.getItem('imoveli_token') || '';
+        const streamUrl = API_BASE_URL + '/api/chat/stream';
+
+        const resp = await fetch(streamUrl, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+            },
             body: JSON.stringify({
                 mensagens: chatHistorico,
                 contexto: buildChatContexto()
             })
         });
-        const data = await response.json();
 
-        const loadingEl = document.getElementById(loadingId);
-        if (!data.success) {
-            loadingEl.textContent = data.error || 'Erro ao conectar com a IA.';
-            return;
+        if (!resp.ok || !resp.body) {
+            throw new Error('Servidor retornou ' + resp.status);
         }
 
-        loadingEl.textContent = data.resposta;
-        chatHistorico.push({ role: 'assistant', content: data.resposta });
-    } catch (error) {
-        const loadingEl = document.getElementById(loadingId);
-        if (loadingEl) loadingEl.textContent = 'Erro ao conectar com servidor.';
+        // Mostra bubble de resposta, esconde status
+        statusDiv.remove();
+        assistantDiv.style.display = '';
+
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop(); // última linha pode estar incompleta
+
+            for (const line of lines) {
+                if (!line.startsWith('data:')) continue;
+                const payload = line.slice(5).trim();
+                if (!payload || payload === '[DONE]') continue;
+
+                try {
+                    const ev = JSON.parse(payload);
+                    if (ev.type === 'text' && ev.text) {
+                        fullText += ev.text;
+                        assistantDiv.innerHTML = chatMarkdown(fullText);
+                        messagesEl.scrollTop = messagesEl.scrollHeight;
+                    } else if (ev.type === 'done') {
+                        if (ev.fontesWeb && ev.fontesWeb.length) usouWeb = true;
+                        if (ev.resposta && !fullText) fullText = ev.resposta;
+                    } else if (ev.type === 'error') {
+                        throw new Error(ev.message || 'Erro na resposta da IA.');
+                    }
+                } catch (parseErr) { /* linha malformada — ignora */ }
+            }
+        }
+
+        // Remove cursor piscante, finaliza markdown
+        assistantDiv.classList.remove('chat-cursor');
+        assistantDiv.innerHTML = chatMarkdown(fullText || '(sem resposta)');
+
+        // Badges de fonte
+        if (usouWeb) {
+            assistantDiv.innerHTML +=
+                '<br><span class="chat-source-badge web">🌐 Fonte web</span>' +
+                '<span class="chat-source-badge ia" style="margin-left:4px">✦ IA</span>';
+            document.getElementById('chatBadgeWeb').hidden = false;
+        } else {
+            assistantDiv.innerHTML += '<br><span class="chat-source-badge ia">✦ IA</span>';
+        }
+
+        chatHistorico.push({ role: 'assistant', content: fullText });
+
+    } catch (err) {
+        statusDiv.remove();
+        assistantDiv.classList.remove('chat-cursor');
+        assistantDiv.style.display = '';
+        assistantDiv.textContent = 'Erro ao conectar com a IA: ' + err.message;
     }
+
+    chatSetInput(true);
     messagesEl.scrollTop = messagesEl.scrollHeight;
+    input.focus();
+
+    // Pisca badge no FAB se painel estiver fechado
+    if (!document.getElementById('chatPanel').classList.contains('open')) {
+        document.getElementById('chatFabBadge').hidden = false;
+    }
 }
 
 function init() {
