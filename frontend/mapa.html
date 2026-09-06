@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Profissionais — IMOVELI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --violet: #6E30D9; --violet-deep: #4B1F94; --violet-wash: #F2ECFC;
+      --mint: #16B378; --coral: #FF4B5C; --ink: #161616; --ink-soft: #6B6B70;
+      --paper: #FAFAFA; --mist: #EAE8ED;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    html, body { height: 100%; font-family: var(--font); background: var(--paper); color: var(--ink); }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 56px; background: #fff; border-bottom: 1px solid var(--mist);
+      display: flex; align-items: center; gap: 12px; padding: 0 16px;
+    }
+    .topbar .logo { font-weight: 800; font-size: 17px; color: var(--violet); letter-spacing: -0.5px; text-decoration: none; }
+    .topbar h1 { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+    .topbar .spacer { flex: 1; }
+    .topbar .btn-voltar {
+      font-size: 13px; font-weight: 600; color: var(--violet);
+      background: var(--violet-wash); border: none; border-radius: 8px;
+      padding: 6px 14px; cursor: pointer; text-decoration: none;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: 56px; left: 0; bottom: 0; z-index: 900;
+      width: 320px; background: #fff; border-right: 1px solid var(--mist);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar-inner { flex: 1; overflow-y: auto; }
+    .filters { padding: 12px 16px; border-bottom: 1px solid var(--mist); display: flex; flex-direction: column; gap: 8px; }
+    .filters label { font-size: 11px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; }
+    .filters select, .filters input {
+      width: 100%; padding: 8px 10px; border: 1.5px solid var(--mist); border-radius: 8px;
+      font-size: 13px; font-family: var(--font); color: var(--ink); background: var(--paper);
+      outline: none;
+    }
+    .filters select:focus, .filters input:focus { border-color: var(--violet); }
+    .btn-loc {
+      display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+      background: var(--violet); color: #fff; border: none; border-radius: 8px;
+      font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;
+    }
+    .btn-loc:hover { background: var(--violet-deep); }
+    .btn-loc svg { flex-shrink: 0; }
+    .stats-bar { padding: 10px 16px; font-size: 12px; color: var(--ink-soft); background: var(--violet-wash); border-bottom: 1px solid var(--mist); }
+    .stats-bar strong { color: var(--violet); }
+
+    /* Lista de profissionais */
+    .lista { padding: 8px 0; }
+    .card-prof {
+      padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--mist);
+      transition: background .15s;
+    }
+    .card-prof:hover, .card-prof.ativo { background: var(--violet-wash); }
+    .card-prof .nome { font-size: 14px; font-weight: 700; color: var(--ink); }
+    .card-prof .esp { font-size: 12px; color: var(--violet); font-weight: 600; margin: 2px 0; }
+    .card-prof .sub { font-size: 12px; color: var(--ink-soft); }
+    .card-prof .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; background: var(--mist); color: var(--ink-soft); }
+    .tag.grau1 { background: #edf9f4; color: var(--mint); }
+    .tag.grau2 { background: var(--violet-wash); color: var(--violet); }
+    .tag.dist { background: #fff3e0; color: #e0720c; }
+    .tag.nota { background: #fff8e1; color: #b8930a; }
+    .vazio { padding: 32px 16px; text-align: center; color: var(--ink-soft); font-size: 13px; }
+
+    /* ── MAPA ── */
+    #map {
+      position: fixed; top: 56px; left: 320px; right: 0; bottom: 0; z-index: 100;
+    }
+
+    /* Popup customizado */
+    .popup-prof { min-width: 200px; }
+    .popup-prof h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+    .popup-prof .popup-esp { font-size: 12px; color: var(--violet); font-weight: 600; }
+    .popup-prof .popup-meta { font-size: 11px; color: var(--ink-soft); margin-top: 4px; line-height: 1.6; }
+    .popup-prof .popup-fiador { font-size: 11px; background: var(--violet-wash); border-radius: 6px; padding: 5px 8px; margin-top: 6px; color: var(--violet); }
+    .popup-prof .popup-preco { font-size: 12px; margin-top: 6px; color: var(--mint); font-weight: 600; }
+    .popup-prof .btn-contatar { display: block; margin-top: 10px; text-align: center; padding: 7px 12px; background: var(--violet); color: #fff; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; width: 100%; }
+
+    /* Loading */
+    #overlay-loading {
+      position: fixed; inset: 0; background: rgba(255,255,255,.9);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999; gap: 12px;
+    }
+    .spinner { width: 40px; height: 40px; border: 3px solid var(--mist); border-top-color: var(--violet); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #overlay-loading p { font-size: 14px; color: var(--ink-soft); }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .sidebar { width: 100%; top: auto; bottom: 0; height: 45%; border-right: none; border-top: 2px solid var(--mist); }
+      #map { left: 0; bottom: 45%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="overlay-loading">
+  <div class="spinner"></div>
+  <p>Carregando profissionais…</p>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+  <a href="/index.html" class="logo">IMOVELI</a>
+  <span style="color:var(--mist)">|</span>
+  <h1>Mapa de Profissionais</h1>
+  <div class="spacer"></div>
+  <a href="/index.html" class="btn-voltar">← Voltar</a>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="filters">
+    <div>
+      <label>Especialidade</label>
+      <select id="filtroEsp" onchange="filtrar()">
+        <option value="">Todas as especialidades</option>
+        <option>Arquitetura e Urbanismo</option>
+        <option>Engenharia</option>
+        <option>Pedreiro</option>
+        <option>Eletricista</option>
+        <option>Encanador</option>
+        <option>Pintor</option>
+        <option>Gesseiro</option>
+        <option>Azulejista</option>
+        <option>Carpinteiro</option>
+        <option>Serralheiro</option>
+      </select>
+    </div>
+    <div>
+      <label>Grau de confiança</label>
+      <select id="filtroGrau" onchange="filtrar()">
+        <option value="">Todos</option>
+        <option value="1">Grau 1 — RT (Arquiteto/Engenheiro)</option>
+        <option value="2">Grau 2 — Profissional Indicado</option>
+      </select>
+    </div>
+    <button class="btn-loc" onclick="usarMinhaLocalizacao()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+      Minha localização
+    </button>
+  </div>
+  <div class="stats-bar" id="statsBar">Carregando…</div>
+  <div class="sidebar-inner">
+    <div class="lista" id="lista"></div>
+  </div>
+</div>
+
+<!-- Mapa -->
+<div id="map"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const API = 'https://imoveli-backend-production.up.railway.app';
+
+let map, todos = [], filtrados = [], userMarker = null, userLat = null, userLng = null;
+const markers = new Map();
+let markerAtivo = null;
+
+// ── INICIALIZA MAPA ──
+map = L.map('map', { zoomControl: true }).setView([-14.5, -51.5], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 19
+}).addTo(map);
+
+// Ícones customizados
+function criarIcone(grau, ativo = false) {
+  const cor = grau === 1 ? '#16B378' : '#6E30D9';
+  const borda = ativo ? '#fff' : cor;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">
+    <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26S32 28 32 16C32 7.2 24.8 0 16 0z" fill="${cor}"/>
+    <circle cx="16" cy="16" r="8" fill="white"/>
+    <text x="16" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="${cor}">${grau}</text>
+  </svg>`;
+  return L.divIcon({
+    html: svg, className: '', iconSize: [32, 42], iconAnchor: [16, 42], popupAnchor: [0, -44]
+  });
+}
+
+// ── CARREGA PROFISSIONAIS ──
+async function carregar() {
+  try {
+    const r = await fetch(`${API}/api/profissionais/mapa`);
+    const data = await r.json();
+    todos = data.profissionais || [];
+    filtrar();
+    document.getElementById('overlay-loading').style.display = 'none';
+  } catch (e) {
+    document.getElementById('overlay-loading').innerHTML =
+      '<p style="color:#ff4b5c">Erro ao carregar profissionais. Tente novamente.</p>';
+  }
+}
+
+// ── FILTROS ──
+function filtrar() {
+  const esp = document.getElementById('filtroEsp').value.toLowerCase();
+  const grau = document.getElementById('filtroGrau').value;
+
+  filtrados = todos.filter(p => {
+    if (esp && !p.especialidade.toLowerCase().includes(esp)) return false;
+    if (grau && String(p.grau) !== grau) return false;
+    return true;
+  });
+
+  // Adiciona distância se tiver localização do usuário
+  if (userLat !== null) {
+    filtrados = filtrados.map(p => ({
+      ...p,
+      distKm: haversine(userLat, userLng, p.lat, p.lng)
+    })).sort((a, b) => a.distKm - b.distKm);
+  }
+
+  atualizarMarcadores();
+  atualizarLista();
+  atualizarStats();
+}
+
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371, d2r = Math.PI / 180;
+  const dLat = (lat2 - lat1) * d2r, dLng = (lng2 - lng1) * d2r;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*d2r)*Math.cos(lat2*d2r)*Math.sin(dLng/2)**2;
+  return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) * 10) / 10;
+}
+
+// ── MARCADORES NO MAPA ──
+function atualizarMarcadores() {
+  // Remove marcadores que não estão mais no filtro
+  const idsAtivos = new Set(filtrados.map(p => p.id));
+  for (const [id, m] of markers) {
+    if (!idsAtivos.has(id)) { map.removeLayer(m); markers.delete(id); }
+  }
+  // Adiciona/atualiza marcadores
+  for (const p of filtrados) {
+    if (!markers.has(p.id)) {
+      const m = L.marker([p.lat, p.lng], { icon: criarIcone(p.grau) });
+      m.bindPopup(criarPopup(p), { maxWidth: 260 });
+      m.on('click', () => destacarCard(p.id));
+      m.addTo(map);
+      markers.set(p.id, m);
+    }
+  }
+}
+
+function criarPopup(p) {
+  const nota = p.reputacao.mediaNota ? `⭐ ${p.reputacao.mediaNota} (${p.reputacao.totalServicos} serv.)` : 'Novo na plataforma';
+  const preco = p.faixaPreco ? `💰 R$${p.faixaPreco.min}–${p.faixaPreco.max}/dia` : '';
+  const loc = [p.cidade, p.uf].filter(Boolean).join(' — ');
+  const grauLabel = p.grau === 1 ? '✅ Responsável Técnico' : '🔷 Profissional Indicado';
+  const fiadorHtml = p.fiador
+    ? `<div class="popup-fiador">🔗 RT: ${p.fiador.nome} (${p.fiador.conselho}/${p.fiador.uf} · ${p.fiador.registro})</div>`
+    : '';
+
+  return `<div class="popup-prof">
+    <h3>${p.nome}</h3>
+    <div class="popup-esp">${p.especialidade}</div>
+    <div class="popup-meta">
+      ${grauLabel}<br>
+      ${loc ? '📍 ' + loc + '<br>' : ''}
+      ${nota}
+    </div>
+    ${preco ? `<div class="popup-preco">${preco}</div>` : ''}
+    ${fiadorHtml}
+    <button class="btn-contatar" onclick="window.open('/index.html#contratar','_self')">Ver perfil completo</button>
+  </div>`;
+}
+
+// ── LISTA LATERAL ──
+function atualizarLista() {
+  const el = document.getElementById('lista');
+  if (!filtrados.length) {
+    el.innerHTML = '<div class="vazio">Nenhum profissional encontrado com os filtros selecionados.</div>';
+    return;
+  }
+  el.innerHTML = filtrados.map(p => {
+    const loc = [p.cidade, p.uf].filter(Boolean).join(', ');
+    const dist = p.distKm != null ? `${p.distKm} km` : null;
+    const nota = p.reputacao.mediaNota ? `⭐ ${p.reputacao.mediaNota}` : null;
+    return `<div class="card-prof" id="card-${p.id}" onclick="focarProfissional('${p.id}')">
+      <div class="nome">${p.nome}</div>
+      <div class="esp">${p.especialidade}</div>
+      <div class="sub">${loc || 'Localização não informada'}</div>
+      <div class="tags">
+        <span class="tag ${p.grau === 1 ? 'grau1' : 'grau2'}">Grau ${p.grau}</span>
+        ${dist ? `<span class="tag dist">📍 ${dist}</span>` : ''}
+        ${nota ? `<span class="tag nota">${nota}</span>` : ''}
+        ${p.fiador ? `<span class="tag" style="background:#f0f4ff;color:#3b5bdb">RT: ${p.fiador.nome.split(' ')[0]}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function atualizarStats() {
+  const total = filtrados.length;
+  const grau1 = filtrados.filter(p => p.grau === 1).length;
+  const grau2 = filtrados.filter(p => p.grau === 2).length;
+  document.getElementById('statsBar').innerHTML =
+    `<strong>${total}</strong> profissional${total !== 1 ? 'is' : ''} — <strong>${grau1}</strong> RT · <strong>${grau2}</strong> indicados`;
+}
+
+// ── FOCO ──
+function focarProfissional(id) {
+  const p = filtrados.find(x => x.id === id);
+  if (!p) return;
+  map.flyTo([p.lat, p.lng], 14, { duration: 1 });
+  const m = markers.get(id);
+  if (m) m.openPopup();
+  // Destaca card
+  document.querySelectorAll('.card-prof').forEach(el => el.classList.remove('ativo'));
+  const card = document.getElementById(`card-${id}`);
+  if (card) { card.classList.add('ativo'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+function destacarCard(id) {
+  document.querySelectorAll('.card-prof').forEach(el => el.classList.remove('ativo'));
+  const card = document.getElementById(`card-${id}`);
+  if (card) { card.classList.add('ativo'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+// ── GEOLOCALIZAÇÃO DO USUÁRIO ──
+function usarMinhaLocalizacao() {
+  if (!navigator.geolocation) return alert('Seu navegador não suporta geolocalização.');
+  const btn = document.querySelector('.btn-loc');
+  btn.textContent = 'Detectando…';
+  navigator.geolocation.getCurrentPosition(pos => {
+    userLat = pos.coords.latitude;
+    userLng = pos.coords.longitude;
+    // Marca posição do usuário
+    if (userMarker) map.removeLayer(userMarker);
+    userMarker = L.circleMarker([userLat, userLng], {
+      radius: 10, fillColor: '#FF4B5C', color: '#fff', weight: 3,
+      fillOpacity: 0.9
+    }).bindPopup('<b>Você está aqui</b>').addTo(map);
+    map.flyTo([userLat, userLng], 12, { duration: 1.2 });
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
+    btn.style.background = 'var(--mint)';
+    filtrar(); // reordena por distância
+  }, err => {
+    btn.textContent = 'Minha localização';
+    alert('Não foi possível obter sua localização. Verifique as permissões do navegador.');
+  });
+}
+
+// ── INICIA ──
+carregar();
+</script>
+</body>
+</html>

@@ -768,6 +768,233 @@ app.put('/api/perfil/faixa-preco', async (req, res) => {
 });
 
 // ============================================
+// MAPA PÚBLICO DE PROFISSIONAIS
+// ============================================
+
+app.get('/api/profissionais/mapa', async (req, res) => {
+  try {
+    const { rows: fiadors } = await query(
+      `SELECT id, nome, conselho, uf, registro, localizacao, status,
+              bio, skills, servicos_oferecidos, faixa_preco,
+              (SELECT COUNT(*) FROM servicos WHERE fiador_id=f.id AND avaliacao IS NOT NULL) as total_servicos,
+              (SELECT AVG((avaliacao->>'nota')::numeric) FROM servicos WHERE fiador_id=f.id AND avaliacao IS NOT NULL) as media_nota
+       FROM fiadores f WHERE status='verificado' AND localizacao IS NOT NULL`
+    );
+    const { rows: prests } = await query(
+      `SELECT p.id, p.nome, p.especialidade, p.localizacao, p.status, p.bio, p.skills, p.faixa_preco,
+              f.nome as fiador_nome, f.conselho as fiador_conselho, f.uf as fiador_uf, f.registro as fiador_registro,
+              (SELECT COUNT(*) FROM servicos WHERE prestador_id=p.id AND avaliacao IS NOT NULL) as total_servicos,
+              (SELECT AVG((avaliacao->>'nota')::numeric) FROM servicos WHERE prestador_id=p.id AND avaliacao IS NOT NULL) as media_nota
+       FROM prestadores p
+       JOIN indicacoes i ON i.prestador_id=p.id AND i.status='aceita'
+       JOIN fiadores f ON f.id=i.fiador_id
+       WHERE p.status='ativo' AND p.localizacao IS NOT NULL`
+    );
+
+    const mapear = (r, grau) => {
+      const loc = typeof r.localizacao === 'string' ? JSON.parse(r.localizacao) : r.localizacao;
+      if (!loc?.lat || !loc?.lng) return null;
+      return {
+        id: r.id,
+        nome: r.nome,
+        especialidade: grau === 1
+          ? (r.conselho === 'CAU' ? 'Arquitetura e Urbanismo' : 'Engenharia')
+          : r.especialidade,
+        grau,
+        lat: loc.lat,
+        lng: loc.lng,
+        cidade: loc.cidade || '',
+        uf: loc.uf || r.uf || '',
+        bio: r.bio || null,
+        skills: r.skills || [],
+        faixaPreco: r.faixa_preco || null,
+        reputacao: {
+          totalServicos: parseInt(r.total_servicos) || 0,
+          mediaNota: r.media_nota ? Math.round(parseFloat(r.media_nota) * 10) / 10 : null
+        },
+        fiador: grau === 2 ? {
+          nome: r.fiador_nome,
+          conselho: r.fiador_conselho,
+          uf: r.fiador_uf,
+          registro: r.fiador_registro
+        } : null,
+        conselho: r.conselho || null,
+        registro: r.registro || null
+      };
+    };
+
+    const profissionais = [
+      ...fiadors.map(r => mapear(r, 1)),
+      ...prests.map(r => mapear(r, 2))
+    ].filter(Boolean);
+
+    res.json({ success: true, total: profissionais.length, profissionais });
+  } catch (err) {
+    console.error('[GET /profissionais/mapa]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// ============================================
+// AGENTE DE PRECIFICAÇÃO IA
+// ============================================
+
+// Tabela base de referência de preços por tipo de serviço
+const TABELA_PRECOS = {
+  'pedreiro': { unidade: 'dia', min: 120, max: 220, base: 160, label: 'Pedreiro / Servente' },
+  'servente': { unidade: 'dia', min: 80, max: 140, base: 100, label: 'Servente de obras' },
+  'eletricista': { unidade: 'dia', min: 150, max: 280, base: 200, label: 'Eletricista' },
+  'encanador': { unidade: 'dia', min: 130, max: 250, base: 180, label: 'Encanador / Hidráulico' },
+  'pintor': { unidade: 'm²', min: 12, max: 30, base: 18, label: 'Pintor (paredes internas)' },
+  'pintura externa': { unidade: 'm²', min: 18, max: 45, base: 28, label: 'Pintura externa / fachada' },
+  'gesseiro': { unidade: 'm²', min: 25, max: 60, base: 38, label: 'Gesseiro (forro/revestimento)' },
+  'azulejista': { unidade: 'm²', min: 30, max: 70, base: 45, label: 'Assentador cerâmica/azulejo' },
+  'carpinteiro': { unidade: 'dia', min: 150, max: 280, base: 200, label: 'Carpinteiro' },
+  'serralheiro': { unidade: 'dia', min: 140, max: 260, base: 190, label: 'Serralheiro' },
+  'impermeabilização': { unidade: 'm²', min: 40, max: 120, base: 65, label: 'Impermeabilização' },
+  'demolição': { unidade: 'm²', min: 30, max: 80, base: 50, label: 'Demolição / retirada entulho' },
+  'jardinagem': { unidade: 'dia', min: 90, max: 180, base: 120, label: 'Jardineiro' },
+  'projeto arquitetônico': { unidade: 'm²', min: 35, max: 120, base: 65, label: 'Projeto arquitetônico (CAU)' },
+  'projeto estrutural': { unidade: 'm²', min: 20, max: 60, base: 35, label: 'Projeto estrutural (CREA)' },
+  'projeto hidráulico': { unidade: 'm²', min: 15, max: 40, base: 25, label: 'Projeto hidrossanitário (CREA)' },
+  'projeto elétrico': { unidade: 'm²', min: 15, max: 40, base: 25, label: 'Projeto elétrico (CREA)' },
+  'laudo técnico': { unidade: 'unidade', min: 800, max: 3500, base: 1500, label: 'Laudo técnico / vistoria (ART)' },
+  'reforma completa': { unidade: 'm²', min: 800, max: 2200, base: 1300, label: 'Reforma completa (mão de obra + material)' },
+  'reforma mão de obra': { unidade: 'm²', min: 350, max: 900, base: 550, label: 'Reforma (só mão de obra)' },
+  'cobertura telhado': { unidade: 'm²', min: 60, max: 180, base: 100, label: 'Cobertura / telhado (mão de obra)' },
+  'fundação': { unidade: 'm²', min: 150, max: 400, base: 250, label: 'Fundação / radier (mão de obra)' },
+  'alvenaria': { unidade: 'm²', min: 60, max: 140, base: 90, label: 'Alvenaria (mão de obra, sem material)' },
+  'forro': { unidade: 'm²', min: 30, max: 80, base: 50, label: 'Forro PVC/drywall (mão de obra)' },
+  'piso': { unidade: 'm²', min: 35, max: 90, base: 55, label: 'Assentamento de piso (mão de obra)' },
+};
+
+// Multiplicadores regionais por estado
+const MULT_REGIONAL = {
+  'SP': 1.45, 'RJ': 1.40, 'DF': 1.35, 'SC': 1.20, 'RS': 1.20, 'PR': 1.15,
+  'MG': 1.15, 'ES': 1.10, 'GO': 1.05, 'MT': 1.05, 'MS': 1.00,
+  'AM': 1.10, 'PA': 0.95, 'AC': 0.90, 'RO': 0.90, 'RR': 0.90, 'AP': 0.90, 'TO': 0.90,
+  'BA': 1.00, 'PE': 1.00, 'CE': 0.95, 'MA': 0.88, 'PI': 0.88, 'RN': 0.90, 'PB': 0.90, 'SE': 0.90, 'AL': 0.88,
+};
+
+// Multiplicadores de complexidade
+const MULT_COMPLEXIDADE = { 'simples': 0.80, 'medio': 1.00, 'complexo': 1.35, 'luxo': 1.80 };
+
+function calcularPrecificacaoBase({ tipoServico, estado, complexidade, areaMq }) {
+  const estadoUpper = (estado || 'PE').toUpperCase();
+  const multRegional = MULT_REGIONAL[estadoUpper] || 1.0;
+  const multComp = MULT_COMPLEXIDADE[complexidade] || 1.0;
+
+  // Busca o tipo de serviço (busca fuzzy)
+  const chave = Object.keys(TABELA_PRECOS).find(k =>
+    tipoServico.toLowerCase().includes(k) || k.includes(tipoServico.toLowerCase())
+  ) || Object.keys(TABELA_PRECOS)[0];
+  const ref = TABELA_PRECOS[chave];
+
+  const fatorTotal = multRegional * multComp;
+  const precoMin = Math.round(ref.min * fatorTotal);
+  const precoMax = Math.round(ref.max * fatorTotal);
+  const precoSugerido = Math.round(ref.base * fatorTotal);
+
+  let totalMin = precoMin, totalMax = precoMax, totalSugerido = precoSugerido;
+  if (areaMq && ref.unidade === 'm²') {
+    totalMin = precoMin * areaMq;
+    totalMax = precoMax * areaMq;
+    totalSugerido = precoSugerido * areaMq;
+  }
+
+  return {
+    referencia: ref.label,
+    unidade: ref.unidade,
+    precoMin, precoMax, precoSugerido,
+    totalMin, totalMax, totalSugerido,
+    multRegional, multComplexidade: multComp,
+    estado: estadoUpper
+  };
+}
+
+app.post('/api/precificacao', async (req, res) => {
+  const { tipoServico, estado, cidade, complexidade, areaMq, descricao } = req.body;
+  if (!tipoServico) return res.status(400).json({ success: false, error: 'tipoServico é obrigatório' });
+
+  // 1. Cálculo base com tabela de referência (sempre funciona)
+  const base = calcularPrecificacaoBase({ tipoServico, estado, complexidade, areaMq: Number(areaMq) || 0 });
+
+  // 2. Busca web para enriquecer com dados de mercado atuais (se Tavily disponível)
+  let fonteWeb = null;
+  if (TAVILY_API_KEY) {
+    const q = `preço ${tipoServico} ${cidade || estado || 'Brasil'} 2025 tabela mercado`;
+    const webData = await buscarNaInternet(q);
+    if (webData) fonteWeb = webData.ctx.slice(0, 800);
+  }
+
+  // 3. IA sintetiza e justifica (se Anthropic disponível)
+  let justificativaIA = null;
+  if (anthropicClient) {
+    try {
+      const prompt = `Você é um especialista em precificação de serviços de construção civil no Brasil.
+
+Serviço solicitado: ${tipoServico}
+Estado: ${estado || 'não informado'}, Cidade: ${cidade || 'não informada'}
+Complexidade: ${complexidade || 'médio'}
+Área: ${areaMq ? areaMq + ' m²' : 'não informada'}
+
+Tabela de referência IMOVELI calculou:
+- Faixa: R$${base.precoMin} a R$${base.precoMax} por ${base.unidade}
+- Sugerido: R$${base.precoSugerido} por ${base.unidade}
+- Multiplicador regional: ${base.multRegional}x
+${fonteWeb ? '\nDados de mercado encontrados na internet:\n' + fonteWeb : ''}
+
+Gere uma justificativa profissional em 4 a 6 linhas explicando:
+1. Por que esse valor é justo para a região
+2. O que pode fazer o preço variar para cima ou para baixo
+3. Uma referência técnica (tabela de conselho, SINAPI ou prática de mercado)
+Responda em português, de forma objetiva e profissional.`;
+
+      const r = await anthropicClient.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      });
+      justificativaIA = r.content.find(b => b.type === 'text')?.text || null;
+    } catch (_) {}
+  }
+
+  // Justificativa padrão se IA indisponível
+  const justificativa = justificativaIA || `
+Valor calculado com base na tabela de referência IMOVELI para ${base.referencia} no estado ${base.estado}.
+Multiplicador regional aplicado: ${(base.multRegional * 100).toFixed(0)}% (${base.estado}).
+Multiplicador de complexidade: ${(base.multComplexidade * 100).toFixed(0)}% (${complexidade || 'médio'}).
+Referências: tabelas CAU-BR, CONFEA/CREA, SINAPI e pesquisa de mercado regional.
+Valores podem variar conforme experiência do profissional, materiais inclusos e condições do local.
+`.trim();
+
+  res.json({
+    success: true,
+    tipoServico,
+    estado: base.estado,
+    cidade: cidade || null,
+    complexidade: complexidade || 'medio',
+    areaMq: Number(areaMq) || null,
+    precos: {
+      porUnidade: {
+        min: base.precoMin,
+        sugerido: base.precoSugerido,
+        max: base.precoMax,
+        unidade: base.unidade
+      },
+      total: areaMq ? {
+        min: base.totalMin,
+        sugerido: base.totalSugerido,
+        max: base.totalMax
+      } : null
+    },
+    justificativa,
+    fonteWeb: !!fonteWeb,
+    justificativaIA: !!justificativaIA
+  });
+});
+
+// ============================================
 // MATCH INTELIGENTE
 // ============================================
 

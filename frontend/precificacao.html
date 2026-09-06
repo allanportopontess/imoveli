@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precificação IA — IMOVELI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --violet: #6E30D9; --violet-deep: #4B1F94; --violet-wash: #F2ECFC;
+      --mint: #16B378; --coral: #FF4B5C; --ink: #161616; --ink-soft: #6B6B70;
+      --paper: #FAFAFA; --raised: #FFFFFF; --mist: #EAE8ED;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    body { font-family: var(--font); background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100; height: 56px; background: #fff;
+      border-bottom: 1px solid var(--mist); display: flex; align-items: center;
+      gap: 12px; padding: 0 20px;
+    }
+    .topbar .logo { font-weight: 800; font-size: 17px; color: var(--violet); text-decoration: none; }
+    .topbar h1 { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+    .topbar .spacer { flex: 1; }
+    .topbar .btn-back { font-size: 13px; font-weight: 600; color: var(--violet); background: var(--violet-wash); border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; text-decoration: none; }
+
+    .page { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+    .hero { text-align: center; margin-bottom: 36px; }
+    .hero .icon { font-size: 48px; margin-bottom: 12px; }
+    .hero h2 { font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; }
+    .hero p { font-size: 15px; color: var(--ink-soft); margin-top: 8px; max-width: 520px; margin-inline: auto; }
+
+    .badge-ai { display: inline-flex; align-items: center; gap: 6px; background: var(--violet-wash); color: var(--violet); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-top: 10px; }
+
+    /* FORM */
+    .form-card {
+      background: var(--raised); border: 1px solid var(--mist); border-radius: 16px;
+      padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,.05); margin-bottom: 24px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 12px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .4px; }
+    select, input[type=text], input[type=number] {
+      padding: 11px 14px; border: 1.5px solid var(--mist); border-radius: 10px;
+      font-size: 14px; font-family: var(--font); color: var(--ink);
+      background: var(--paper); outline: none; transition: border-color .15s;
+    }
+    select:focus, input:focus { border-color: var(--violet); }
+
+    /* Tipos de serviço em chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 8px 14px; border: 1.5px solid var(--mist); border-radius: 24px;
+      font-size: 13px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
+      transition: all .15s; background: #fff; user-select: none;
+    }
+    .chip:hover { border-color: var(--violet); color: var(--violet); }
+    .chip.selecionado { background: var(--violet); color: #fff; border-color: var(--violet); }
+
+    .btn-calcular {
+      margin-top: 20px; width: 100%; padding: 14px; background: var(--violet); color: #fff;
+      border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: opacity .2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-calcular:hover { opacity: .88; }
+    .btn-calcular:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* RESULTADO */
+    .resultado { display: none; }
+    .resultado.visivel { display: block; }
+
+    .preco-card {
+      background: var(--raised); border: 1px solid var(--mist); border-radius: 16px;
+      padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,.05); margin-bottom: 20px;
+    }
+    .preco-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+
+    .preco-range {
+      display: flex; align-items: stretch; gap: 0; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--mist); margin-bottom: 20px;
+    }
+    .preco-col { flex: 1; padding: 20px 16px; text-align: center; }
+    .preco-col:not(:last-child) { border-right: 1px solid var(--mist); }
+    .preco-col.sugerido { background: var(--violet-wash); }
+    .preco-col .label { font-size: 11px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .preco-col .valor { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; }
+    .preco-col.sugerido .valor { color: var(--violet); font-size: 28px; }
+    .preco-col .unidade { font-size: 11px; color: var(--ink-soft); margin-top: 3px; }
+
+    .total-row { background: linear-gradient(135deg, var(--violet), var(--violet-deep)); color: #fff; border-radius: 12px; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .total-row .label { font-size: 13px; font-weight: 600; opacity: .85; }
+    .total-row .valor { font-size: 24px; font-weight: 800; }
+
+    .multiplicadores { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .mult-tag { font-size: 12px; padding: 5px 12px; border-radius: 20px; font-weight: 600; }
+    .mult-tag.regional { background: #e0f7fa; color: #00838f; }
+    .mult-tag.complexidade { background: #fff3e0; color: #e65100; }
+    .mult-tag.ia { background: var(--violet-wash); color: var(--violet); }
+
+    .justificativa {
+      background: var(--paper); border: 1px solid var(--mist); border-radius: 12px;
+      padding: 16px; font-size: 13px; line-height: 1.7; color: var(--ink-soft);
+      white-space: pre-wrap;
+    }
+
+    .btn-negociar {
+      width: 100%; padding: 13px; margin-top: 16px; border: 2px solid var(--violet);
+      background: #fff; color: var(--violet); border-radius: 12px; font-size: 14px;
+      font-weight: 700; cursor: pointer; transition: all .15s;
+    }
+    .btn-negociar:hover { background: var(--violet-wash); }
+
+    .fonte-badge {
+      display: inline-flex; align-items: center; gap: 5px; font-size: 11px;
+      color: var(--mint); font-weight: 600; padding: 3px 10px;
+      background: #edf9f4; border-radius: 20px;
+    }
+
+    /* Loading spinner */
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/index.html" class="logo">IMOVELI</a>
+  <span style="color:var(--mist)">|</span>
+  <h1>Precificação IA</h1>
+  <div class="spacer"></div>
+  <a href="/index.html" class="btn-back">← Voltar</a>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="icon">🤖</div>
+    <h2>Agente de Precificação Inteligente</h2>
+    <p>Descubra o valor justo para qualquer serviço de construção — baseado em tabelas de conselhos, SINAPI, dados de mercado e inteligência artificial.</p>
+    <div class="badge-ai">⚡ IA + Pesquisa em tempo real + Tabelas técnicas</div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <div class="form-card">
+    <div class="form-group full" style="margin-bottom:20px">
+      <label>Tipo de Serviço</label>
+      <div class="chips" id="chipsServico">
+        <!-- Gerado por JS -->
+      </div>
+      <input type="text" id="tipoServicoCustom" placeholder="Ou descreva o serviço (ex: instalação de forro de gesso)" style="margin-top:10px">
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="estado">
+          <option value="">Selecione</option>
+          <option>AC</option><option>AL</option><option>AM</option><option>AP</option>
+          <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+          <option>GO</option><option>MA</option><option>MG</option><option>MS</option>
+          <option>MT</option><option>PA</option><option>PB</option><option selected>PE</option>
+          <option>PI</option><option>PR</option><option>RJ</option><option>RN</option>
+          <option>RO</option><option>RR</option><option>RS</option><option>SC</option>
+          <option>SE</option><option>SP</option><option>TO</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cidade (opcional)</label>
+        <input type="text" id="cidade" placeholder="Ex: Recife, Caruaru…">
+      </div>
+      <div class="form-group">
+        <label>Complexidade</label>
+        <select id="complexidade">
+          <option value="simples">Simples — padrão econômico</option>
+          <option value="medio" selected>Médio — padrão normal</option>
+          <option value="complexo">Complexo — padrão elevado</option>
+          <option value="luxo">Luxo — alto padrão</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Área em m² (opcional)</label>
+        <input type="number" id="areaMq" placeholder="Ex: 60" min="1" max="10000">
+      </div>
+    </div>
+
+    <button class="btn-calcular" id="btnCalcular" onclick="calcular()">
+      🤖 Calcular Preço com IA
+    </button>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="resultado" id="resultado">
+    <div class="preco-card">
+      <h3>
+        💰 Precificação: <span id="rTipoServico"></span>
+        <span class="fonte-badge" id="badgeFonteWeb" style="display:none">🌐 Pesquisa web</span>
+        <span class="fonte-badge" id="badgeIA" style="display:none; background:#f2ecfc; color:#6E30D9">🤖 IA</span>
+      </h3>
+
+      <!-- Faixa de preço por unidade -->
+      <div class="preco-range">
+        <div class="preco-col">
+          <div class="label">Mínimo</div>
+          <div class="valor" id="rPrecoMin">—</div>
+          <div class="unidade" id="rUnidadeMin"></div>
+        </div>
+        <div class="preco-col sugerido">
+          <div class="label">✨ Sugerido</div>
+          <div class="valor" id="rPrecoSug">—</div>
+          <div class="unidade" id="rUnidadeSug"></div>
+        </div>
+        <div class="preco-col">
+          <div class="label">Máximo</div>
+          <div class="valor" id="rPrecoMax">—</div>
+          <div class="unidade" id="rUnidadeMax"></div>
+        </div>
+      </div>
+
+      <!-- Total (se tiver área) -->
+      <div class="total-row" id="rTotalRow" style="display:none">
+        <div class="label">Total estimado para <span id="rAreaLabel"></span></div>
+        <div class="valor">R$<span id="rTotalSug"></span></div>
+      </div>
+
+      <!-- Multiplicadores aplicados -->
+      <div class="multiplicadores" id="rMults"></div>
+
+      <!-- Justificativa -->
+      <div style="margin-bottom:8px; font-size:12px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.4px;">Justificativa técnica</div>
+      <div class="justificativa" id="rJustificativa"></div>
+
+      <button class="btn-negociar" onclick="abrirNegociacao()">
+        🤝 Usar este valor para contratar um profissional
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'https://imoveli-backend-production.up.railway.app';
+
+const SERVICOS = [
+  'Pedreiro', 'Eletricista', 'Encanador', 'Pintor', 'Gesseiro',
+  'Azulejista', 'Carpinteiro', 'Serralheiro', 'Impermeabilização',
+  'Reforma completa', 'Projeto arquitetônico', 'Projeto estrutural',
+  'Laudo técnico', 'Fundação', 'Cobertura telhado', 'Forro', 'Piso',
+];
+
+let servicoSelecionado = null;
+
+// Gera chips de serviços
+(function gerarChips() {
+  const container = document.getElementById('chipsServico');
+  container.innerHTML = SERVICOS.map(s =>
+    `<div class="chip" onclick="selecionarServico('${s}', this)">${s}</div>`
+  ).join('');
+})();
+
+function selecionarServico(nome, el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('selecionado'));
+  el.classList.add('selecionado');
+  servicoSelecionado = nome;
+  document.getElementById('tipoServicoCustom').value = '';
+}
+
+function fmt(n) {
+  return Number(n).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
+
+async function calcular() {
+  const tipoCustom = document.getElementById('tipoServicoCustom').value.trim();
+  const tipoServico = tipoCustom || servicoSelecionado;
+  if (!tipoServico) { alert('Selecione ou descreva o tipo de serviço.'); return; }
+
+  const estado = document.getElementById('estado').value;
+  if (!estado) { alert('Selecione o estado.'); return; }
+
+  const btn = document.getElementById('btnCalcular');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Calculando…';
+
+  try {
+    const body = {
+      tipoServico,
+      estado,
+      cidade: document.getElementById('cidade').value.trim() || null,
+      complexidade: document.getElementById('complexidade').value,
+      areaMq: Number(document.getElementById('areaMq').value) || null,
+    };
+    const r = await fetch(`${API}/api/precificacao`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await r.json();
+    if (!data.success) throw new Error(data.error || 'Erro');
+    exibirResultado(data);
+  } catch (e) {
+    alert('Erro ao calcular: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🤖 Calcular Preço com IA';
+  }
+}
+
+function exibirResultado(data) {
+  const { tipoServico, precos, justificativa, fonteWeb, justificativaIA, estado, complexidade, areaMq } = data;
+  const { porUnidade, total } = precos;
+
+  document.getElementById('rTipoServico').textContent = tipoServico;
+  document.getElementById('rPrecoMin').textContent = 'R$' + fmt(porUnidade.min);
+  document.getElementById('rPrecoSug').textContent = 'R$' + fmt(porUnidade.sugerido);
+  document.getElementById('rPrecoMax').textContent = 'R$' + fmt(porUnidade.max);
+
+  const uni = `por ${porUnidade.unidade}`;
+  document.getElementById('rUnidadeMin').textContent = uni;
+  document.getElementById('rUnidadeSug').textContent = uni;
+  document.getElementById('rUnidadeMax').textContent = uni;
+
+  if (total && areaMq) {
+    document.getElementById('rTotalRow').style.display = 'flex';
+    document.getElementById('rAreaLabel').textContent = areaMq + ' m²';
+    document.getElementById('rTotalSug').textContent = fmt(total.sugerido);
+  } else {
+    document.getElementById('rTotalRow').style.display = 'none';
+  }
+
+  // Multiplicadores
+  const comp = { simples: 'Padrão simples (-20%)', medio: 'Padrão médio', complexo: 'Padrão complexo (+35%)', luxo: 'Alto padrão (+80%)' };
+  document.getElementById('rMults').innerHTML = `
+    <span class="mult-tag regional">📍 ${estado}</span>
+    <span class="mult-tag complexidade">${comp[complexidade] || complexidade}</span>
+    ${fonteWeb ? '<span class="mult-tag ia">🌐 Dados de mercado</span>' : ''}
+    ${justificativaIA ? '<span class="mult-tag ia">🤖 Análise IA</span>' : ''}
+  `;
+
+  document.getElementById('badgeFonteWeb').style.display = fonteWeb ? 'inline-flex' : 'none';
+  document.getElementById('badgeIA').style.display = justificativaIA ? 'inline-flex' : 'none';
+  document.getElementById('rJustificativa').textContent = justificativa;
+
+  const res = document.getElementById('resultado');
+  res.classList.add('visivel');
+  res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function abrirNegociacao() {
+  window.location.href = '/index.html#mapa';
+}
+</script>
+</body>
+</html>
