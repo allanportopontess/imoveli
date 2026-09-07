@@ -1953,6 +1953,170 @@ app.post('/api/pagamento/webhook', express.raw({ type: 'application/json' }), as
 });
 
 // ============================================
+// CHAT DIRETO POR CONTRATO
+// ============================================
+
+// Mapa em memória: contratoId → Set<res> para SSE
+const chatSSE = new Map();
+
+function broadcastChat(contratoId, payload) {
+  const conns = chatSSE.get(contratoId);
+  if (!conns || !conns.size) return;
+  const msg = `data: ${JSON.stringify(payload)}\n\n`;
+  for (const res of [...conns]) {
+    try { res.write(msg); } catch (_) { conns.delete(res); }
+  }
+}
+
+// Helper: verifica se usuário é parte do contrato (cliente ou profissional)
+async function verificarAcessoContrato(contratoId, user) {
+  const { rows } = await query(`SELECT * FROM contratos WHERE id=$1`, [contratoId]);
+  if (!rows.length) return null;
+  const c = rows[0];
+  if (c.cliente_email === user.email) return { contrato: c, papel: 'cliente' };
+  if (c.profissional_tipo === 'fiador' && user.fiadorId === c.profissional_id) return { contrato: c, papel: 'profissional' };
+  // Prestador: verifica email na tabela prestadores
+  if (c.profissional_tipo === 'prestador') {
+    const { rows: pr } = await query(`SELECT email FROM prestadores WHERE id=$1`, [c.profissional_id]);
+    if (pr.length && pr[0].email === user.email) return { contrato: c, papel: 'profissional' };
+  }
+  return null; // sem acesso
+}
+
+// GET /api/chat/:contratoId/mensagens — histórico
+app.get('/api/chat/:contratoId/mensagens', auth, async (req, res) => {
+  try {
+    const acesso = await verificarAcessoContrato(req.params.contratoId, req.user);
+    if (!acesso) return res.status(403).json({ success: false, error: 'Acesso negado' });
+    if (!acesso.contrato.chat_liberado) {
+      return res.status(403).json({ success: false, error: 'Pagamento pendente — chat não liberado' });
+    }
+
+    const { rows } = await query(
+      `SELECT id, remetente_email, remetente_nome, conteudo, lida, created_at
+       FROM mensagens_chat WHERE contrato_id=$1 ORDER BY created_at ASC`,
+      [req.params.contratoId]
+    );
+
+    // Marca como lidas as mensagens do outro lado
+    await query(
+      `UPDATE mensagens_chat SET lida=TRUE
+       WHERE contrato_id=$1 AND remetente_email != $2 AND lida=FALSE`,
+      [req.params.contratoId, req.user.email]
+    );
+
+    res.json({ success: true, mensagens: rows, contrato: acesso.contrato, papel: acesso.papel });
+  } catch (err) {
+    console.error('[GET /chat/:id/mensagens]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// POST /api/chat/:contratoId/mensagens — enviar mensagem
+app.post('/api/chat/:contratoId/mensagens', auth, async (req, res) => {
+  try {
+    const acesso = await verificarAcessoContrato(req.params.contratoId, req.user);
+    if (!acesso) return res.status(403).json({ success: false, error: 'Acesso negado' });
+    if (!acesso.contrato.chat_liberado) {
+      return res.status(403).json({ success: false, error: 'Chat não liberado' });
+    }
+
+    const { conteudo } = req.body;
+    if (!conteudo?.trim()) return res.status(400).json({ success: false, error: 'Mensagem vazia' });
+    if (conteudo.length > 4000) return res.status(400).json({ success: false, error: 'Mensagem muito longa' });
+
+    const remetenteNome = req.user.nomeProfissional || req.user.email.split('@')[0];
+    const { rows } = await query(
+      `INSERT INTO mensagens_chat (contrato_id, remetente_email, remetente_nome, conteudo)
+       VALUES ($1,$2,$3,$4) RETURNING *`,
+      [req.params.contratoId, req.user.email, remetenteNome, conteudo.trim()]
+    );
+    const mensagem = rows[0];
+
+    // Broadcast via SSE para todos que estão ouvindo este chat
+    broadcastChat(req.params.contratoId, { tipo: 'mensagem', mensagem });
+
+    res.json({ success: true, mensagem });
+  } catch (err) {
+    console.error('[POST /chat/:id/mensagens]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// GET /api/chat/:contratoId/stream — SSE para mensagens em tempo real
+app.get('/api/chat/:contratoId/stream', auth, async (req, res) => {
+  try {
+    const acesso = await verificarAcessoContrato(req.params.contratoId, req.user);
+    if (!acesso || !acesso.contrato.chat_liberado) {
+      return res.status(403).json({ success: false, error: 'Acesso negado' });
+    }
+
+    res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
+    res.setHeader('Connection', 'keep-alive');
+    res.setHeader('X-Accel-Buffering', 'no');
+    res.flushHeaders();
+
+    const contratoId = req.params.contratoId;
+    if (!chatSSE.has(contratoId)) chatSSE.set(contratoId, new Set());
+    chatSSE.get(contratoId).add(res);
+
+    // Heartbeat a cada 25s para manter conexão viva
+    const hb = setInterval(() => { try { res.write(': ping\n\n'); } catch (_) {} }, 25000);
+
+    req.on('close', () => {
+      clearInterval(hb);
+      const conns = chatSSE.get(contratoId);
+      if (conns) { conns.delete(res); if (!conns.size) chatSSE.delete(contratoId); }
+    });
+  } catch (err) {
+    console.error('[GET /chat/:id/stream]', err.message);
+    res.status(500).end();
+  }
+});
+
+// GET /api/meus-contratos/nao-lidos — badge de notificação
+app.get('/api/meus-contratos/nao-lidos', auth, async (req, res) => {
+  try {
+    const { rows } = await query(
+      `SELECT COUNT(*) as total FROM mensagens_chat mc
+       JOIN contratos c ON c.id = mc.contrato_id
+       WHERE (c.cliente_email=$1 OR
+              (c.profissional_tipo='fiador' AND c.profissional_id=$2) OR
+              (c.profissional_tipo='prestador' AND c.profissional_id IN
+                (SELECT id FROM prestadores WHERE email=$1)))
+         AND mc.remetente_email != $1
+         AND mc.lida = FALSE`,
+      [req.user.email, req.user.fiadorId || '']
+    );
+    res.json({ success: true, naoLidas: parseInt(rows[0].total) || 0 });
+  } catch (err) {
+    res.json({ success: true, naoLidas: 0 });
+  }
+});
+
+// GET /api/meus-contratos — lista contratos do usuário (como cliente ou profissional)
+app.get('/api/meus-contratos', auth, async (req, res) => {
+  try {
+    const { rows } = await query(
+      `SELECT c.*,
+        (SELECT COUNT(*) FROM mensagens_chat mc WHERE mc.contrato_id=c.id AND mc.remetente_email != $1 AND mc.lida=FALSE) as nao_lidas
+       FROM contratos c
+       WHERE c.cliente_email=$1
+          OR (c.profissional_tipo='fiador' AND c.profissional_id=$2)
+          OR (c.profissional_tipo='prestador' AND c.profissional_id IN
+                (SELECT id FROM prestadores WHERE email=$1))
+       ORDER BY c.created_at DESC`,
+      [req.user.email, req.user.fiadorId || '']
+    );
+    res.json({ success: true, contratos: rows });
+  } catch (err) {
+    console.error('[GET /meus-contratos]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// ============================================
 // HEALTH
 // ============================================
 
@@ -2095,6 +2259,18 @@ async function runMigrations() {
     )`,
     `CREATE INDEX IF NOT EXISTS idx_contratos_cliente ON contratos(cliente_email)`,
     `CREATE INDEX IF NOT EXISTS idx_contratos_prof ON contratos(profissional_tipo, profissional_id)`,
+    // Chat direto por contrato
+    `CREATE TABLE IF NOT EXISTS mensagens_chat (
+      id            SERIAL PRIMARY KEY,
+      contrato_id   TEXT REFERENCES contratos(id) ON DELETE CASCADE,
+      remetente_email TEXT NOT NULL,
+      remetente_nome  TEXT NOT NULL,
+      conteudo        TEXT NOT NULL,
+      lida            BOOLEAN DEFAULT FALSE,
+      created_at      TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_chat_contrato ON mensagens_chat(contrato_id)`,
+    `CREATE INDEX IF NOT EXISTS idx_chat_nao_lida ON mensagens_chat(contrato_id, lida)`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }

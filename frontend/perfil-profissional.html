@@ -536,12 +536,13 @@ async function simularPagamento() {
 }
 
 function renderSucesso() {
+  const chatUrl = contratoId ? `/chat-contrato.html?id=${contratoId}` : '/index.html';
   document.getElementById('modalConteudo').innerHTML = `
     <div class="sucesso-box">
       <div class="sucesso-icon">✅</div>
       <h3>Pagamento confirmado!</h3>
-      <p>O chat com o profissional foi liberado.<br>Você pode iniciar a conversa agora mesmo.</p>
-      <a href="/index.html" class="btn-ir-chat">Ir para o App →</a>
+      <p>O chat com o profissional foi liberado.<br>Inicie a conversa agora mesmo.</p>
+      <a href="${chatUrl}" class="btn-ir-chat">💬 Abrir Chat →</a>
     </div>
   `;
 }
