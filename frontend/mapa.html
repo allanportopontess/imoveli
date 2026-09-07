@@ -10,7 +10,7 @@
     :root {
       --violet: #6E30D9; --violet-deep: #4B1F94; --violet-wash: #F2ECFC;
       --mint: #16B378; --coral: #FF4B5C; --ink: #161616; --ink-soft: #6B6B70;
-      --paper: #FAFAFA; --mist: #EAE8ED;
+      --paper: #FAFAFA; --mist: #EAE8ED; --amber: #F59E0B;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     html, body { height: 100%; font-family: var(--font); background: var(--paper); color: var(--ink); }
@@ -37,25 +37,57 @@
       display: flex; flex-direction: column; overflow: hidden;
     }
     .sidebar-inner { flex: 1; overflow-y: auto; }
-    .filters { padding: 12px 16px; border-bottom: 1px solid var(--mist); display: flex; flex-direction: column; gap: 8px; }
-    .filters label { font-size: 11px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; }
-    .filters select, .filters input {
+    .filters { padding: 12px 16px; border-bottom: 1px solid var(--mist); display: flex; flex-direction: column; gap: 10px; }
+    .filters label { font-size: 11px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 4px; }
+    .filters select, .filters input[type="text"] {
       width: 100%; padding: 8px 10px; border: 1.5px solid var(--mist); border-radius: 8px;
       font-size: 13px; font-family: var(--font); color: var(--ink); background: var(--paper);
       outline: none;
     }
-    .filters select:focus, .filters input:focus { border-color: var(--violet); }
+    .filters select:focus, .filters input[type="text"]:focus { border-color: var(--violet); }
+
+    /* Toggle modo busca */
+    .modo-tabs { display: flex; gap: 0; border: 1.5px solid var(--mist); border-radius: 10px; overflow: hidden; }
+    .modo-tab {
+      flex: 1; padding: 8px 6px; font-size: 12px; font-weight: 600; text-align: center;
+      cursor: pointer; border: none; background: var(--paper); color: var(--ink-soft);
+      transition: background .15s, color .15s;
+    }
+    .modo-tab.ativo { background: var(--violet); color: #fff; }
+    .modo-tab:first-child { border-radius: 8px 0 0 8px; }
+    .modo-tab:last-child  { border-radius: 0 8px 8px 0; }
+
+    /* Painel de critérios de avaliação */
+    #painelAvaliacao { display: none; }
+    #painelAvaliacao.visivel { display: block; }
+
+    .criterio-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 0; border-bottom: 1px solid var(--mist);
+    }
+    .criterio-row:last-child { border-bottom: none; }
+    .criterio-nome { font-size: 12.5px; color: var(--ink); flex: 1; }
+    .criterio-estrelas { display: flex; gap: 3px; }
+    .estrela {
+      font-size: 16px; cursor: pointer; color: var(--mist); transition: color .1s;
+      user-select: none; line-height: 1;
+    }
+    .estrela.preenchida { color: var(--amber); }
+
+    .criterio-hint { font-size: 11px; color: var(--ink-soft); margin-top: 6px; padding: 6px 8px; background: var(--violet-wash); border-radius: 6px; }
+
+    /* Botão localização */
     .btn-loc {
       display: flex; align-items: center; gap: 8px; padding: 9px 12px;
       background: var(--violet); color: #fff; border: none; border-radius: 8px;
       font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;
     }
     .btn-loc:hover { background: var(--violet-deep); }
-    .btn-loc svg { flex-shrink: 0; }
+
     .stats-bar { padding: 10px 16px; font-size: 12px; color: var(--ink-soft); background: var(--violet-wash); border-bottom: 1px solid var(--mist); }
     .stats-bar strong { color: var(--violet); }
 
-    /* Lista de profissionais */
+    /* Lista */
     .lista { padding: 8px 0; }
     .card-prof {
       padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--mist);
@@ -69,16 +101,14 @@
     .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; background: var(--mist); color: var(--ink-soft); }
     .tag.grau1 { background: #edf9f4; color: var(--mint); }
     .tag.grau2 { background: var(--violet-wash); color: var(--violet); }
-    .tag.dist { background: #fff3e0; color: #e0720c; }
-    .tag.nota { background: #fff8e1; color: #b8930a; }
-    .vazio { padding: 32px 16px; text-align: center; color: var(--ink-soft); font-size: 13px; }
+    .tag.dist  { background: #fff3e0; color: #e0720c; }
+    .tag.nota  { background: #fff8e1; color: #b8930a; }
+    .vazio { padding: 32px 16px; text-align: center; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
 
     /* ── MAPA ── */
-    #map {
-      position: fixed; top: 56px; left: 320px; right: 0; bottom: 0; z-index: 100;
-    }
+    #map { position: fixed; top: 56px; left: 320px; right: 0; bottom: 0; z-index: 100; }
 
-    /* Popup customizado */
+    /* Popup */
     .popup-prof { min-width: 200px; }
     .popup-prof h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
     .popup-prof .popup-esp { font-size: 12px; color: var(--violet); font-weight: 600; }
@@ -95,12 +125,11 @@
     }
     .spinner { width: 40px; height: 40px; border: 3px solid var(--mist); border-top-color: var(--violet); border-radius: 50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    #overlay-loading p { font-size: 14px; color: var(--ink-soft); }
 
     /* Mobile */
     @media (max-width: 700px) {
-      .sidebar { width: 100%; top: auto; bottom: 0; height: 45%; border-right: none; border-top: 2px solid var(--mist); }
-      #map { left: 0; bottom: 45%; }
+      .sidebar { width: 100%; top: auto; bottom: 0; height: 48%; border-right: none; border-top: 2px solid var(--mist); }
+      #map { left: 0; bottom: 48%; }
     }
   </style>
 </head>
@@ -108,7 +137,7 @@
 
 <div id="overlay-loading">
   <div class="spinner"></div>
-  <p>Carregando profissionais…</p>
+  <p style="font-size:14px;color:#6B6B70">Carregando profissionais…</p>
 </div>
 
 <!-- Topbar -->
@@ -123,35 +152,119 @@
 <!-- Sidebar -->
 <div class="sidebar">
   <div class="filters">
+
+    <!-- ESPECIALIDADE: select + busca livre -->
     <div>
       <label>Especialidade</label>
       <select id="filtroEsp" onchange="filtrar()">
         <option value="">Todas as especialidades</option>
-        <option>Arquitetura e Urbanismo</option>
-        <option>Engenharia</option>
-        <option>Pedreiro</option>
-        <option>Eletricista</option>
-        <option>Encanador</option>
-        <option>Pintor</option>
-        <option>Gesseiro</option>
-        <option>Azulejista</option>
-        <option>Carpinteiro</option>
-        <option>Serralheiro</option>
+        <optgroup label="Projeto e Responsabilidade Técnica">
+          <option>Arquitetura e Urbanismo</option>
+          <option>Engenharia Civil</option>
+          <option>Engenharia Elétrica</option>
+          <option>Engenharia Hidráulica / Sanitária</option>
+          <option>Engenharia Estrutural</option>
+          <option>Engenharia Ambiental</option>
+          <option>Topografia</option>
+          <option>Designer de Interiores</option>
+          <option>Paisagismo</option>
+        </optgroup>
+        <optgroup label="Execução e Obra">
+          <option>Mestre de Obras</option>
+          <option>Pedreiro / Alvenaria</option>
+          <option>Eletricista</option>
+          <option>Encanador / Hidráulica</option>
+          <option>Pintor</option>
+          <option>Gesseiro / Drywall</option>
+          <option>Azulejista / Revestimento</option>
+          <option>Carpinteiro / Marceneiro</option>
+          <option>Serralheiro / Soldador</option>
+          <option>Impermeabilizador</option>
+          <option>Instalador de Pisos</option>
+          <option>Vidraceiro / Esquadrias</option>
+          <option>Ar-Condicionado / HVAC</option>
+          <option>Técnico em Automação Residencial</option>
+          <option>Montador de Estrutura Metálica</option>
+          <option>Instalador Solar / Energias Renováveis</option>
+          <option>Técnico em Segurança do Trabalho (NR-18)</option>
+        </optgroup>
       </select>
+      <input type="text" id="filtroBusca" placeholder="ou digite a profissão..." style="margin-top:6px;"
+        oninput="filtrar()" autocomplete="off">
     </div>
+
+    <!-- MODO DE CONTRATAÇÃO -->
     <div>
-      <label>Grau de confiança</label>
-      <select id="filtroGrau" onchange="filtrar()">
-        <option value="">Todos</option>
-        <option value="1">Grau 1 — RT (Arquiteto/Engenheiro)</option>
-        <option value="2">Grau 2 — Profissional Indicado</option>
-      </select>
+      <label>Grau de Contratação</label>
+      <div class="modo-tabs">
+        <button class="modo-tab ativo" id="tabAvaliacao" onclick="setModo('avaliacao')">⭐ Por Avaliação</button>
+        <button class="modo-tab"       id="tabRede"      onclick="setModo('rede')">🌐 Toda a rede</button>
+      </div>
     </div>
-    <button class="btn-loc" onclick="usarMinhaLocalizacao()">
+
+    <!-- PAINEL: critérios de avaliação -->
+    <div id="painelAvaliacao" class="visivel">
+      <div style="font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">
+        Nota mínima por critério
+      </div>
+
+      <div class="criterio-row">
+        <div class="criterio-nome">Qualidade do serviço</div>
+        <div class="criterio-estrelas" data-criterio="qualidade" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="criterio-row">
+        <div class="criterio-nome">Cumprimento do prazo</div>
+        <div class="criterio-estrelas" data-criterio="prazo" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="criterio-row">
+        <div class="criterio-nome">Comunicação</div>
+        <div class="criterio-estrelas" data-criterio="comunicacao" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="criterio-row">
+        <div class="criterio-nome">Organização e limpeza</div>
+        <div class="criterio-estrelas" data-criterio="organizacao" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="criterio-row">
+        <div class="criterio-nome">Pontualidade</div>
+        <div class="criterio-estrelas" data-criterio="pontualidade" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="criterio-row">
+        <div class="criterio-nome">Custo-benefício</div>
+        <div class="criterio-estrelas" data-criterio="custoBeneficio" onclick="setCriterio(this)">
+          <span class="estrela" data-v="1">★</span><span class="estrela" data-v="2">★</span>
+          <span class="estrela" data-v="3">★</span><span class="estrela" data-v="4">★</span><span class="estrela" data-v="5">★</span>
+        </div>
+      </div>
+
+      <div class="criterio-hint">Selecione a nota mínima em cada critério. Clique novamente na mesma estrela para limpar.</div>
+
+      <button onclick="limparCriterios()" style="margin-top:8px;font-size:12px;color:var(--violet);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;">
+        Limpar filtros de avaliação
+      </button>
+    </div>
+
+    <!-- Botão localização -->
+    <button class="btn-loc" id="btnLoc" onclick="usarMinhaLocalizacao()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
       Minha localização
     </button>
   </div>
+
   <div class="stats-bar" id="statsBar">Carregando…</div>
   <div class="sidebar-inner">
     <div class="lista" id="lista"></div>
@@ -167,27 +280,59 @@ const API = 'https://imoveli-backend-production.up.railway.app';
 
 let map, todos = [], filtrados = [], userMarker = null, userLat = null, userLng = null;
 const markers = new Map();
-let markerAtivo = null;
 
-// ── INICIALIZA MAPA ──
+// Estado dos critérios de avaliação: { qualidade: 0..5, prazo: 0..5, ... }
+const criterios = { qualidade: 0, prazo: 0, comunicacao: 0, organizacao: 0, pontualidade: 0, custoBeneficio: 0 };
+let modoAtual = 'avaliacao';
+
+// ── MAPA ──
 map = L.map('map', { zoomControl: true }).setView([-14.5, -51.5], 5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   maxZoom: 19
 }).addTo(map);
 
-// Ícones customizados
 function criarIcone(grau, ativo = false) {
   const cor = grau === 1 ? '#16B378' : '#6E30D9';
-  const borda = ativo ? '#fff' : cor;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">
     <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26S32 28 32 16C32 7.2 24.8 0 16 0z" fill="${cor}"/>
     <circle cx="16" cy="16" r="8" fill="white"/>
     <text x="16" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="${cor}">${grau}</text>
   </svg>`;
-  return L.divIcon({
-    html: svg, className: '', iconSize: [32, 42], iconAnchor: [16, 42], popupAnchor: [0, -44]
+  return L.divIcon({ html: svg, className: '', iconSize: [32, 42], iconAnchor: [16, 42], popupAnchor: [0, -44] });
+}
+
+// ── MODO DE CONTRATAÇÃO ──
+function setModo(modo) {
+  modoAtual = modo;
+  document.getElementById('tabAvaliacao').classList.toggle('ativo', modo === 'avaliacao');
+  document.getElementById('tabRede').classList.toggle('ativo', modo === 'rede');
+  document.getElementById('painelAvaliacao').classList.toggle('visivel', modo === 'avaliacao');
+  filtrar();
+}
+
+// ── CRITÉRIOS (estrelas) ──
+function setCriterio(container) {
+  const criterio = container.dataset.criterio;
+  const clicada = event.target.closest('.estrela');
+  if (!clicada) return;
+  const val = parseInt(clicada.dataset.v);
+  // Clique na mesma estrela = limpa
+  criterios[criterio] = criterios[criterio] === val ? 0 : val;
+  renderEstrelas(container, criterios[criterio]);
+  filtrar();
+}
+
+function renderEstrelas(container, valor) {
+  container.querySelectorAll('.estrela').forEach(el => {
+    el.classList.toggle('preenchida', parseInt(el.dataset.v) <= valor);
   });
+}
+
+function limparCriterios() {
+  Object.keys(criterios).forEach(k => criterios[k] = 0);
+  document.querySelectorAll('.criterio-estrelas').forEach(c => renderEstrelas(c, 0));
+  filtrar();
 }
 
 // ── CARREGA PROFISSIONAIS ──
@@ -200,27 +345,45 @@ async function carregar() {
     document.getElementById('overlay-loading').style.display = 'none';
   } catch (e) {
     document.getElementById('overlay-loading').innerHTML =
-      '<p style="color:#ff4b5c">Erro ao carregar profissionais. Tente novamente.</p>';
+      '<p style="color:#ff4b5c;font-size:14px;">Erro ao carregar profissionais. Tente novamente.</p>';
   }
 }
 
 // ── FILTROS ──
 function filtrar() {
-  const esp = document.getElementById('filtroEsp').value.toLowerCase();
-  const grau = document.getElementById('filtroGrau').value;
+  const espSelect = document.getElementById('filtroEsp').value.toLowerCase().trim();
+  const espBusca  = document.getElementById('filtroBusca').value.toLowerCase().trim();
+  // Se select tem valor, usa select; senão usa campo texto
+  const esp = espSelect || espBusca;
 
   filtrados = todos.filter(p => {
-    if (esp && !p.especialidade.toLowerCase().includes(esp)) return false;
-    if (grau && String(p.grau) !== grau) return false;
+    const especialidade = (p.especialidade || '').toLowerCase();
+    if (esp && !especialidade.includes(esp)) return false;
+
+    // Filtro por avaliação
+    if (modoAtual === 'avaliacao') {
+      const nota = p.reputacao?.mediaNota || 0;
+      const temFiltro = Object.values(criterios).some(v => v > 0);
+      if (temFiltro) {
+        // Até o sistema de critérios individuais estar no backend,
+        // usa mediaNota como proxy para todos os critérios ativados
+        const minRequerido = Math.max(...Object.values(criterios));
+        if (nota < minRequerido) return false;
+      }
+    }
     return true;
   });
 
-  // Adiciona distância se tiver localização do usuário
+  // Ordena por distância se tiver localização; senão por nota
   if (userLat !== null) {
     filtrados = filtrados.map(p => ({
       ...p,
       distKm: haversine(userLat, userLng, p.lat, p.lng)
     })).sort((a, b) => a.distKm - b.distKm);
+  } else {
+    filtrados = [...filtrados].sort((a, b) =>
+      (b.reputacao?.mediaNota || 0) - (a.reputacao?.mediaNota || 0)
+    );
   }
 
   atualizarMarcadores();
@@ -235,14 +398,12 @@ function haversine(lat1, lng1, lat2, lng2) {
   return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) * 10) / 10;
 }
 
-// ── MARCADORES NO MAPA ──
+// ── MARCADORES ──
 function atualizarMarcadores() {
-  // Remove marcadores que não estão mais no filtro
   const idsAtivos = new Set(filtrados.map(p => p.id));
   for (const [id, m] of markers) {
     if (!idsAtivos.has(id)) { map.removeLayer(m); markers.delete(id); }
   }
-  // Adiciona/atualiza marcadores
   for (const p of filtrados) {
     if (!markers.has(p.id)) {
       const m = L.marker([p.lat, p.lng], { icon: criarIcone(p.grau) });
@@ -255,14 +416,15 @@ function atualizarMarcadores() {
 }
 
 function criarPopup(p) {
-  const nota = p.reputacao.mediaNota ? `⭐ ${p.reputacao.mediaNota} (${p.reputacao.totalServicos} serv.)` : 'Novo na plataforma';
+  const nota = p.reputacao?.mediaNota
+    ? `⭐ ${p.reputacao.mediaNota} (${p.reputacao.totalServicos} avaliações)`
+    : 'Novo na plataforma';
   const preco = p.faixaPreco ? `💰 R$${p.faixaPreco.min}–${p.faixaPreco.max}/dia` : '';
   const loc = [p.cidade, p.uf].filter(Boolean).join(' — ');
   const grauLabel = p.grau === 1 ? '✅ Responsável Técnico' : '🔷 Profissional Indicado';
   const fiadorHtml = p.fiador
     ? `<div class="popup-fiador">🔗 RT: ${p.fiador.nome} (${p.fiador.conselho}/${p.fiador.uf} · ${p.fiador.registro})</div>`
     : '';
-
   return `<div class="popup-prof">
     <h3>${p.nome}</h3>
     <div class="popup-esp">${p.especialidade}</div>
@@ -273,7 +435,7 @@ function criarPopup(p) {
     </div>
     ${preco ? `<div class="popup-preco">${preco}</div>` : ''}
     ${fiadorHtml}
-    <button class="btn-contatar" onclick="window.open('/index.html#contratar','_self')">Ver perfil completo</button>
+    <button class="btn-contatar" onclick="window.open('/index.html','_self')">Ver perfil completo</button>
   </div>`;
 }
 
@@ -281,13 +443,17 @@ function criarPopup(p) {
 function atualizarLista() {
   const el = document.getElementById('lista');
   if (!filtrados.length) {
-    el.innerHTML = '<div class="vazio">Nenhum profissional encontrado com os filtros selecionados.</div>';
+    const temFiltroAval = modoAtual === 'avaliacao' && Object.values(criterios).some(v => v > 0);
+    el.innerHTML = `<div class="vazio">
+      Nenhum profissional encontrado com os filtros selecionados.
+      ${temFiltroAval ? '<br><br>Tente diminuir a nota mínima exigida nos critérios.' : ''}
+    </div>`;
     return;
   }
   el.innerHTML = filtrados.map(p => {
-    const loc = [p.cidade, p.uf].filter(Boolean).join(', ');
+    const loc  = [p.cidade, p.uf].filter(Boolean).join(', ');
     const dist = p.distKm != null ? `${p.distKm} km` : null;
-    const nota = p.reputacao.mediaNota ? `⭐ ${p.reputacao.mediaNota}` : null;
+    const nota = p.reputacao?.mediaNota ? `⭐ ${p.reputacao.mediaNota}` : null;
     return `<div class="card-prof" id="card-${p.id}" onclick="focarProfissional('${p.id}')">
       <div class="nome">${p.nome}</div>
       <div class="esp">${p.especialidade}</div>
@@ -306,8 +472,9 @@ function atualizarStats() {
   const total = filtrados.length;
   const grau1 = filtrados.filter(p => p.grau === 1).length;
   const grau2 = filtrados.filter(p => p.grau === 2).length;
+  const modoLabel = modoAtual === 'avaliacao' ? ' · modo avaliação' : ' · toda a rede';
   document.getElementById('statsBar').innerHTML =
-    `<strong>${total}</strong> profissional${total !== 1 ? 'is' : ''} — <strong>${grau1}</strong> RT · <strong>${grau2}</strong> indicados`;
+    `<strong>${total}</strong> profissional${total !== 1 ? 'is' : ''} — <strong>${grau1}</strong> RT · <strong>${grau2}</strong> indicados<span style="opacity:.6">${modoLabel}</span>`;
 }
 
 // ── FOCO ──
@@ -317,7 +484,6 @@ function focarProfissional(id) {
   map.flyTo([p.lat, p.lng], 14, { duration: 1 });
   const m = markers.get(id);
   if (m) m.openPopup();
-  // Destaca card
   document.querySelectorAll('.card-prof').forEach(el => el.classList.remove('ativo'));
   const card = document.getElementById(`card-${id}`);
   if (card) { card.classList.add('ativo'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
@@ -329,25 +495,23 @@ function destacarCard(id) {
   if (card) { card.classList.add('ativo'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
 }
 
-// ── GEOLOCALIZAÇÃO DO USUÁRIO ──
+// ── GEOLOCALIZAÇÃO ──
 function usarMinhaLocalizacao() {
   if (!navigator.geolocation) return alert('Seu navegador não suporta geolocalização.');
-  const btn = document.querySelector('.btn-loc');
+  const btn = document.getElementById('btnLoc');
   btn.textContent = 'Detectando…';
   navigator.geolocation.getCurrentPosition(pos => {
     userLat = pos.coords.latitude;
     userLng = pos.coords.longitude;
-    // Marca posição do usuário
     if (userMarker) map.removeLayer(userMarker);
     userMarker = L.circleMarker([userLat, userLng], {
-      radius: 10, fillColor: '#FF4B5C', color: '#fff', weight: 3,
-      fillOpacity: 0.9
+      radius: 10, fillColor: '#FF4B5C', color: '#fff', weight: 3, fillOpacity: 0.9
     }).bindPopup('<b>Você está aqui</b>').addTo(map);
     map.flyTo([userLat, userLng], 12, { duration: 1.2 });
     btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
     btn.style.background = 'var(--mint)';
-    filtrar(); // reordena por distância
-  }, err => {
+    filtrar();
+  }, () => {
     btn.textContent = 'Minha localização';
     alert('Não foi possível obter sua localização. Verifique as permissões do navegador.');
   });
@@ -355,16 +519,19 @@ function usarMinhaLocalizacao() {
 
 // ── INICIA ──
 carregar().then(() => {
-  // Se vier ?lat=X&lng=Y da home, centraliza e ativa localização do usuário
   const params = new URLSearchParams(window.location.search);
   const lat = parseFloat(params.get('lat'));
   const lng = parseFloat(params.get('lng'));
   if (Number.isFinite(lat) && Number.isFinite(lng)) {
     userLat = lat; userLng = lng;
+    if (userMarker) map.removeLayer(userMarker);
     userMarker = L.circleMarker([lat, lng], {
       radius: 10, color: '#16B378', fillColor: '#16B378', fillOpacity: 0.25, weight: 2
     }).addTo(map).bindPopup('📍 Sua localização').openPopup();
     map.flyTo([lat, lng], 12, { duration: 1.2 });
+    const btn = document.getElementById('btnLoc');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
+    btn.style.background = 'var(--mint)';
     filtrar();
   }
 });
