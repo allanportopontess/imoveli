@@ -98,6 +98,8 @@
     .card-prof .esp { font-size: 12px; color: var(--violet); font-weight: 600; margin: 2px 0; }
     .card-prof .sub { font-size: 12px; color: var(--ink-soft); }
     .card-prof .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .btn-ver-perfil { display: block; margin-top: 10px; padding: 7px 12px; background: var(--violet); color: #fff; border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; width: 100%; }
+    .btn-ver-perfil:hover { background: var(--violet-deep); }
     .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; background: var(--mist); color: var(--ink-soft); }
     .tag.grau1 { background: #edf9f4; color: var(--mint); }
     .tag.grau2 { background: var(--violet-wash); color: var(--violet); }
@@ -459,7 +461,7 @@ function criarPopup(p) {
     ${criteriosHtml}
     ${preco ? `<div class="popup-preco">${preco}</div>` : ''}
     ${fiadorHtml}
-    <button class="btn-contatar" onclick="window.open('/index.html','_self')">Ver perfil completo</button>
+    <button class="btn-contatar" onclick="window.open('/perfil-profissional.html?tipo=${p.grau===1?'fiador':'prestador'}&id=${p.id}','_self')">Ver perfil e contratar</button>
   </div>`;
 }
 
@@ -478,6 +480,7 @@ function atualizarLista() {
     const loc  = [p.cidade, p.uf].filter(Boolean).join(', ');
     const dist = p.distKm != null ? `${p.distKm} km` : null;
     const nota = p.reputacao?.mediaNota ? `⭐ ${p.reputacao.mediaNota}` : null;
+    const perfilUrl = `/perfil-profissional.html?tipo=${p.grau === 1 ? 'fiador' : 'prestador'}&id=${p.id}`;
     return `<div class="card-prof" id="card-${p.id}" onclick="focarProfissional('${p.id}')">
       <div class="nome">${p.nome}</div>
       <div class="esp">${p.especialidade}</div>
@@ -488,6 +491,7 @@ function atualizarLista() {
         ${nota ? `<span class="tag nota">${nota}</span>` : ''}
         ${p.fiador ? `<span class="tag" style="background:#f0f4ff;color:#3b5bdb">RT: ${p.fiador.nome.split(' ')[0]}</span>` : ''}
       </div>
+      <a class="btn-ver-perfil" href="${perfilUrl}">Ver Perfil e Contratar →</a>
     </div>`;
   }).join('');
 }

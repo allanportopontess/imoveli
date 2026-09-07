@@ -1648,6 +1648,209 @@ app.get('/api/base-conhecimento', async (req, res) => {
 });
 
 // ============================================
+// PERFIL PÚBLICO (sem autenticação)
+// ============================================
+
+app.get('/api/profissional-publico/:tipo/:id', async (req, res) => {
+  try {
+    const { tipo, id } = req.params;
+    if (!['fiador', 'prestador'].includes(tipo)) {
+      return res.status(400).json({ success: false, error: 'Tipo inválido' });
+    }
+
+    const CRIT_COL = tipo === 'fiador' ? 'fiador_id' : 'prestador_id';
+    const tabela = tipo === 'fiador' ? 'fiadores' : 'prestadores';
+
+    const { rows } = await query(
+      `SELECT * FROM ${tabela} WHERE id=$1`, [id]
+    );
+    if (!rows.length) return res.status(404).json({ success: false, error: 'Profissional não encontrado' });
+    const r = rows[0];
+
+    // Calcula médias por critério
+    const { rows: av } = await query(
+      `SELECT
+        COUNT(*) as total,
+        AVG((avaliacao->>'nota')::numeric) as media_nota,
+        AVG((avaliacao->>'qualidade')::numeric) as media_qualidade,
+        AVG((avaliacao->>'prazo')::numeric) as media_prazo,
+        AVG((avaliacao->>'comunicacao')::numeric) as media_comunicacao,
+        AVG((avaliacao->>'organizacao')::numeric) as media_organizacao,
+        AVG((avaliacao->>'pontualidade')::numeric) as media_pontualidade,
+        AVG((avaliacao->>'custoBeneficio')::numeric) as media_custo_beneficio
+       FROM servicos WHERE ${CRIT_COL}=$1 AND avaliacao IS NOT NULL`,
+      [id]
+    );
+    const arred = v => v ? Math.round(parseFloat(v) * 10) / 10 : null;
+    const av0 = av[0] || {};
+    const reputacao = {
+      totalServicos: parseInt(av0.total) || 0,
+      mediaNota: arred(av0.media_nota),
+      qualidade: arred(av0.media_qualidade),
+      prazo: arred(av0.media_prazo),
+      comunicacao: arred(av0.media_comunicacao),
+      organizacao: arred(av0.media_organizacao),
+      pontualidade: arred(av0.media_pontualidade),
+      custoBeneficio: arred(av0.media_custo_beneficio)
+    };
+
+    // Serviços concluídos públicos (portfolio)
+    const { rows: servicos } = await query(
+      `SELECT id, descricao, categoria, status, fotos_antes, fotos_depois, avaliacao, data_conclusao
+       FROM servicos WHERE ${CRIT_COL}=$1 AND status='concluido'
+       ORDER BY data_conclusao DESC LIMIT 12`,
+      [id]
+    );
+
+    // Se prestador, busca fiador responsável
+    let fiador = null;
+    if (tipo === 'prestador') {
+      const { rows: ind } = await query(
+        `SELECT f.id, f.nome, f.conselho, f.uf, f.registro FROM indicacoes i
+         JOIN fiadores f ON f.id=i.fiador_id
+         WHERE i.prestador_id=$1 AND i.status='aceita' LIMIT 1`,
+        [id]
+      );
+      if (ind.length) fiador = ind[0];
+    }
+
+    const serializado = tipo === 'fiador' ? rowToFiador(r) : rowToPrestador(r);
+    res.json({ success: true, profissional: { ...serializado, reputacao, servicos, fiador } });
+  } catch (err) {
+    console.error('[GET /profissional-publico]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// ============================================
+// CONTRATOS (CONTRATAÇÃO DIRETA)
+// ============================================
+
+app.post('/api/contratos', auth, async (req, res) => {
+  try {
+    const { profissionalTipo, profissionalId, escopo, quantidade, metrosQuadrados, prazo, valorServico } = req.body;
+
+    if (!profissionalTipo || !profissionalId || !escopo?.trim() || !valorServico) {
+      return res.status(400).json({ success: false, error: 'profissionalTipo, profissionalId, escopo e valorServico são obrigatórios' });
+    }
+    if (!['fiador', 'prestador'].includes(profissionalTipo)) {
+      return res.status(400).json({ success: false, error: 'Tipo inválido' });
+    }
+    const vServico = Number(valorServico);
+    if (isNaN(vServico) || vServico <= 0) {
+      return res.status(400).json({ success: false, error: 'Valor do serviço inválido' });
+    }
+
+    // Busca nome do profissional
+    const tabela = profissionalTipo === 'fiador' ? 'fiadores' : 'prestadores';
+    const { rows: prof } = await query(`SELECT nome, status FROM ${tabela} WHERE id=$1`, [profissionalId]);
+    if (!prof.length) return res.status(404).json({ success: false, error: 'Profissional não encontrado' });
+    if (prof[0].status !== 'verificado' && prof[0].status !== 'ativo') {
+      return res.status(400).json({ success: false, error: 'Profissional não está disponível' });
+    }
+
+    const taxaPlataforma = Math.round(vServico * 0.10 * 100) / 100;
+    const valorTotal     = Math.round((vServico + taxaPlataforma) * 100) / 100;
+    const id = 'contrato_' + Date.now();
+
+    const { rows } = await query(
+      `INSERT INTO contratos
+         (id, cliente_email, profissional_tipo, profissional_id, profissional_nome,
+          escopo, quantidade, metros_quadrados, prazo, valor_servico, taxa_plataforma, valor_total)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *`,
+      [id, req.user.email, profissionalTipo, profissionalId, prof[0].nome,
+       escopo.trim(), quantidade || null, metrosQuadrados || null,
+       prazo || 'medio', vServico, taxaPlataforma, valorTotal]
+    );
+
+    res.json({ success: true, contrato: rows[0] });
+  } catch (err) {
+    console.error('[POST /contratos]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno ao criar contrato' });
+  }
+});
+
+app.get('/api/meus-contratos', auth, async (req, res) => {
+  try {
+    const { rows } = await query(
+      `SELECT * FROM contratos WHERE cliente_email=$1 ORDER BY created_at DESC`,
+      [req.user.email]
+    );
+    res.json({ success: true, contratos: rows });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+app.get('/api/contratos/:id', auth, async (req, res) => {
+  try {
+    const { rows } = await query(`SELECT * FROM contratos WHERE id=$1`, [req.params.id]);
+    if (!rows.length) return res.status(404).json({ success: false, error: 'Contrato não encontrado' });
+    const c = rows[0];
+    if (c.cliente_email !== req.user.email && req.user.fiadorId !== c.profissional_id) {
+      return res.status(403).json({ success: false, error: 'Acesso negado' });
+    }
+    res.json({ success: true, contrato: c });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// Pagamento simulado (dev/MVP — substitua pelo webhook real do Mercado Pago em produção)
+app.post('/api/contratos/:id/pagamento-simulado', auth, async (req, res) => {
+  try {
+    const { rows } = await query(`SELECT * FROM contratos WHERE id=$1`, [req.params.id]);
+    if (!rows.length) return res.status(404).json({ success: false, error: 'Contrato não encontrado' });
+    const c = rows[0];
+    if (c.cliente_email !== req.user.email) return res.status(403).json({ success: false, error: 'Acesso negado' });
+    if (c.status !== 'aguardando_pagamento') {
+      return res.status(400).json({ success: false, error: `Contrato já está como: ${c.status}` });
+    }
+
+    const fakePagamentoId = 'pag_sim_' + Date.now();
+    const { rows: updated } = await query(
+      `UPDATE contratos SET status='pago', pagamento_id=$1, pagamento_metodo='simulado', chat_liberado=TRUE
+       WHERE id=$2 RETURNING *`,
+      [fakePagamentoId, req.params.id]
+    );
+    res.json({ success: true, contrato: updated[0], mensagem: 'Pagamento confirmado! Chat com o profissional liberado.' });
+  } catch (err) {
+    console.error('[POST /contratos/:id/pagamento-simulado]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
+// Webhook real do Mercado Pago (preparado para produção)
+app.post('/api/pagamento/webhook', async (req, res) => {
+  try {
+    const { type, data } = req.body;
+    if (type !== 'payment') return res.json({ ok: true });
+
+    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
+    if (!MP_ACCESS_TOKEN) return res.status(503).json({ error: 'MP não configurado' });
+
+    // Busca dados do pagamento no Mercado Pago
+    const mpResp = await fetch(`https://api.mercadopago.com/v1/payments/${data.id}`, {
+      headers: { Authorization: `Bearer ${MP_ACCESS_TOKEN}` }
+    });
+    const pag = await mpResp.json();
+    if (pag.status !== 'approved') return res.json({ ok: true, status: pag.status });
+
+    const contratoId = pag.external_reference;
+    await query(
+      `UPDATE contratos SET status='pago', pagamento_id=$1, pagamento_metodo=$2, chat_liberado=TRUE
+       WHERE id=$3 AND status='aguardando_pagamento'`,
+      [String(pag.id), pag.payment_type_id || 'mp', contratoId]
+    );
+    console.log(`✅ Pagamento aprovado: contrato ${contratoId}, pag ${pag.id}`);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[POST /pagamento/webhook]', err.message);
+    res.status(500).json({ error: 'Erro no webhook' });
+  }
+});
+
+// ============================================
 // HEALTH
 // ============================================
 
@@ -1768,6 +1971,28 @@ async function runMigrations() {
       criada_em TIMESTAMPTZ DEFAULT NOW()
     )`,
     `CREATE INDEX IF NOT EXISTS idx_cm_sessao ON chat_mensagens(sessao_id)`,
+    // Contratos de serviço (contratação direta com pagamento)
+    `CREATE TABLE IF NOT EXISTS contratos (
+      id              TEXT PRIMARY KEY,
+      cliente_email   TEXT NOT NULL,
+      profissional_tipo TEXT NOT NULL,
+      profissional_id TEXT NOT NULL,
+      profissional_nome TEXT NOT NULL,
+      escopo          TEXT NOT NULL,
+      quantidade      NUMERIC,
+      metros_quadrados NUMERIC,
+      prazo           TEXT DEFAULT 'medio',
+      valor_servico   NUMERIC NOT NULL,
+      taxa_plataforma NUMERIC NOT NULL,
+      valor_total     NUMERIC NOT NULL,
+      status          TEXT DEFAULT 'aguardando_pagamento',
+      pagamento_id    TEXT,
+      pagamento_metodo TEXT,
+      chat_liberado   BOOLEAN DEFAULT FALSE,
+      created_at      TIMESTAMPTZ DEFAULT NOW()
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_contratos_cliente ON contratos(cliente_email)`,
+    `CREATE INDEX IF NOT EXISTS idx_contratos_prof ON contratos(profissional_tipo, profissional_id)`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }

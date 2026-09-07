@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Profissional — IMOVELI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --violet: #6E30D9; --violet-deep: #4B1F94; --violet-wash: #F2ECFC;
+      --mint: #16B378; --coral: #FF4B5C; --ink: #161616; --ink-soft: #6B6B70;
+      --paper: #FAFAFA; --mist: #EAE8ED; --amber: #F59E0B;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    html, body { font-family: var(--font); background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      height: 56px; background: #fff; border-bottom: 1px solid var(--mist);
+      display: flex; align-items: center; gap: 12px; padding: 0 20px;
+    }
+    .topbar .logo { font-weight: 800; font-size: 17px; color: var(--violet); text-decoration: none; }
+    .topbar .spacer { flex: 1; }
+    .btn-back { font-size: 13px; font-weight: 600; color: var(--violet); background: var(--violet-wash); border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; text-decoration: none; }
+
+    /* LAYOUT */
+    .page { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    /* HERO DO PROFISSIONAL */
+    .hero {
+      background: #fff; border: 1px solid var(--mist); border-radius: 16px;
+      padding: 28px; display: flex; gap: 24px; align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--violet-wash); display: flex; align-items: center; justify-content: center;
+      font-size: 32px; flex-shrink: 0; border: 3px solid var(--violet);
+    }
+    .hero-info { flex: 1; min-width: 0; }
+    .hero-nome { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+    .hero-esp { font-size: 14px; color: var(--violet); font-weight: 600; margin-bottom: 8px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .badge-grau1 { background: #edf9f4; color: var(--mint); }
+    .badge-grau2 { background: var(--violet-wash); color: var(--violet); }
+    .badge-conselho { background: #e8f4ff; color: #1971c2; }
+    .badge-local { background: #fff3e0; color: #c05a11; }
+    .hero-bio { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+    .btn-contratar {
+      margin-top: 16px; padding: 12px 24px; background: var(--violet); color: #fff;
+      border: none; border-radius: 10px; font-size: 15px; font-weight: 700;
+      cursor: pointer; width: 100%; transition: background .15s;
+    }
+    .btn-contratar:hover { background: var(--violet-deep); }
+    .btn-contratar:disabled { background: var(--mist); color: var(--ink-soft); cursor: not-allowed; }
+
+    /* SEÇÕES */
+    .secao { background: #fff; border: 1px solid var(--mist); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+    .secao-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--ink-soft); margin-bottom: 16px; }
+
+    /* REPUTAÇÃO */
+    .rep-geral { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--mist); }
+    .rep-nota-big { font-size: 48px; font-weight: 900; color: var(--violet); line-height: 1; }
+    .rep-nota-info { color: var(--ink-soft); font-size: 13px; }
+    .rep-nota-info strong { display: block; font-size: 15px; color: var(--ink); }
+    .criterios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .criterio-item { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    .criterio-nome { color: var(--ink-soft); }
+    .criterio-val { font-weight: 700; color: var(--amber); }
+    .stars { letter-spacing: 1px; }
+
+    /* SKILLS */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { background: var(--violet-wash); color: var(--violet); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+
+    /* FIADOR */
+    .fiador-card { background: var(--violet-wash); border-radius: 10px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+    .fiador-icon { font-size: 28px; }
+    .fiador-info { font-size: 13px; }
+    .fiador-info strong { display: block; font-size: 14px; color: var(--violet); }
+    .fiador-info span { color: var(--ink-soft); }
+
+    /* PORTFOLIO */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .portfolio-card { border: 1px solid var(--mist); border-radius: 10px; overflow: hidden; background: var(--paper); }
+    .portfolio-foto { width: 100%; height: 130px; object-fit: cover; background: var(--mist); display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 28px; }
+    .portfolio-desc { padding: 10px 12px; font-size: 12px; color: var(--ink-soft); }
+    .portfolio-desc strong { display: block; font-size: 13px; color: var(--ink); margin-bottom: 3px; }
+    .sem-portfolio { color: var(--ink-soft); font-size: 13px; text-align: center; padding: 24px; }
+
+    /* FAIXA PREÇO */
+    .preco-range { display: flex; gap: 12px; }
+    .preco-box { flex: 1; background: var(--paper); border: 1.5px solid var(--mist); border-radius: 10px; padding: 14px; text-align: center; }
+    .preco-box small { font-size: 11px; color: var(--ink-soft); display: block; margin-bottom: 4px; }
+    .preco-box strong { font-size: 20px; color: var(--mint); font-weight: 800; }
+
+    /* LOADING */
+    .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; gap: 12px; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--mist); border-top-color: var(--violet); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .erro { text-align: center; color: var(--coral); padding: 48px 20px; font-size: 15px; }
+
+    /* MODAL SOLICITAR */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 2000;
+      display: flex; align-items: flex-end; justify-content: center;
+      animation: fadeIn .2s;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal {
+      background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-width: 560px;
+      max-height: 92vh; overflow-y: auto; padding: 28px 24px 40px;
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-titulo { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 20px; }
+    .modal-close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ink-soft); margin-top: -4px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--ink-soft); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 10px 12px; border: 1.5px solid var(--mist); border-radius: 8px;
+      font-size: 14px; font-family: var(--font); color: var(--ink); background: var(--paper); outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--violet); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Resumo de preço no modal */
+    .preco-resumo { background: var(--violet-wash); border-radius: 12px; padding: 16px; margin: 20px 0; }
+    .preco-resumo-linha { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); margin-bottom: 8px; }
+    .preco-resumo-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 800; color: var(--violet); padding-top: 10px; border-top: 1.5px solid #d9c5f7; }
+
+    .prazo-tabs { display: flex; gap: 8px; }
+    .prazo-tab { flex: 1; padding: 8px; border: 1.5px solid var(--mist); border-radius: 8px; background: var(--paper); font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; transition: all .15s; color: var(--ink-soft); }
+    .prazo-tab.ativo { border-color: var(--violet); background: var(--violet-wash); color: var(--violet); }
+
+    .btn-pagar { width: 100%; padding: 14px; background: var(--mint); color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; transition: background .15s; margin-top: 8px; }
+    .btn-pagar:hover { background: #13a369; }
+    .btn-pagar:disabled { background: var(--mist); color: var(--ink-soft); cursor: not-allowed; }
+
+    /* STEP PAGAMENTO */
+    .step-pagamento { text-align: center; padding: 20px 0; }
+    .step-pagamento h3 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+    .step-pagamento p { font-size: 13px; color: var(--ink-soft); margin-bottom: 24px; line-height: 1.6; }
+    .valor-destaque { font-size: 36px; font-weight: 900; color: var(--violet); margin: 12px 0; }
+    .opcoes-pagamento { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .btn-pix { padding: 14px; background: #00b4d8; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; }
+    .btn-cartao { padding: 14px; background: var(--violet); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; }
+    .btn-simular { padding: 12px; background: var(--paper); color: var(--ink-soft); border: 1.5px dashed var(--mist); border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 4px; }
+    .btn-simular:hover { border-color: var(--violet); color: var(--violet); }
+
+    .sucesso-box { text-align: center; padding: 24px 0; }
+    .sucesso-icon { font-size: 56px; margin-bottom: 16px; }
+    .sucesso-box h3 { font-size: 20px; font-weight: 800; color: var(--mint); margin-bottom: 8px; }
+    .sucesso-box p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px; }
+    .btn-ir-chat { display: block; padding: 13px; background: var(--violet); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/index.html" class="logo">IMOVELI</a>
+  <div class="spacer"></div>
+  <a href="/mapa.html" class="btn-back">← Mapa</a>
+</div>
+
+<div class="page" id="pagina">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p style="color:var(--ink-soft);font-size:14px;">Carregando perfil…</p>
+  </div>
+</div>
+
+<!-- MODAL SOLICITAR SERVIÇO -->
+<div class="modal-overlay" id="modalOverlay" hidden onclick="fecharModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="document.getElementById('modalOverlay').hidden=true">✕</button>
+    <div id="modalConteudo"></div>
+  </div>
+</div>
+
+<script>
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3001' : '';
+
+const params  = new URLSearchParams(location.search);
+const TIPO    = params.get('tipo') || 'fiador';
+const ID      = params.get('id');
+const NOME    = params.get('nome') || '';
+
+let profissional = null;
+let prazoAtual   = 'medio';
+let contratoId   = null;
+let token        = localStorage.getItem('imoToken') || '';
+
+if (!ID) {
+  document.getElementById('loading').innerHTML = '<p class="erro">Parâmetro id ausente na URL.</p>';
+} else {
+  carregarPerfil();
+}
+
+async function carregarPerfil() {
+  try {
+    const r = await fetch(`${API}/api/profissional-publico/${TIPO}/${ID}`);
+    const data = await r.json();
+    if (!data.success) throw new Error(data.error);
+    profissional = data.profissional;
+    renderizarPerfil();
+  } catch (e) {
+    document.getElementById('loading').innerHTML =
+      `<p class="erro">Não foi possível carregar o perfil.<br>${e.message}</p>`;
+  }
+}
+
+function renderizarPerfil() {
+  const p = profissional;
+  const rep = p.reputacao || {};
+  const loc = p.localizacao ? [p.localizacao.cidade, p.localizacao.uf].filter(Boolean).join(' — ') : '';
+  const grauLabel = TIPO === 'fiador' ? '✅ Responsável Técnico' : '🔷 Profissional Indicado';
+  const grauClass = TIPO === 'fiador' ? 'badge-grau1' : 'badge-grau2';
+  const especialidade = TIPO === 'fiador'
+    ? (p.conselho === 'CAU' ? 'Arquitetura e Urbanismo' : 'Engenharia / CREA')
+    : (p.especialidade || 'Prestador de Serviços');
+
+  const skillsHtml = (p.skills || []).length
+    ? `<div class="skills-wrap">${(p.skills).map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>`
+    : '<p style="color:var(--ink-soft);font-size:13px;">Sem skills cadastradas.</p>';
+
+  const fiadorHtml = p.fiador ? `
+    <div class="fiador-card">
+      <div class="fiador-icon">🔗</div>
+      <div class="fiador-info">
+        <strong>${p.fiador.nome}</strong>
+        <span>Responsável Técnico · ${p.fiador.conselho}/${p.fiador.uf} · ${p.fiador.registro}</span>
+      </div>
+    </div>` : '';
+
+  const portfolioHtml = (p.servicos || []).length
+    ? `<div class="portfolio-grid">${p.servicos.map(s => {
+        const foto = (s.fotos_depois || [])[0] || null;
+        const fotoEl = foto
+          ? `<img src="${foto}" class="portfolio-foto" alt="foto serviço" onerror="this.outerHTML='<div class=\\'portfolio-foto\\'>🏗️</div>'">`
+          : `<div class="portfolio-foto">🏗️</div>`;
+        const avNota = s.avaliacao?.nota ? `⭐ ${s.avaliacao.nota}` : '';
+        return `<div class="portfolio-card">
+          ${fotoEl}
+          <div class="portfolio-desc">
+            <strong>${s.categoria || 'Serviço concluído'}</strong>
+            ${s.descricao ? s.descricao.slice(0,80) + (s.descricao.length > 80 ? '…' : '') : ''}
+            ${avNota ? `<span style="color:var(--amber);font-weight:700;display:block;margin-top:4px;">${avNota}</span>` : ''}
+          </div>
+        </div>`;
+      }).join('')}</div>`
+    : '<p class="sem-portfolio">Nenhum serviço concluído ainda.</p>';
+
+  const precoHtml = p.faixaPreco?.min && p.faixaPreco?.max ? `
+    <div class="secao">
+      <div class="secao-titulo">Faixa de Preço</div>
+      <div class="preco-range">
+        <div class="preco-box"><small>A partir de</small><strong>R$${p.faixaPreco.min}</strong></div>
+        <div class="preco-box"><small>Até</small><strong>R$${p.faixaPreco.max}</strong></div>
+      </div>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:10px;">Valores de referência por diária ou m². O valor final é definido no orçamento.</p>
+    </div>` : '';
+
+  const repHtml = rep.totalServicos > 0 ? `
+    <div class="rep-geral">
+      <div class="rep-nota-big">${rep.mediaNota || '—'}</div>
+      <div class="rep-nota-info">
+        <strong>${rep.totalServicos} serviço${rep.totalServicos !== 1 ? 's' : ''} avaliado${rep.totalServicos !== 1 ? 's' : ''}</strong>
+        Nota geral na plataforma
+      </div>
+    </div>
+    <div class="criterios-grid">
+      ${criterioItem('Qualidade', rep.qualidade)}
+      ${criterioItem('Prazo', rep.prazo)}
+      ${criterioItem('Comunicação', rep.comunicacao)}
+      ${criterioItem('Organização', rep.organizacao)}
+      ${criterioItem('Pontualidade', rep.pontualidade)}
+      ${criterioItem('Custo-benefício', rep.custoBeneficio)}
+    </div>` : '<p style="color:var(--ink-soft);font-size:13px;">Ainda não há avaliações nesta plataforma.</p>';
+
+  document.title = `${p.nome} — IMOVELI`;
+  document.getElementById('pagina').innerHTML = `
+    <div class="hero">
+      <div class="avatar">👷</div>
+      <div class="hero-info">
+        <div class="hero-nome">${p.nome}</div>
+        <div class="hero-esp">${especialidade}</div>
+        <div class="hero-badges">
+          <span class="badge ${grauClass}">${grauLabel}</span>
+          ${p.conselho ? `<span class="badge badge-conselho">${p.conselho}/${p.uf} · ${p.registro}</span>` : ''}
+          ${loc ? `<span class="badge badge-local">📍 ${loc}</span>` : ''}
+        </div>
+        <div class="hero-bio">${p.bio || 'Profissional da IMOVELI.'}</div>
+        <button class="btn-contratar" onclick="abrirModalSolicitar()">Solicitar Serviço</button>
+      </div>
+    </div>
+
+    ${p.fiador ? `<div class="secao"><div class="secao-titulo">Responsável Técnico</div>${fiadorHtml}</div>` : ''}
+
+    <div class="secao">
+      <div class="secao-titulo">Reputação Verificada</div>
+      ${repHtml}
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo">Skills e Especialidades</div>
+      ${skillsHtml}
+    </div>
+
+    ${precoHtml}
+
+    <div class="secao">
+      <div class="secao-titulo">Portfólio — Serviços Realizados</div>
+      ${portfolioHtml}
+    </div>
+  `;
+}
+
+function criterioItem(nome, val) {
+  if (val == null) return '';
+  const s = Math.round(val);
+  const estrelas = '★'.repeat(s) + '☆'.repeat(5 - s);
+  return `<div class="criterio-item">
+    <span class="criterio-nome">${nome}</span>
+    <span class="criterio-val"><span class="stars">${estrelas}</span> ${val}</span>
+  </div>`;
+}
+
+// ── MODAL SOLICITAR ──
+function abrirModalSolicitar() {
+  if (!token) {
+    alert('Faça login para solicitar um serviço.');
+    location.href = '/index.html';
+    return;
+  }
+  prazoAtual = 'medio';
+  document.getElementById('modalConteudo').innerHTML = renderFormSolicitar();
+  document.getElementById('modalOverlay').hidden = false;
+  calcularPreco();
+}
+
+function renderFormSolicitar() {
+  const ref = profissional.faixaPreco;
+  const sugestaoMin = ref?.min || 500;
+  const sugestaoMax = ref?.max || 2000;
+  return `
+    <div class="modal-titulo">Solicitar Serviço</div>
+
+    <div class="form-group">
+      <label>Descreva o serviço</label>
+      <textarea id="inEscopo" placeholder="Ex: Instalação elétrica completa em apartamento 65m², incluindo quadro, tomadas e iluminação…" oninput="calcularPreco()"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Quantidade / Dias</label>
+        <input type="number" id="inQtd" placeholder="Ex: 5" min="1" value="" oninput="calcularPreco()">
+      </div>
+      <div class="form-group">
+        <label>Metros quadrados (m²)</label>
+        <input type="number" id="inM2" placeholder="Ex: 65" min="1" value="" oninput="calcularPreco()">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Seu orçamento (R$)</label>
+      <div class="form-row">
+        <input type="number" id="inValMin" placeholder="Mínimo (${sugestaoMin})" min="0" value="${sugestaoMin}" oninput="calcularPreco()">
+        <input type="number" id="inValMax" placeholder="Máximo (${sugestaoMax})" min="0" value="${sugestaoMax}" oninput="calcularPreco()">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Prazo</label>
+      <div class="prazo-tabs">
+        <button class="prazo-tab" onclick="setPrazo('sem_pressa')">🐢 Sem pressa</button>
+        <button class="prazo-tab ativo" onclick="setPrazo('medio')">⏱ Médio prazo</button>
+        <button class="prazo-tab" onclick="setPrazo('urgente')">🔥 Urgente</button>
+      </div>
+    </div>
+
+    <div class="preco-resumo" id="precoResumo"></div>
+
+    <button class="btn-pagar" id="btnProximo" onclick="avancarParaPagamento()">Continuar para Pagamento →</button>
+  `;
+}
+
+function setPrazo(p) {
+  prazoAtual = p;
+  document.querySelectorAll('.prazo-tab').forEach(el => el.classList.remove('ativo'));
+  event.target.classList.add('ativo');
+  calcularPreco();
+}
+
+function calcularPreco() {
+  const valMin = parseFloat(document.getElementById('inValMin')?.value) || 0;
+  const valMax = parseFloat(document.getElementById('inValMax')?.value) || 0;
+  const valorBase = valMin > 0 && valMax > valMin ? (valMin + valMax) / 2 : valMax || valMin || 0;
+  const multPrazo = prazoAtual === 'urgente' ? 1.3 : prazoAtual === 'sem_pressa' ? 0.9 : 1.0;
+  const valorServico = Math.round(valorBase * multPrazo * 100) / 100;
+  const taxa = Math.round(valorServico * 0.10 * 100) / 100;
+  const total = Math.round((valorServico + taxa) * 100) / 100;
+
+  const el = document.getElementById('precoResumo');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="preco-resumo-linha"><span>Valor do serviço</span><span>R$${valorServico.toFixed(2)}</span></div>
+    <div class="preco-resumo-linha"><span>Taxa da plataforma (10%)</span><span>R$${taxa.toFixed(2)}</span></div>
+    <div class="preco-resumo-total"><span>Total</span><span>R$${total.toFixed(2)}</span></div>
+  `;
+
+  const btn = document.getElementById('btnProximo');
+  if (btn) btn.disabled = valorServico <= 0 || !document.getElementById('inEscopo')?.value.trim();
+}
+
+async function avancarParaPagamento() {
+  const escopo = document.getElementById('inEscopo')?.value.trim();
+  const qtd    = parseFloat(document.getElementById('inQtd')?.value) || null;
+  const m2     = parseFloat(document.getElementById('inM2')?.value) || null;
+  const valMin = parseFloat(document.getElementById('inValMin')?.value) || 0;
+  const valMax = parseFloat(document.getElementById('inValMax')?.value) || 0;
+  const valorBase = valMin > 0 && valMax > valMin ? (valMin + valMax) / 2 : valMax || valMin || 0;
+  const multPrazo = prazoAtual === 'urgente' ? 1.3 : prazoAtual === 'sem_pressa' ? 0.9 : 1.0;
+  const valorServico = Math.round(valorBase * multPrazo * 100) / 100;
+
+  if (!escopo) return alert('Descreva o serviço.');
+  if (valorServico <= 0) return alert('Informe o valor mínimo ou máximo.');
+
+  try {
+    const btn = document.getElementById('btnProximo');
+    btn.disabled = true; btn.textContent = 'Criando…';
+
+    const r = await fetch(`${API}/api/contratos`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({
+        profissionalTipo: TIPO, profissionalId: ID,
+        escopo, quantidade: qtd, metrosQuadrados: m2,
+        prazo: prazoAtual, valorServico
+      })
+    });
+    const data = await r.json();
+    if (!data.success) throw new Error(data.error);
+    contratoId = data.contrato.id;
+    const total = parseFloat(data.contrato.valor_total);
+    renderStepPagamento(total);
+  } catch (e) {
+    alert('Erro: ' + e.message);
+    const btn = document.getElementById('btnProximo');
+    if (btn) { btn.disabled = false; btn.textContent = 'Continuar para Pagamento →'; }
+  }
+}
+
+function renderStepPagamento(total) {
+  document.getElementById('modalConteudo').innerHTML = `
+    <div class="modal-titulo">Pagamento</div>
+    <div class="step-pagamento">
+      <p>Revise o valor total. Após o pagamento, o chat com o profissional será liberado automaticamente.</p>
+      <div class="valor-destaque">R$${total.toFixed(2)}</div>
+      <p style="font-size:12px;color:var(--ink-soft);">
+        🔒 O profissional recebe <strong>90%</strong> ao concluir o serviço.<br>
+        A IMOVELI retém <strong>10%</strong> como taxa de contratação segura.
+      </p>
+    </div>
+    <div class="opcoes-pagamento">
+      <button class="btn-pix" onclick="iniciarPagamentoMP('pix')">⚡ Pagar com PIX</button>
+      <button class="btn-cartao" onclick="iniciarPagamentoMP('card')">💳 Pagar com Cartão</button>
+    </div>
+    <button class="btn-simular" onclick="simularPagamento()">🧪 Simular pagamento (modo teste)</button>
+  `;
+}
+
+async function iniciarPagamentoMP(metodo) {
+  alert('Integração com Mercado Pago em breve. Use o modo teste abaixo para continuar.');
+}
+
+async function simularPagamento() {
+  try {
+    const btn = document.querySelector('.btn-simular');
+    btn.disabled = true; btn.textContent = 'Processando…';
+    const r = await fetch(`${API}/api/contratos/${contratoId}/pagamento-simulado`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const data = await r.json();
+    if (!data.success) throw new Error(data.error);
+    renderSucesso();
+  } catch (e) {
+    alert('Erro: ' + e.message);
+    document.querySelector('.btn-simular').disabled = false;
+    document.querySelector('.btn-simular').textContent = '🧪 Simular pagamento (modo teste)';
+  }
+}
+
+function renderSucesso() {
+  document.getElementById('modalConteudo').innerHTML = `
+    <div class="sucesso-box">
+      <div class="sucesso-icon">✅</div>
+      <h3>Pagamento confirmado!</h3>
+      <p>O chat com o profissional foi liberado.<br>Você pode iniciar a conversa agora mesmo.</p>
+      <a href="/index.html" class="btn-ir-chat">Ir para o App →</a>
+    </div>
+  `;
+}
+
+function fecharModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').hidden = true;
+  }
+}
+</script>
+</body>
+</html>
