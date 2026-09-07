@@ -354,7 +354,20 @@ function usarMinhaLocalizacao() {
 }
 
 // ── INICIA ──
-carregar();
+carregar().then(() => {
+  // Se vier ?lat=X&lng=Y da home, centraliza e ativa localização do usuário
+  const params = new URLSearchParams(window.location.search);
+  const lat = parseFloat(params.get('lat'));
+  const lng = parseFloat(params.get('lng'));
+  if (Number.isFinite(lat) && Number.isFinite(lng)) {
+    userLat = lat; userLng = lng;
+    userMarker = L.circleMarker([lat, lng], {
+      radius: 10, color: '#16B378', fillColor: '#16B378', fillOpacity: 0.25, weight: 2
+    }).addTo(map).bindPopup('📍 Sua localização').openPopup();
+    map.flyTo([lat, lng], 12, { duration: 1.2 });
+    filtrar();
+  }
+});
 </script>
 </body>
 </html>

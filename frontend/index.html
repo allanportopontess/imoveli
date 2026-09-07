@@ -1156,14 +1156,6 @@
                         </div>
                         <div class="command-index-arrow">›</div>
                     </div>
-                    <a href="/mapa.html" target="_blank" class="command-index-row" style="text-decoration:none;color:inherit">
-                        <div class="command-index-icon">🗺️</div>
-                        <div>
-                            <div class="command-index-title">Mapa de Profissionais</div>
-                            <div class="command-index-sub">Veja todos os profissionais verificados próximos a você</div>
-                        </div>
-                        <div class="command-index-arrow">›</div>
-                    </a>
                     <a href="/precificacao.html" target="_blank" class="command-index-row" style="text-decoration:none;color:inherit">
                         <div class="command-index-icon">🤖</div>
                         <div>
@@ -1172,6 +1164,26 @@
                         </div>
                         <div class="command-index-arrow">›</div>
                     </a>
+                </div>
+            </div>
+
+            <!-- BLOCO: Busque um profissional próximo -->
+            <div class="section" style="margin-top:8px;">
+                <div style="background:linear-gradient(135deg,var(--violet) 0%,var(--violet-deep) 100%);border-radius:20px;padding:22px 20px;color:white;position:relative;overflow:hidden;">
+                    <!-- fundo decorativo -->
+                    <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;"></div>
+                    <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;"></div>
+                    <div style="font-size:28px;margin-bottom:8px;">🗺️</div>
+                    <div style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:6px;">Busque um profissional próximo</div>
+                    <div style="font-size:13.5px;opacity:.88;margin-bottom:18px;line-height:1.5;">Encontre Responsáveis Técnicos e especialistas verificados perto de você — filtre por especialidade, veja avaliações e distância.</div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <a href="/mapa.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:white;color:var(--violet-deep);font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:12px;text-decoration:none;">
+                            Ver no mapa ›
+                        </a>
+                        <button onclick="solicitarLocalizacaoRapida()" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);color:white;font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:12px;border:none;cursor:pointer;">
+                            📍 Usar minha localização
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1645,7 +1657,51 @@
                     <label>Serviços oferecidos (separados por vírgula)</label>
                     <input type="text" id="perfilServicos" placeholder="Ex: Reparo elétrico, Instalação de tomadas">
                 </div>
-                <button class="btn btn-primary" onclick="handleSalvarPerfilEdicao()">Salvar Perfil</button>
+
+                <!-- LOCALIZAÇÃO — invisível no mapa do profissional, visível só na busca pública -->
+                <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--mist);">
+                    <h3 style="font-size:15px;font-weight:700;margin-bottom:4px;color:var(--ink);">📍 Localização</h3>
+                    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px;">Usada para aparecer no mapa de busca por profissionais próximos. Sua localização exata não é exibida — apenas cidade e distância aproximada.</p>
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <div style="display:flex;gap:8px;">
+                            <input type="text" id="perfilCep" placeholder="00000-000" maxlength="9"
+                                oninput="mascararCEP(this)" onblur="buscarCEP()"
+                                style="flex:1;">
+                            <button type="button" class="btn btn-secondary" style="white-space:nowrap;padding:10px 14px;" onclick="buscarCEP()">Buscar</button>
+                        </div>
+                        <div id="cepMsg" style="font-size:12px;margin-top:4px;color:var(--ink-soft);min-height:16px;"></div>
+                    </div>
+                    <div id="perfilEnderecoFields" style="display:none;">
+                        <div class="form-group">
+                            <label>Rua / Logradouro</label>
+                            <input type="text" id="perfilRua" placeholder="Rua, Avenida...">
+                        </div>
+                        <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;">
+                            <div class="form-group">
+                                <label>Número</label>
+                                <input type="text" id="perfilNumero" placeholder="Nº">
+                            </div>
+                            <div class="form-group">
+                                <label>Bairro</label>
+                                <input type="text" id="perfilBairro" placeholder="Bairro">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 64px;gap:12px;">
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <input type="text" id="perfilCidade" placeholder="Cidade">
+                            </div>
+                            <div class="form-group">
+                                <label>UF</label>
+                                <input type="text" id="perfilUf" placeholder="PE" maxlength="2" style="text-transform:uppercase;">
+                            </div>
+                        </div>
+                        <div id="localizacaoMsg" style="font-size:12px;margin-top:4px;min-height:16px;"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="handleSalvarPerfilEdicao()" style="margin-top:20px;">Salvar Perfil</button>
                 <div id="perfilEdicaoMsg"></div>
             </div>
 
@@ -2816,6 +2872,19 @@ async function carregarPerfilParaEdicao() {
         document.getElementById('perfilAreas').value = (data.perfil.areasInteresse || []).join(', ');
         document.getElementById('perfilServicos').value = (data.perfil.servicosOferecidos || []).join(', ');
 
+        // Pré-preenche cidade/UF se localização já salva
+        const loc = data.perfil.localizacao;
+        if (loc && (loc.cidade || loc.uf)) {
+            document.getElementById('perfilCidade').value = loc.cidade || '';
+            document.getElementById('perfilUf').value     = loc.uf    || '';
+            document.getElementById('perfilEnderecoFields').style.display = '';
+            const locMsg = document.getElementById('localizacaoMsg');
+            if (locMsg) {
+                locMsg.textContent = '✓ Localização salva — você já aparece no mapa.';
+                locMsg.style.color = 'var(--mint)';
+            }
+        }
+
         renderAcervoList(data.perfil.acervo || []);
         renderMuralGrid(data.perfil.mural || []);
     } catch (error) {
@@ -2827,9 +2896,84 @@ function splitCsv(value) {
     return value.split(',').map(s => s.trim()).filter(Boolean);
 }
 
+// ── CEP / Endereço ──────────────────────────────────────────────
+function mascararCEP(el) {
+    let v = el.value.replace(/\D/g, '').slice(0, 8);
+    if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+    el.value = v;
+}
+
+async function buscarCEP() {
+    const cep = (document.getElementById('perfilCep').value || '').replace(/\D/g, '');
+    const msg = document.getElementById('cepMsg');
+    if (cep.length !== 8) { msg.textContent = ''; return; }
+    msg.textContent = '⏳ Buscando endereço...';
+    try {
+        const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await resp.json();
+        if (data.erro) { msg.textContent = '❌ CEP não encontrado.'; return; }
+        document.getElementById('perfilRua').value    = data.logradouro || '';
+        document.getElementById('perfilBairro').value = data.bairro     || '';
+        document.getElementById('perfilCidade').value = data.localidade  || '';
+        document.getElementById('perfilUf').value     = data.uf          || '';
+        document.getElementById('perfilEnderecoFields').style.display = '';
+        msg.textContent = '✓ Endereço encontrado — confirme e salve.';
+        msg.style.color = 'var(--mint)';
+    } catch (e) {
+        msg.textContent = '❌ Erro ao buscar CEP. Preencha o endereço manualmente.';
+        msg.style.color = 'var(--coral)';
+        document.getElementById('perfilEnderecoFields').style.display = '';
+    }
+}
+
+async function geocodificarEndereco() {
+    const rua    = (document.getElementById('perfilRua')?.value    || '').trim();
+    const numero = (document.getElementById('perfilNumero')?.value || '').trim();
+    const bairro = (document.getElementById('perfilBairro')?.value || '').trim();
+    const cidade = (document.getElementById('perfilCidade')?.value || '').trim();
+    const uf     = (document.getElementById('perfilUf')?.value     || '').trim().toUpperCase();
+    if (!cidade) return null;
+    const partes = [rua && numero ? `${rua}, ${numero}` : rua, bairro, cidade, uf, 'Brasil'].filter(Boolean);
+    const q = partes.join(', ');
+    try {
+        const resp = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=1&countrycodes=br`,
+            { headers: { 'Accept-Language': 'pt-BR', 'User-Agent': 'IMOVELI/2.0' } }
+        );
+        const results = await resp.json();
+        if (!results.length) {
+            // fallback: só cidade + UF
+            const resp2 = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cidade + ', ' + uf + ', Brasil')}&limit=1&countrycodes=br`,
+                { headers: { 'Accept-Language': 'pt-BR', 'User-Agent': 'IMOVELI/2.0' } }
+            );
+            const r2 = await resp2.json();
+            if (!r2.length) return null;
+            return { lat: parseFloat(r2[0].lat), lng: parseFloat(r2[0].lon), cidade, uf };
+        }
+        return { lat: parseFloat(results[0].lat), lng: parseFloat(results[0].lon), cidade, uf };
+    } catch (e) { return null; }
+}
+
+// ── Botão rápido na home ─────────────────────────────────────────
+function solicitarLocalizacaoRapida() {
+    if (!navigator.geolocation) { window.open('/mapa.html', '_blank'); return; }
+    navigator.geolocation.getCurrentPosition(
+        pos => {
+            const url = `/mapa.html?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`;
+            window.open(url, '_blank');
+        },
+        () => window.open('/mapa.html', '_blank')
+    );
+}
+
+// ── Salvar perfil (bio + endereço) ──────────────────────────────
 async function handleSalvarPerfilEdicao() {
     const { tipo, id } = state.editingProfile;
+    const msg = document.getElementById('perfilEdicaoMsg');
+    msg.innerHTML = '';
     try {
+        // 1. Salva bio/skills/areas/serviços
         const response = await apiFetch(`/api/perfil`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -2842,15 +2986,37 @@ async function handleSalvarPerfilEdicao() {
             })
         });
         const data = await response.json();
-        const msg = document.getElementById('perfilEdicaoMsg');
         if (!data.success) {
-            msg.innerHTML = `<div class="alert" style="background: rgba(255,75,92,0.08); color: var(--coral); margin-top: 12px;">${data.error}</div>`;
+            msg.innerHTML = `<div class="alert" style="background:rgba(255,75,92,0.08);color:var(--coral);margin-top:12px;">${data.error}</div>`;
             return;
         }
-        msg.innerHTML = `<div class="alert alert-success" style="margin-top: 12px;">✓ Perfil salvo</div>`;
-        setTimeout(() => { msg.innerHTML = ''; }, 2500);
+
+        // 2. Geocodifica e salva localização (silencioso — não bloqueia)
+        const locMsg = document.getElementById('localizacaoMsg');
+        const enderecoVisivel = document.getElementById('perfilEnderecoFields')?.style.display !== 'none';
+        if (enderecoVisivel && document.getElementById('perfilCidade')?.value.trim()) {
+            if (locMsg) { locMsg.textContent = '⏳ Geocodificando endereço...'; locMsg.style.color = 'var(--ink-soft)'; }
+            const loc = await geocodificarEndereco();
+            if (loc) {
+                try {
+                    await apiFetch('/api/perfil/localizacao', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tipo, id, lat: loc.lat, lng: loc.lng, cidade: loc.cidade, uf: loc.uf })
+                    });
+                    if (locMsg) { locMsg.textContent = '✓ Localização salva — você aparecerá no mapa!'; locMsg.style.color = 'var(--mint)'; }
+                } catch (_) {
+                    if (locMsg) { locMsg.textContent = 'Perfil salvo, mas localização não foi atualizada.'; locMsg.style.color = 'var(--ink-soft)'; }
+                }
+            } else {
+                if (locMsg) { locMsg.textContent = 'Endereço não geocodificado — verifique cidade e UF.'; locMsg.style.color = 'var(--coral)'; }
+            }
+        }
+
+        msg.innerHTML = `<div class="alert alert-success" style="margin-top:12px;">✓ Perfil salvo com sucesso</div>`;
+        setTimeout(() => { msg.innerHTML = ''; }, 3000);
     } catch (error) {
-        alert('Erro ao conectar com servidor.');
+        msg.innerHTML = `<div class="alert" style="background:rgba(255,75,92,0.08);color:var(--coral);margin-top:12px;">Erro ao conectar com servidor.</div>`;
     }
 }
 
