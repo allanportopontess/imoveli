@@ -200,7 +200,31 @@ let token        = localStorage.getItem('imoToken') || '';
 if (!ID) {
   document.getElementById('loading').innerHTML = '<p class="erro">Parâmetro id ausente na URL.</p>';
 } else {
-  carregarPerfil();
+  // Retorno do Mercado Pago
+  if (params.get('pago') === '1') {
+    // Webhook pode ter chegado antes; mostra confirmação e verifica
+    document.getElementById('loading').hidden = true;
+    document.getElementById('pagina').innerHTML = `
+      <div style="text-align:center;padding:60px 20px;">
+        <div style="font-size:56px;margin-bottom:16px;">✅</div>
+        <h2 style="color:var(--mint);font-size:22px;font-weight:800;margin-bottom:8px;">Pagamento confirmado!</h2>
+        <p style="color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:24px;">
+          O chat com o profissional foi liberado.<br>Acesse o app para iniciar a conversa.
+        </p>
+        <a href="/index.html" style="display:inline-block;padding:13px 28px;background:var(--violet);color:#fff;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px;">Ir para o App →</a>
+      </div>`;
+  } else if (params.get('erro') === 'pagamento') {
+    document.getElementById('loading').hidden = true;
+    document.getElementById('pagina').innerHTML = `
+      <div style="text-align:center;padding:60px 20px;">
+        <div style="font-size:48px;margin-bottom:16px;">❌</div>
+        <h2 style="color:var(--coral);font-size:20px;font-weight:800;margin-bottom:8px;">Pagamento não concluído</h2>
+        <p style="color:var(--ink-soft);font-size:14px;margin-bottom:24px;">Tente novamente ou escolha outra forma de pagamento.</p>
+        <button onclick="location.href='/perfil-profissional.html?tipo=${TIPO}&id=${ID}'" style="padding:12px 24px;background:var(--violet);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;">Tentar novamente</button>
+      </div>`;
+  } else {
+    carregarPerfil();
+  }
 }
 
 async function carregarPerfil() {
@@ -459,7 +483,7 @@ async function avancarParaPagamento() {
 
 function renderStepPagamento(total) {
   document.getElementById('modalConteudo').innerHTML = `
-    <div class="modal-titulo">Pagamento</div>
+    <div class="modal-titulo">Pagamento Seguro</div>
     <div class="step-pagamento">
       <p>Revise o valor total. Após o pagamento, o chat com o profissional será liberado automaticamente.</p>
       <div class="valor-destaque">R$${total.toFixed(2)}</div>
@@ -469,15 +493,28 @@ function renderStepPagamento(total) {
       </p>
     </div>
     <div class="opcoes-pagamento">
-      <button class="btn-pix" onclick="iniciarPagamentoMP('pix')">⚡ Pagar com PIX</button>
-      <button class="btn-cartao" onclick="iniciarPagamentoMP('card')">💳 Pagar com Cartão</button>
+      <button class="btn-pix" id="btnPagarMP" onclick="iniciarPagamentoMP()">⚡ PIX · 💳 Cartão · Boleto</button>
     </div>
     <button class="btn-simular" onclick="simularPagamento()">🧪 Simular pagamento (modo teste)</button>
   `;
 }
 
-async function iniciarPagamentoMP(metodo) {
-  alert('Integração com Mercado Pago em breve. Use o modo teste abaixo para continuar.');
+async function iniciarPagamentoMP() {
+  const btn = document.getElementById('btnPagarMP');
+  if (btn) { btn.disabled = true; btn.textContent = 'Aguarde…'; }
+  try {
+    const r = await fetch(`${API}/api/contratos/${contratoId}/criar-pagamento`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const data = await r.json();
+    if (!data.success) throw new Error(data.error);
+    // Redireciona para o Checkout Pro do Mercado Pago
+    window.location.href = data.initPoint;
+  } catch (e) {
+    alert('Erro ao abrir pagamento: ' + e.message);
+    if (btn) { btn.disabled = false; btn.textContent = '⚡ PIX · 💳 Cartão · Boleto'; }
+  }
 }
 
 async function simularPagamento() {

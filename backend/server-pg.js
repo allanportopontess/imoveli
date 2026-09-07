@@ -1796,7 +1796,78 @@ app.get('/api/contratos/:id', auth, async (req, res) => {
   }
 });
 
-// Pagamento simulado (dev/MVP — substitua pelo webhook real do Mercado Pago em produção)
+// Criar preferência de pagamento real no Mercado Pago (Checkout Pro)
+app.post('/api/contratos/:id/criar-pagamento', auth, async (req, res) => {
+  try {
+    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
+    if (!MP_ACCESS_TOKEN) return res.status(503).json({ success: false, error: 'Pagamento não configurado. Contate o suporte.' });
+
+    const { rows } = await query(`SELECT * FROM contratos WHERE id=$1`, [req.params.id]);
+    if (!rows.length) return res.status(404).json({ success: false, error: 'Contrato não encontrado' });
+    const c = rows[0];
+    if (c.cliente_email !== req.user.email) return res.status(403).json({ success: false, error: 'Acesso negado' });
+    if (c.status !== 'aguardando_pagamento') {
+      return res.status(400).json({ success: false, error: 'Contrato já processado' });
+    }
+
+    const FRONTEND_URL = process.env.FRONTEND_URL || 'https://imoveli.vercel.app';
+    const BACKEND_URL  = process.env.RAILWAY_PUBLIC_DOMAIN
+      ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+      : 'https://imoveli-backend-production.up.railway.app';
+
+    const body = {
+      items: [{
+        id: c.id,
+        title: `Serviço IMOVELI — ${c.profissional_nome}`,
+        description: c.escopo.slice(0, 255),
+        quantity: 1,
+        unit_price: parseFloat(c.valor_total),
+        currency_id: 'BRL'
+      }],
+      payer: { email: c.cliente_email },
+      external_reference: c.id,
+      notification_url: `${BACKEND_URL}/api/pagamento/webhook`,
+      back_urls: {
+        success: `${FRONTEND_URL}/perfil-profissional.html?tipo=${c.profissional_tipo}&id=${c.profissional_id}&pago=1`,
+        failure: `${FRONTEND_URL}/perfil-profissional.html?tipo=${c.profissional_tipo}&id=${c.profissional_id}&erro=pagamento`,
+        pending: `${FRONTEND_URL}/perfil-profissional.html?tipo=${c.profissional_tipo}&id=${c.profissional_id}&pendente=1`
+      },
+      auto_return: 'approved',
+      statement_descriptor: 'IMOVELI',
+      metadata: { contrato_id: c.id, profissional_nome: c.profissional_nome }
+    };
+
+    const mpResp = await fetch('https://api.mercadopago.com/checkout/preferences', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${MP_ACCESS_TOKEN}`
+      },
+      body: JSON.stringify(body)
+    });
+    const pref = await mpResp.json();
+
+    if (!pref.id) {
+      console.error('[MP criar preferência]', JSON.stringify(pref));
+      return res.status(502).json({ success: false, error: 'Erro ao criar preferência de pagamento' });
+    }
+
+    // Salva preference_id no contrato
+    await query(`UPDATE contratos SET pagamento_id=$1 WHERE id=$2`, [pref.id, c.id]);
+
+    res.json({
+      success: true,
+      preferenceId: pref.id,
+      initPoint: pref.init_point,       // produção
+      sandboxInitPoint: pref.sandbox_init_point  // testes
+    });
+  } catch (err) {
+    console.error('[POST /contratos/:id/criar-pagamento]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno ao criar pagamento' });
+  }
+});
+
+// Pagamento simulado (dev/MVP)
 app.post('/api/contratos/:id/pagamento-simulado', auth, async (req, res) => {
   try {
     const { rows } = await query(`SELECT * FROM contratos WHERE id=$1`, [req.params.id]);
