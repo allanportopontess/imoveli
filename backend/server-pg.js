@@ -1891,33 +1891,64 @@ app.post('/api/contratos/:id/pagamento-simulado', auth, async (req, res) => {
   }
 });
 
-// Webhook real do Mercado Pago (preparado para produção)
-app.post('/api/pagamento/webhook', async (req, res) => {
+// Webhook real do Mercado Pago (produção)
+app.post('/api/pagamento/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   try {
-    const { type, data } = req.body;
-    if (type !== 'payment') return res.json({ ok: true });
+    // Valida assinatura do MP (x-signature header)
+    const MP_WEBHOOK_SECRET = process.env.MP_WEBHOOK_SECRET;
+    if (MP_WEBHOOK_SECRET) {
+      const xSignature = req.headers['x-signature'] || '';
+      const xRequestId  = req.headers['x-request-id'] || '';
+      const dataId = req.query?.['data.id'] || '';
+      // Monta o manifest conforme documentação do MP
+      const manifest = `id:${dataId};request-id:${xRequestId};ts:${(xSignature.match(/ts=(\d+)/) || [])[1] || ''}`;
+      const v1Part   = (xSignature.match(/v1=([a-f0-9]+)/) || [])[1] || '';
+      const hmac = crypto.createHmac('sha256', MP_WEBHOOK_SECRET).update(manifest).digest('hex');
+      if (v1Part && hmac !== v1Part) {
+        console.warn('[webhook] Assinatura inválida — ignorando');
+        return res.status(200).json({ ok: true }); // Retorna 200 para o MP não reenviar
+      }
+    }
+
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const { type, action, data } = body;
+
+    // Aceita tanto type='payment' quanto action='payment.updated'
+    const isPaymentEvent = type === 'payment' || action?.startsWith('payment');
+    if (!isPaymentEvent) return res.json({ ok: true });
 
     const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
     if (!MP_ACCESS_TOKEN) return res.status(503).json({ error: 'MP não configurado' });
 
-    // Busca dados do pagamento no Mercado Pago
-    const mpResp = await fetch(`https://api.mercadopago.com/v1/payments/${data.id}`, {
+    const pagId = data?.id;
+    if (!pagId) return res.json({ ok: true });
+
+    // Busca dados reais do pagamento na API do MP
+    const mpResp = await fetch(`https://api.mercadopago.com/v1/payments/${pagId}`, {
       headers: { Authorization: `Bearer ${MP_ACCESS_TOKEN}` }
     });
     const pag = await mpResp.json();
+
+    console.log(`[webhook MP] pag ${pagId} status=${pag.status} ref=${pag.external_reference}`);
+
     if (pag.status !== 'approved') return res.json({ ok: true, status: pag.status });
 
     const contratoId = pag.external_reference;
-    await query(
+    if (!contratoId) return res.json({ ok: true });
+
+    const { rows } = await query(
       `UPDATE contratos SET status='pago', pagamento_id=$1, pagamento_metodo=$2, chat_liberado=TRUE
-       WHERE id=$3 AND status='aguardando_pagamento'`,
+       WHERE id=$3 AND status='aguardando_pagamento' RETURNING id`,
       [String(pag.id), pag.payment_type_id || 'mp', contratoId]
     );
-    console.log(`✅ Pagamento aprovado: contrato ${contratoId}, pag ${pag.id}`);
+
+    if (rows.length) {
+      console.log(`✅ Contrato ${contratoId} pago — chat liberado`);
+    }
     res.json({ ok: true });
   } catch (err) {
     console.error('[POST /pagamento/webhook]', err.message);
-    res.status(500).json({ error: 'Erro no webhook' });
+    res.status(200).json({ ok: true }); // Sempre 200 para o MP não reenviar infinitamente
   }
 });
 
