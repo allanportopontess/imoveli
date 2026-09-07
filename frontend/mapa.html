@@ -360,15 +360,22 @@ function filtrar() {
     const especialidade = (p.especialidade || '').toLowerCase();
     if (esp && !especialidade.includes(esp)) return false;
 
-    // Filtro por avaliação
+    // Filtro por avaliação — usa critérios individuais reais da API
     if (modoAtual === 'avaliacao') {
-      const nota = p.reputacao?.mediaNota || 0;
-      const temFiltro = Object.values(criterios).some(v => v > 0);
-      if (temFiltro) {
-        // Até o sistema de critérios individuais estar no backend,
-        // usa mediaNota como proxy para todos os critérios ativados
-        const minRequerido = Math.max(...Object.values(criterios));
-        if (nota < minRequerido) return false;
+      const mapaCrit = {
+        qualidade: p.reputacao?.qualidade,
+        prazo: p.reputacao?.prazo,
+        comunicacao: p.reputacao?.comunicacao,
+        organizacao: p.reputacao?.organizacao,
+        pontualidade: p.reputacao?.pontualidade,
+        custoBeneficio: p.reputacao?.custoBeneficio
+      };
+      for (const [k, minVal] of Object.entries(criterios)) {
+        if (!minVal) continue; // critério não selecionado
+        const nota = mapaCrit[k];
+        // Se não tem avaliação nesse critério e foi exigida nota > 0, exclui
+        if (nota == null) return false;
+        if (nota < minVal) return false;
       }
     }
     return true;
@@ -415,10 +422,26 @@ function atualizarMarcadores() {
   }
 }
 
+function estrelas(n) {
+  if (!n) return '—';
+  return '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n)) + ` ${n}`;
+}
+
 function criarPopup(p) {
-  const nota = p.reputacao?.mediaNota
-    ? `⭐ ${p.reputacao.mediaNota} (${p.reputacao.totalServicos} avaliações)`
+  const rep = p.reputacao || {};
+  const temCriterios = rep.qualidade != null;
+  const notaGeral = rep.mediaNota
+    ? `⭐ ${rep.mediaNota} média geral (${rep.totalServicos} avaliação${rep.totalServicos !== 1 ? 'ões' : ''})`
     : 'Novo na plataforma';
+  const criteriosHtml = temCriterios ? `
+    <div style="margin:6px 0;font-size:10.5px;display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;">
+      <div>Qualidade: <b>${estrelas(rep.qualidade)}</b></div>
+      <div>Prazo: <b>${estrelas(rep.prazo)}</b></div>
+      <div>Comunicação: <b>${estrelas(rep.comunicacao)}</b></div>
+      <div>Organização: <b>${estrelas(rep.organizacao)}</b></div>
+      <div>Pontualidade: <b>${estrelas(rep.pontualidade)}</b></div>
+      <div>Custo-benef.: <b>${estrelas(rep.custoBeneficio)}</b></div>
+    </div>` : '';
   const preco = p.faixaPreco ? `💰 R$${p.faixaPreco.min}–${p.faixaPreco.max}/dia` : '';
   const loc = [p.cidade, p.uf].filter(Boolean).join(' — ');
   const grauLabel = p.grau === 1 ? '✅ Responsável Técnico' : '🔷 Profissional Indicado';
@@ -431,8 +454,9 @@ function criarPopup(p) {
     <div class="popup-meta">
       ${grauLabel}<br>
       ${loc ? '📍 ' + loc + '<br>' : ''}
-      ${nota}
+      ${notaGeral}
     </div>
+    ${criteriosHtml}
     ${preco ? `<div class="popup-preco">${preco}</div>` : ''}
     ${fiadorHtml}
     <button class="btn-contatar" onclick="window.open('/index.html','_self')">Ver perfil completo</button>

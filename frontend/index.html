@@ -3595,22 +3595,55 @@ function renderServiceCard(s) {
             <button class="btn btn-primary" style="margin-top: 12px;" onclick="handleConcluirServico('${s.id}')">Marcar como concluído</button>
         `;
     } else if (s.status === 'concluido' && !s.avaliacao) {
-        actionsHtml = `
-            <div style="margin-top: 12px; padding: 12px; background: var(--stone); border-radius: 8px;">
-                <label style="font-size: 12px; color: var(--neutral-600); display: block; margin-bottom: 6px;">Avalie o serviço (1 a 5) e assine digitalmente</label>
-                <div id="stars-${s.id}" style="font-size: 22px; cursor: pointer; margin-bottom: 8px;">
-                    ${[1,2,3,4,5].map(n => `<span onclick="setRating('${s.id}', ${n})" data-star="${n}" style="color: var(--mist-strong);">★</span>`).join('')}
+        const CRITERIOS_LABELS = [
+            { key: 'qualidade',       label: 'Qualidade do serviço' },
+            { key: 'prazo',           label: 'Cumprimento do prazo' },
+            { key: 'comunicacao',     label: 'Comunicação' },
+            { key: 'organizacao',     label: 'Organização e limpeza' },
+            { key: 'pontualidade',    label: 'Pontualidade' },
+            { key: 'custoBeneficio',  label: 'Custo-benefício' },
+        ];
+        const criteriosHtml = CRITERIOS_LABELS.map(({ key, label }) => `
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--mist);">
+                <span style="font-size:12.5px;flex:1;">${label}</span>
+                <div id="stars-${s.id}-${key}" style="font-size:20px;cursor:pointer;display:flex;gap:1px;">
+                    ${[1,2,3,4,5].map(n =>
+                        `<span onclick="setCriterioServico('${s.id}','${key}',${n})" data-v="${n}" style="color:var(--mist-strong);line-height:1;">★</span>`
+                    ).join('')}
                 </div>
-                <textarea id="comentario-${s.id}" rows="2" placeholder="Comentário (opcional)"></textarea>
-                <button class="btn btn-primary" style="margin-top: 8px;" onclick="handleAvaliarServico('${s.id}')">Confirmar avaliação e assinar</button>
+            </div>`).join('');
+        actionsHtml = `
+            <div style="margin-top:14px;padding:14px;background:var(--violet-wash);border-radius:12px;border:1px solid #D8C8F8;">
+                <div style="font-weight:700;font-size:13.5px;color:var(--violet-deep);margin-bottom:10px;">⭐ Avalie o serviço por critério</div>
+                ${criteriosHtml}
+                <div style="margin-top:10px;font-size:11px;color:var(--ink-soft);padding:6px 8px;background:rgba(110,48,217,.07);border-radius:6px;">
+                    A nota geral será calculada automaticamente como média dos 6 critérios.
+                </div>
+                <textarea id="comentario-${s.id}" rows="2" placeholder="Comentário sobre o serviço (opcional)" style="margin-top:10px;width:100%;border:1.5px solid var(--mist);border-radius:8px;padding:8px;font-size:13px;font-family:inherit;"></textarea>
+                <button class="btn btn-primary" style="margin-top:10px;width:100%;" onclick="handleAvaliarServico('${s.id}')">Confirmar avaliação e assinar digitalmente</button>
+                <div id="aval-msg-${s.id}" style="margin-top:6px;font-size:12px;min-height:16px;"></div>
             </div>
         `;
     } else if (s.avaliacao) {
+        const av = s.avaliacao;
+        const notaGeral = av.nota ? av.nota.toFixed(1) : '—';
+        const strEstrelas = n => n ? ('★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n))) : '—';
+        const criteriosDisplay = av.qualidade != null ? `
+            <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;">
+                ${[['Qualidade','qualidade'],['Prazo','prazo'],['Comunicação','comunicacao'],
+                   ['Organização','organizacao'],['Pontualidade','pontualidade'],['Custo-benefício','custoBeneficio']]
+                   .map(([l,k]) => `<div style="font-size:11px;color:var(--ink-soft);">${l}: <b style="color:var(--amber,#F59E0B)">${strEstrelas(av[k])}</b></div>`).join('')}
+            </div>` : '';
         actionsHtml = `
-            <div style="margin-top: 12px; font-size: 13px; color: var(--neutral-600);">
-                Avaliado com ${'★'.repeat(s.avaliacao.nota)}${'☆'.repeat(5 - s.avaliacao.nota)} · assinado em ${new Date(s.avaliacao.assinadoEm).toLocaleString('pt-BR')}
+            <div style="margin-top:12px;padding:12px;background:var(--violet-wash);border-radius:10px;border:1px solid #D8C8F8;">
+                <div style="font-size:13px;font-weight:700;color:var(--violet-deep);">
+                    ✓ Avaliado — nota geral ${'★'.repeat(Math.round(av.nota || 0))} ${notaGeral}/5
+                </div>
+                ${criteriosDisplay}
+                ${av.comentario ? `<div style="margin-top:6px;font-size:12px;color:var(--ink-soft);font-style:italic;">"${av.comentario}"</div>` : ''}
+                <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;">Assinado em ${new Date(av.assinadoEm).toLocaleString('pt-BR')}</div>
             </div>
-            <button class="btn btn-secondary" style="margin-top: 8px;" onclick='baixarRegistroTecnico(${JSON.stringify(s)})'>📄 Baixar registro técnico</button>
+            <button class="btn btn-secondary" style="margin-top:8px;" onclick='baixarRegistroTecnico(${JSON.stringify(s)})'>📄 Baixar registro técnico</button>
         `;
     }
 
@@ -3667,40 +3700,47 @@ async function handleConcluirServico(servicoId) {
     }
 }
 
-const pendingRatings = {};
+// Critérios de avaliação pendentes: { servicoId: { qualidade:0, prazo:0, ... } }
+const pendingCriterios = {};
+const CRITERIOS_KEYS = ['qualidade','prazo','comunicacao','organizacao','pontualidade','custoBeneficio'];
 
-function setRating(servicoId, nota) {
-    pendingRatings[servicoId] = nota;
-    const container = document.getElementById(`stars-${servicoId}`);
+function setCriterioServico(servicoId, criterio, valor) {
+    if (!pendingCriterios[servicoId]) pendingCriterios[servicoId] = {};
+    // Clique na estrela ativa = limpa
+    pendingCriterios[servicoId][criterio] = pendingCriterios[servicoId][criterio] === valor ? 0 : valor;
+    const v = pendingCriterios[servicoId][criterio];
+    const container = document.getElementById(`stars-${servicoId}-${criterio}`);
     if (!container) return;
-    container.querySelectorAll('[data-star]').forEach(star => {
-        star.style.color = Number(star.dataset.star) <= nota ? 'var(--warning)' : 'var(--mist-strong)';
+    container.querySelectorAll('[data-v]').forEach(star => {
+        star.style.color = Number(star.dataset.v) <= v ? '#F59E0B' : 'var(--mist-strong)';
     });
 }
 
 async function handleAvaliarServico(servicoId) {
-    const nota = pendingRatings[servicoId];
-    if (!nota) {
-        alert('Selecione uma nota de 1 a 5 estrelas');
+    const crit = pendingCriterios[servicoId] || {};
+    const faltando = CRITERIOS_KEYS.filter(k => !crit[k] || crit[k] < 1);
+    const msg = document.getElementById(`aval-msg-${servicoId}`);
+    if (faltando.length) {
+        if (msg) { msg.textContent = '⚠️ Avalie todos os 6 critérios antes de confirmar.'; msg.style.color = 'var(--coral)'; }
         return;
     }
-    const comentario = document.getElementById(`comentario-${servicoId}`).value.trim();
-
+    if (msg) { msg.textContent = 'Enviando...'; msg.style.color = 'var(--ink-soft)'; }
+    const comentario = document.getElementById(`comentario-${servicoId}`)?.value.trim() || '';
     try {
         const response = await apiFetch(`/api/servicos/${servicoId}/avaliar`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nota, comentario })
+            body: JSON.stringify({ ...crit, comentario })
         });
         const data = await response.json();
         if (!data.success) {
-            alert(data.error);
+            if (msg) { msg.textContent = data.error; msg.style.color = 'var(--coral)'; }
             return;
         }
-        delete pendingRatings[servicoId];
+        delete pendingCriterios[servicoId];
         loadMyServices();
     } catch (error) {
-        alert('Erro ao conectar com servidor.');
+        if (msg) { msg.textContent = 'Erro ao conectar com servidor.'; msg.style.color = 'var(--coral)'; }
     }
 }
 
@@ -3721,7 +3761,15 @@ function baixarRegistroTecnico(s) {
         `Data de conclusão: ${s.dataConclusao ? new Date(s.dataConclusao).toLocaleString('pt-BR') : '—'}`,
         `Fotos registradas: ${s.fotosAntes.length} antes / ${s.fotosDepois.length} depois`,
         '',
-        `Avaliação do cliente: ${s.avaliacao.nota}/5`,
+        `Avaliação geral: ${s.avaliacao.nota}/5`,
+        ...(s.avaliacao.qualidade != null ? [
+            `  • Qualidade do serviço:  ${s.avaliacao.qualidade}/5`,
+            `  • Cumprimento do prazo:  ${s.avaliacao.prazo}/5`,
+            `  • Comunicação:           ${s.avaliacao.comunicacao}/5`,
+            `  • Organização e limpeza: ${s.avaliacao.organizacao}/5`,
+            `  • Pontualidade:          ${s.avaliacao.pontualidade}/5`,
+            `  • Custo-benefício:       ${s.avaliacao.custoBeneficio}/5`,
+        ] : []),
         `Comentário: ${s.avaliacao.comentario || '(sem comentário)'}`,
         `Assinado digitalmente em: ${new Date(s.avaliacao.assinadoEm).toLocaleString('pt-BR')}`,
         '',

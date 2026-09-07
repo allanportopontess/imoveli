@@ -612,11 +612,16 @@ app.post('/api/servicos/:id/avaliar', auth, async (req, res) => {
   if (s[0].status !== 'concluido') return res.status(400).json({ success: false, error: 'Só é possível avaliar um serviço concluído' });
   if (s[0].avaliacao) return res.status(400).json({ success: false, error: 'Serviço já avaliado' });
 
-  const { nota, comentario } = req.body;
-  const notaNum = Number(nota);
-  if (!Number.isInteger(notaNum) || notaNum < 1 || notaNum > 5) return res.status(400).json({ success: false, error: 'Nota deve ser 1 a 5' });
-
-  const avaliacao = { nota: notaNum, comentario: comentario || '', assinadoEm: new Date().toISOString() };
+  const { qualidade, prazo, comunicacao, organizacao, pontualidade, custoBeneficio, comentario } = req.body;
+  const criterios = { qualidade, prazo, comunicacao, organizacao, pontualidade, custoBeneficio };
+  for (const [k, v] of Object.entries(criterios)) {
+    const n = Number(v);
+    if (!Number.isInteger(n) || n < 1 || n > 5)
+      return res.status(400).json({ success: false, error: `Critério "${k}" deve ser 1 a 5` });
+    criterios[k] = n;
+  }
+  const nota = Math.round((Object.values(criterios).reduce((a, b) => a + b, 0) / 6) * 10) / 10;
+  const avaliacao = { ...criterios, nota, comentario: comentario || '', assinadoEm: new Date().toISOString() };
   const { rows } = await query('UPDATE servicos SET avaliacao=$1 WHERE id=$2 RETURNING *', [JSON.stringify(avaliacao), req.params.id]);
   res.json({ success: true, servico: rows[0] });
 });
@@ -712,6 +717,12 @@ app.get('/api/perfil/:tipo/:id', async (req, res) => {
   const mediaNota = totalServicos > 0
     ? Math.round((avRows.reduce((a, s) => a + s.avaliacao.nota, 0) / totalServicos) * 10) / 10
     : null;
+  const CRITERIOS = ['qualidade','prazo','comunicacao','organizacao','pontualidade','custoBeneficio'];
+  const mediasCriterios = {};
+  for (const c of CRITERIOS) {
+    const vals = avRows.map(s => s.avaliacao[c]).filter(v => typeof v === 'number');
+    mediasCriterios[c] = vals.length ? Math.round((vals.reduce((a,b) => a+b, 0) / vals.length) * 10) / 10 : null;
+  }
 
   let fiadorResponsavel = null;
   if (tipo === 'prestador') {
@@ -733,8 +744,19 @@ app.get('/api/perfil/:tipo/:id', async (req, res) => {
       bio: alvo.bio, skills: alvo.skills, areasInteresse: alvo.areas_interesse,
       servicosOferecidos: alvo.servicos_oferecidos, acervo: alvo.acervo,
       mural: alvo.mural, avaliacoesExternas: alvo.avaliacoes_externas,
-      reputacaoVerificada: { totalServicos, mediaNota },
-      avaliacoesVerificadas: avRows.map(s => ({ descricaoServico: s.descricao, nota: s.avaliacao.nota, comentario: s.avaliacao.comentario, data: s.avaliacao.assinadoEm })),
+      reputacaoVerificada: { totalServicos, mediaNota, ...mediasCriterios },
+      avaliacoesVerificadas: avRows.map(s => ({
+        descricaoServico: s.descricao,
+        nota: s.avaliacao.nota,
+        qualidade: s.avaliacao.qualidade || null,
+        prazo: s.avaliacao.prazo || null,
+        comunicacao: s.avaliacao.comunicacao || null,
+        organizacao: s.avaliacao.organizacao || null,
+        pontualidade: s.avaliacao.pontualidade || null,
+        custoBeneficio: s.avaliacao.custoBeneficio || null,
+        comentario: s.avaliacao.comentario,
+        data: s.avaliacao.assinadoEm
+      })),
       fiadorResponsavel
     }
   });
@@ -773,24 +795,33 @@ app.put('/api/perfil/faixa-preco', async (req, res) => {
 
 app.get('/api/profissionais/mapa', async (req, res) => {
   try {
+    const CRIT_SQL = (col) => `
+      (SELECT COUNT(*) FROM servicos WHERE ${col} AND avaliacao IS NOT NULL) as total_servicos,
+      (SELECT AVG((avaliacao->>'nota')::numeric) FROM servicos WHERE ${col} AND avaliacao IS NOT NULL) as media_nota,
+      (SELECT AVG((avaliacao->>'qualidade')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'qualidade' IS NOT NULL) as media_qualidade,
+      (SELECT AVG((avaliacao->>'prazo')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'prazo' IS NOT NULL) as media_prazo,
+      (SELECT AVG((avaliacao->>'comunicacao')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'comunicacao' IS NOT NULL) as media_comunicacao,
+      (SELECT AVG((avaliacao->>'organizacao')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'organizacao' IS NOT NULL) as media_organizacao,
+      (SELECT AVG((avaliacao->>'pontualidade')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'pontualidade' IS NOT NULL) as media_pontualidade,
+      (SELECT AVG((avaliacao->>'custoBeneficio')::numeric) FROM servicos WHERE ${col} AND avaliacao->>'custoBeneficio' IS NOT NULL) as media_custo_beneficio
+    `;
     const { rows: fiadors } = await query(
       `SELECT id, nome, conselho, uf, registro, localizacao, status,
               bio, skills, servicos_oferecidos, faixa_preco,
-              (SELECT COUNT(*) FROM servicos WHERE fiador_id=f.id AND avaliacao IS NOT NULL) as total_servicos,
-              (SELECT AVG((avaliacao->>'nota')::numeric) FROM servicos WHERE fiador_id=f.id AND avaliacao IS NOT NULL) as media_nota
+              ${CRIT_SQL("fiador_id=f.id AND grau=1")}
        FROM fiadores f WHERE status='verificado' AND localizacao IS NOT NULL`
     );
     const { rows: prests } = await query(
       `SELECT p.id, p.nome, p.especialidade, p.localizacao, p.status, p.bio, p.skills, p.faixa_preco,
               f.nome as fiador_nome, f.conselho as fiador_conselho, f.uf as fiador_uf, f.registro as fiador_registro,
-              (SELECT COUNT(*) FROM servicos WHERE prestador_id=p.id AND avaliacao IS NOT NULL) as total_servicos,
-              (SELECT AVG((avaliacao->>'nota')::numeric) FROM servicos WHERE prestador_id=p.id AND avaliacao IS NOT NULL) as media_nota
+              ${CRIT_SQL("prestador_id=p.id")}
        FROM prestadores p
        JOIN indicacoes i ON i.prestador_id=p.id AND i.status='aceita'
        JOIN fiadores f ON f.id=i.fiador_id
        WHERE p.status='ativo' AND p.localizacao IS NOT NULL`
     );
 
+    const arred = v => v ? Math.round(parseFloat(v) * 10) / 10 : null;
     const mapear = (r, grau) => {
       const loc = typeof r.localizacao === 'string' ? JSON.parse(r.localizacao) : r.localizacao;
       if (!loc?.lat || !loc?.lng) return null;
@@ -810,7 +841,13 @@ app.get('/api/profissionais/mapa', async (req, res) => {
         faixaPreco: r.faixa_preco || null,
         reputacao: {
           totalServicos: parseInt(r.total_servicos) || 0,
-          mediaNota: r.media_nota ? Math.round(parseFloat(r.media_nota) * 10) / 10 : null
+          mediaNota: arred(r.media_nota),
+          qualidade: arred(r.media_qualidade),
+          prazo: arred(r.media_prazo),
+          comunicacao: arred(r.media_comunicacao),
+          organizacao: arred(r.media_organizacao),
+          pontualidade: arred(r.media_pontualidade),
+          custoBeneficio: arred(r.media_custo_beneficio)
         },
         fiador: grau === 2 ? {
           nome: r.fiador_nome,
