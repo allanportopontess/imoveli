@@ -1959,6 +1959,81 @@ app.post('/api/pagamento/webhook', express.raw({ type: 'application/json' }), as
 // Mapa em memória: contratoId → Set<res> para SSE
 const chatSSE = new Map();
 
+// Throttle de email: "email:contratoId" → timestamp do último envio
+const emailThrottle = new Map();
+const EMAIL_THROTTLE_MS = 15 * 60 * 1000; // 15 minutos
+
+async function notificarNovaMensagem({ contrato, remetente, conteudo }) {
+  try {
+    // Determina o destinatário (quem NÃO enviou)
+    let destinatarioEmail = null;
+    let destinatarioNome  = null;
+
+    if (remetente.email === contrato.cliente_email) {
+      // Remetente é o cliente → notifica o profissional
+      const tabela = contrato.profissional_tipo === 'fiador' ? 'fiadores' : 'prestadores';
+      const { rows } = await query(`SELECT email, nome FROM ${tabela} WHERE id=$1`, [contrato.profissional_id]);
+      if (rows.length && rows[0].email) {
+        destinatarioEmail = rows[0].email;
+        destinatarioNome  = rows[0].nome;
+      }
+    } else {
+      // Remetente é o profissional → notifica o cliente
+      const { rows } = await query(`SELECT nome_profissional FROM contas WHERE email=$1`, [contrato.cliente_email]);
+      destinatarioEmail = contrato.cliente_email;
+      destinatarioNome  = rows[0]?.nome_profissional || contrato.cliente_email.split('@')[0];
+    }
+
+    if (!destinatarioEmail) return;
+
+    // Throttle: não envia mais de um email por contrato a cada 15 min
+    const throttleKey = `${destinatarioEmail}:${contrato.id}`;
+    const agora = Date.now();
+    if (emailThrottle.has(throttleKey) && agora - emailThrottle.get(throttleKey) < EMAIL_THROTTLE_MS) return;
+    emailThrottle.set(throttleKey, agora);
+
+    const FRONTEND_URL = process.env.FRONTEND_URL || 'https://imoveli.vercel.app';
+    const chatLink = `${FRONTEND_URL}/chat-contrato.html?id=${contrato.id}`;
+    const preview  = conteudo.length > 120 ? conteudo.slice(0, 117) + '…' : conteudo;
+
+    await enviarEmail({
+      to: destinatarioEmail,
+      subject: `💬 Nova mensagem de ${remetente.nome} — IMOVELI`,
+      textoSimulado: `${remetente.nome}: ${preview} → ${chatLink}`,
+      html: `<!DOCTYPE html><html><head><meta charset="UTF-8">
+        <style>
+          body{font-family:Inter,-apple-system,sans-serif;background:#f5f5f5;margin:0;padding:24px;}
+          .card{background:#fff;border-radius:16px;max-width:520px;margin:0 auto;padding:32px;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+          .logo{font-size:20px;font-weight:900;color:#6E30D9;margin-bottom:24px;}
+          .titulo{font-size:18px;font-weight:700;color:#161616;margin-bottom:8px;}
+          .sub{font-size:13px;color:#6B6B70;margin-bottom:20px;}
+          .balao{background:#F2ECFC;border-radius:12px;padding:16px;font-size:14px;color:#161616;line-height:1.6;margin-bottom:24px;border-left:4px solid #6E30D9;}
+          .remetente{font-weight:700;color:#6E30D9;margin-bottom:6px;font-size:13px;}
+          .btn{display:block;text-align:center;padding:14px 24px;background:#6E30D9;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;margin-bottom:16px;}
+          .rodape{font-size:11px;color:#9b9ba0;text-align:center;margin-top:20px;line-height:1.6;}
+        </style>
+      </head><body>
+        <div class="card">
+          <div class="logo">IMOVELI</div>
+          <div class="titulo">Você tem uma nova mensagem</div>
+          <div class="sub">Na contratação: <strong>${contrato.escopo.slice(0, 80)}${contrato.escopo.length > 80 ? '…' : ''}</strong></div>
+          <div class="balao">
+            <div class="remetente">${remetente.nome}</div>
+            ${preview}
+          </div>
+          <a href="${chatLink}" class="btn">💬 Responder agora</a>
+          <div class="rodape">
+            IMOVELI — Rede de profissionais baseada em confiança<br>
+            Você está recebendo porque é parte desta contratação.
+          </div>
+        </div>
+      </body></html>`
+    });
+  } catch (err) {
+    console.error('[notificarNovaMensagem]', err.message);
+  }
+}
+
 function broadcastChat(contratoId, payload) {
   const conns = chatSSE.get(contratoId);
   if (!conns || !conns.size) return;
@@ -2035,6 +2110,13 @@ app.post('/api/chat/:contratoId/mensagens', auth, async (req, res) => {
 
     // Broadcast via SSE para todos que estão ouvindo este chat
     broadcastChat(req.params.contratoId, { tipo: 'mensagem', mensagem });
+
+    // Notificação por e-mail (assíncrona — não bloqueia a resposta)
+    notificarNovaMensagem({
+      contrato: acesso.contrato,
+      remetente: { email: req.user.email, nome: remetenteNome },
+      conteudo: conteudo.trim()
+    });
 
     res.json({ success: true, mensagem });
   } catch (err) {
