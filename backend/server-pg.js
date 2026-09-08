@@ -315,9 +315,73 @@ app.post('/api/auth/redefinir-senha', async (req, res) => {
 
 // Verifica token e retorna dados do usuário logado
 app.get('/api/auth/me', auth, async (req, res) => {
-  const { rows } = await query('SELECT email, telefone, nome_profissional, fiador_id FROM contas WHERE email=$1', [req.user.email]);
+  const { rows } = await query(
+    'SELECT email, telefone, nome_profissional, fiador_id, platform_id, api_consent FROM contas WHERE email=$1',
+    [req.user.email]
+  );
   if (!rows.length) return res.status(404).json({ success: false, error: 'Conta não encontrada' });
-  res.json({ success: true, conta: { email: rows[0].email, telefone: rows[0].telefone, nomeProfissional: rows[0].nome_profissional, fiadorId: rows[0].fiador_id } });
+  const c = rows[0];
+  res.json({ success: true, conta: {
+    email: c.email, telefone: c.telefone, nomeProfissional: c.nome_profissional,
+    fiadorId: c.fiador_id, platformId: c.platform_id, apiConsent: c.api_consent
+  }});
+});
+
+// Toggle de consentimento de compartilhamento via API (LGPD)
+app.patch('/api/auth/api-consent', auth, async (req, res) => {
+  const { consent } = req.body;
+  if (typeof consent !== 'boolean') return res.status(400).json({ success: false, error: 'consent deve ser boolean' });
+  await query(
+    'UPDATE contas SET api_consent=$1, api_consent_at=$2 WHERE email=$3',
+    [consent, consent ? new Date() : null, req.user.email]
+  );
+  res.json({ success: true, apiConsent: consent });
+});
+
+// Endpoint público — consulta usuário por platform_id (somente dados autorizados)
+app.get('/api/usuario/:platformId', async (req, res) => {
+  const { platformId } = req.params;
+  const { rows } = await query(
+    `SELECT c.platform_id, c.nome_profissional, c.api_consent,
+            f.id as fiador_id, f.nome as fiador_nome, f.conselho, f.uf, f.registro,
+            f.status as fiador_status, f.slug as fiador_slug, f.platform_id as fiador_platform_id,
+            f.bio, f.skills, f.areas, f.servicos
+     FROM contas c
+     LEFT JOIN fiadores f ON f.id = c.fiador_id
+     WHERE c.platform_id = $1`,
+    [platformId]
+  );
+  if (!rows.length) return res.status(404).json({ success: false, error: 'Usuário não encontrado' });
+  const u = rows[0];
+  if (!u.api_consent) {
+    return res.status(403).json({
+      success: false,
+      error: 'Este usuário não autorizou o compartilhamento de dados via API',
+      platform_id: platformId
+    });
+  }
+  res.json({
+    success: true,
+    usuario: {
+      platform_id: u.platform_id,
+      nome: u.nome_profissional,
+      perfil_tipo: u.fiador_id ? 'responsavel_tecnico' : 'usuario',
+      responsavel_tecnico: u.fiador_id ? {
+        platform_id: u.fiador_platform_id,
+        nome: u.fiador_nome,
+        conselho: u.conselho,
+        uf: u.uf,
+        registro: u.registro,
+        status: u.fiador_status,
+        perfil_publico: `https://imoveli.vercel.app/p/${u.fiador_slug}`,
+        bio: u.bio,
+        skills: u.skills,
+        areas: u.areas,
+      } : null,
+      fonte: 'IMOVELI Platform',
+      consultado_em: new Date().toISOString(),
+    }
+  });
 });
 
 // Renova o token (se ainda válido, emite um novo com expiração estendida)
@@ -2452,10 +2516,24 @@ async function runMigrations() {
     `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS slug TEXT`,
     `CREATE UNIQUE INDEX IF NOT EXISTS idx_fiadores_slug ON fiadores(slug) WHERE slug IS NOT NULL`,
     `CREATE UNIQUE INDEX IF NOT EXISTS idx_prestadores_slug ON prestadores(slug) WHERE slug IS NOT NULL`,
+    // IDs únicos de plataforma e consentimento LGPD/API
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS platform_id TEXT DEFAULT gen_random_uuid()::text`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_contas_platform_id ON contas(platform_id) WHERE platform_id IS NOT NULL`,
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS api_consent BOOLEAN DEFAULT FALSE`,
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS api_consent_at TIMESTAMPTZ`,
+    `ALTER TABLE fiadores ADD COLUMN IF NOT EXISTS platform_id TEXT DEFAULT gen_random_uuid()::text`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_fiadores_platform_id ON fiadores(platform_id) WHERE platform_id IS NOT NULL`,
+    `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS platform_id TEXT DEFAULT gen_random_uuid()::text`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_prestadores_platform_id ON prestadores(platform_id) WHERE platform_id IS NOT NULL`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
   }
+
+  // Gerar platform_id para registros existentes sem um
+  await query(`UPDATE contas SET platform_id = gen_random_uuid()::text WHERE platform_id IS NULL`);
+  await query(`UPDATE fiadores SET platform_id = gen_random_uuid()::text WHERE platform_id IS NULL`);
+  await query(`UPDATE prestadores SET platform_id = gen_random_uuid()::text WHERE platform_id IS NULL`);
 
   // Gerar slugs para registros existentes sem slug
   const { rows: semSlug } = await query(

@@ -823,6 +823,11 @@
             margin-bottom: 16px;
         }
 
+        /* ── TOGGLE SWITCH (API consent) ── */
+        #apiConsentToggle:checked + #apiConsentSlider { background: var(--violet); }
+        #apiConsentToggle:checked + #apiConsentSlider span { transform: translateX(20px); }
+        #apiConsentSlider span { transition: transform .3s; }
+
         /* ── CONVIDAR: ANIMAÇÃO ── */
         @keyframes shimmer-invite {
             0%,100% { opacity: 1; }
@@ -1672,6 +1677,45 @@
                     <button class="btn btn-secondary" onclick="verPerfilPublico('fiador', state.fiador.id)">👁️ Ver como o cliente vê</button>
                 </div>
 
+                <!-- ID ÚNICO DE PLATAFORMA + CONSENTIMENTO API -->
+                <div class="section" id="platformIdSection" style="display:none;">
+                    <h2>🪪 ID da Plataforma IMOVELI</h2>
+                    <p style="color:var(--neutral-600);font-size:13px;margin-bottom:14px;">
+                        Seu identificador único na plataforma. Empresas, órgãos e sites parceiros podem
+                        consultar seus dados cadastrais via API usando este ID — <strong>somente se você autorizar</strong>.
+                    </p>
+                    <div style="background:#f8f7ff;border:1.5px solid #d8b4fe;border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+                        <div style="font-size:11px;color:var(--neutral-500);text-transform:uppercase;font-weight:600;letter-spacing:.05em;margin-bottom:4px;">Seu ID</div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <code id="platformIdValue" style="font-size:13px;font-weight:700;color:var(--violet);flex:1;word-break:break-all;"></code>
+                            <button onclick="copiarPlatformId()" style="padding:5px 12px;background:var(--violet);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">Copiar</button>
+                        </div>
+                        <div style="font-size:11.5px;color:var(--neutral-500);margin-top:6px;">
+                            Endpoint público: <code style="font-size:11px;">/api/usuario/<span id="platformIdShort"></span></code>
+                        </div>
+                    </div>
+                    <!-- Toggle de consentimento -->
+                    <div style="background:#fff;border:1.5px solid var(--border-color);border-radius:10px;padding:14px 16px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+                            <div>
+                                <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px;">Autorizar integração via API</div>
+                                <div style="font-size:12.5px;color:var(--neutral-600);">Permite que plataformas parceiras consultem seus dados cadastrais usando seu ID</div>
+                            </div>
+                            <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;">
+                                <input type="checkbox" id="apiConsentToggle" onchange="toggleApiConsent(this.checked)"
+                                    style="opacity:0;width:0;height:0;">
+                                <span id="apiConsentSlider" style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:24px;transition:.3s;">
+                                    <span style="position:absolute;content:'';height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;display:block;"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div id="apiConsentStatus" style="font-size:12px;color:var(--neutral-500);margin-top:8px;"></div>
+                    </div>
+                    <p style="font-size:11.5px;color:var(--neutral-500);margin-top:10px;">
+                        🔒 Seus dados são protegidos pela LGPD. Você pode revogar essa autorização a qualquer momento.
+                    </p>
+                </div>
+
                 <div class="section">
                     <h2>Localização e Preço</h2>
                     <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
@@ -2285,7 +2329,7 @@ function showPage(pageName) {
 
     // Load page-specific data
     if (pageName === 'command') setGreeting();
-    if (pageName === 'fiador' && state.fiador) { renderFiadorDashboard(); mostrarUrlPublica(); }
+    if (pageName === 'fiador' && state.fiador) { renderFiadorDashboard(); mostrarUrlPublica(); mostrarPlatformId(); }
     if (pageName === 'fiador' && !state.fiador && state.user) {
         const nomeEl = document.getElementById('fiadorNome');
         const emailEl = document.getElementById('fiadorEmail');
@@ -3322,6 +3366,56 @@ function copiarLinkPublico() {
         const btn = link.nextElementSibling;
         if (btn) { btn.textContent = 'Copiado!'; setTimeout(() => { btn.textContent = 'Copiar'; }, 2000); }
     });
+}
+
+function mostrarPlatformId() {
+    const section = document.getElementById('platformIdSection');
+    const valEl = document.getElementById('platformIdValue');
+    const shortEl = document.getElementById('platformIdShort');
+    const toggle = document.getElementById('apiConsentToggle');
+    const slider = document.getElementById('apiConsentSlider');
+    const statusEl = document.getElementById('apiConsentStatus');
+    if (!section || !valEl) return;
+
+    const pid = state.user?.platformId;
+    if (!pid) { section.style.display = 'none'; return; }
+
+    section.style.display = 'block';
+    valEl.textContent = pid;
+    if (shortEl) shortEl.textContent = pid;
+
+    const consent = !!state.user?.apiConsent;
+    if (toggle) toggle.checked = consent;
+    if (slider) slider.style.background = consent ? 'var(--violet)' : '#ccc';
+    if (statusEl) statusEl.textContent = consent
+        ? '✅ Integração via API autorizada — seu ID está visível para plataformas parceiras.'
+        : '🔒 Integração desativada — seu ID não é compartilhado com nenhuma plataforma.';
+}
+
+function copiarPlatformId() {
+    const val = document.getElementById('platformIdValue')?.textContent;
+    if (!val) return;
+    navigator.clipboard.writeText(val).then(() => {
+        const btn = document.querySelector('#platformIdSection button');
+        if (btn) { btn.textContent = 'Copiado!'; setTimeout(() => { btn.textContent = 'Copiar'; }, 2000); }
+    });
+}
+
+async function toggleApiConsent(consent) {
+    const slider = document.getElementById('apiConsentSlider');
+    const statusEl = document.getElementById('apiConsentStatus');
+    try {
+        const r = await apiFetch('/api/auth/api-consent', { method: 'PATCH', body: JSON.stringify({ consent }) });
+        const data = await r.json();
+        if (!data.success) throw new Error(data.error);
+        state.user.apiConsent = consent;
+        if (slider) slider.style.background = consent ? 'var(--violet)' : '#ccc';
+        if (statusEl) statusEl.textContent = consent
+            ? '✅ Integração via API autorizada — seu ID está visível para plataformas parceiras.'
+            : '🔒 Integração desativada — seu ID não é compartilhado com nenhuma plataforma.';
+    } catch (e) {
+        if (statusEl) statusEl.textContent = '❌ Erro ao salvar: ' + e.message;
+    }
 }
 
 // ---- Visualização pública ----
