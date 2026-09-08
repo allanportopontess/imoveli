@@ -4169,7 +4169,7 @@ async function carregarContratos() {
     el.innerHTML = '<div style="color:var(--ink-soft);text-align:center;padding:24px;">Carregando…</div>';
 
     try {
-        const token = localStorage.getItem('imoToken') || '';
+        const token = localStorage.getItem('imoveli_token') || '';
         const r = await fetch(`${API}/api/meus-contratos`, {
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -4230,7 +4230,7 @@ function abrirChat(contratoId) {
 
 async function verificarBadgeContratos() {
     try {
-        const token = localStorage.getItem('imoToken') || '';
+        const token = localStorage.getItem('imoveli_token') || '';
         if (!token) return;
         const r = await fetch(`${API}/api/meus-contratos/nao-lidos`, {
             headers: { Authorization: `Bearer ${token}` }

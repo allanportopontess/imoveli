@@ -160,7 +160,7 @@ const API = window.location.hostname === 'localhost' || window.location.hostname
 
 const params     = new URLSearchParams(location.search);
 const CONTRATO_ID = params.get('id');
-const token      = localStorage.getItem('imoToken') || '';
+const token      = localStorage.getItem('imoveli_token') || '';
 
 let meuEmail    = '';
 let mensagens   = [];

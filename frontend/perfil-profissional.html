@@ -207,7 +207,7 @@ const SLUG = slugMatch ? slugMatch[1] : null;
 let profissional = null;
 let prazoAtual   = 'medio';
 let contratoId   = null;
-let token        = localStorage.getItem('imoToken') || '';
+let token        = localStorage.getItem('imoveli_token') || '';
 
 if (!ID && !SLUG) {
   document.getElementById('loading').innerHTML = '<p class="erro">Profissional não encontrado.</p>';
