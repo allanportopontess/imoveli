@@ -1172,6 +1172,12 @@
                 <label>Senha</label>
                 <input type="password" id="signupSenha" placeholder="mínimo 6 caracteres">
             </div>
+            <div style="display:flex; align-items:flex-start; gap:10px; margin:4px 0 14px; padding:12px; background:rgba(99,60,180,.06); border-radius:10px; border:1px solid rgba(99,60,180,.15);">
+                <input type="checkbox" id="lgpdCheckbox" style="margin-top:3px; flex-shrink:0; width:16px; height:16px; cursor:pointer; accent-color:var(--violet);">
+                <label for="lgpdCheckbox" style="font-size:12.5px; color:var(--neutral-700); line-height:1.5; cursor:pointer;">
+                    Li e aceito a <a href="/privacidade.html" target="_blank" style="color:var(--violet); font-weight:600;">Política de Privacidade</a> e o uso dos meus dados conforme a LGPD. <span style="color:var(--coral);">*</span>
+                </label>
+            </div>
             <div id="signupMsg"></div>
             <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="handleSignup()">Criar Conta</button>
             <button class="btn btn-secondary" style="width: 100%;" onclick="mostrarPassoAuth('login')">Já tenho conta</button>
@@ -1716,6 +1722,36 @@
                     </p>
                 </div>
 
+                <!-- Centro de Privacidade LGPD -->
+                <div class="section" id="privacidadeSection">
+                    <h2>🔒 Centro de Privacidade</h2>
+                    <p style="color:var(--neutral-600);font-size:13px;margin-bottom:16px;">
+                        Em conformidade com a <strong>LGPD (Lei 13.709/2018)</strong>, você tem direito de acessar, exportar e solicitar a exclusão dos seus dados pessoais.
+                    </p>
+                    <div style="display:grid;gap:12px;">
+                        <div style="background:#f8f7ff;border:1.5px solid #d8b4fe;border-radius:12px;padding:14px 16px;">
+                            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">📦 Exportar Meus Dados</div>
+                            <div style="font-size:12.5px;color:var(--neutral-600);margin-bottom:12px;">Baixe todos os dados que a IMOVELI tem sobre você em formato JSON.</div>
+                            <button onclick="exportarMeusDados()" style="padding:7px 18px;background:var(--violet);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">Exportar JSON</button>
+                        </div>
+                        <div style="background:#fff8f8;border:1.5px solid #fecaca;border-radius:12px;padding:14px 16px;">
+                            <div style="font-size:14px;font-weight:700;color:#dc2626;margin-bottom:4px;">🗑️ Solicitar Exclusão da Conta</div>
+                            <div style="font-size:12.5px;color:var(--neutral-600);margin-bottom:12px;">Sua conta será encerrada em até 30 dias. Esta ação é irreversível.</div>
+                            <div id="exclusaoStatus"></div>
+                            <div id="exclusaoForm">
+                                <textarea id="exclusaoMotivo" placeholder="Motivo da exclusão (opcional)" rows="2" style="width:100%;box-sizing:border-box;border:1px solid #fecaca;border-radius:8px;padding:8px;font-size:13px;margin-bottom:8px;resize:vertical;"></textarea>
+                                <button onclick="solicitarExclusao()" style="padding:7px 18px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">Solicitar Exclusão</button>
+                            </div>
+                        </div>
+                        <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:12px 14px;">
+                            <div style="font-size:12px;color:#15803d;">
+                                📋 Consentimento LGPD registrado ao criar sua conta.
+                                <a href="/privacidade.html" target="_blank" style="color:var(--violet);font-weight:600;">Ver Política de Privacidade completa</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section">
                     <h2>Localização e Preço</h2>
                     <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
@@ -2142,14 +2178,20 @@ async function handleSignup() {
     const email = document.getElementById('signupEmail').value.trim();
     const telefone = document.getElementById('signupTelefone').value.trim();
     const senha = document.getElementById('signupSenha').value;
+    const lgpdConsent = document.getElementById('lgpdCheckbox')?.checked || false;
     const msgEl = document.getElementById('signupMsg');
     msgEl.innerHTML = '';
+
+    if (!lgpdConsent) {
+        msgEl.innerHTML = `<div class="alert" style="background:rgba(255,75,92,0.08);color:var(--coral);margin-bottom:12px;">Você precisa aceitar a Política de Privacidade para criar uma conta.</div>`;
+        return;
+    }
 
     try {
         const response = await apiFetch(`/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nomeProfissional, email, telefone, senha })
+            body: JSON.stringify({ nomeProfissional, email, telefone, senha, lgpdConsent })
         });
         const data = await response.json();
 
@@ -4572,6 +4614,60 @@ async function carregarMeusConvites() {
 
 // Start app
 init();
+
+// ===== LGPD =====
+async function exportarMeusDados() {
+    try {
+        const r = await apiFetch('/api/auth/meus-dados');
+        const data = await r.json();
+        if (!data.success) { alert('Erro: ' + data.error); return; }
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'meus-dados-imoveli.json'; a.click();
+        URL.revokeObjectURL(url);
+    } catch { alert('Erro ao exportar dados. Tente novamente.'); }
+}
+
+async function solicitarExclusao() {
+    if (!confirm('Tem certeza? Sua conta será excluída em até 30 dias. Essa ação não pode ser desfeita.')) return;
+    const motivo = document.getElementById('exclusaoMotivo')?.value.trim() || '';
+    const statusEl = document.getElementById('exclusaoStatus');
+    const formEl = document.getElementById('exclusaoForm');
+    try {
+        const r = await apiFetch('/api/auth/solicitar-exclusao', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ motivo })
+        });
+        const data = await r.json();
+        if (data.success) {
+            statusEl.innerHTML = `<div style="color:#15803d;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;margin-bottom:10px;font-size:13px;">✅ ${data.mensagem}</div>`;
+            if (formEl) formEl.style.display = 'none';
+        } else {
+            statusEl.innerHTML = `<div style="color:#dc2626;font-size:13px;margin-bottom:8px;">⚠️ ${data.error}</div>`;
+        }
+    } catch { statusEl.innerHTML = `<div style="color:#dc2626;font-size:13px;margin-bottom:8px;">Erro de conexão. Tente novamente.</div>`; }
+}
+
+// Banner de cookies
+(function initCookieBanner() {
+    if (localStorage.getItem('cookieConsent')) return;
+    const banner = document.createElement('div');
+    banner.id = 'cookieBanner';
+    banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1e1b4b;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:13px;flex-wrap:wrap;';
+    banner.innerHTML = `
+        <span>🍪 Usamos cookies essenciais para autenticação. Ao usar a plataforma, você concorda com nossa <a href="/privacidade.html" style="color:#a78bfa;text-decoration:underline;">Política de Privacidade</a>.</span>
+        <button onclick="aceitarCookies()" style="padding:8px 20px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;white-space:nowrap;">Entendi</button>
+    `;
+    document.body.appendChild(banner);
+})();
+
+function aceitarCookies() {
+    localStorage.setItem('cookieConsent', '1');
+    const b = document.getElementById('cookieBanner');
+    if (b) b.remove();
+}
 </script>
 
 </body>

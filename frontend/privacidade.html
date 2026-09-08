@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — IMOVELI</title>
+<style>
+  :root {
+    --violet: #6b3fb4;
+    --ink: #1a1235;
+    --neutral-600: #64748b;
+    --neutral-100: #f1f5f9;
+    --bg: #fafafa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  header {
+    background: linear-gradient(135deg, #1e1b4b 0%, var(--violet) 100%);
+    color: #fff; padding: 40px 20px; text-align: center;
+  }
+  header h1 { font-size: clamp(22px, 4vw, 32px); margin-bottom: 8px; }
+  header p { font-size: 14px; opacity: 0.8; }
+  main { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
+  h2 { font-size: 18px; color: var(--violet); margin: 32px 0 10px; padding-left: 10px; border-left: 3px solid var(--violet); }
+  p, li { font-size: 14px; color: #334155; margin-bottom: 10px; }
+  ul { padding-left: 20px; }
+  .highlight {
+    background: #f3f0ff; border: 1.5px solid #d8b4fe; border-radius: 10px;
+    padding: 14px 16px; margin: 16px 0;
+  }
+  .highlight p { margin: 0; font-size: 13.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0; }
+  th { background: var(--violet); color: #fff; padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: var(--neutral-100); }
+  footer { text-align: center; padding: 24px; font-size: 12px; color: var(--neutral-600); border-top: 1px solid #e2e8f0; }
+  a { color: var(--violet); }
+  .badge { display: inline-block; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; border-radius: 6px; padding: 2px 8px; font-size: 12px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-size:36px;margin-bottom:12px;">🔒</div>
+  <h1>Política de Privacidade</h1>
+  <p>IMOVELI — Rede de Confiança entre Profissionais</p>
+  <p style="margin-top:8px;font-size:13px;">Última atualização: setembro de 2026 · <span class="badge">LGPD Compliant</span></p>
+</header>
+
+<main>
+
+  <div class="highlight">
+    <p>Esta Política de Privacidade descreve como a plataforma <strong>IMOVELI</strong> coleta, usa, armazena e protege seus dados pessoais, em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>.</p>
+  </div>
+
+  <h2>1. Quem somos</h2>
+  <p>A IMOVELI é uma plataforma digital que conecta profissionais responsáveis técnicos (arquitetos, engenheiros) a pessoas e empresas que necessitam de seus serviços. O responsável pelo tratamento dos dados (<em>controlador</em>) é a equipe IMOVELI, acessível pelo e-mail <a href="mailto:contato@imoveli.com.br">contato@imoveli.com.br</a>.</p>
+
+  <h2>2. Dados que coletamos</h2>
+  <table>
+    <tr><th>Dado</th><th>Finalidade</th><th>Base legal (LGPD)</th></tr>
+    <tr><td>Nome profissional</td><td>Identificação no perfil público</td><td>Execução de contrato</td></tr>
+    <tr><td>E-mail</td><td>Autenticação, comunicações</td><td>Execução de contrato</td></tr>
+    <tr><td>Telefone</td><td>Contato entre profissionais</td><td>Legítimo interesse</td></tr>
+    <tr><td>Dados de perfil (conselho, UF, registro)</td><td>Verificação profissional</td><td>Execução de contrato</td></tr>
+    <tr><td>Histórico de colaborações e contratos</td><td>Registro de serviços prestados</td><td>Execução de contrato</td></tr>
+    <tr><td>Data/hora de acesso e IP</td><td>Segurança e auditoria</td><td>Legítimo interesse</td></tr>
+    <tr><td>Consentimento de API (platform_id)</td><td>Integração com plataformas parceiras</td><td>Consentimento</td></tr>
+  </table>
+
+  <h2>3. Como usamos seus dados</h2>
+  <ul>
+    <li>Autenticar seu acesso à plataforma;</li>
+    <li>Exibir seu perfil público para outros profissionais;</li>
+    <li>Registrar e gerenciar contratos e colaborações;</li>
+    <li>Enviar notificações sobre sua conta por e-mail;</li>
+    <li>Melhorar os serviços e a experiência da plataforma;</li>
+    <li>Cumprir obrigações legais e regulatórias.</li>
+  </ul>
+  <p>Seus dados <strong>nunca são vendidos</strong> a terceiros.</p>
+
+  <h2>4. Compartilhamento de dados</h2>
+  <p>Seus dados podem ser compartilhados com:</p>
+  <ul>
+    <li><strong>Plataformas parceiras:</strong> somente se você ativar a integração via API (consentimento explícito e revogável a qualquer momento);</li>
+    <li><strong>Provedores de infraestrutura:</strong> Railway (banco de dados), Vercel (hospedagem do frontend), Resend (envio de e-mails) — todos sob contratos de confidencialidade;</li>
+    <li><strong>Autoridades competentes:</strong> quando exigido por lei ou ordem judicial.</li>
+  </ul>
+
+  <h2>5. Cookies e armazenamento local</h2>
+  <p>Usamos <strong>localStorage</strong> no navegador para:</p>
+  <ul>
+    <li>Armazenar seu token de autenticação (<code>imoveli_token</code>);</li>
+    <li>Registrar preferências de interface;</li>
+    <li>Registrar o aceite desta política de cookies.</li>
+  </ul>
+  <p>Não usamos cookies de rastreamento, publicidade ou análise comportamental de terceiros.</p>
+
+  <h2>6. Segurança</h2>
+  <ul>
+    <li>Senhas armazenadas com hash + salt (PBKDF2 / SHA-256);</li>
+    <li>Comunicação criptografada via HTTPS;</li>
+    <li>Tokens JWT com expiração e validação no servidor;</li>
+    <li>Acesso ao banco de dados restrito por variáveis de ambiente;</li>
+    <li>Dados de pagamento não são armazenados pela plataforma.</li>
+  </ul>
+
+  <h2>7. Seus direitos (LGPD)</h2>
+  <p>Como titular dos dados, você tem direito a:</p>
+  <ul>
+    <li><strong>Acesso:</strong> saber quais dados temos sobre você;</li>
+    <li><strong>Correção:</strong> corrigir dados incompletos ou desatualizados;</li>
+    <li><strong>Portabilidade:</strong> exportar seus dados em formato JSON (disponível no Centro de Privacidade do seu perfil);</li>
+    <li><strong>Eliminação:</strong> solicitar a exclusão dos seus dados (prazo de até 30 dias);</li>
+    <li><strong>Revogação do consentimento:</strong> desativar integrações via API a qualquer momento;</li>
+    <li><strong>Informação:</strong> saber com quem seus dados são compartilhados.</li>
+  </ul>
+  <div class="highlight">
+    <p>Para exercer seus direitos, acesse o <strong>Centro de Privacidade</strong> no seu perfil (aba Meu Perfil → rolar até "🔒 Centro de Privacidade") ou entre em contato pelo e-mail <a href="mailto:contato@imoveli.com.br">contato@imoveli.com.br</a>.</p>
+  </div>
+
+  <h2>8. Retenção de dados</h2>
+  <p>Seus dados são mantidos enquanto sua conta estiver ativa. Após a solicitação de exclusão:</p>
+  <ul>
+    <li>A conta é encerrada em até <strong>30 dias</strong>;</li>
+    <li>Registros de contratos podem ser mantidos por <strong>5 anos</strong> para fins legais e fiscais;</li>
+    <li>Logs de segurança são mantidos por <strong>6 meses</strong>.</li>
+  </ul>
+
+  <h2>9. Menores de idade</h2>
+  <p>A plataforma é destinada exclusivamente a profissionais maiores de 18 anos. Não coletamos intencionalmente dados de menores.</p>
+
+  <h2>10. Alterações nesta política</h2>
+  <p>Podemos atualizar esta política periodicamente. Alterações relevantes serão comunicadas por e-mail. A data de última atualização estará sempre no topo desta página.</p>
+
+  <h2>11. Contato</h2>
+  <p>Dúvidas, solicitações ou reclamações:</p>
+  <ul>
+    <li>📧 E-mail: <a href="mailto:contato@imoveli.com.br">contato@imoveli.com.br</a></li>
+    <li>🌐 Plataforma: <a href="https://imoveli.vercel.app">imoveli.vercel.app</a></li>
+    <li>🏛️ ANPD: <a href="https://www.gov.br/anpd" target="_blank">gov.br/anpd</a> (Autoridade Nacional de Proteção de Dados)</li>
+  </ul>
+
+</main>
+
+<footer>
+  <p>© 2026 IMOVELI · Todos os direitos reservados · <a href="/">Voltar à plataforma</a></p>
+</footer>
+
+</body>
+</html>

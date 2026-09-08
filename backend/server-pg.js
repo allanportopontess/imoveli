@@ -197,15 +197,19 @@ app.post('/api/auth/register', async (req, res) => {
   const { hash, salt } = hashSenha(senha);
   const codigo = gerarCodigoConfirmacao();
 
+  const { lgpdConsent } = req.body;
+  if (!lgpdConsent) return res.status(400).json({ success: false, error: 'É necessário aceitar a Política de Privacidade para criar uma conta.' });
+  const lgpdAt = new Date();
+
   if (existing.rows.length) {
     await query(
-      `UPDATE contas SET telefone=$1, nome_profissional=$2, senha_hash=$3, senha_salt=$4, confirmado=false, codigo_confirmacao=$5 WHERE email=$6`,
-      [telefone, nomeProfissional.trim(), hash, salt, codigo, emailNorm]
+      `UPDATE contas SET telefone=$1, nome_profissional=$2, senha_hash=$3, senha_salt=$4, confirmado=false, codigo_confirmacao=$5, lgpd_consent_at=$6 WHERE email=$7`,
+      [telefone, nomeProfissional.trim(), hash, salt, codigo, lgpdAt, emailNorm]
     );
   } else {
     await query(
-      `INSERT INTO contas (email, telefone, nome_profissional, senha_hash, senha_salt, confirmado, codigo_confirmacao) VALUES ($1,$2,$3,$4,$5,false,$6)`,
-      [emailNorm, telefone, nomeProfissional.trim(), hash, salt, codigo]
+      `INSERT INTO contas (email, telefone, nome_profissional, senha_hash, senha_salt, confirmado, codigo_confirmacao, lgpd_consent_at) VALUES ($1,$2,$3,$4,$5,false,$6,$7)`,
+      [emailNorm, telefone, nomeProfissional.trim(), hash, salt, codigo, lgpdAt]
     );
   }
 
@@ -336,6 +340,61 @@ app.patch('/api/auth/api-consent', auth, async (req, res) => {
     [consent, consent ? new Date() : null, req.user.email]
   );
   res.json({ success: true, apiConsent: consent });
+});
+
+// LGPD — exportação de dados do usuário
+app.get('/api/auth/meus-dados', auth, async (req, res) => {
+  const { rows: conta } = await query(
+    `SELECT email, telefone, nome_profissional, platform_id, api_consent, api_consent_at,
+            lgpd_consent_at, exclusao_solicitada_at, exclusao_motivo, created_at
+     FROM contas WHERE email=$1`,
+    [req.user.email]
+  );
+  if (!conta.length) return res.status(404).json({ success: false, error: 'Conta não encontrada' });
+  const c = conta[0];
+
+  const { rows: fiador } = await query(
+    `SELECT nome, conselho, uf, registro, bio, skills, areas, servicos, status, slug FROM fiadores WHERE id=$1`,
+    [c.fiador_id || 0]
+  ).catch(() => ({ rows: [] }));
+
+  const { rows: servicos } = await query(
+    `SELECT titulo, descricao, preco, status, created_at FROM servicos WHERE conta_id=(SELECT id FROM contas WHERE email=$1)`,
+    [req.user.email]
+  ).catch(() => ({ rows: [] }));
+
+  res.json({
+    success: true,
+    exportadoEm: new Date().toISOString(),
+    conta: {
+      email: c.email,
+      telefone: c.telefone,
+      nomeProfissional: c.nome_profissional,
+      platformId: c.platform_id,
+      consentimentoLGPD: c.lgpd_consent_at,
+      consentimentoAPI: c.api_consent_at,
+      criadoEm: c.created_at,
+      exclusaoSolicitadaEm: c.exclusao_solicitada_at,
+      exclusaoMotivo: c.exclusao_motivo,
+    },
+    perfilProfissional: fiador[0] || null,
+    servicos,
+  });
+});
+
+// LGPD — solicitação de exclusão de conta
+app.post('/api/auth/solicitar-exclusao', auth, async (req, res) => {
+  const { motivo } = req.body;
+  const { rows } = await query('SELECT exclusao_solicitada_at FROM contas WHERE email=$1', [req.user.email]);
+  if (!rows.length) return res.status(404).json({ success: false, error: 'Conta não encontrada' });
+  if (rows[0].exclusao_solicitada_at) {
+    return res.status(409).json({ success: false, error: 'Solicitação de exclusão já registrada.' });
+  }
+  await query(
+    'UPDATE contas SET exclusao_solicitada_at=$1, exclusao_motivo=$2 WHERE email=$3',
+    [new Date(), motivo || null, req.user.email]
+  );
+  res.json({ success: true, mensagem: 'Solicitação registrada. Sua conta será excluída em até 30 dias.' });
 });
 
 // Endpoint público — consulta usuário por platform_id (somente dados autorizados)
@@ -2521,6 +2580,10 @@ async function runMigrations() {
     `CREATE UNIQUE INDEX IF NOT EXISTS idx_contas_platform_id ON contas(platform_id) WHERE platform_id IS NOT NULL`,
     `ALTER TABLE contas ADD COLUMN IF NOT EXISTS api_consent BOOLEAN DEFAULT FALSE`,
     `ALTER TABLE contas ADD COLUMN IF NOT EXISTS api_consent_at TIMESTAMPTZ`,
+    // LGPD — consentimento de uso dos dados e direito ao esquecimento
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS lgpd_consent_at TIMESTAMPTZ`,
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS exclusao_solicitada_at TIMESTAMPTZ`,
+    `ALTER TABLE contas ADD COLUMN IF NOT EXISTS exclusao_motivo TEXT`,
     `ALTER TABLE fiadores ADD COLUMN IF NOT EXISTS platform_id TEXT DEFAULT gen_random_uuid()::text`,
     `CREATE UNIQUE INDEX IF NOT EXISTS idx_fiadores_platform_id ON fiadores(platform_id) WHERE platform_id IS NOT NULL`,
     `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS platform_id TEXT DEFAULT gen_random_uuid()::text`,
