@@ -186,7 +186,7 @@
 <!-- MODAL SOLICITAR SERVIÇO -->
 <div class="modal-overlay" id="modalOverlay" hidden onclick="fecharModal(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="fecharModalForce()">✕</button>
+    <button class="modal-close" onclick="event.stopPropagation();fecharModalForce()">✕</button>
     <div id="modalConteudo"></div>
   </div>
 </div>
@@ -387,10 +387,14 @@ function abrirModalSolicitar() {
     return;
   }
   prazoAtual = 'medio';
-  document.getElementById('modalConteudo').innerHTML = renderFormSolicitar();
+  try {
+    document.getElementById('modalConteudo').innerHTML = renderFormSolicitar();
+  } catch(e) {
+    document.getElementById('modalConteudo').innerHTML = `<p style="color:red;padding:16px;">Erro ao carregar formulário: ${e.message}</p>`;
+  }
   document.getElementById('modalOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
-  calcularPreco();
+  try { calcularPreco(); } catch(_) {}
 }
 
 function renderFormSolicitar() {
