@@ -21,6 +21,29 @@ function signToken(payload) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 }
 
+function gerarSlug(nome) {
+  return nome
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]/g, '')
+    .trim()
+    .replace(/\s+/g, '-') || 'profissional';
+}
+
+async function resolverSlugUnico(base) {
+  let slug = base;
+  let n = 1;
+  while (true) {
+    const { rows } = await query(
+      `SELECT 1 FROM fiadores WHERE slug=$1 UNION ALL SELECT 1 FROM prestadores WHERE slug=$1 LIMIT 1`,
+      [slug]
+    );
+    if (!rows.length) return slug;
+    slug = `${base}-${n++}`;
+  }
+}
+
 // Middleware de autenticação — adiciona req.user se token válido
 function auth(req, res, next) {
   const header = req.headers.authorization;
@@ -349,9 +372,11 @@ app.post('/api/fiadores/register', async (req, res) => {
     : `IMV-PROV-${String(parseInt(total.rows[0]?.count || 0) + 1).padStart(6, '0')}`;
 
   const id = 'fiador_' + Date.now();
+  const slugBase = gerarSlug(nome);
+  const slugFinal = await resolverSlugUnico(slugBase);
   const { rows } = await query(
-    `INSERT INTO fiadores (id,nome,email,conselho,uf,registro,cpf,carteirinha,status,motivo,fonte) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *`,
-    [id, nome, email, conselho, uf.toUpperCase(), registro, cpf, carteirinha, verification.status, verification.motivo || null, verification.fonte || null]
+    `INSERT INTO fiadores (id,nome,email,conselho,uf,registro,cpf,carteirinha,status,motivo,fonte,slug) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *`,
+    [id, nome, email, conselho, uf.toUpperCase(), registro, cpf, carteirinha, verification.status, verification.motivo || null, verification.fonte || null, slugFinal]
   );
   res.json({ success: true, fiador: rowToFiador(rows[0]) });
 });
@@ -391,14 +416,16 @@ app.post('/api/fiadores/:id/indicar', auth, async (req, res) => {
     const prestId = 'prestador_' + Date.now();
     const indId = 'indicacao_' + Date.now();
 
+    const slugBasePrest = gerarSlug(nome.trim());
+    const slugPrest = await resolverSlugUnico(slugBasePrest);
     const { rows: pRows } = await query(
       `INSERT INTO prestadores
-         (id, nome, email, telefone, especialidade, cidade, estado, carteirinha, status)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'pendente') RETURNING *`,
+         (id, nome, email, telefone, especialidade, cidade, estado, carteirinha, status, slug)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'pendente',$9) RETURNING *`,
       [prestId, nome.trim(), (email || '').trim().toLowerCase() || null,
        telefone.trim(), especialidade.trim(),
        (cidade || '').trim() || null, (estado || '').trim().toUpperCase() || null,
-       carteirinha]
+       carteirinha, slugPrest]
     );
     const { rows: iRows } = await query(
       `INSERT INTO indicacoes (id,fiador_id,prestador_id,escopo,status) VALUES ($1,$2,$3,$4,'pendente') RETURNING *`,
@@ -1722,6 +1749,73 @@ app.get('/api/profissional-publico/:tipo/:id', async (req, res) => {
   }
 });
 
+app.get('/api/p/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    let tipo = null;
+    let row = null;
+
+    const { rows: fRows } = await query(`SELECT * FROM fiadores WHERE slug=$1`, [slug]);
+    if (fRows.length) { tipo = 'fiador'; row = fRows[0]; }
+
+    if (!row) {
+      const { rows: pRows } = await query(`SELECT * FROM prestadores WHERE slug=$1`, [slug]);
+      if (pRows.length) { tipo = 'prestador'; row = pRows[0]; }
+    }
+
+    if (!row) return res.status(404).json({ success: false, error: 'Profissional não encontrado' });
+
+    const id = row.id;
+    const CRIT_COL = tipo === 'fiador' ? 'fiador_id' : 'prestador_id';
+
+    const { rows: av } = await query(
+      `SELECT COUNT(*) as total,
+        AVG((avaliacao->>'nota')::numeric) as media_nota,
+        AVG((avaliacao->>'qualidade')::numeric) as media_qualidade,
+        AVG((avaliacao->>'prazo')::numeric) as media_prazo,
+        AVG((avaliacao->>'comunicacao')::numeric) as media_comunicacao,
+        AVG((avaliacao->>'organizacao')::numeric) as media_organizacao,
+        AVG((avaliacao->>'pontualidade')::numeric) as media_pontualidade,
+        AVG((avaliacao->>'custoBeneficio')::numeric) as media_custo_beneficio
+       FROM servicos WHERE ${CRIT_COL}=$1 AND avaliacao IS NOT NULL`, [id]
+    );
+    const arred = v => v ? Math.round(parseFloat(v) * 10) / 10 : null;
+    const av0 = av[0] || {};
+    const reputacao = {
+      totalServicos: parseInt(av0.total) || 0,
+      mediaNota: arred(av0.media_nota),
+      qualidade: arred(av0.media_qualidade),
+      prazo: arred(av0.media_prazo),
+      comunicacao: arred(av0.media_comunicacao),
+      organizacao: arred(av0.media_organizacao),
+      pontualidade: arred(av0.media_pontualidade),
+      custoBeneficio: arred(av0.media_custo_beneficio)
+    };
+
+    const { rows: servicos } = await query(
+      `SELECT id, descricao, categoria, status, fotos_antes, fotos_depois, avaliacao, data_conclusao
+       FROM servicos WHERE ${CRIT_COL}=$1 AND status='concluido'
+       ORDER BY data_conclusao DESC LIMIT 12`, [id]
+    );
+
+    let fiador = null;
+    if (tipo === 'prestador') {
+      const { rows: ind } = await query(
+        `SELECT f.id, f.nome, f.conselho, f.uf, f.registro FROM indicacoes i
+         JOIN fiadores f ON f.id=i.fiador_id
+         WHERE i.prestador_id=$1 AND i.status='aceita' LIMIT 1`, [id]
+      );
+      if (ind.length) fiador = ind[0];
+    }
+
+    const serializado = tipo === 'fiador' ? rowToFiador(row) : rowToPrestador(row);
+    res.json({ success: true, profissional: { ...serializado, tipo, reputacao, servicos, fiador } });
+  } catch (err) {
+    console.error('[GET /api/p/:slug]', err.message);
+    res.status(500).json({ success: false, error: 'Erro interno' });
+  }
+});
+
 // ============================================
 // CONTRATOS (CONTRATAÇÃO DIRETA)
 // ============================================
@@ -2232,11 +2326,11 @@ app.get('/api/ai-diag', async (req, res) => {
 // ============================================
 
 function rowToFiador(r) {
-  return { id: r.id, nome: r.nome, email: r.email, conselho: r.conselho, uf: r.uf, registro: r.registro, carteirinha: r.carteirinha, status: r.status, motivo: r.motivo, fonte: r.fonte, bio: r.bio, skills: r.skills, areasInteresse: r.areas_interesse, servicosOferecidos: r.servicos_oferecidos, acervo: r.acervo, mural: r.mural, avaliacoesExternas: r.avaliacoes_externas, localizacao: r.localizacao, faixaPreco: r.faixa_preco, createdAt: r.created_at };
+  return { id: r.id, nome: r.nome, email: r.email, conselho: r.conselho, uf: r.uf, registro: r.registro, carteirinha: r.carteirinha, status: r.status, motivo: r.motivo, fonte: r.fonte, bio: r.bio, skills: r.skills, areasInteresse: r.areas_interesse, servicosOferecidos: r.servicos_oferecidos, acervo: r.acervo, mural: r.mural, avaliacoesExternas: r.avaliacoes_externas, localizacao: r.localizacao, faixaPreco: r.faixa_preco, slug: r.slug, createdAt: r.created_at };
 }
 
 function rowToPrestador(r) {
-  return { id: r.id, nome: r.nome, telefone: r.telefone, especialidade: r.especialidade, carteirinha: r.carteirinha, status: r.status, bio: r.bio, skills: r.skills, areasInteresse: r.areas_interesse, servicosOferecidos: r.servicos_oferecidos, acervo: r.acervo, mural: r.mural, avaliacoesExternas: r.avaliacoes_externas, localizacao: r.localizacao, faixaPreco: r.faixa_preco, createdAt: r.created_at };
+  return { id: r.id, nome: r.nome, telefone: r.telefone, especialidade: r.especialidade, carteirinha: r.carteirinha, status: r.status, bio: r.bio, skills: r.skills, areasInteresse: r.areas_interesse, servicosOferecidos: r.servicos_oferecidos, acervo: r.acervo, mural: r.mural, avaliacoesExternas: r.avaliacoes_externas, localizacao: r.localizacao, faixaPreco: r.faixa_preco, slug: r.slug, createdAt: r.created_at };
 }
 
 // ============================================
@@ -2353,9 +2447,28 @@ async function runMigrations() {
     )`,
     `CREATE INDEX IF NOT EXISTS idx_chat_contrato ON mensagens_chat(contrato_id)`,
     `CREATE INDEX IF NOT EXISTS idx_chat_nao_lida ON mensagens_chat(contrato_id, lida)`,
+    // Slugs para URLs amigáveis
+    `ALTER TABLE fiadores ADD COLUMN IF NOT EXISTS slug TEXT`,
+    `ALTER TABLE prestadores ADD COLUMN IF NOT EXISTS slug TEXT`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_fiadores_slug ON fiadores(slug) WHERE slug IS NOT NULL`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_prestadores_slug ON prestadores(slug) WHERE slug IS NOT NULL`,
   ];
   for (const sql of alterations) {
     try { await query(sql); } catch (err) { console.error('⚠️  Migration:', err.message); }
+  }
+
+  // Gerar slugs para registros existentes sem slug
+  const { rows: semSlug } = await query(
+    `SELECT id, nome, 'fiador' as tipo FROM fiadores WHERE slug IS NULL
+     UNION ALL SELECT id, nome, 'prestador' as tipo FROM prestadores WHERE slug IS NULL`
+  );
+  for (const r of semSlug) {
+    try {
+      const base = gerarSlug(r.nome);
+      const slug = await resolverSlugUnico(base);
+      const table = r.tipo === 'fiador' ? 'fiadores' : 'prestadores';
+      await query(`UPDATE ${table} SET slug=$1 WHERE id=$2`, [slug, r.id]);
+    } catch (err) { console.error('⚠️  Slug gen:', err.message); }
   }
 }
 

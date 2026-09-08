@@ -56,6 +56,12 @@
     }
     .btn-contratar:hover { background: var(--violet-deep); }
     .btn-contratar:disabled { background: var(--mist); color: var(--ink-soft); cursor: not-allowed; }
+    .hero-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .hero-actions .btn-contratar { margin-top: 0; flex: 1; }
+    .btn-share { padding: 12px 16px; background: var(--mist); color: var(--ink); border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .15s; }
+    .btn-share:hover { background: #d8d5e0; }
+    .share-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity .25s; pointer-events: none; }
+    .share-toast.show { opacity: 1; }
 
     /* SEÇÕES */
     .secao { background: #fff; border: 1px solid var(--mist); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
@@ -188,21 +194,24 @@ const API = window.location.hostname === 'localhost' || window.location.hostname
   ? 'http://localhost:3001' : '';
 
 const params  = new URLSearchParams(location.search);
-const TIPO    = params.get('tipo') || 'fiador';
-const ID      = params.get('id');
+let TIPO    = params.get('tipo') || 'fiador';
+let ID      = params.get('id');
 const NOME    = params.get('nome') || '';
+
+// Detecta URL amigável: /p/slug-do-profissional
+const slugMatch = location.pathname.match(/^\/p\/([^/?#]+)/);
+const SLUG = slugMatch ? slugMatch[1] : null;
 
 let profissional = null;
 let prazoAtual   = 'medio';
 let contratoId   = null;
 let token        = localStorage.getItem('imoToken') || '';
 
-if (!ID) {
-  document.getElementById('loading').innerHTML = '<p class="erro">Parâmetro id ausente na URL.</p>';
+if (!ID && !SLUG) {
+  document.getElementById('loading').innerHTML = '<p class="erro">Profissional não encontrado.</p>';
 } else {
   // Retorno do Mercado Pago
   if (params.get('pago') === '1') {
-    // Webhook pode ter chegado antes; mostra confirmação e verifica
     document.getElementById('loading').hidden = true;
     document.getElementById('pagina').innerHTML = `
       <div style="text-align:center;padding:60px 20px;">
@@ -220,7 +229,7 @@ if (!ID) {
         <div style="font-size:48px;margin-bottom:16px;">❌</div>
         <h2 style="color:var(--coral);font-size:20px;font-weight:800;margin-bottom:8px;">Pagamento não concluído</h2>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:24px;">Tente novamente ou escolha outra forma de pagamento.</p>
-        <button onclick="location.href='/perfil-profissional.html?tipo=${TIPO}&id=${ID}'" style="padding:12px 24px;background:var(--violet);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;">Tentar novamente</button>
+        <button onclick="history.back()" style="padding:12px 24px;background:var(--violet);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;">Tentar novamente</button>
       </div>`;
   } else {
     carregarPerfil();
@@ -229,10 +238,19 @@ if (!ID) {
 
 async function carregarPerfil() {
   try {
-    const r = await fetch(`${API}/api/profissional-publico/${TIPO}/${ID}`);
+    let url;
+    if (SLUG) {
+      url = `${API}/api/p/${encodeURIComponent(SLUG)}`;
+    } else {
+      url = `${API}/api/profissional-publico/${TIPO}/${ID}`;
+    }
+    const r = await fetch(url);
     const data = await r.json();
     if (!data.success) throw new Error(data.error);
     profissional = data.profissional;
+    // Atualiza TIPO e ID a partir dos dados retornados (necessário na rota de slug)
+    if (profissional.tipo) TIPO = profissional.tipo;
+    if (profissional.id)   ID   = profissional.id;
     renderizarPerfil();
   } catch (e) {
     document.getElementById('loading').innerHTML =
@@ -321,7 +339,10 @@ function renderizarPerfil() {
           ${loc ? `<span class="badge badge-local">📍 ${loc}</span>` : ''}
         </div>
         <div class="hero-bio">${p.bio || 'Profissional da IMOVELI.'}</div>
-        <button class="btn-contratar" onclick="abrirModalSolicitar()">Solicitar Serviço</button>
+        <div class="hero-actions">
+          <button class="btn-contratar" onclick="abrirModalSolicitar()">Solicitar Serviço</button>
+          <button class="btn-share" onclick="compartilharPerfil()" title="Compartilhar perfil">🔗</button>
+        </div>
       </div>
     </div>
 
@@ -552,6 +573,25 @@ function fecharModal(e) {
     document.getElementById('modalOverlay').hidden = true;
   }
 }
+
+function compartilharPerfil() {
+  const slug = profissional?.slug;
+  const url = slug
+    ? `${location.origin}/p/${slug}`
+    : `${location.origin}/perfil-profissional.html?tipo=${TIPO}&id=${ID}`;
+
+  if (navigator.share) {
+    navigator.share({ title: `${profissional?.nome || 'Profissional'} — IMOVELI`, url });
+    return;
+  }
+
+  navigator.clipboard.writeText(url).then(() => {
+    const toast = document.getElementById('shareToast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  });
+}
 </script>
+<div id="shareToast" class="share-toast">Link copiado!</div>
 </body>
 </html>

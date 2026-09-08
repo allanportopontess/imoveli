@@ -1591,6 +1591,11 @@
                     <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">
                         O que outros profissionais da rede veem antes de contratar você.
                     </p>
+                    <div id="minhaUrlPublica" style="display:none;background:#f5f3ff;border:1px solid #d8b4fe;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;">
+                        <span style="color:#6b7280;font-weight:600;">Seu link público:</span>
+                        <a id="linkPublicoHref" href="#" target="_blank" style="color:#6E30D9;font-weight:700;word-break:break-all;"></a>
+                        <button onclick="copiarLinkPublico()" style="margin-left:8px;padding:2px 10px;background:#6E30D9;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">Copiar</button>
+                    </div>
                     <button class="btn btn-secondary" onclick="abrirEditorPerfil('fiador', state.fiador.id, state.fiador.nome)">✏️ Editar meu perfil</button>
                     <button class="btn btn-secondary" onclick="verPerfilPublico('fiador', state.fiador.id)">👁️ Ver como o cliente vê</button>
                 </div>
@@ -2120,7 +2125,7 @@ function showPage(pageName) {
 
     // Load page-specific data
     if (pageName === 'command') setGreeting();
-    if (pageName === 'fiador' && state.fiador) renderFiadorDashboard();
+    if (pageName === 'fiador' && state.fiador) { renderFiadorDashboard(); mostrarUrlPublica(); }
     if (pageName === 'fiador' && !state.fiador && state.user) {
         const nomeEl = document.getElementById('fiadorNome');
         const emailEl = document.getElementById('fiadorEmail');
@@ -3129,6 +3134,32 @@ function handleAdicionarMural() {
         }
     };
     reader.readAsDataURL(file);
+}
+
+// ---- URL pública do perfil ----
+
+function mostrarUrlPublica() {
+    const slug = state.fiador?.slug;
+    const box = document.getElementById('minhaUrlPublica');
+    const link = document.getElementById('linkPublicoHref');
+    if (!box || !link) return;
+    if (slug) {
+        const url = `${location.origin}/p/${slug}`;
+        link.href = url;
+        link.textContent = url;
+        box.style.display = 'block';
+    } else {
+        box.style.display = 'none';
+    }
+}
+
+function copiarLinkPublico() {
+    const link = document.getElementById('linkPublicoHref');
+    if (!link) return;
+    navigator.clipboard.writeText(link.href).then(() => {
+        const btn = link.nextElementSibling;
+        if (btn) { btn.textContent = 'Copiado!'; setTimeout(() => { btn.textContent = 'Copiar'; }, 2000); }
+    });
 }
 
 // ---- Visualização pública ----

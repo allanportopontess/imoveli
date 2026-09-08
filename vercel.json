@@ -7,6 +7,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://imoveli-backend-production.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/p/:path*",
+      "destination": "/perfil-profissional.html"
     }
   ],
   "headers": [
