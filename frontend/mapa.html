@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mapa de Profissionais — IMOVELI</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -276,32 +275,41 @@
 <!-- Mapa -->
 <div id="map"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+const GMAPS_KEY = 'AIzaSyAWu2i3Kv_edV1iEpAwIbLxTb4WsiahjSo';
 const API = 'https://imoveli-backend-production.up.railway.app';
 
 let map, todos = [], filtrados = [], userMarker = null, userLat = null, userLng = null;
 const markers = new Map();
+const infoWindows = new Map();
+let activeInfoWindow = null;
 
 // Estado dos critérios de avaliação: { qualidade: 0..5, prazo: 0..5, ... }
 const criterios = { qualidade: 0, prazo: 0, comunicacao: 0, organizacao: 0, pontualidade: 0, custoBeneficio: 0 };
 let modoAtual = 'avaliacao';
 
-// ── MAPA ──
-map = L.map('map', { zoomControl: true }).setView([-14.5, -51.5], 5);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  maxZoom: 19
-}).addTo(map);
-
-function criarIcone(grau, ativo = false) {
+function criarIconeSvg(grau) {
   const cor = grau === 1 ? '#16B378' : '#6E30D9';
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">
     <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26S32 28 32 16C32 7.2 24.8 0 16 0z" fill="${cor}"/>
     <circle cx="16" cy="16" r="8" fill="white"/>
     <text x="16" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="${cor}">${grau}</text>
   </svg>`;
-  return L.divIcon({ html: svg, className: '', iconSize: [32, 42], iconAnchor: [16, 42], popupAnchor: [0, -44] });
+  return {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+    scaledSize: new google.maps.Size(32, 42),
+    anchor: new google.maps.Point(16, 42),
+  };
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: -14.5, lng: -51.5 },
+    zoom: 5,
+    mapTypeControl: false,
+    streetViewControl: false,
+  });
+  carregar();
 }
 
 // ── MODO DE CONTRATAÇÃO ──
@@ -348,6 +356,34 @@ async function carregar() {
   } catch (e) {
     document.getElementById('overlay-loading').innerHTML =
       '<p style="color:#ff4b5c;font-size:14px;">Erro ao carregar profissionais. Tente novamente.</p>';
+    return;
+  }
+  // Posicionar pelo parâmetro de URL (vindo de solicitarLocalizacaoRapida)
+  const params = new URLSearchParams(window.location.search);
+  const lat = parseFloat(params.get('lat'));
+  const lng = parseFloat(params.get('lng'));
+  if (Number.isFinite(lat) && Number.isFinite(lng)) {
+    userLat = lat; userLng = lng;
+    if (userMarker) userMarker.setMap(null);
+    userMarker = new google.maps.Marker({
+      map,
+      position: { lat, lng },
+      title: 'Sua localização',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: '#16B378',
+        fillOpacity: 0.5,
+        strokeColor: '#16B378',
+        strokeWeight: 2,
+      },
+    });
+    map.panTo({ lat, lng });
+    map.setZoom(12);
+    const btn = document.getElementById('btnLoc');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
+    btn.style.background = 'var(--mint)';
+    filtrar();
   }
 }
 
@@ -411,15 +447,26 @@ function haversine(lat1, lng1, lat2, lng2) {
 function atualizarMarcadores() {
   const idsAtivos = new Set(filtrados.map(p => p.id));
   for (const [id, m] of markers) {
-    if (!idsAtivos.has(id)) { map.removeLayer(m); markers.delete(id); }
+    if (!idsAtivos.has(id)) { m.setMap(null); markers.delete(id); infoWindows.delete(id); }
   }
   for (const p of filtrados) {
+    if (!p.lat || !p.lng) continue;
     if (!markers.has(p.id)) {
-      const m = L.marker([p.lat, p.lng], { icon: criarIcone(p.grau) });
-      m.bindPopup(criarPopup(p), { maxWidth: 260 });
-      m.on('click', () => destacarCard(p.id));
-      m.addTo(map);
+      const m = new google.maps.Marker({
+        map,
+        position: { lat: p.lat, lng: p.lng },
+        icon: criarIconeSvg(p.grau),
+        title: p.nome,
+      });
+      const iw = new google.maps.InfoWindow({ content: criarPopup(p), maxWidth: 280 });
+      m.addListener('click', () => {
+        if (activeInfoWindow) activeInfoWindow.close();
+        iw.open(map, m);
+        activeInfoWindow = iw;
+        destacarCard(p.id);
+      });
       markers.set(p.id, m);
+      infoWindows.set(p.id, iw);
     }
   }
 }
@@ -508,10 +555,16 @@ function atualizarStats() {
 // ── FOCO ──
 function focarProfissional(id) {
   const p = filtrados.find(x => x.id === id);
-  if (!p) return;
-  map.flyTo([p.lat, p.lng], 14, { duration: 1 });
+  if (!p || !p.lat) return;
+  map.panTo({ lat: p.lat, lng: p.lng });
+  map.setZoom(14);
   const m = markers.get(id);
-  if (m) m.openPopup();
+  const iw = infoWindows.get(id);
+  if (m && iw) {
+    if (activeInfoWindow) activeInfoWindow.close();
+    iw.open(map, m);
+    activeInfoWindow = iw;
+  }
   document.querySelectorAll('.card-prof').forEach(el => el.classList.remove('ativo'));
   const card = document.getElementById(`card-${id}`);
   if (card) { card.classList.add('ativo'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
@@ -531,11 +584,22 @@ function usarMinhaLocalizacao() {
   navigator.geolocation.getCurrentPosition(pos => {
     userLat = pos.coords.latitude;
     userLng = pos.coords.longitude;
-    if (userMarker) map.removeLayer(userMarker);
-    userMarker = L.circleMarker([userLat, userLng], {
-      radius: 10, fillColor: '#FF4B5C', color: '#fff', weight: 3, fillOpacity: 0.9
-    }).bindPopup('<b>Você está aqui</b>').addTo(map);
-    map.flyTo([userLat, userLng], 12, { duration: 1.2 });
+    if (userMarker) userMarker.setMap(null);
+    userMarker = new google.maps.Marker({
+      map,
+      position: { lat: userLat, lng: userLng },
+      title: 'Você está aqui',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: '#FF4B5C',
+        fillOpacity: 0.9,
+        strokeColor: '#fff',
+        strokeWeight: 3,
+      },
+    });
+    map.panTo({ lat: userLat, lng: userLng });
+    map.setZoom(12);
     btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
     btn.style.background = 'var(--mint)';
     filtrar();
@@ -545,24 +609,8 @@ function usarMinhaLocalizacao() {
   });
 }
 
-// ── INICIA ──
-carregar().then(() => {
-  const params = new URLSearchParams(window.location.search);
-  const lat = parseFloat(params.get('lat'));
-  const lng = parseFloat(params.get('lng'));
-  if (Number.isFinite(lat) && Number.isFinite(lng)) {
-    userLat = lat; userLng = lng;
-    if (userMarker) map.removeLayer(userMarker);
-    userMarker = L.circleMarker([lat, lng], {
-      radius: 10, color: '#16B378', fillColor: '#16B378', fillOpacity: 0.25, weight: 2
-    }).addTo(map).bindPopup('📍 Sua localização').openPopup();
-    map.flyTo([lat, lng], 12, { duration: 1.2 });
-    const btn = document.getElementById('btnLoc');
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Localização ativa ✓';
-    btn.style.background = 'var(--mint)';
-    filtrar();
-  }
-});
+// carregar() é chamado dentro de initMap() após o Google Maps inicializar
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWu2i3Kv_edV1iEpAwIbLxTb4WsiahjSo&callback=initMap" async defer></script>
 </body>
 </html>
