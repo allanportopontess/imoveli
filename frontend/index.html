@@ -727,6 +727,122 @@
             color: var(--neutral-600);
         }
 
+        /* ── SUB-ABAS DO PERFIL PROFISSIONAL ── */
+        .prof-tabs {
+            display: flex; gap: 4px; padding: 4px;
+            background: var(--neutral-100); border-radius: 14px;
+            margin: 0 0 20px; overflow-x: auto; scrollbar-width: none;
+        }
+        .prof-tabs::-webkit-scrollbar { display: none; }
+        .prof-tab {
+            flex: 1; min-width: 90px; padding: 9px 12px;
+            border: none; border-radius: 10px; font-size: 13px;
+            font-weight: 600; cursor: pointer; white-space: nowrap;
+            background: transparent; color: var(--neutral-600);
+            transition: background 0.18s, color 0.18s;
+        }
+        .prof-tab.active {
+            background: #fff; color: var(--violet);
+            box-shadow: 0 1px 4px rgba(0,0,0,.10);
+        }
+        .prof-tab-content { display: none; }
+        .prof-tab-content.active { display: block; }
+
+        /* ── DEMANDAS DOIS BLOCOS ── */
+        .demandas-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        @media (max-width: 700px) { .demandas-grid { grid-template-columns: 1fr; } }
+        .demanda-bloco {
+            background: var(--white); border-radius: 16px;
+            border: 1.5px solid var(--border-color); padding: 20px;
+        }
+        .demanda-bloco-title {
+            font-size: 16px; font-weight: 800; color: var(--ink);
+            margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
+        }
+        .demanda-bloco-sub {
+            font-size: 12.5px; color: var(--ink-soft); margin-bottom: 16px;
+        }
+
+        /* ── COLABORAÇÃO: NOTA FISCAL MINI ── */
+        .nota-fiscal {
+            border: 1.5px solid var(--border-color); border-radius: 14px;
+            margin-bottom: 12px; overflow: hidden;
+        }
+        .nota-fiscal-header {
+            background: linear-gradient(90deg, var(--violet) 0%, #9B59B6 100%);
+            color: #fff; padding: 10px 16px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 12px; font-weight: 700;
+        }
+        .nota-fiscal-body {
+            padding: 12px 16px; background: #fff;
+            font-size: 13px; color: var(--ink);
+        }
+        .nota-fiscal-row {
+            display: flex; justify-content: space-between;
+            padding: 4px 0; border-bottom: 1px dashed var(--border-color);
+        }
+        .nota-fiscal-row:last-child { border-bottom: none; }
+        .nota-fiscal-total {
+            font-weight: 800; font-size: 15px; color: var(--violet);
+            padding-top: 8px; display: flex; justify-content: space-between;
+        }
+        .nota-fiscal-btn {
+            margin-top: 8px; padding: 6px 12px;
+            background: var(--violet); color: #fff;
+            border: none; border-radius: 8px; font-size: 12px;
+            font-weight: 700; cursor: pointer;
+        }
+
+        /* ── BUSCAR: SEARCH BAR GRANDE ── */
+        .buscar-hero {
+            background: linear-gradient(135deg, var(--violet) 0%, #9B59B6 100%);
+            border-radius: 16px; padding: 24px 20px; margin-bottom: 16px;
+        }
+        .buscar-hero h2 { color: #fff; font-size: 18px; margin-bottom: 14px; }
+        .buscar-row {
+            display: flex; gap: 8px;
+        }
+        .buscar-row input {
+            flex: 1; padding: 13px 18px; border: none; border-radius: 12px;
+            font-size: 15px; font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+        .buscar-row input:focus { outline: 2px solid rgba(255,255,255,.5); }
+        .buscar-row button {
+            padding: 13px 20px; background: #fff; color: var(--violet);
+            border: none; border-radius: 12px; font-weight: 800;
+            font-size: 14px; cursor: pointer; white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+        .mini-map {
+            width: 100%; height: 220px; border-radius: 14px;
+            border: 1.5px solid var(--border-color); overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        /* ── CONVIDAR: ANIMAÇÃO ── */
+        @keyframes shimmer-invite {
+            0%,100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        @keyframes pulse-invite {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .nav-convite {
+            animation: shimmer-invite 2.4s ease-in-out infinite;
+            position: relative;
+        }
+        .nav-convite::after {
+            content: '✦'; position: absolute; right: 8px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px; color: var(--violet);
+            animation: pulse-invite 1.2s ease-in-out infinite;
+        }
+
         .form-group {
             margin-bottom: 16px;
         }
@@ -1081,13 +1197,9 @@
         <h2>🏠 IMOVELI</h2>
         <ul class="sidebar-menu">
             <li><a onclick="showPage('command')" data-menu="command" class="active">💬 Início</a></li>
-            <li><a onclick="showPage('dashboard')" data-menu="dashboard">📊 Painel Geral</a></li>
             <li><a onclick="showPage('fiador')" data-menu="fiador">🛡️ Meu Perfil Profissional</a></li>
-            <li><a onclick="showPage('hire')" data-menu="hire">🔎 Buscar Profissional</a></li>
-            <li><a onclick="showPage('services')" data-menu="services">📁 Registros de Colaboração</a></li>
             <li><a onclick="showPage('demandas')" data-menu="demandas">📢 Demanda de Serviços</a></li>
-            <li><a onclick="showPage('contratos')" data-menu="contratos">💬 Contratos <span id="badgeContratos" hidden style="background:var(--coral);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;margin-left:4px;"></span></a></li>
-            <li><a onclick="showPage('convites')" data-menu="convites">🔗 Convidar Profissional</a></li>
+            <li><a onclick="showPage('convites')" data-menu="convites" class="nav-convite">🔗 Convidar Profissional</a></li>
             <li><a href="/mapa.html" target="_blank" style="color:rgba(255,255,255,0.78);text-decoration:none;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;">🗺️ Mapa de Profissionais</a></li>
             <li><a href="/precificacao.html" target="_blank" style="color:rgba(255,255,255,0.78);text-decoration:none;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;">🤖 Precificação IA</a></li>
             <li><a onclick="handleLogout()" style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 12px;">🚪 Sair</a></li>
@@ -1190,67 +1302,6 @@
         </div>
 
         <!-- DASHBOARD -->
-        <div data-page="dashboard">
-            <div class="header">
-                <div>
-                    <h1>Painel Geral</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Sua rede e reputação técnica</p>
-                </div>
-                <button class="btn btn-primary" onclick="showPage('fiador')">+ Indicar Profissional</button>
-            </div>
-
-            <div class="grid">
-                <div class="card">
-                    <div class="card-value" id="statIndicados">0</div>
-                    <div class="card-label">Profissionais Indicados</div>
-                </div>
-                <div class="card">
-                    <div class="card-value" id="statVinculosAtivos" style="color: var(--success);">0</div>
-                    <div class="card-label">Vínculos Ativos</div>
-                </div>
-                <div class="card">
-                    <div class="card-value" id="statReputacao" style="color: var(--violet);">—</div>
-                    <div class="card-label">Reputação Verificada</div>
-                </div>
-                <div class="card">
-                    <div class="card-value" id="statRede">—</div>
-                    <div class="card-label">Profissionais na Rede</div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Registros de Colaboração Recentes</h2>
-                <div id="recentServicos" style="color: var(--neutral-600); text-align: center; padding: 32px;">
-                    Nenhum registro ainda. Contrate ou seja contratado para começar a construir histórico.
-                </div>
-            </div>
-        </div>
-
-        <!-- CONTRATAR SERVIÇO -->
-        <div data-page="hire">
-            <div class="header">
-                <div>
-                    <h1>Buscar Profissional</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Apenas profissionais indicados e avalizados por um Responsável Técnico verificado</p>
-                </div>
-            </div>
-            <div class="section" id="hireList">
-                <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Carregando profissionais...</div>
-            </div>
-        </div>
-
-        <!-- REGISTROS DE COLABORAÇÃO -->
-        <div data-page="services">
-            <div class="header">
-                <div>
-                    <h1>Registros de Colaboração</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Documentação técnica de cada trabalho com quem você contratou</p>
-                </div>
-            </div>
-            <div class="section" id="servicesList">
-                <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhum registro ainda.</div>
-            </div>
-        </div>
 
         <!-- MATCH INTELIGENTE -->
         <div data-page="match">
@@ -1292,67 +1343,88 @@
         <div data-page="demandas">
             <div class="header">
                 <div>
-                    <h1>Demanda de Serviços</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Descreva o que precisa — profissionais verificados da rede vão propor</p>
+                    <h1>📢 Demanda de Serviços</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Publique ou encontre demandas na rede de profissionais verificados</p>
                 </div>
             </div>
 
-            <!-- Formulário de nova demanda -->
-            <div class="section">
-                <h2>Publicar nova demanda</h2>
-                <p style="color: var(--neutral-600); font-size: 13px; margin-bottom: 16px;">Sem conta necessária — só seu e-mail para receber as propostas.</p>
-
-                <div class="form-group">
-                    <label>Seu e-mail de contato</label>
-                    <input type="email" id="demandaEmail" placeholder="voce@email.com">
-                </div>
-                <div class="form-group">
-                    <label>O que você precisa?</label>
-                    <textarea id="demandaDescricao" rows="3" placeholder="ex: Preciso reformar o banheiro — trocar azulejo, piso e instalação elétrica de um ponto de luz..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Tipo de profissional</label>
-                    <input type="text" id="demandaEspecialidade" placeholder="ex: Eletricista, Pedreiro, Arquiteto...">
-                </div>
-                <div style="display:flex;gap:12px;">
-                    <div class="form-group" style="flex:2;margin-bottom:0;">
-                        <label>Cidade</label>
-                        <input type="text" id="demandaCidade" placeholder="Recife">
+            <div class="demandas-grid">
+                <!-- BLOCO ESQUERDO: Demandas Abertas -->
+                <div class="demanda-bloco">
+                    <div class="demanda-bloco-title">🔍 Buscar Demandas</div>
+                    <div class="demanda-bloco-sub">Demandas abertas que combinam com sua especialidade</div>
+                    <div style="display:flex;gap:8px;margin-bottom:14px;">
+                        <input type="text" id="filtroDemandasInput" placeholder="Filtrar por especialidade…"
+                            style="flex:1;padding:10px 14px;border:1.5px solid var(--border-color);border-radius:10px;font-size:13px;"
+                            onkeydown="if(event.key==='Enter') loadDemandasAbertas()">
+                        <button class="btn btn-secondary" style="padding:10px 14px;font-size:13px;white-space:nowrap;"
+                            onclick="loadDemandasAbertas()">🔍</button>
                     </div>
-                    <div class="form-group" style="flex:1;margin-bottom:0;">
-                        <label>Orçamento máx. (R$)</label>
-                        <input type="number" id="demandaOrcamento" placeholder="opcional">
+                    <div id="demandasList">
+                        <div style="color: var(--neutral-600); text-align: center; padding: 32px 16px;">
+                            <div style="font-size:36px;margin-bottom:8px;">📋</div>
+                            Carregando demandas abertas…
+                        </div>
                     </div>
                 </div>
-                <div id="demandaErro" style="color: var(--coral, #e53e3e); font-size: 13px; display:none; margin-top: 12px;"></div>
-                <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="handlePublicarDemanda()">
-                    Publicar Demanda
-                </button>
-                <div id="demandaSucesso" style="display:none; margin-top: 12px; padding: 12px 14px; background: var(--green-wash, #f0fff4); border: 1px solid var(--moss); border-radius: 12px; font-size: 13.5px; color: var(--moss);">
-                    Demanda publicada! Profissionais da rede vão propor — confira abaixo ou no seu e-mail.
-                </div>
-            </div>
 
-            <!-- Lista de demandas abertas -->
-            <div class="section">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-                    <h2 style="margin:0;">Demandas Abertas</h2>
-                    <button class="btn btn-secondary" style="padding: 5px 12px; font-size: 12px;" onclick="loadDemandasAbertas()">Atualizar</button>
-                </div>
-                <div id="demandasList">
-                    <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Carregando...</div>
+                <!-- BLOCO DIREITO: Publicar Demanda -->
+                <div class="demanda-bloco" style="background:linear-gradient(160deg, #faf8ff 0%, #f3f0ff 100%);">
+                    <div class="demanda-bloco-title" style="color:var(--violet);">✍️ Publicar Demanda</div>
+                    <div class="demanda-bloco-sub">Descreva o que precisa — profissionais verificados vão propor</div>
+
+                    <div class="form-group">
+                        <label>Seu e-mail de contato</label>
+                        <input type="email" id="demandaEmail" placeholder="voce@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>O que você precisa?</label>
+                        <textarea id="demandaDescricao" rows="3" placeholder="ex: Preciso reformar o banheiro — trocar azulejo, piso e instalação elétrica..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de profissional</label>
+                        <input type="text" id="demandaEspecialidade" placeholder="ex: Eletricista, Pedreiro, Arquiteto...">
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <div class="form-group" style="flex:2;margin-bottom:0;">
+                            <label>Cidade</label>
+                            <input type="text" id="demandaCidade" placeholder="Recife">
+                        </div>
+                        <div class="form-group" style="flex:1;margin-bottom:0;">
+                            <label>Orçamento máx.</label>
+                            <input type="number" id="demandaOrcamento" placeholder="R$">
+                        </div>
+                    </div>
+                    <div id="demandaErro" style="color: var(--coral); font-size: 13px; display:none; margin-top: 12px;"></div>
+                    <button class="btn btn-primary" style="margin-top: 16px; width: 100%; padding:14px;" onclick="handlePublicarDemanda()">
+                        Publicar Demanda
+                    </button>
+                    <div id="demandaSucesso" style="display:none; margin-top: 12px; padding: 12px 14px; background: #f0fff4; border: 1px solid var(--moss); border-radius: 12px; font-size: 13.5px; color: var(--moss);">
+                        ✅ Demanda publicada! Profissionais da rede vão propor — confira ao lado ou no seu e-mail.
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Responsável Técnico -->
+        <!-- Responsável Técnico — hub principal com sub-abas -->
         <div data-page="fiador">
             <div class="header">
                 <div>
-                    <h1>Sou Profissional</h1>
-                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Cadastre-se como Responsável Técnico e indique sua equipe</p>
+                    <h1>Perfil Profissional</h1>
+                    <p style="color: var(--neutral-600); font-size: 14px; margin-top: 4px;">Sua rede, painel, busca e histórico de colaborações</p>
                 </div>
             </div>
+
+            <!-- Sub-abas -->
+            <div class="prof-tabs">
+                <button class="prof-tab active" onclick="showProfTab('meu-perfil')" id="ptab-meu-perfil">🛡️ Meu Perfil</button>
+                <button class="prof-tab" onclick="showProfTab('painel')" id="ptab-painel">📊 Painel</button>
+                <button class="prof-tab" onclick="showProfTab('buscar')" id="ptab-buscar">🔎 Buscar</button>
+                <button class="prof-tab" onclick="showProfTab('colaboracoes')" id="ptab-colaboracoes">📁 Colaborações <span id="badgeContratos" hidden style="background:var(--coral);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;margin-left:2px;"></span></button>
+            </div>
+
+            <!-- ── SUB-ABA: MEU PERFIL ── -->
+            <div class="prof-tab-content active" id="subtab-meu-perfil">
 
             <div id="fiadorNotRegistered" class="section">
                 <h2>Cadastro de Responsável Técnico</h2>
@@ -1638,7 +1710,93 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div><!-- /subtab-meu-perfil -->
+
+            <!-- ── SUB-ABA: PAINEL GERAL ── -->
+            <div class="prof-tab-content" id="subtab-painel">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                    <div>
+                        <h2 style="font-size:18px;font-weight:800;color:var(--ink);margin:0;">Painel Geral</h2>
+                        <p style="color:var(--neutral-600);font-size:13px;margin-top:4px;">Sua rede e reputação técnica</p>
+                    </div>
+                    <button class="btn btn-primary" style="padding:8px 16px;font-size:13px;" onclick="showProfTab('meu-perfil')">+ Indicar Profissional</button>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-value" id="statIndicados">0</div>
+                        <div class="card-label">Profissionais Indicados</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value" id="statVinculosAtivos" style="color: var(--success);">0</div>
+                        <div class="card-label">Vínculos Ativos</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value" id="statReputacao" style="color: var(--violet);">—</div>
+                        <div class="card-label">Reputação Verificada</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value" id="statRede">—</div>
+                        <div class="card-label">Profissionais na Rede</div>
+                    </div>
+                </div>
+                <div class="section" style="margin-top:16px;">
+                    <h2>Registros de Colaboração Recentes</h2>
+                    <div id="recentServicos" style="color: var(--neutral-600); text-align: center; padding: 32px;">
+                        Nenhum registro ainda. Contrate ou seja contratado para começar a construir histórico.
+                    </div>
+                </div>
+            </div><!-- /subtab-painel -->
+
+            <!-- ── SUB-ABA: BUSCAR PROFISSIONAL ── -->
+            <div class="prof-tab-content" id="subtab-buscar">
+                <div class="buscar-hero">
+                    <h2>🔎 Buscar Profissional</h2>
+                    <div class="buscar-row">
+                        <input type="text" id="hireBuscaInput" placeholder="Especialidade, cidade ou nome…" onkeydown="if(event.key==='Enter') runBusca()">
+                        <button onclick="runBusca()">Buscar</button>
+                    </div>
+                    <p style="color:rgba(255,255,255,.75);font-size:12px;margin-top:10px;">
+                        Apenas profissionais indicados por um Responsável Técnico verificado
+                    </p>
+                </div>
+                <!-- Mini-mapa OpenStreetMap -->
+                <iframe id="miniMapFrame"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-35.2,-8.25,-34.8,-7.9&layer=mapnik&marker=-8.05,-34.88"
+                    class="mini-map" title="Mapa de profissionais"></iframe>
+                <p style="font-size:11.5px;color:var(--ink-soft);text-align:center;margin:-10px 0 14px;">
+                    Mapa atualizado com profissionais próximos ao buscar por cidade
+                </p>
+                <div id="hireList">
+                    <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Use a busca acima para encontrar profissionais.</div>
+                </div>
+            </div><!-- /subtab-buscar -->
+
+            <!-- ── SUB-ABA: COLABORAÇÕES & CONTRATOS ── -->
+            <div class="prof-tab-content" id="subtab-colaboracoes">
+                <h2 style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:4px;">📁 Histórico de Colaborações</h2>
+                <p style="color:var(--ink-soft);font-size:13px;margin-bottom:20px;">Indicações e contratações — cada registro gera um comprovante digital</p>
+
+                <!-- Registros -->
+                <div class="section" style="padding-bottom:4px;">
+                    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--ink);">Registros de Colaboração</h3>
+                    <div id="servicesList">
+                        <div style="color: var(--neutral-600); text-align: center; padding: 24px;">Nenhum registro ainda.</div>
+                    </div>
+                </div>
+
+                <!-- Contratos como notas fiscais -->
+                <div class="section" style="margin-top:16px;">
+                    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--ink);">💬 Contratos — Comprovantes Digitais</h3>
+                    <p style="font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;">
+                        Cada contrato gera um comprovante de serviço prestado — sua nota fiscal digital dentro da plataforma.
+                    </p>
+                    <div id="contratosList">
+                        <div style="color:var(--ink-soft);text-align:center;padding:32px;">Carregando contratos…</div>
+                    </div>
+                </div>
+            </div><!-- /subtab-colaboracoes -->
+
+        </div><!-- /data-page="fiador" -->
 
         <!-- EDITOR DE PERFIL (self ou prestador indicado) -->
         <div data-page="editor-perfil">
@@ -1735,19 +1893,6 @@
                 <p style="color: var(--neutral-600); font-size: 13.5px; margin-bottom: 16px;">Fotos gerais do seu trabalho — sem descrição, só o visual.</p>
                 <input type="file" accept="image/*" id="muralFoto" onchange="handleAdicionarMural()">
                 <div id="muralGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px;"></div>
-            </div>
-        </div>
-
-        <!-- CONTRATOS / CHAT -->
-        <div data-page="contratos">
-            <div class="header">
-                <div>
-                    <h1>💬 Contratos</h1>
-                    <p style="color:var(--ink-soft);font-size:14px;margin-top:4px;">Serviços contratados e conversas com profissionais</p>
-                </div>
-            </div>
-            <div id="contratosList" class="section">
-                <div style="color:var(--ink-soft);text-align:center;padding:32px;">Carregando contratos…</div>
             </div>
         </div>
 
@@ -2104,8 +2249,20 @@ function setGreeting() {
     headlineEl.textContent = state.fiador ? 'O que você precisa na rede hoje?' : 'Bem-vindo — comece criando seu perfil profissional';
 }
 
+function showProfTab(tabName) {
+    document.querySelectorAll('.prof-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.prof-tab-content').forEach(c => c.classList.remove('active'));
+    const btn = document.getElementById(`ptab-${tabName}`);
+    const content = document.getElementById(`subtab-${tabName}`);
+    if (btn) btn.classList.add('active');
+    if (content) content.classList.add('active');
+    // Carregar dados específicos da sub-aba
+    if (tabName === 'painel' && state.fiador) renderFiadorDashboard();
+    if (tabName === 'buscar') loadHireDirectory();
+    if (tabName === 'colaboracoes') { loadMyServices(); carregarContratos(); }
+}
+
 function showPage(pageName) {
-    // Sem trava de navegação — só um lembrete visual se o perfil não estiver completo (ver abaixo)
     // Hide all pages
     document.querySelectorAll('[data-page]').forEach(p => p.classList.remove('active'));
 
@@ -2115,7 +2272,10 @@ function showPage(pageName) {
 
     // Update menu
     document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-    const menuItem = document.querySelector(`[data-menu="${pageName}"]`);
+    // Mapa as antigas páginas para fiador no menu
+    const menuMapping = { dashboard: 'fiador', hire: 'fiador', services: 'fiador', contratos: 'fiador' };
+    const menuPage = menuMapping[pageName] || pageName;
+    const menuItem = document.querySelector(`[data-menu="${menuPage}"]`);
     if (menuItem) menuItem.classList.add('active');
 
     state.prevPage = state.currentPage;
@@ -2132,15 +2292,17 @@ function showPage(pageName) {
         if (nomeEl && !nomeEl.value) nomeEl.value = state.user.nomeProfissional || '';
         if (emailEl && !emailEl.value) emailEl.value = state.user.email || '';
     }
-    if (pageName === 'hire') loadHireDirectory();
+    // Navegação interna: páginas que agora são sub-abas do fiador
+    if (pageName === 'hire') { showPage('fiador'); setTimeout(() => showProfTab('buscar'), 50); return; }
+    if (pageName === 'services') { showPage('fiador'); setTimeout(() => showProfTab('colaboracoes'), 50); return; }
+    if (pageName === 'contratos') { showPage('fiador'); setTimeout(() => showProfTab('colaboracoes'), 50); return; }
+    if (pageName === 'dashboard') { showPage('fiador'); setTimeout(() => showProfTab('painel'), 50); return; }
     if (pageName === 'match' && state.matchContext.categoria) {
         const el = document.getElementById('matchEspecialidade');
         if (el) el.value = state.matchContext.categoria;
     }
     if (pageName === 'demandas') loadDemandasAbertas();
-    if (pageName === 'services') loadMyServices();
     if (pageName === 'convites') carregarMeusConvites();
-    if (pageName === 'contratos') carregarContratos();
 }
 
 // ============================================
@@ -3287,6 +3449,18 @@ async function loadPerfilPublico() {
 // CONTRATAR SERVIÇO — diretório de prestadores vinculados
 // ============================================
 
+function runBusca() {
+    const q = (document.getElementById('hireBuscaInput')?.value || '').trim();
+    // Atualiza o iframe do mapa com a cidade buscada (geocode via URL)
+    if (q) {
+        const frame = document.getElementById('miniMapFrame');
+        if (frame) {
+            frame.src = `https://www.openstreetmap.org/export/embed.html?bbox=-35.5,-8.5,-34.5,-7.5&layer=mapnik&query=${encodeURIComponent(q)}`;
+        }
+    }
+    loadHireDirectory(q ? `Buscando profissionais para: "${q}"` : '');
+}
+
 async function loadHireDirectory(bannerText) {
     const list = document.getElementById('hireList');
     try {
@@ -4188,27 +4362,52 @@ async function carregarContratos() {
         }
 
         const prazoLabel = { sem_pressa: '🐢 Sem pressa', medio: '⏱ Médio', urgente: '🔥 Urgente' };
-        el.innerHTML = contratos.map(c => {
+        el.innerHTML = contratos.map((c, idx) => {
             const naoLidas = parseInt(c.nao_lidas) || 0;
-            const statusColor = c.status === 'pago' ? 'var(--mint)' : c.status === 'aguardando_pagamento' ? '#e0720c' : 'var(--ink-soft)';
-            const statusLabel = { pago: '✅ Pago', aguardando_pagamento: '⏳ Aguardando pagamento', cancelado: '❌ Cancelado', concluido: '🏁 Concluído' }[c.status] || c.status;
-            return `<div style="border:1px solid var(--mist);border-radius:12px;padding:16px;margin-bottom:12px;background:#fff;cursor:pointer;" onclick="abrirChat('${c.id}')">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
-                    <div style="font-size:15px;font-weight:700;color:var(--ink);">${c.profissional_nome}</div>
-                    ${naoLidas > 0 ? `<span style="background:var(--coral);color:#fff;border-radius:12px;padding:2px 8px;font-size:12px;font-weight:700;flex-shrink:0;">${naoLidas} nova${naoLidas > 1 ? 's' : ''}</span>` : ''}
+            const statusLabel = { pago: '✅ Pago', aguardando_pagamento: '⏳ Aguard. pagamento', cancelado: '❌ Cancelado', concluido: '🏁 Concluído' }[c.status] || c.status;
+            const numNF = String(idx + 1).padStart(4, '0');
+            const valor = parseFloat(c.valor_servico) || 0;
+            const taxa = parseFloat(c.taxa_plataforma) || valor * 0.1;
+            const total = valor + taxa;
+            return `<div class="nota-fiscal">
+                <div class="nota-fiscal-header">
+                    <span>🧾 COMPROVANTE IMOVELI · NF-${numNF}</span>
+                    <span>${new Date(c.created_at).toLocaleDateString('pt-BR')}</span>
                 </div>
-                <div style="font-size:12px;color:var(--ink-soft);margin-bottom:8px;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${c.escopo}</div>
-                <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
-                    <span style="font-size:11px;font-weight:700;color:${statusColor};">${statusLabel}</span>
-                    <span style="font-size:11px;color:var(--ink-soft);">·</span>
-                    <span style="font-size:12px;font-weight:700;color:var(--violet);">R$${parseFloat(c.valor_servico).toFixed(2)}</span>
-                    <span style="font-size:11px;color:var(--ink-soft);">·</span>
-                    <span style="font-size:11px;color:var(--ink-soft);">${prazoLabel[c.prazo] || c.prazo}</span>
-                    <span style="font-size:11px;color:var(--ink-soft);">·</span>
-                    <span style="font-size:11px;color:var(--ink-soft);">${new Date(c.created_at).toLocaleDateString('pt-BR')}</span>
+                <div class="nota-fiscal-body">
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Profissional</span>
+                        <span style="font-weight:700;">${c.profissional_nome}</span>
+                    </div>
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Escopo</span>
+                        <span style="max-width:55%;text-align:right;font-size:12px;">${c.escopo?.substring(0,60)}${c.escopo?.length > 60 ? '…' : ''}</span>
+                    </div>
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Prazo</span>
+                        <span>${prazoLabel[c.prazo] || c.prazo}</span>
+                    </div>
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Status</span>
+                        <span>${statusLabel}</span>
+                    </div>
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Serviço</span>
+                        <span>R$ ${valor.toFixed(2)}</span>
+                    </div>
+                    <div class="nota-fiscal-row">
+                        <span style="color:var(--ink-soft);">Taxa plataforma (10%)</span>
+                        <span>R$ ${taxa.toFixed(2)}</span>
+                    </div>
+                    <div class="nota-fiscal-total">
+                        <span>Total</span>
+                        <span>R$ ${total.toFixed(2)}</span>
+                    </div>
+                    ${naoLidas > 0 ? `<div style="margin-top:8px;padding:6px 10px;background:#fff0f0;border-radius:6px;font-size:12px;color:var(--coral);font-weight:700;">${naoLidas} mensagem${naoLidas > 1 ? 's' : ''} não lida${naoLidas > 1 ? 's' : ''}</div>` : ''}
+                    <button class="nota-fiscal-btn" onclick="abrirChat('${c.id}')">
+                        ${c.chat_liberado ? '💬 Abrir chat' : '🔓 Ver contrato'}
+                    </button>
                 </div>
-                ${c.chat_liberado ? '<div style="margin-top:10px;padding:8px 12px;background:var(--violet-wash);border-radius:8px;font-size:12px;color:var(--violet);font-weight:600;">💬 Abrir chat →</div>' :
-                  '<div style="margin-top:10px;padding:8px 12px;background:#fff8e1;border-radius:8px;font-size:12px;color:#8a6000;">⏳ Aguardando pagamento para liberar chat</div>'}
             </div>`;
         }).join('');
 
