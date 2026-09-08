@@ -465,6 +465,93 @@
         .chat-send-btn:hover { opacity: .85; }
         .chat-send-btn:disabled { opacity: .4; cursor: not-allowed; }
 
+        /* ── CHAT ATTACH / CAMERA ── */
+        .chat-attach-btn {
+            background: var(--mist);
+            border: 1px solid var(--border-color);
+            color: var(--ink-soft);
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: background .15s, color .15s;
+        }
+        .chat-attach-btn:hover { background: var(--mist-strong); color: var(--ink); }
+
+        /* Preview de imagem antes de enviar */
+        .chat-img-preview-bar {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-top: 1px solid var(--mist);
+            background: var(--paper-raised);
+        }
+        .chat-img-preview-bar.active { display: flex; }
+        .chat-img-preview-bar img {
+            width: 44px; height: 44px; border-radius: 8px; object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+        .chat-img-preview-bar span {
+            flex: 1; font-size: 12px; color: var(--ink-soft);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .chat-img-preview-bar button {
+            background: none; border: none; color: var(--ink-soft);
+            cursor: pointer; font-size: 16px; line-height: 1;
+        }
+
+        /* Bolha de imagem no chat */
+        .chat-bubble.user .chat-img {
+            max-width: 200px; border-radius: 10px; display: block;
+            margin-bottom: 4px; cursor: pointer;
+        }
+
+        /* ── MODAL CÂMERA ── */
+        .camera-modal {
+            display: none;
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(0,0,0,0.88);
+            align-items: center; justify-content: center;
+            padding: 16px;
+        }
+        .camera-modal.open { display: flex; }
+        .camera-box {
+            background: var(--paper-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            width: min(420px, 100%);
+            box-shadow: var(--shadow-lg);
+        }
+        .camera-box-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-display); font-weight: 600; font-size: 15px;
+        }
+        .camera-box-header button {
+            background: none; border: none; color: var(--ink-soft);
+            font-size: 20px; cursor: pointer; line-height: 1;
+        }
+        .camera-video-wrap {
+            position: relative; background: #000;
+        }
+        #cameraVideo {
+            width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover;
+        }
+        #cameraCanvas { display: none; }
+        .camera-snapshot-preview {
+            display: none;
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+        }
+        .camera-box-footer {
+            display: flex; gap: 10px; padding: 14px 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
         /* Separator de nova sessão */
         .chat-separator {
             text-align: center; font-size: 11px; color: var(--ink-soft);
@@ -2190,9 +2277,40 @@
         <div class="chat-panel-messages" id="chatMessages">
             <div class="chat-bubble assistant">Oi! Posso ajudar com dúvidas técnicas sobre construção, regularização, NRs, SINAPI, ART/RRT e muito mais — ou tirar dúvidas sobre a plataforma. O que você precisa?</div>
         </div>
+        <!-- Preview de imagem selecionada -->
+        <div class="chat-img-preview-bar" id="chatImgPreviewBar">
+            <img id="chatImgPreviewThumb" src="" alt="">
+            <span id="chatImgPreviewName">imagem.jpg</span>
+            <button onclick="limparChatImg()" title="Remover">✕</button>
+        </div>
         <div class="chat-panel-input">
+            <!-- Galeria -->
+            <input type="file" id="chatFileInput" accept="image/*" style="display:none" onchange="handleChatFotoGaleria(event)">
+            <button class="chat-attach-btn" onclick="document.getElementById('chatFileInput').click()" title="Enviar foto da galeria">📎</button>
+            <!-- Câmera -->
+            <button class="chat-attach-btn" onclick="abrirChatCamera()" title="Tirar foto com câmera">📷</button>
             <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeydown="if(event.key==='Enter' && !event.shiftKey) handleEnviarChat()">
             <button class="chat-send-btn" id="chatSendBtn" onclick="handleEnviarChat()" title="Enviar">➤</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CÂMERA -->
+<div class="camera-modal" id="cameraModal" onclick="if(event.target===this)fecharChatCamera()">
+    <div class="camera-box">
+        <div class="camera-box-header">
+            <span>📷 Câmera</span>
+            <button onclick="fecharChatCamera()" title="Fechar">✕</button>
+        </div>
+        <div class="camera-video-wrap">
+            <video id="cameraVideo" autoplay playsinline muted></video>
+            <canvas id="cameraCanvas"></canvas>
+            <img id="cameraSnapshot" class="camera-snapshot-preview" alt="Foto capturada">
+        </div>
+        <div class="camera-box-footer">
+            <button class="btn btn-secondary" id="cameraCaptureBtn" style="flex:1" onclick="capturarFotoCamera()">📸 Capturar</button>
+            <button class="btn btn-secondary" id="cameraRetakeBtn" style="flex:1;display:none" onclick="retakeFotoCamera()">🔄 Tirar outra</button>
+            <button class="btn btn-primary"  id="cameraEnviarBtn" style="flex:1;display:none" onclick="enviarFotoCameraChat()">Usar foto ›</button>
         </div>
     </div>
 </div>
@@ -4451,23 +4569,137 @@ function chatSetInput(enabled) {
     chatStreaming = !enabled;
 }
 
+// ── CHAT FOTO / CÂMERA ──────────────────────────────────────────
+
+let chatImgDataURL = null; // base64 da imagem a ser enviada
+
+function handleChatFotoGaleria(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        chatImgDataURL = e.target.result;
+        const bar = document.getElementById('chatImgPreviewBar');
+        document.getElementById('chatImgPreviewThumb').src = chatImgDataURL;
+        document.getElementById('chatImgPreviewName').textContent = file.name;
+        bar.classList.add('active');
+        document.getElementById('chatInput').focus();
+    };
+    reader.readAsDataURL(file);
+    event.target.value = '';
+}
+
+function limparChatImg() {
+    chatImgDataURL = null;
+    document.getElementById('chatImgPreviewBar').classList.remove('active');
+    document.getElementById('chatImgPreviewThumb').src = '';
+}
+
+let cameraStream = null;
+
+function abrirChatCamera() {
+    const modal = document.getElementById('cameraModal');
+    modal.classList.add('open');
+    document.getElementById('cameraSnapshot').style.display = 'none';
+    document.getElementById('cameraVideo').style.display = 'block';
+    document.getElementById('cameraCaptureBtn').style.display = '';
+    document.getElementById('cameraRetakeBtn').style.display = 'none';
+    document.getElementById('cameraEnviarBtn').style.display = 'none';
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false })
+        .then(stream => {
+            cameraStream = stream;
+            const video = document.getElementById('cameraVideo');
+            video.srcObject = stream;
+        })
+        .catch(err => {
+            fecharChatCamera();
+            alert('Câmera não disponível: ' + err.message);
+        });
+}
+
+function fecharChatCamera() {
+    if (cameraStream) { cameraStream.getTracks().forEach(t => t.stop()); cameraStream = null; }
+    document.getElementById('cameraModal').classList.remove('open');
+}
+
+function capturarFotoCamera() {
+    const video = document.getElementById('cameraVideo');
+    const canvas = document.getElementById('cameraCanvas');
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    const dataURL = canvas.toDataURL('image/jpeg', 0.85);
+
+    const snap = document.getElementById('cameraSnapshot');
+    snap.src = dataURL;
+    snap.style.display = 'block';
+    video.style.display = 'none';
+
+    document.getElementById('cameraCaptureBtn').style.display = 'none';
+    document.getElementById('cameraRetakeBtn').style.display = '';
+    document.getElementById('cameraEnviarBtn').style.display = '';
+
+    chatImgDataURL = dataURL;
+}
+
+function retakeFotoCamera() {
+    const video = document.getElementById('cameraVideo');
+    document.getElementById('cameraSnapshot').style.display = 'none';
+    video.style.display = 'block';
+    document.getElementById('cameraCaptureBtn').style.display = '';
+    document.getElementById('cameraRetakeBtn').style.display = 'none';
+    document.getElementById('cameraEnviarBtn').style.display = 'none';
+    chatImgDataURL = null;
+}
+
+function enviarFotoCameraChat() {
+    fecharChatCamera();
+    if (!chatImgDataURL) return;
+    const bar = document.getElementById('chatImgPreviewBar');
+    document.getElementById('chatImgPreviewThumb').src = chatImgDataURL;
+    document.getElementById('chatImgPreviewName').textContent = 'foto_camera.jpg';
+    bar.classList.add('active');
+    document.getElementById('chatInput').focus();
+}
+
+// ──────────────────────────────────────────────────────────────────
+
 async function handleEnviarChat() {
     if (chatStreaming) return;
     const input = document.getElementById('chatInput');
     const texto = input.value.trim();
-    if (!texto) return;
+    const temImagem = !!chatImgDataURL;
+    if (!texto && !temImagem) return;
 
     const messagesEl = document.getElementById('chatMessages');
 
-    // Bubble do usuário (texto escapado)
+    // Bubble do usuário
     const userDiv = document.createElement('div');
     userDiv.className = 'chat-bubble user';
-    userDiv.textContent = texto;
+    if (temImagem) {
+        const img = document.createElement('img');
+        img.src = chatImgDataURL;
+        img.className = 'chat-img';
+        img.onclick = () => window.open(chatImgDataURL);
+        userDiv.appendChild(img);
+    }
+    if (texto) {
+        const textNode = document.createTextNode(texto);
+        userDiv.appendChild(textNode);
+    }
     messagesEl.appendChild(userDiv);
+
+    // Montar conteúdo para o histórico/API
+    const conteudoUsuario = temImagem
+        ? `[📷 Imagem enviada pelo usuário]${texto ? '\n' + texto : ''}`
+        : texto;
+
     input.value = '';
+    limparChatImg();
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
-    chatHistorico.push({ role: 'user', content: texto });
+    chatHistorico.push({ role: 'user', content: conteudoUsuario });
     chatSetInput(false);
 
     // Bubble de status "digitando..."
