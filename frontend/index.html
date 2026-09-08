@@ -822,7 +822,6 @@
             border: 1.5px solid var(--border-color); overflow: hidden;
             margin-bottom: 16px; position: relative;
         }
-        #miniMapDiv { width: 100%; height: 100%; }
 
         /* ── TOGGLE SWITCH (API consent) ── */
         #apiConsentToggle:checked + #apiConsentSlider { background: var(--violet); }
@@ -1840,10 +1839,10 @@
                         Apenas profissionais indicados por um Responsável Técnico verificado
                     </p>
                 </div>
-                <!-- Mini-mapa Google Maps -->
-                <div class="mini-map">
-                    <div id="miniMapDiv"></div>
-                </div>
+                <!-- Mini-mapa OpenStreetMap (sem billing) -->
+                <iframe id="miniMapFrame"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-35.2,-8.25,-34.8,-7.9&layer=mapnik&marker=-8.05,-34.88"
+                    class="mini-map" title="Mapa de profissionais" style="border:0;"></iframe>
                 <p style="font-size:11.5px;color:var(--ink-soft);text-align:center;margin:-10px 0 14px;">
                     Mapa atualizado com profissionais próximos ao buscar por cidade
                 </p>
@@ -2345,7 +2344,7 @@ function showProfTab(tabName) {
     if (content) content.classList.add('active');
     // Carregar dados específicos da sub-aba
     if (tabName === 'painel' && state.fiador) renderFiadorDashboard();
-    if (tabName === 'buscar') { initMiniMap(); loadHireDirectory(); }
+    if (tabName === 'buscar') loadHireDirectory();
     if (tabName === 'colaboracoes') { loadMyServices(); carregarContratos(); }
 }
 
@@ -3206,23 +3205,20 @@ async function geocodificarEndereco() {
     const partes = [rua && numero ? `${rua}, ${numero}` : rua, bairro, cidade, uf, 'Brasil'].filter(Boolean);
     const q = partes.join(', ');
     try {
-        // Geocoding via Google Maps API
-        const gcUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(q)}&region=br&key=${GMAPS_KEY}`;
-        const resp = await fetch(gcUrl);
-        const data = await resp.json();
-        if (data.status === 'OK' && data.results.length) {
-            const loc = data.results[0].geometry.location;
-            return { lat: loc.lat, lng: loc.lng, cidade, uf };
-        }
+        const resp = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=1&countrycodes=br`,
+            { headers: { 'Accept-Language': 'pt-BR', 'User-Agent': 'IMOVELI/2.0' } }
+        );
+        const results = await resp.json();
+        if (results.length) return { lat: parseFloat(results[0].lat), lng: parseFloat(results[0].lon), cidade, uf };
         // fallback: só cidade + UF
-        const gcUrl2 = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(cidade + ', ' + uf + ', Brasil')}&region=br&key=${GMAPS_KEY}`;
-        const resp2 = await fetch(gcUrl2);
-        const data2 = await resp2.json();
-        if (data2.status === 'OK' && data2.results.length) {
-            const loc = data2.results[0].geometry.location;
-            return { lat: loc.lat, lng: loc.lng, cidade, uf };
-        }
-        return null;
+        const resp2 = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cidade + ', ' + uf + ', Brasil')}&limit=1&countrycodes=br`,
+            { headers: { 'Accept-Language': 'pt-BR', 'User-Agent': 'IMOVELI/2.0' } }
+        );
+        const r2 = await resp2.json();
+        if (!r2.length) return null;
+        return { lat: parseFloat(r2[0].lat), lng: parseFloat(r2[0].lon), cidade, uf };
     } catch (e) { return null; }
 }
 
@@ -3588,46 +3584,14 @@ async function loadPerfilPublico() {
 // ============================================
 
 // ── Google Maps mini-mapa ──
-const GMAPS_KEY = 'AIzaSyAWu2i3Kv_edV1iEpAwIbLxTb4WsiahjSo';
-let miniMap = null;
-let miniMapLoaded = false;
-
-function initMiniMap() {
-    if (miniMapLoaded) return;
-    miniMapLoaded = true;
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}&callback=onMiniMapReady`;
-    script.async = true;
-    document.head.appendChild(script);
-}
-
-function onMiniMapReady() {
-    miniMap = new google.maps.Map(document.getElementById('miniMapDiv'), {
-        center: { lat: -8.05, lng: -34.88 },
-        zoom: 10,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-    });
-}
-
-async function runBusca() {
+function runBusca() {
     const q = (document.getElementById('hireBuscaInput')?.value || '').trim();
-    if (q && miniMap) {
-        try {
-            const gc = new google.maps.Geocoder();
-            gc.geocode({ address: q + ', Brasil' }, (results, status) => {
-                if (status === 'OK' && results[0]) {
-                    miniMap.setCenter(results[0].geometry.location);
-                    miniMap.setZoom(12);
-                    new google.maps.Marker({
-                        map: miniMap,
-                        position: results[0].geometry.location,
-                        title: q,
-                    });
-                }
-            });
-        } catch {}
+    if (q) {
+        const frame = document.getElementById('miniMapFrame');
+        if (frame) {
+            const enc = encodeURIComponent(q);
+            frame.src = `https://www.openstreetmap.org/export/embed.html?bbox=-55,-33,-34,-5&layer=mapnik&query=${enc}`;
+        }
     }
     loadHireDirectory(q ? `Buscando profissionais para: "${q}"` : '');
 }
