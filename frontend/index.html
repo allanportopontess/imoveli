@@ -480,6 +480,156 @@
         }
         .chat-attach-btn:hover { background: var(--mist-strong); color: var(--ink); }
 
+        /* ── VOICE INPUT BUTTON ── */
+        .chat-voice-btn {
+            background: var(--mist);
+            border: 1px solid var(--border-color);
+            color: var(--ink-soft);
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 17px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: background .15s, color .15s, box-shadow .15s;
+            position: relative;
+        }
+        .chat-voice-btn.recording {
+            background: rgba(255,69,58,0.18);
+            border-color: var(--coral);
+            color: var(--coral);
+            animation: mic-pulse 1.2s ease-in-out infinite;
+        }
+        @keyframes mic-pulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(255,69,58,0.4); }
+            50% { box-shadow: 0 0 0 7px rgba(255,69,58,0); }
+        }
+
+        /* ── MODO ASSISTENTE OVERLAY ── */
+        .assistente-overlay {
+            display: none;
+            position: fixed; inset: 0; z-index: 3000;
+            background: rgba(8,8,15,0.97);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+        .assistente-overlay.open { display: flex; }
+
+        /* Orb animado */
+        .assistente-orb-wrap {
+            position: relative;
+            width: 180px; height: 180px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 32px;
+        }
+        .assistente-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--violet);
+            opacity: 0;
+            animation: orb-ring 2.4s ease-out infinite;
+        }
+        .assistente-ring:nth-child(1) { width: 180px; height: 180px; animation-delay: 0s; }
+        .assistente-ring:nth-child(2) { width: 140px; height: 140px; animation-delay: .4s; }
+        .assistente-ring:nth-child(3) { width: 100px; height: 100px; animation-delay: .8s; }
+        @keyframes orb-ring {
+            0% { transform: scale(.6); opacity: .7; }
+            100% { transform: scale(1.15); opacity: 0; }
+        }
+        .assistente-orb-inner {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet-mid), var(--violet-deep));
+            box-shadow: 0 0 40px var(--violet-glow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px;
+            transition: transform .3s, box-shadow .3s;
+            position: relative; z-index: 1;
+        }
+        .assistente-orb-inner.falando {
+            animation: orb-speak .5s ease-in-out infinite alternate;
+            box-shadow: 0 0 60px rgba(139,92,246,0.55);
+        }
+        .assistente-orb-inner.ouvindo {
+            animation: orb-listen .8s ease-in-out infinite alternate;
+            box-shadow: 0 0 50px rgba(48,209,88,0.4);
+            background: linear-gradient(135deg, #30d158, #22c45e);
+        }
+        @keyframes orb-speak { from { transform: scale(.95); } to { transform: scale(1.08); } }
+        @keyframes orb-listen { from { transform: scale(.98); } to { transform: scale(1.05); } }
+
+        .assistente-status {
+            font-family: var(--font-display);
+            font-size: 18px; font-weight: 600;
+            color: var(--ink); letter-spacing: -.02em;
+            margin-bottom: 8px; text-align: center;
+        }
+        .assistente-sub {
+            font-size: 13px; color: var(--ink-soft);
+            text-align: center; max-width: 280px; line-height: 1.5;
+            min-height: 36px; padding: 0 16px;
+        }
+        .assistente-transcript-box {
+            margin-top: 24px;
+            width: min(360px, 90vw);
+            max-height: 180px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 4px;
+        }
+        .assistente-msg {
+            font-size: 13px; line-height: 1.55; padding: 9px 13px;
+            border-radius: 14px; max-width: 90%;
+        }
+        .assistente-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--violet-mid), var(--violet-deep));
+            color: #fff;
+        }
+        .assistente-msg.ai {
+            align-self: flex-start;
+            background: var(--mist);
+            color: var(--ink);
+        }
+        .assistente-footer {
+            position: absolute;
+            bottom: 40px; left: 0; right: 0;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 14px;
+        }
+        .assistente-close-btn {
+            background: var(--mist);
+            border: 1px solid var(--border-color);
+            color: var(--ink-soft);
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .15s;
+        }
+        .assistente-close-btn:hover { background: var(--mist-strong); color: var(--ink); }
+        .assistente-hint {
+            font-size: 11px; color: var(--ink-dim);
+            text-align: center;
+        }
+
+        /* ── BADGE ASSISTENTE no header do chat ── */
+        .chat-assistente-btn {
+            background: rgba(255,255,255,.15);
+            border: none; color: white;
+            padding: 3px 9px; border-radius: 10px;
+            font-size: 10px; font-weight: 700;
+            letter-spacing: .3px; text-transform: uppercase;
+            cursor: pointer; transition: background .15s;
+        }
+        .chat-assistente-btn:hover { background: rgba(255,255,255,.28); }
+        .chat-assistente-btn.ativo { background: rgba(48,209,88,.35); color: #7effd4; }
+
         /* Preview de imagem antes de enviar */
         .chat-img-preview-bar {
             display: none;
@@ -2269,6 +2419,7 @@
                 </div>
             </div>
             <div class="chat-header-actions">
+                <button class="chat-assistente-btn" id="chatAssistenteBtn" onclick="toggleAssistenteMode()" title="Modo Assistente de voz">🎤 Assistente</button>
                 <button onclick="expandirChat()" title="Expandir" id="chatExpandBtn">⤢</button>
                 <button onclick="limparChat()" title="Nova conversa">🗑</button>
                 <button onclick="toggleChat()" title="Fechar">✕</button>
@@ -2289,9 +2440,28 @@
             <button class="chat-attach-btn" onclick="document.getElementById('chatFileInput').click()" title="Enviar foto da galeria">📎</button>
             <!-- Câmera -->
             <button class="chat-attach-btn" onclick="abrirChatCamera()" title="Tirar foto com câmera">📷</button>
-            <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeydown="if(event.key==='Enter' && !event.shiftKey) handleEnviarChat()">
+            <!-- Voz -->
+            <button class="chat-voice-btn" id="chatVoiceBtn" onclick="toggleVoiceInput()" title="Gravar mensagem de voz">🎙️</button>
+            <input type="text" id="chatInput" placeholder="Digite ou fale sua pergunta..." onkeydown="if(event.key==='Enter' && !event.shiftKey) handleEnviarChat()">
             <button class="chat-send-btn" id="chatSendBtn" onclick="handleEnviarChat()" title="Enviar">➤</button>
         </div>
+    </div>
+</div>
+
+<!-- MODO ASSISTENTE OVERLAY -->
+<div class="assistente-overlay" id="assistenteOverlay">
+    <div class="assistente-orb-wrap">
+        <div class="assistente-ring"></div>
+        <div class="assistente-ring"></div>
+        <div class="assistente-ring"></div>
+        <div class="assistente-orb-inner" id="assistenteOrb">🤖</div>
+    </div>
+    <div class="assistente-status" id="assistenteStatus">Pronto para ouvir</div>
+    <div class="assistente-sub" id="assistenteSub">Fale sua pergunta — respondo em voz alta</div>
+    <div class="assistente-transcript-box" id="assistenteTranscript"></div>
+    <div class="assistente-footer">
+        <div class="assistente-hint" id="assistenteHint">Toque no microfone para falar</div>
+        <button class="assistente-close-btn" onclick="fecharAssistenteMode()" title="Fechar Modo Assistente">✕</button>
     </div>
 </div>
 
@@ -4567,6 +4737,310 @@ function chatSetInput(enabled) {
     document.getElementById('chatInput').disabled = !enabled;
     document.getElementById('chatSendBtn').disabled = !enabled;
     chatStreaming = !enabled;
+}
+
+// ── VOICE INPUT (botão 🎙️ no chat) ─────────────────────────────
+
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+let voiceRec = null;
+let voiceActive = false;
+
+function toggleVoiceInput() {
+    if (!SpeechRecognitionAPI) {
+        alert('Reconhecimento de voz não suportado neste navegador. Use Chrome ou Edge.');
+        return;
+    }
+    if (voiceActive) {
+        stopVoiceInput();
+    } else {
+        startVoiceInput();
+    }
+}
+
+function startVoiceInput() {
+    voiceRec = new SpeechRecognitionAPI();
+    voiceRec.lang = 'pt-BR';
+    voiceRec.continuous = false;
+    voiceRec.interimResults = true;
+
+    const btn = document.getElementById('chatVoiceBtn');
+    const input = document.getElementById('chatInput');
+
+    voiceRec.onstart = () => {
+        voiceActive = true;
+        btn.classList.add('recording');
+        btn.title = 'Parar gravação';
+        input.placeholder = '🎙️ Ouvindo...';
+    };
+
+    voiceRec.onresult = e => {
+        const transcript = Array.from(e.results)
+            .map(r => r[0].transcript).join('');
+        input.value = transcript;
+    };
+
+    voiceRec.onend = () => {
+        stopVoiceInput();
+        // Auto-enviar se capturou algo
+        if (input.value.trim()) handleEnviarChat();
+    };
+
+    voiceRec.onerror = err => {
+        stopVoiceInput();
+        if (err.error !== 'aborted') console.warn('Voice error:', err.error);
+    };
+
+    voiceRec.start();
+}
+
+function stopVoiceInput() {
+    voiceActive = false;
+    const btn = document.getElementById('chatVoiceBtn');
+    if (btn) { btn.classList.remove('recording'); btn.title = 'Gravar mensagem de voz'; }
+    const input = document.getElementById('chatInput');
+    if (input) input.placeholder = 'Digite ou fale sua pergunta...';
+    if (voiceRec) { try { voiceRec.stop(); } catch(_){} voiceRec = null; }
+}
+
+// ── MODO ASSISTENTE (conversa em tempo real) ─────────────────────
+
+let assistenteAtivo = false;
+let assistenteRec = null;
+let assistenteListening = false;
+let assistenteSpeaking = false;
+let assistenteAbortado = false;
+
+function toggleAssistenteMode() {
+    if (assistenteAtivo) {
+        fecharAssistenteMode();
+    } else {
+        abrirAssistenteMode();
+    }
+}
+
+function abrirAssistenteMode() {
+    if (!SpeechRecognitionAPI) {
+        alert('Modo Assistente requer reconhecimento de voz (Chrome ou Edge).');
+        return;
+    }
+    assistenteAtivo = true;
+    assistenteAbortado = false;
+    document.getElementById('assistenteOverlay').classList.add('open');
+    document.getElementById('chatAssistenteBtn').classList.add('ativo');
+    document.getElementById('chatAssistenteBtn').textContent = '🟢 Ativo';
+    document.getElementById('assistenteTranscript').innerHTML = '';
+    assistenteSetStatus('idle');
+    setTimeout(() => assistenteOuvir(), 600);
+}
+
+function fecharAssistenteMode() {
+    assistenteAtivo = false;
+    assistenteAbortado = true;
+    assistenteListening = false;
+    assistenteSpeaking = false;
+    if (assistenteRec) { try { assistenteRec.stop(); } catch(_){} assistenteRec = null; }
+    window.speechSynthesis.cancel();
+    document.getElementById('assistenteOverlay').classList.remove('open');
+    const btn = document.getElementById('chatAssistenteBtn');
+    btn.classList.remove('ativo');
+    btn.textContent = '🎤 Assistente';
+}
+
+function assistenteSetStatus(estado, extra) {
+    const orb = document.getElementById('assistenteOrb');
+    const status = document.getElementById('assistenteStatus');
+    const sub = document.getElementById('assistenteSub');
+    const hint = document.getElementById('assistenteHint');
+    orb.className = 'assistente-orb-inner';
+    if (estado === 'idle') {
+        orb.textContent = '🤖';
+        status.textContent = 'Pronto para ouvir';
+        sub.textContent = 'Fale sua pergunta — respondo em voz alta';
+        hint.textContent = 'Aguardando...';
+    } else if (estado === 'ouvindo') {
+        orb.classList.add('ouvindo');
+        orb.textContent = '🎙️';
+        status.textContent = 'Ouvindo...';
+        sub.textContent = extra || 'Pode falar!';
+        hint.textContent = 'Fique em silêncio para enviar';
+    } else if (estado === 'pensando') {
+        orb.textContent = '💭';
+        status.textContent = 'Pensando...';
+        sub.textContent = extra || '';
+        hint.textContent = '';
+    } else if (estado === 'falando') {
+        orb.classList.add('falando');
+        orb.textContent = '🔊';
+        status.textContent = 'Falando...';
+        sub.textContent = extra || '';
+        hint.textContent = 'Ouvindo a resposta';
+    }
+}
+
+function assistenteAddMsg(role, texto) {
+    const box = document.getElementById('assistenteTranscript');
+    const div = document.createElement('div');
+    div.className = 'assistente-msg ' + role;
+    div.textContent = texto;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+    return div;
+}
+
+function assistenteOuvir() {
+    if (!assistenteAtivo || assistenteAbortado) return;
+    assistenteListening = true;
+    assistenteSetStatus('ouvindo');
+
+    assistenteRec = new SpeechRecognitionAPI();
+    assistenteRec.lang = 'pt-BR';
+    assistenteRec.continuous = false;
+    assistenteRec.interimResults = true;
+
+    let transcript = '';
+
+    assistenteRec.onresult = e => {
+        transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+        assistenteSetStatus('ouvindo', '"' + transcript + '"');
+    };
+
+    assistenteRec.onend = () => {
+        assistenteListening = false;
+        if (!assistenteAtivo || assistenteAbortado) return;
+        if (transcript.trim()) {
+            assistenteProcessar(transcript.trim());
+        } else {
+            // Silêncio → ouvir de novo
+            setTimeout(() => assistenteOuvir(), 500);
+        }
+    };
+
+    assistenteRec.onerror = err => {
+        assistenteListening = false;
+        if (!assistenteAtivo || assistenteAbortado) return;
+        if (err.error === 'no-speech') {
+            setTimeout(() => assistenteOuvir(), 800);
+        }
+    };
+
+    assistenteRec.start();
+}
+
+async function assistenteProcessar(transcripto) {
+    if (!assistenteAtivo) return;
+
+    // Mostra mensagem do usuário
+    assistenteAddMsg('user', transcripto);
+    assistenteSetStatus('pensando', '"' + transcripto + '"');
+
+    // Adiciona ao histórico do chat normal também
+    chatHistorico.push({ role: 'user', content: transcripto });
+
+    // Adiciona bolha no chat
+    const messagesEl = document.getElementById('chatMessages');
+    const userDiv = document.createElement('div');
+    userDiv.className = 'chat-bubble user';
+    userDiv.textContent = transcripto;
+    messagesEl.appendChild(userDiv);
+
+    let fullText = '';
+
+    try {
+        const token = localStorage.getItem('imoveli_token') || '';
+        const resp = await fetch(API_BASE_URL + '/api/chat/stream', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+            },
+            body: JSON.stringify({
+                mensagens: chatHistorico,
+                contexto: buildChatContexto()
+            })
+        });
+
+        if (!resp.ok) throw new Error(resp.status);
+
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done || !assistenteAtivo) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+            for (const line of lines) {
+                if (!line.startsWith('data:')) continue;
+                const raw = line.slice(5).trim();
+                if (raw === '[DONE]') break;
+                try {
+                    const d = JSON.parse(raw);
+                    if (d.token) fullText += d.token;
+                } catch(_) {}
+            }
+        }
+
+    } catch(e) {
+        fullText = 'Desculpe, houve um erro. Tente novamente.';
+    }
+
+    if (!assistenteAtivo) return;
+
+    // Texto limpo para fala (remove markdown)
+    const textoFala = fullText
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/\*(.*?)\*/g, '$1')
+        .replace(/#{1,3}\s/g, '')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .trim();
+
+    // Adiciona ao histórico e ao chat
+    chatHistorico.push({ role: 'assistant', content: fullText });
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'chat-bubble assistant';
+    aiDiv.innerHTML = chatMarkdown(fullText);
+    messagesEl.appendChild(aiDiv);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    // Mostra no overlay
+    assistenteAddMsg('ai', textoFala.substring(0, 120) + (textoFala.length > 120 ? '…' : ''));
+
+    // Fala a resposta
+    await assistenteFalar(textoFala);
+
+    // Ouve de novo
+    if (assistenteAtivo && !assistenteAbortado) {
+        setTimeout(() => assistenteOuvir(), 500);
+    }
+}
+
+function assistenteFalar(texto) {
+    return new Promise(resolve => {
+        if (!assistenteAtivo || !texto) { resolve(); return; }
+        assistenteSetStatus('falando', texto.substring(0, 80) + (texto.length > 80 ? '…' : ''));
+        assistenteSpeaking = true;
+
+        window.speechSynthesis.cancel();
+        const utt = new SpeechSynthesisUtterance(texto);
+        utt.lang = 'pt-BR';
+        utt.rate = 1.05;
+        utt.pitch = 1.0;
+
+        // Preferir voz feminina pt-BR se disponível
+        const voices = window.speechSynthesis.getVoices();
+        const ptVoz = voices.find(v => v.lang.startsWith('pt') && v.name.includes('female'))
+            || voices.find(v => v.lang.startsWith('pt'))
+            || null;
+        if (ptVoz) utt.voice = ptVoz;
+
+        utt.onend = () => { assistenteSpeaking = false; resolve(); };
+        utt.onerror = () => { assistenteSpeaking = false; resolve(); };
+
+        window.speechSynthesis.speak(utt);
+    });
 }
 
 // ── CHAT FOTO / CÂMERA ──────────────────────────────────────────
