@@ -1589,7 +1589,7 @@ app.post('/api/chat/stream', authOptional, async (req, res) => {
 
     stream.on('text', (text) => { fullText += text; send({ type: 'text', text }); });
     stream.on('finalMessage', async () => {
-      send({ type: 'done' });
+      send({ type: 'done', sources: (webResults || []).map(r => ({ title: r.title, url: r.url })) });
       res.end();
       // Persistir mensagens na sessão
       if (sessao_id && fullText && ultimaMensagem) {
