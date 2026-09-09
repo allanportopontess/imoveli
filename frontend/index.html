@@ -505,6 +505,82 @@
             50% { box-shadow: 0 0 0 7px rgba(255,69,58,0); }
         }
 
+        /* ── PAINEL BUSCA INTELIGENTE ── */
+        .search-panel {
+            background: var(--paper-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--r-lg);
+            margin: 16px 0 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            animation: slide-down .28s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes slide-down {
+            from { opacity:0; transform: translateY(-12px) scale(.98); }
+            to   { opacity:1; transform: translateY(0) scale(1); }
+        }
+        .search-panel-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--mist);
+        }
+        .search-panel-badge {
+            font-size: 11px; font-weight: 700; letter-spacing: .04em;
+            color: var(--violet); text-transform: uppercase;
+        }
+        .search-panel-close {
+            background: none; border: none; color: var(--ink-dim);
+            font-size: 15px; cursor: pointer; line-height: 1; padding: 2px 6px;
+        }
+        .search-panel-close:hover { color: var(--ink); }
+        .search-panel-body {
+            padding: 18px 20px;
+            font-size: 14px; line-height: 1.7; color: var(--ink);
+            min-height: 48px;
+            max-height: 60vh; overflow-y: auto;
+        }
+        .search-panel-body p { margin-bottom: 10px; }
+        .search-panel-body strong { color: var(--violet); }
+        .search-panel-body h2, .search-panel-body h3 {
+            font-family: var(--font-display); font-size: 15px;
+            color: var(--ink); margin: 14px 0 6px; font-weight: 700;
+        }
+        .search-panel-body ul { padding-left: 18px; margin-bottom: 10px; }
+        .search-panel-body li { margin-bottom: 4px; }
+        .search-panel-body code {
+            background: var(--mist); border-radius: 4px;
+            padding: 1px 6px; font-size: 12px; color: var(--violet);
+        }
+        .search-panel-body .search-cursor::after { content: '▋'; animation: blink .8s step-start infinite; }
+        @keyframes blink { 50% { opacity:0; } }
+        .search-sources {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .search-source-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: var(--mist); border: 1px solid var(--border-color);
+            border-radius: var(--r-pill); padding: 4px 10px;
+            font-size: 11px; color: var(--ink-soft);
+            text-decoration: none; transition: background .15s;
+            max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .search-source-chip:hover { background: var(--mist-strong); color: var(--ink); }
+        .search-source-chip::before { content: '🔗'; font-size: 10px; flex-shrink: 0; }
+        .search-panel-footer {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .search-continue-btn {
+            background: var(--violet-wash); border: 1px solid rgba(139,92,246,.3);
+            color: var(--violet); border-radius: var(--r-pill);
+            padding: 8px 18px; font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: background .15s;
+        }
+        .search-continue-btn:hover { background: rgba(139,92,246,.22); }
+
         /* ── MODO ASSISTENTE OVERLAY ── */
         .assistente-interim {
             min-height: 22px;
@@ -1625,12 +1701,25 @@
                 <h1 class="command-headline" id="commandHeadline">O que você precisa na rede hoje?</h1>
 
                 <div class="command-bar">
-                    <input type="text" id="commandInput" placeholder="ex: preciso de um calculista estrutural"
+                    <input type="text" id="commandInput" placeholder="Pesquise qualquer coisa: NR, SINAPI, ART, regularização..."
                            onkeydown="if(event.key==='Enter') handleCommandSubmit()">
-                    <button onclick="handleCommandSubmit()" aria-label="Enviar">→</button>
+                    <button onclick="handleCommandSubmit()" id="commandBtn" aria-label="Pesquisar">→</button>
                 </div>
 
-                <div class="tile-grid">
+                <!-- PAINEL DE BUSCA INTELIGENTE -->
+                <div class="search-panel" id="searchPanel" hidden>
+                    <div class="search-panel-header">
+                        <span class="search-panel-badge">✦ IA + Internet</span>
+                        <button class="search-panel-close" onclick="fecharSearchPanel()">✕</button>
+                    </div>
+                    <div class="search-panel-body" id="searchPanelBody"></div>
+                    <div class="search-sources" id="searchSources" hidden></div>
+                    <div class="search-panel-footer" id="searchPanelFooter" hidden>
+                        <button class="search-continue-btn" onclick="searchContinuarNoChat()">💬 Continuar no chat</button>
+                    </div>
+                </div>
+
+                <div class="tile-grid" id="commandTileGrid">
                     <div class="tile" style="background-image: url('https://source.unsplash.com/1200x500/?architecture,blueprint,office&sig=21')" onclick="showPage('fiador')">
                         <div class="tile-sub">🛡️ Sua identidade técnica</div>
                         <div class="tile-label">Meu perfil e portfólio</div>
@@ -2879,25 +2968,144 @@ function classifyIntent(text) {
     return { type: 'unknown' };
 }
 
-function handleCommandSubmit() {
+let searchLastQuery = '';
+let searchLastAnswer = '';
+
+async function handleCommandSubmit() {
     const input = document.getElementById('commandInput');
     const text = input.value.trim();
     if (!text) return;
 
+    // Tenta roteamento por intent primeiro (atalhos de navegação)
     const intent = classifyIntent(text);
-
     if (intent.type === 'page') {
-        if (intent.page === 'match') {
-            state.matchContext = { categoria: text };
-        }
+        if (intent.page === 'match') state.matchContext = { categoria: text };
         showPage(intent.page);
         input.value = '';
         return;
     }
 
-    // Não reconhecido: não adivinha — orienta para os atalhos
-    input.placeholder = 'Não entendi — tente um dos atalhos abaixo';
+    // Busca inteligente IA + Internet
     input.value = '';
+    searchLastQuery = text;
+    searchLastAnswer = '';
+    await executarBuscaInteligente(text);
+}
+
+async function executarBuscaInteligente(query) {
+    const panel = document.getElementById('searchPanel');
+    const body  = document.getElementById('searchPanelBody');
+    const sources = document.getElementById('searchSources');
+    const footer = document.getElementById('searchPanelFooter');
+    const tileGrid = document.getElementById('commandTileGrid');
+    const btn = document.getElementById('commandBtn');
+
+    // Mostra painel, esconde tiles
+    panel.hidden = false;
+    sources.hidden = true;
+    footer.hidden = true;
+    sources.innerHTML = '';
+    if (tileGrid) tileGrid.style.display = 'none';
+
+    // Estado carregando
+    body.innerHTML = '<div class="search-cursor" style="color:var(--ink-dim);font-size:13px;">Consultando IA e internet…</div>';
+    btn.textContent = '…';
+    btn.disabled = true;
+
+    let fullText = '';
+
+    try {
+        const token = localStorage.getItem('imoveli_token') || '';
+        const resp = await fetch(API_BASE_URL + '/api/chat/stream', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+            },
+            body: JSON.stringify({
+                mensagens: [{ role: 'user', content: query }],
+                contexto: 'Busca principal da plataforma IMOVELI. Seja direto, claro e completo.'
+            })
+        });
+
+        if (!resp.ok) throw new Error(resp.status);
+
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        body.innerHTML = '';
+        const bodyDiv = document.createElement('div');
+        bodyDiv.className = 'search-cursor';
+        body.appendChild(bodyDiv);
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+            for (const line of lines) {
+                if (!line.startsWith('data:')) continue;
+                const raw = line.slice(5).trim();
+                if (!raw) continue;
+                try {
+                    const d = JSON.parse(raw);
+                    if (d.type === 'text' && d.text) {
+                        fullText += d.text;
+                        searchLastAnswer = fullText;
+                        bodyDiv.innerHTML = chatMarkdown(fullText);
+                    }
+                    if (d.type === 'done') {
+                        bodyDiv.classList.remove('search-cursor');
+                        // Fontes web
+                        if (d.sources && d.sources.length) {
+                            sources.hidden = false;
+                            sources.innerHTML = '<span style="font-size:11px;color:var(--ink-dim);margin-right:4px;flex-basis:100%">Fontes:</span>';
+                            d.sources.forEach(s => {
+                                const a = document.createElement('a');
+                                a.className = 'search-source-chip';
+                                a.href = s.url;
+                                a.target = '_blank';
+                                a.rel = 'noopener';
+                                a.textContent = s.title || s.url;
+                                sources.appendChild(a);
+                            });
+                        }
+                        footer.hidden = false;
+                    }
+                } catch(_) {}
+            }
+        }
+    } catch(e) {
+        body.innerHTML = '<p style="color:var(--coral)">Erro ao buscar. Verifique sua conexão.</p>';
+    }
+
+    btn.textContent = '→';
+    btn.disabled = false;
+}
+
+function fecharSearchPanel() {
+    document.getElementById('searchPanel').hidden = true;
+    const tileGrid = document.getElementById('commandTileGrid');
+    if (tileGrid) tileGrid.style.display = '';
+}
+
+function searchContinuarNoChat() {
+    // Injeta a busca no chat e abre
+    if (searchLastQuery) {
+        chatHistorico.push({ role: 'user', content: searchLastQuery });
+        if (searchLastAnswer) chatHistorico.push({ role: 'assistant', content: searchLastAnswer });
+        const messagesEl = document.getElementById('chatMessages');
+        const uDiv = document.createElement('div');
+        uDiv.className = 'chat-bubble user'; uDiv.textContent = searchLastQuery;
+        const aDiv = document.createElement('div');
+        aDiv.className = 'chat-bubble assistant'; aDiv.innerHTML = chatMarkdown(searchLastAnswer);
+        messagesEl.appendChild(uDiv);
+        messagesEl.appendChild(aDiv);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+    fecharSearchPanel();
+    if (!document.getElementById('chatBox').classList.contains('open')) toggleChat();
 }
 
 function routeIntent(page) {
