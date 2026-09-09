@@ -2958,8 +2958,14 @@ const INTENT_RULES = [
     { page: 'fiador', keywords: ['indicar', 'indicação', 'indicacao', 'perfil', 'portfólio', 'portfolio', 'acervo'] },
 ];
 
+const QUESTION_WORDS = ['o que', 'como', 'quando', 'por que', 'porque', 'qual', 'quais', 'onde', 'quanto', 'explica', 'me fala', 'o valor', 'diferença', 'significa', 'é obrigatório', 'preciso saber', '?'];
+
 function classifyIntent(text) {
     const normalized = text.toLowerCase();
+    // Perguntas técnicas → sempre busca inteligente, nunca navegação
+    if (QUESTION_WORDS.some(w => normalized.includes(w))) return { type: 'unknown' };
+    // Texto longo (>5 palavras) → busca
+    if (text.trim().split(/\s+/).length > 5) return { type: 'unknown' };
     for (const rule of INTENT_RULES) {
         if (rule.keywords.some(k => normalized.includes(k))) {
             return { type: 'page', page: rule.page };
