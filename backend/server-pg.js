@@ -1147,8 +1147,8 @@ Gere uma justificativa profissional em 4 a 6 linhas explicando:
 Responda em português, de forma objetiva e profissional.`;
 
       const r = await anthropicClient.messages.create({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 400,
+        model: 'claude-sonnet-5',
+        max_tokens: 600,
         messages: [{ role: 'user', content: prompt }]
       });
       justificativaIA = r.content.find(b => b.type === 'text')?.text || null;
@@ -1533,8 +1533,8 @@ app.post('/api/chat', async (req, res) => {
 
   try {
     const response = await anthropicClient.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 2048,
+      model: 'claude-sonnet-5',
+      max_tokens: 4096,
       system: systemFinal,
       messages: mensagens.map(m => ({ role: m.role, content: m.content }))
     });
@@ -1581,8 +1581,8 @@ app.post('/api/chat/stream', authOptional, async (req, res) => {
   try {
     let fullText = '';
     const stream = anthropicClient.messages.stream({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 2048,
+      model: 'claude-sonnet-5',
+      max_tokens: 4096,
       system: systemFinal,
       messages: mensagens.map(m => ({ role: m.role, content: m.content }))
     });
