@@ -506,6 +506,12 @@
         }
 
         /* ── MODO ASSISTENTE OVERLAY ── */
+        .assistente-interim {
+            min-height: 22px;
+            font-size: 13px; color: var(--violet);
+            text-align: center; font-style: italic;
+            padding: 0 20px; opacity: .85;
+        }
         .assistente-overlay {
             display: none;
             position: fixed; inset: 0; z-index: 3000;
@@ -521,6 +527,7 @@
         .assistente-orb-wrap {
             position: relative;
             width: 180px; height: 180px;
+            background: none; border: none; cursor: pointer; padding: 0;
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 32px;
         }
@@ -2450,18 +2457,19 @@
 
 <!-- MODO ASSISTENTE OVERLAY -->
 <div class="assistente-overlay" id="assistenteOverlay">
-    <div class="assistente-orb-wrap">
-        <div class="assistente-ring"></div>
-        <div class="assistente-ring"></div>
-        <div class="assistente-ring"></div>
+    <button class="assistente-orb-wrap" id="assistenteOrbWrap" onclick="assistenteInterromper()" title="Toque para interromper">
+        <div class="assistente-ring" id="assistenteRing1"></div>
+        <div class="assistente-ring" id="assistenteRing2"></div>
+        <div class="assistente-ring" id="assistenteRing3"></div>
         <div class="assistente-orb-inner" id="assistenteOrb">🤖</div>
-    </div>
+    </button>
     <div class="assistente-status" id="assistenteStatus">Pronto para ouvir</div>
     <div class="assistente-sub" id="assistenteSub">Fale sua pergunta — respondo em voz alta</div>
+    <div class="assistente-interim" id="assistenteInterim"></div>
     <div class="assistente-transcript-box" id="assistenteTranscript"></div>
     <div class="assistente-footer">
-        <div class="assistente-hint" id="assistenteHint">Toque no microfone para falar</div>
-        <button class="assistente-close-btn" onclick="fecharAssistenteMode()" title="Fechar Modo Assistente">✕</button>
+        <div class="assistente-hint" id="assistenteHint">Toque no orb para interromper</div>
+        <button class="assistente-close-btn" onclick="fecharAssistenteMode()" title="Fechar">✕</button>
     </div>
 </div>
 
@@ -4802,25 +4810,23 @@ function stopVoiceInput() {
     if (voiceRec) { try { voiceRec.stop(); } catch(_){} voiceRec = null; }
 }
 
-// ── MODO ASSISTENTE (conversa em tempo real) ─────────────────────
+// ── MODO CONVERSAÇÃO (conversa em tempo real, estilo ChatGPT) ─────
 
 let assistenteAtivo = false;
 let assistenteRec = null;
 let assistenteListening = false;
 let assistenteSpeaking = false;
 let assistenteAbortado = false;
+let assistenteUtt = null;          // utterance atual para barge-in
+let assistenteSilenceTimer = null; // timer para silêncio prolongado
 
 function toggleAssistenteMode() {
-    if (assistenteAtivo) {
-        fecharAssistenteMode();
-    } else {
-        abrirAssistenteMode();
-    }
+    if (assistenteAtivo) { fecharAssistenteMode(); } else { abrirAssistenteMode(); }
 }
 
 function abrirAssistenteMode() {
     if (!SpeechRecognitionAPI) {
-        alert('Modo Assistente requer reconhecimento de voz (Chrome ou Edge).');
+        alert('Modo Conversação requer reconhecimento de voz (Chrome ou Edge).');
         return;
     }
     assistenteAtivo = true;
@@ -4829,6 +4835,7 @@ function abrirAssistenteMode() {
     document.getElementById('chatAssistenteBtn').classList.add('ativo');
     document.getElementById('chatAssistenteBtn').textContent = '🟢 Ativo';
     document.getElementById('assistenteTranscript').innerHTML = '';
+    document.getElementById('assistenteInterim').textContent = '';
     assistenteSetStatus('idle');
     setTimeout(() => assistenteOuvir(), 600);
 }
@@ -4838,12 +4845,26 @@ function fecharAssistenteMode() {
     assistenteAbortado = true;
     assistenteListening = false;
     assistenteSpeaking = false;
+    clearTimeout(assistenteSilenceTimer);
     if (assistenteRec) { try { assistenteRec.stop(); } catch(_){} assistenteRec = null; }
     window.speechSynthesis.cancel();
+    assistenteUtt = null;
     document.getElementById('assistenteOverlay').classList.remove('open');
     const btn = document.getElementById('chatAssistenteBtn');
     btn.classList.remove('ativo');
     btn.textContent = '🎤 Assistente';
+}
+
+// Barge-in: toca no orb enquanto IA fala → interrompe e começa a ouvir
+function assistenteInterromper() {
+    if (!assistenteAtivo) return;
+    if (assistenteSpeaking) {
+        window.speechSynthesis.cancel();
+        assistenteSpeaking = false;
+        assistenteUtt = null;
+        clearTimeout(assistenteSilenceTimer);
+        setTimeout(() => assistenteOuvir(), 200);
+    }
 }
 
 function assistenteSetStatus(estado, extra) {
@@ -4856,7 +4877,7 @@ function assistenteSetStatus(estado, extra) {
         orb.textContent = '🤖';
         status.textContent = 'Pronto para ouvir';
         sub.textContent = 'Fale sua pergunta — respondo em voz alta';
-        hint.textContent = 'Aguardando...';
+        hint.textContent = 'Toque no orb para interromper';
     } else if (estado === 'ouvindo') {
         orb.classList.add('ouvindo');
         orb.textContent = '🎙️';
@@ -4873,7 +4894,7 @@ function assistenteSetStatus(estado, extra) {
         orb.textContent = '🔊';
         status.textContent = 'Falando...';
         sub.textContent = extra || '';
-        hint.textContent = 'Ouvindo a resposta';
+        hint.textContent = 'Toque para interromper';
     }
 }
 
@@ -4891,6 +4912,7 @@ function assistenteOuvir() {
     if (!assistenteAtivo || assistenteAbortado) return;
     assistenteListening = true;
     assistenteSetStatus('ouvindo');
+    document.getElementById('assistenteInterim').textContent = '';
 
     assistenteRec = new SpeechRecognitionAPI();
     assistenteRec.lang = 'pt-BR';
@@ -4901,22 +4923,24 @@ function assistenteOuvir() {
 
     assistenteRec.onresult = e => {
         transcript = Array.from(e.results).map(r => r[0].transcript).join('');
-        assistenteSetStatus('ouvindo', '"' + transcript + '"');
+        // mostra transcrição parcial em itálico enquanto fala
+        document.getElementById('assistenteInterim').textContent = transcript;
     };
 
     assistenteRec.onend = () => {
         assistenteListening = false;
+        document.getElementById('assistenteInterim').textContent = '';
         if (!assistenteAtivo || assistenteAbortado) return;
         if (transcript.trim()) {
             assistenteProcessar(transcript.trim());
         } else {
-            // Silêncio → ouvir de novo
-            setTimeout(() => assistenteOuvir(), 500);
+            setTimeout(() => assistenteOuvir(), 400);
         }
     };
 
     assistenteRec.onerror = err => {
         assistenteListening = false;
+        document.getElementById('assistenteInterim').textContent = '';
         if (!assistenteAtivo || assistenteAbortado) return;
         if (err.error === 'no-speech') {
             setTimeout(() => assistenteOuvir(), 800);
@@ -4929,19 +4953,25 @@ function assistenteOuvir() {
 async function assistenteProcessar(transcripto) {
     if (!assistenteAtivo) return;
 
-    // Mostra mensagem do usuário
     assistenteAddMsg('user', transcripto);
-    assistenteSetStatus('pensando', '"' + transcripto + '"');
+    assistenteSetStatus('pensando', '"' + transcripto.substring(0, 60) + (transcripto.length > 60 ? '…"' : '"'));
 
-    // Adiciona ao histórico do chat normal também
     chatHistorico.push({ role: 'user', content: transcripto });
 
-    // Adiciona bolha no chat
     const messagesEl = document.getElementById('chatMessages');
     const userDiv = document.createElement('div');
     userDiv.className = 'chat-bubble user';
     userDiv.textContent = transcripto;
     messagesEl.appendChild(userDiv);
+
+    // Bolha IA com streaming
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'chat-bubble assistant chat-cursor';
+    aiDiv.textContent = '';
+    messagesEl.appendChild(aiDiv);
+
+    // Caixa de preview de texto no overlay (streaming)
+    const aiOverlayMsg = assistenteAddMsg('ai', '...');
 
     let fullText = '';
 
@@ -4953,10 +4983,7 @@ async function assistenteProcessar(transcripto) {
                 'Content-Type': 'application/json',
                 ...(token ? { 'Authorization': 'Bearer ' + token } : {})
             },
-            body: JSON.stringify({
-                mensagens: chatHistorico,
-                contexto: buildChatContexto()
-            })
+            body: JSON.stringify({ mensagens: chatHistorico, contexto: buildChatContexto() })
         });
 
         if (!resp.ok) throw new Error(resp.status);
@@ -4965,81 +4992,108 @@ async function assistenteProcessar(transcripto) {
         const decoder = new TextDecoder();
         let buffer = '';
 
+        assistenteSetStatus('pensando');
+
         while (true) {
+            if (!assistenteAtivo) break;
             const { done, value } = await reader.read();
-            if (done || !assistenteAtivo) break;
+            if (done) break;
             buffer += decoder.decode(value, { stream: true });
             const lines = buffer.split('\n');
             buffer = lines.pop();
             for (const line of lines) {
                 if (!line.startsWith('data:')) continue;
                 const raw = line.slice(5).trim();
-                if (raw === '[DONE]') break;
+                if (!raw || raw === '[DONE]') continue;
                 try {
                     const d = JSON.parse(raw);
-                    if (d.token) fullText += d.token;
+                    // parse correto: backend envia { type:'text', text:'...' }
+                    if (d.type === 'text' && d.text) {
+                        fullText += d.text;
+                        aiDiv.innerHTML = chatMarkdown(fullText);
+                        // preview resumido no overlay enquanto recebe
+                        const preview = fullText.replace(/\*\*/g,'').replace(/\*/g,'').replace(/#{1,3}\s/g,'');
+                        aiOverlayMsg.textContent = preview.substring(0, 100) + (preview.length > 100 ? '…' : '');
+                        messagesEl.scrollTop = messagesEl.scrollHeight;
+                    }
                 } catch(_) {}
             }
         }
-
     } catch(e) {
         fullText = 'Desculpe, houve um erro. Tente novamente.';
     }
 
     if (!assistenteAtivo) return;
 
-    // Texto limpo para fala (remove markdown)
+    aiDiv.classList.remove('chat-cursor');
+    aiDiv.innerHTML = chatMarkdown(fullText);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    chatHistorico.push({ role: 'assistant', content: fullText });
+
+    // Texto limpo para TTS
     const textoFala = fullText
         .replace(/\*\*(.*?)\*\*/g, '$1')
         .replace(/\*(.*?)\*/g, '$1')
         .replace(/#{1,3}\s/g, '')
         .replace(/`([^`]+)`/g, '$1')
         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/\n+/g, ' ')
         .trim();
 
-    // Adiciona ao histórico e ao chat
-    chatHistorico.push({ role: 'assistant', content: fullText });
-    const aiDiv = document.createElement('div');
-    aiDiv.className = 'chat-bubble assistant';
-    aiDiv.innerHTML = chatMarkdown(fullText);
-    messagesEl.appendChild(aiDiv);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    // Atualiza overlay com texto final
+    aiOverlayMsg.textContent = textoFala.substring(0, 120) + (textoFala.length > 120 ? '…' : '');
 
-    // Mostra no overlay
-    assistenteAddMsg('ai', textoFala.substring(0, 120) + (textoFala.length > 120 ? '…' : ''));
-
-    // Fala a resposta
     await assistenteFalar(textoFala);
 
-    // Ouve de novo
     if (assistenteAtivo && !assistenteAbortado) {
-        setTimeout(() => assistenteOuvir(), 500);
+        setTimeout(() => assistenteOuvir(), 400);
     }
+}
+
+// Seleciona melhor voz pt-BR disponível
+function assistenteGetVoz() {
+    const voices = window.speechSynthesis.getVoices();
+    return voices.find(v => v.lang === 'pt-BR' && /female|feminina|francisca|luciana/i.test(v.name))
+        || voices.find(v => v.lang === 'pt-BR')
+        || voices.find(v => v.lang.startsWith('pt'))
+        || null;
 }
 
 function assistenteFalar(texto) {
     return new Promise(resolve => {
-        if (!assistenteAtivo || !texto) { resolve(); return; }
-        assistenteSetStatus('falando', texto.substring(0, 80) + (texto.length > 80 ? '…' : ''));
+        if (!assistenteAtivo || !texto.trim()) { resolve(); return; }
+
         assistenteSpeaking = true;
-
         window.speechSynthesis.cancel();
-        const utt = new SpeechSynthesisUtterance(texto);
-        utt.lang = 'pt-BR';
-        utt.rate = 1.05;
-        utt.pitch = 1.0;
 
-        // Preferir voz feminina pt-BR se disponível
-        const voices = window.speechSynthesis.getVoices();
-        const ptVoz = voices.find(v => v.lang.startsWith('pt') && v.name.includes('female'))
-            || voices.find(v => v.lang.startsWith('pt'))
-            || null;
-        if (ptVoz) utt.voice = ptVoz;
+        // Divide em sentenças para resposta mais rápida
+        const sentencas = texto.match(/[^.!?]+[.!?]*/g) || [texto];
+        let idx = 0;
 
-        utt.onend = () => { assistenteSpeaking = false; resolve(); };
-        utt.onerror = () => { assistenteSpeaking = false; resolve(); };
+        assistenteSetStatus('falando', texto.substring(0, 80) + (texto.length > 80 ? '…' : ''));
 
-        window.speechSynthesis.speak(utt);
+        function falarProxima() {
+            if (!assistenteAtivo || assistenteAbortado || idx >= sentencas.length) {
+                assistenteSpeaking = false;
+                assistenteUtt = null;
+                resolve();
+                return;
+            }
+            const utt = new SpeechSynthesisUtterance(sentencas[idx].trim());
+            utt.lang = 'pt-BR';
+            utt.rate = 1.05;
+            utt.pitch = 1.0;
+            const voz = assistenteGetVoz();
+            if (voz) utt.voice = voz;
+
+            assistenteUtt = utt;
+            utt.onend = () => { idx++; falarProxima(); };
+            utt.onerror = () => { idx++; falarProxima(); };
+            window.speechSynthesis.speak(utt);
+        }
+
+        falarProxima();
     });
 }
 
