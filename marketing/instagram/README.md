@@ -2,16 +2,15 @@
 
 Automação de posts diários no Instagram. Claude cria o conteúdo, renderiza as artes, hospeda as imagens neste repositório (público) e publica via Windsor.ai **somente após aprovação do Allan**.
 
-## Fluxo diário
+## Fluxo
 
-| Horário (Brasília) | O que acontece |
-|---|---|
-| 09:52 | Rotina dispara: Claude escreve `posts/AAAA-MM-DD/post.json`, renderiza as artes e faz push |
-| logo depois | Claude envia a prévia (slides + legenda) para aprovação |
-| após o "ok" | Post fica agendado para **18:30** |
-| 18:30 | Claude publica via Windsor (`create_carousel_post`) e registra o `status` no `post.json` |
+| Quando (Brasília) | Rotina | O que acontece |
+|---|---|---|
+| Sexta, 09:52 | Instagram: preparar posts da próxima semana | Claude cria os 7 posts da semana seguinte (`status: aguardando_aprovacao`), renderiza, faz push e envia a prévia |
+| após o "ok" | — | Posts aprovados passam para `status: aprovado` |
+| Todo dia, 18:30 | Instagram: publicar post do dia | Publica o post do dia via Windsor **somente se** `status == aprovado` e marca `publicado` |
 
-Sem aprovação até 18:30, o post **não** é publicado. Ele fica com status `aguardando_aprovacao`.
+Post sem aprovação **não** é publicado.
 
 ## Calendário editorial
 
