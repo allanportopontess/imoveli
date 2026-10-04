@@ -21,9 +21,9 @@ module.exports = {
 
   // Seletores: palpites iniciais; ajustar com `node buscar.js --diagnostico`
   seletores: {
-    loginEmail: 'input[name="email"], input[type="email"]',
-    loginSenha: 'input[name="senha"], input[type="password"]',
-    loginBotao: 'button[type="submit"]',
+    loginEmail: '#email',
+    loginSenha: '#senha',
+    loginBotao: '#btnEfetuarLogin',
     logadoIndicador: 'a[href*="logout"], a[href*="sair"]',
     cardProjeto: 'li.result-item, .projects-result li',
     cardTitulo: 'h1 a, h2 a, .title a',
