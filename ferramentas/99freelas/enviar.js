@@ -6,7 +6,7 @@ const path = require('path');
 const cfg = require('./config');
 const { abrir, garantirLogin } = require('./navegador');
 const DADOS = path.join(__dirname, 'dados');
-const ARQ = path.join(DADOS, 'propostas.json');
+const ARQ = path.join(__dirname, 'propostas.json');
 const confirmar = process.argv.includes('--confirmar');
 
 (async () => {
