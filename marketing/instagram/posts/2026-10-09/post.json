@@ -1,0 +1,48 @@
+{
+  "data": "2026-10-09",
+  "horario": "18:30",
+  "pilar": "projeto",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Bastidores de projeto",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "Como eu projeto uma loja para vender, não só para ser bonita",
+      "texto": "As **5 etapas** do meu processo de arquitetura comercial."
+    },
+    {
+      "numero": "01",
+      "titulo": "Entender o negócio antes do espaço",
+      "texto": "Ticket médio, produto campeão, público, horário de pico. **O layout nasce dos números** da loja, não de referência do Pinterest."
+    },
+    {
+      "numero": "02",
+      "titulo": "Desenhar o percurso do cliente",
+      "texto": "Antes de qualquer móvel, defino **por onde o cliente anda**, onde ele para e onde decide. Cada ponto de parada é uma oportunidade de venda."
+    },
+    {
+      "numero": "03",
+      "titulo": "Zonear a exposição",
+      "texto": "Zona quente, zona fria, área de impulso e área de experiência. Cada categoria vai para onde **vende mais**."
+    },
+    {
+      "numero": "04",
+      "titulo": "Luz, materiais e identidade",
+      "texto": "Aqui entra o lado estético: **iluminação em camadas**, materiais duráveis e a marca presente em cada detalhe, sem atrapalhar o produto."
+    },
+    {
+      "numero": "05",
+      "titulo": "Executar e medir",
+      "texto": "Depois da obra, acompanho o resultado: **fluxo, conversão e ticket**. Projeto bom é o que se paga."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Vai abrir ou reformar uma loja?",
+      "titulo": "Vamos conversar sobre o seu projeto",
+      "texto": "Atendo projetos comerciais **presenciais e online**.",
+      "botao": "Chame no direct"
+    }
+  ],
+  "legenda": "Projeto comercial não é decoração: é estratégia de venda desenhada no espaço. 🛍️\n\nMeu processo, em 5 etapas:\n\n1️⃣ Entender o negócio (números antes do espaço)\n2️⃣ Desenhar o percurso do cliente\n3️⃣ Zonear a exposição\n4️⃣ Luz, materiais e identidade\n5️⃣ Executar e medir resultado\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct para conversarmos sobre o seu projeto.\n\n#arquiteturacomercial #projetodeloja #varejo #visualmerchandising #arquiteto #designdeinteriores #lojista #empreendedorismo #pontodevenda #arquitetura"
+}

@@ -1,0 +1,43 @@
+{
+  "data": "2026-10-05",
+  "horario": "18:30",
+  "pilar": "varejo",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Arquitetura de varejo",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "Loja pequena? O layout certo vale mais que metro quadrado",
+      "texto": "4 decisões que fazem **40 m²** venderem como 80."
+    },
+    {
+      "numero": "01",
+      "titulo": "Escolha um percurso, não um labirinto",
+      "texto": "Em loja pequena, o melhor é o **percurso em U**: entra por um lado, circula pelo fundo e sai pelo outro. O cliente passa por tudo sem esforço e sem sentir aperto."
+    },
+    {
+      "numero": "02",
+      "titulo": "Paredes trabalham, o centro respira",
+      "texto": "Use as **paredes para exposição** e deixe o centro com no máximo uma ilha baixa (até 1,20 m). Assim a loja parece maior e o cliente enxerga o fundo da porta."
+    },
+    {
+      "numero": "03",
+      "titulo": "Circulação mínima de 90 cm",
+      "texto": "Abaixo disso o cliente se sente espremido e sai mais rápido. Para acessibilidade e conforto, mire em **1,20 m** no corredor principal."
+    },
+    {
+      "numero": "04",
+      "titulo": "Caixa no fim do percurso",
+      "texto": "Caixa logo na entrada encurta a visita. Posicione-o **no fim do U**, de preferência à esquerda de quem entra, com PDV de impulso ao lado."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Tem uma loja pequena?",
+      "titulo": "Manda nos comentários quantos m² ela tem",
+      "texto": "Respondo com a **primeira mudança** que eu faria no layout.",
+      "botao": "Salve para o seu próximo projeto"
+    }
+  ],
+  "legenda": "Loja pequena não precisa parecer apertada, nem vender pouco. 📐\n\n4 decisões de layout que mais fazem diferença:\n\n1️⃣ Percurso em U em vez de labirinto\n2️⃣ Paredes expõem, o centro respira (ilha baixa de até 1,20 m)\n3️⃣ Circulação mínima de 90 cm, ideal 1,20 m\n4️⃣ Caixa no fim do percurso, com PDV de impulso\n\n💬 Comenta quantos m² tem a sua loja que eu digo a primeira mudança que faria.\n💾 Salve para consultar no próximo projeto.\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores"
+}
