@@ -1,0 +1,48 @@
+{
+  "data": "2026-10-04",
+  "horario": "18:30",
+  "pilar": "varejo",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Arquitetura de varejo",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "5 erros de layout que fazem sua loja vender menos",
+      "texto": "E como corrigir **sem reforma cara**."
+    },
+    {
+      "numero": "01",
+      "titulo": "Produto campeão logo na porta",
+      "texto": "Os primeiros 2–3 metros são a **zona de descompressão**: o cliente ainda está se adaptando e não enxerga nada ali. Use esse espaço para respiro e sinalização, e leve o destaque para logo depois."
+    },
+    {
+      "numero": "02",
+      "titulo": "Corredor que não leva a lugar nenhum",
+      "texto": "Cliente que não tem motivo para entrar no fundo da loja, não entra. Coloque o **item de maior procura no fundo** e crie um percurso natural, de preferência girando para a direita."
+    },
+    {
+      "numero": "03",
+      "titulo": "Iluminação chapada, igual em tudo",
+      "texto": "Luz geral uniforme deixa tudo sem graça. Combine luz geral com **luz de destaque 3x mais forte** nos produtos foco. O olho vai direto para onde tem mais luz."
+    },
+    {
+      "numero": "04",
+      "titulo": "Produto fora da altura de compra",
+      "texto": "A faixa que mais vende fica **entre 1,10 m e 1,60 m**, na altura dos olhos e das mãos. Ali vão os itens de maior margem. Em cima, estoque visual; embaixo, volume."
+    },
+    {
+      "numero": "05",
+      "titulo": "Caixa sem compra por impulso",
+      "texto": "A fila é o momento em que o cliente está parado, olhando. Um **PDV de impulso** bem montado, com itens de ticket baixo, aumenta o ticket médio sem esforço de venda."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Sua loja tem algum desses?",
+      "titulo": "Me conta nos comentários qual erro você já viu por aí",
+      "texto": "Faço projetos de arquitetura comercial pensados para **vender mais**, não só para ficar bonito.",
+      "botao": "Salve para revisar sua loja"
+    }
+  ],
+  "legenda": "Sua loja pode estar perdendo vendas por causa do layout, e você nem percebe. 👀\n\nOs 5 erros que eu mais encontro em projetos de varejo:\n\n1️⃣ Produto campeão logo na porta (zona de descompressão)\n2️⃣ Corredor que não leva o cliente até o fundo\n3️⃣ Iluminação chapada, sem contraste\n4️⃣ Produto fora da altura de compra (1,10 m a 1,60 m)\n5️⃣ Caixa sem compra por impulso\n\nA boa notícia: quase todos se corrigem com ajustes de layout, luz e exposição, sem reforma cara.\n\n💾 Salve para revisar sua loja depois\n💬 Comenta aqui: qual desses você já viu?\n📩 Quer um projeto comercial que vende mais? Me chama no direct.\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #iluminacaocomercial #projetodeloja #arquitetura #lojista"
+}
