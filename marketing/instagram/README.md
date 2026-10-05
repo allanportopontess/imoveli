@@ -25,6 +25,7 @@ Post sem aprovação **não** é publicado.
 | Dom | `arquitetura` | Antes e depois, mitos, perguntas e respostas |
 
 Regras de conteúdo:
+- **Máximo 1 post no feed por dia.** Se entrar um post extra (ex.: Reels avulso), o post agendado daquele dia é adiado e a semana é empurrada 1 dia. A rotina das 18:30 não publica se já houver post no feed no mesmo dia.
 - Carrossel de 5 a 8 slides: capa com gancho, 1 ideia por slide, CTA no final.
 - Legenda: gancho → resumo em lista → CTA (salvar, comentar, direct) → 8 a 12 hashtags do nicho.
 - Posts de venda levam CTA "link na bio". A bio aponta para `lojaquevende.allanportoarquiteto.com.br/links/?utm_source=instagram&utm_medium=bio` (ativo desde 05/10): checklist grátis em destaque, curso Loja que Vende e Kit Usucapião PRO (`pay.hotmart.com/C106999952U`, com `src=instagram&sck=bio_kit`).
