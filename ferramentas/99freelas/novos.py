@@ -11,6 +11,10 @@ BASE = 'https://www.99freelas.com.br'
 AQUI = os.path.dirname(os.path.abspath(__file__))
 VISTOS = os.path.join(AQUI, 'dados', 'vistos.json')
 SUBCATS = ('Arquitetura', 'Design de Interiores')
+# Modelagem 3D & CAD: só entra se for render/maquete de arquitetura ou interiores
+SUBCAT_RENDER = 'Modelagem 3D & CAD'
+RENDER_SIM = ('render', 'maquete', 'fachada', 'interior', 'ambiente', 'arquitet', 'imagem 3d', 'imagens 3d', 'perspectiva', 'sketchup', 'lumion', 'reforma', 'casa', 'loja')
+RENDER_NAO = ('impressão 3d', 'impressao 3d', 'stl', 'peça', 'peca', 'carro', 'mecânic', 'industrial', 'resina', 'pcb', 'móveis planejados', 'promob', 'civil 3d', 'rodovi')
 EXCLUIR = ('detalhamento', 'executivo', 'promob', 'cortecloud', 'marcenaria', 'móveis planejados', 'regulariza')
 
 
@@ -70,9 +74,12 @@ def main():
     os.makedirs(os.path.dirname(VISTOS), exist_ok=True)
     json.dump(sorted((vistos or set()) | {pid(c['link']) for c in cards}), open(VISTOS, 'w'))
 
-    relevantes = [detalhar(c) for c in novos if c['subcategoria'] in SUBCATS
+    relevantes = [detalhar(c) for c in novos if (c['subcategoria'] in SUBCATS or c['subcategoria'] == SUBCAT_RENDER)
                   and not any(x in c['titulo'].lower() for x in EXCLUIR)]
     relevantes = [c for c in relevantes if not any(x in c['descricao'].lower() for x in EXCLUIR)]
+    relevantes = [c for c in relevantes if c['subcategoria'] != SUBCAT_RENDER or (
+        any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in RENDER_SIM)
+        and not any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in RENDER_NAO))]
     print(f'{len(cards)} projetos lidos | {len(novos)} novos | {len(relevantes)} no perfil')
     for c in relevantes:
         print(f"\n### {c['titulo']}\n{c['subcategoria']} | Orçamento: {c['orcamento']} | Propostas: {c['propostas']}\n{c['link']}\n{c['descricao'][:800]}")
