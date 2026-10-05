@@ -1,43 +1,43 @@
 {
   "data": "2026-10-06",
   "horario": "18:30",
-  "pilar": "usucapiao",
+  "pilar": "varejo",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Usucapião extrajudicial",
+  "kicker": "Arquitetura de varejo",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Usucapião em cartório: o que o arquiteto ou engenheiro entrega",
-      "texto": "O processo não anda sem a **parte técnica**. E é aí que muita gente erra."
+      "titulo": "Loja pequena? O layout certo vale mais que metro quadrado",
+      "texto": "4 decisões que fazem **40 m²** venderem como 80."
     },
     {
       "numero": "01",
-      "titulo": "Planta do imóvel",
-      "texto": "Planta com a situação real do imóvel, área, confrontações e, quando exigido, **coordenadas georreferenciadas**. Tem que bater com o que existe no local, não com o que está no papel antigo."
+      "titulo": "Escolha um percurso, não um labirinto",
+      "texto": "Em loja pequena, o melhor é o **percurso em U**: entra por um lado, circula pelo fundo e sai pelo outro. O cliente passa por tudo sem esforço e sem sentir aperto."
     },
     {
       "numero": "02",
-      "titulo": "Memorial descritivo",
-      "texto": "A descrição técnica do perímetro, medida por medida, com **confrontantes identificados**. É o texto que vai virar a nova matrícula, então qualquer erro trava o registro."
+      "titulo": "Paredes trabalham, o centro respira",
+      "texto": "Use as **paredes para exposição** e deixe o centro com no máximo uma ilha baixa (até 1,20 m). Assim a loja parece maior e o cliente enxerga o fundo da porta."
     },
     {
       "numero": "03",
-      "titulo": "ART ou RRT",
-      "texto": "Planta e memorial precisam ser assinados por profissional habilitado, com **ART (CREA) ou RRT (CAU)** recolhida. Sem isso o cartório devolve o pedido."
+      "titulo": "Circulação mínima de 90 cm",
+      "texto": "Abaixo disso o cliente se sente espremido e sai mais rápido. Para acessibilidade e conforto, mire em **1,20 m** no corredor principal."
     },
     {
       "numero": "04",
-      "titulo": "Assinatura dos confrontantes",
-      "texto": "O ideal é colher na planta a **anuência dos vizinhos confrontantes** e do titular registral. Quem não assina é notificado pelo cartório, o que atrasa o processo."
+      "titulo": "Caixa no fim do percurso",
+      "texto": "Caixa logo na entrada encurta a visita. Posicione-o **no fim do U**, de preferência à esquerda de quem entra, com PDV de impulso ao lado."
     },
     {
       "tipo": "cta",
-      "kicker": "Você é arquiteto ou engenheiro?",
-      "titulo": "Usucapião é um mercado enorme para quem domina a parte técnica",
-      "texto": "Siga o perfil: toda semana tem conteúdo de **regularização de imóveis**.",
-      "botao": "Salve este checklist"
+      "kicker": "Tem uma loja pequena?",
+      "titulo": "Manda nos comentários quantos m² ela tem",
+      "texto": "Respondo com a **primeira mudança** que eu faria no layout.",
+      "botao": "Salve para o seu próximo projeto"
     }
   ],
-  "legenda": "Na usucapião extrajudicial (feita em cartório, Lei 6.015/73, art. 216-A), o advogado conduz o pedido, mas a parte técnica é do arquiteto ou engenheiro. 🏠\n\nO que você entrega:\n\n📐 Planta do imóvel com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART (CREA) ou RRT (CAU)\n🤝 Anuência dos confrontantes, sempre que possível\n\nErro em qualquer um desses itens = nota devolutiva e meses de atraso.\n\n💾 Salve este checklist\n📩 Dúvidas sobre usucapião? Manda no direct.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #topografia #memorialdescritivo #imoveis #rrt #art"
+  "legenda": "Loja pequena não precisa parecer apertada, nem vender pouco. 📐\n\n4 decisões de layout que mais fazem diferença:\n\n1️⃣ Percurso em U em vez de labirinto\n2️⃣ Paredes expõem, o centro respira (ilha baixa de até 1,20 m)\n3️⃣ Circulação mínima de 90 cm, ideal 1,20 m\n4️⃣ Caixa no fim do percurso, com PDV de impulso\n\n💬 Comenta quantos m² tem a sua loja que eu digo a primeira mudança que faria.\n💾 Salve para consultar no próximo projeto.\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores"
 }

@@ -1,48 +1,48 @@
 {
   "data": "2026-10-08",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Iluminação e vitrinismo",
+  "kicker": "Arquitetura da vida real",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Sua vitrine tem 3 segundos para parar o cliente",
-      "texto": "5 regras de **vitrinismo e luz** para não desperdiçar esse tempo."
+      "titulo": "7 medidas que todo mundo erra em casa",
+      "texto": "E que fazem o ambiente parecer **errado** sem você saber por quê."
     },
     {
       "numero": "01",
-      "titulo": "Um tema, uma história",
-      "texto": "Vitrine com tudo vira prateleira. Escolha **um tema** por vez (lançamento, cor, ocasião) e conte só essa história."
+      "titulo": "Quadro alto demais",
+      "texto": "O centro do quadro deve ficar a cerca de **1,50 m do piso**, na altura dos olhos. Acima do sofá, deixe de 20 a 30 cm entre o encosto e a moldura."
     },
     {
       "numero": "02",
-      "titulo": "Pirâmide de composição",
-      "texto": "Monte em **triângulo**: peça mais alta no centro ou ao fundo, peças menores nas laterais. O olho percorre a vitrine em vez de travar num ponto."
+      "titulo": "Tapete pequeno",
+      "texto": "Na sala, os **pés da frente** do sofá e das poltronas devem ficar sobre o tapete. Tapete flutuando no meio deixa o ambiente menor."
     },
     {
       "numero": "03",
-      "titulo": "Luz de destaque, não só geral",
-      "texto": "Use **spots direcionáveis** no produto foco, com 2 a 3 vezes a luz do entorno. Vitrine sem contraste fica invisível à noite."
+      "titulo": "Mesa de centro longe do sofá",
+      "texto": "Distância ideal: **40 a 45 cm** do sofá. Dá para passar e alcançar o copo sem se levantar."
     },
     {
       "numero": "04",
-      "titulo": "Temperatura de cor certa",
-      "texto": "**2700–3000 K** para moda, móveis e alimentos (acolhe). **4000 K** para farmácia, ótica e tecnologia (precisão). E sempre IRC acima de 90, para não distorcer as cores."
+      "titulo": "Pendente da mesa de jantar",
+      "texto": "De **70 a 90 cm** acima do tampo. Mais alto ofusca quem está sentado; mais baixo atrapalha a conversa."
     },
     {
       "numero": "05",
-      "titulo": "Troque a cada 15 dias",
-      "texto": "Quem passa todo dia pela sua porta para de enxergar a vitrine em **duas semanas**. Renovação é o que faz o cliente voltar a olhar."
+      "titulo": "Cortina curta e colada na janela",
+      "texto": "Instale o trilho **mais perto do teto** e mais largo que a janela. A cortina deve encostar no piso. O pé-direito parece maior na hora."
     },
     {
       "tipo": "cta",
-      "kicker": "Bora testar?",
-      "titulo": "Manda uma foto da sua vitrine no direct",
-      "texto": "Escolho uma por semana para comentar **aqui no perfil**.",
-      "botao": "Salve para a próxima troca"
+      "kicker": "Qual você já errou?",
+      "titulo": "Confessa nos comentários: qual dessas tem na sua casa?",
+      "texto": "Arquitetura boa está nos **detalhes de medida**.",
+      "botao": "Salve antes da próxima compra"
     }
   ],
-  "legenda": "Vitrine é o anúncio mais barato da sua loja, e ela tem só 3 segundos para funcionar. ✨\n\n1️⃣ Um tema, uma história\n2️⃣ Composição em pirâmide\n3️⃣ Luz de destaque 2 a 3 vezes mais forte no produto foco\n4️⃣ 2700–3000 K para acolher, 4000 K para precisão, IRC > 90\n5️⃣ Troque a cada 15 dias\n\n📩 Manda uma foto da sua vitrine no direct: escolho uma por semana para comentar.\n💾 Salve para a próxima troca.\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores"
+  "legenda": "Às vezes o ambiente parece \"estranho\" e o problema é só medida. 📏\n\n✅ Quadro com o centro a 1,50 m do piso\n✅ Pés da frente do sofá sobre o tapete\n✅ Mesa de centro a 40–45 cm do sofá\n✅ Pendente a 70–90 cm do tampo da mesa\n✅ Cortina do teto ao piso, mais larga que a janela\n\n💬 Qual dessas tem na sua casa?\n💾 Salve antes da próxima compra.\n📲 Mande para quem está reformando.\n\n#arquitetura #designdeinteriores #reforma #decoracao #dicasdearquitetura #arquiteto #casa #interiores #projetoresidencial #homedecor"
 }
