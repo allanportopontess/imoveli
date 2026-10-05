@@ -47,6 +47,12 @@ def detalhar(card):
     return card
 
 
+def pid(link):
+    """Número do projeto (o slug do link pode mudar; o número não)."""
+    m = re.search(r'-(\d+)$', link.rstrip('/'))
+    return m.group(1) if m else link
+
+
 def main():
     paginas = int(sys.argv[1]) if len(sys.argv) > 1 else 8
     cards = listar(paginas)
@@ -57,12 +63,12 @@ def main():
         vistos = set(json.load(open(VISTOS)))
     except (OSError, ValueError):
         vistos = None
-    enviados = {p['link'] for p in json.load(open(os.path.join(AQUI, 'propostas.json')))}
-    novos = [c for c in cards if (vistos is None or c['link'] not in vistos) and c['link'] not in enviados]
+    enviados = {pid(p['link']) for p in json.load(open(os.path.join(AQUI, 'propostas.json')))}
+    novos = [c for c in cards if (vistos is None or pid(c['link']) not in vistos) and pid(c['link']) not in enviados]
     if vistos is None:
         print('(primeira execução nesta máquina: base criada)')
     os.makedirs(os.path.dirname(VISTOS), exist_ok=True)
-    json.dump(sorted((vistos or set()) | {c['link'] for c in cards}), open(VISTOS, 'w'))
+    json.dump(sorted((vistos or set()) | {pid(c['link']) for c in cards}), open(VISTOS, 'w'))
 
     relevantes = [detalhar(c) for c in novos if c['subcategoria'] in SUBCATS
                   and not any(x in c['titulo'].lower() for x in EXCLUIR)]
