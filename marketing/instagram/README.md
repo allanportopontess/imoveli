@@ -27,7 +27,7 @@ Post sem aprovação **não** é publicado.
 Regras de conteúdo:
 - Carrossel de 5 a 8 slides: capa com gancho, 1 ideia por slide, CTA no final.
 - Legenda: gancho → resumo em lista → CTA (salvar, comentar, direct) → 8 a 12 hashtags do nicho.
-- Posts de venda levam CTA "link na bio" (o link na bio deve ter `?src=instagram&sck=organico_AAAAMMDD`).
+- Posts de venda levam CTA "link na bio". A bio aponta para `lojaquevende.allanportoarquiteto.com.br/links/?utm_source=instagram&utm_medium=bio` (ativo desde 05/10): checklist grátis em destaque, curso Loja que Vende e Kit Usucapião PRO (`pay.hotmart.com/C106999952U`, com `src=instagram&sck=bio_kit`).
 - **ManyChat "Comenta VENDA"** (ativo, testado em 05/10): quem comenta VENDA recebe no direct o checklist grátis do Loja que Vende (`utm_medium=dm`). Use a chamada **só em posts de varejo/loja** (pilares `varejo`, `projeto` comercial e Reels do Loja que Vende): no slide final ("Comente VENDA e receba o checklist grátis no direct") e na legenda, antes das hashtags. Não use em posts de usucapião, casa ou Kit (atrairia lead errado).
 - Nada de promessa jurídica: conteúdo de usucapião é educativo, sem garantir resultado.
 
