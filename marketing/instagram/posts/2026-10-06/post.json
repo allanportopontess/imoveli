@@ -33,11 +33,12 @@
     },
     {
       "tipo": "cta",
-      "kicker": "Tem uma loja pequena?",
-      "titulo": "Manda nos comentários quantos m² ela tem",
-      "texto": "Respondo com a **primeira mudança** que eu faria no layout.",
-      "botao": "Salve para o seu próximo projeto"
+      "kicker": "Quer o diagnóstico completo?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "texto": "São os **5 erros de layout** que fazem o cliente sair sem comprar.",
+      "botao": "Comente VENDA"
     }
   ],
-  "legenda": "Loja pequena não precisa parecer apertada, nem vender pouco. 📐\n\n4 decisões de layout que mais fazem diferença:\n\n1️⃣ Percurso em U em vez de labirinto\n2️⃣ Paredes expõem, o centro respira (ilha baixa de até 1,20 m)\n3️⃣ Circulação mínima de 90 cm, ideal 1,20 m\n4️⃣ Caixa no fim do percurso, com PDV de impulso\n\n💬 Comenta quantos m² tem a sua loja que eu digo a primeira mudança que faria.\n💾 Salve para consultar no próximo projeto.\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores"
+  "legenda": "Loja pequena não precisa parecer apertada, nem vender pouco. 📐\n\n4 decisões de layout que mais fazem diferença:\n\n1️⃣ Percurso em U em vez de labirinto\n2️⃣ Paredes expõem, o centro respira (ilha baixa de até 1,20 m)\n3️⃣ Circulação mínima de 90 cm, ideal 1,20 m\n4️⃣ Caixa no fim do percurso, com PDV de impulso\n\n💬 Comenta quantos m² tem a sua loja que eu digo a primeira mudança que faria.\n💾 Salve para consultar no próximo projeto.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores",
+  "manychat": "VENDA"
 }

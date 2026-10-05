@@ -28,6 +28,7 @@ Regras de conteúdo:
 - Carrossel de 5 a 8 slides: capa com gancho, 1 ideia por slide, CTA no final.
 - Legenda: gancho → resumo em lista → CTA (salvar, comentar, direct) → 8 a 12 hashtags do nicho.
 - Posts de venda levam CTA "link na bio" (o link na bio deve ter `?src=instagram&sck=organico_AAAAMMDD`).
+- **ManyChat "Comenta VENDA"** (ativo): quem comenta VENDA recebe no direct o checklist grátis do Loja que Vende (`utm_medium=dm`). Use a chamada **só em posts de varejo/loja** (pilares `varejo`, `projeto` comercial e Reels do Loja que Vende): no slide final ("Comente VENDA e receba o checklist grátis no direct") e na legenda, antes das hashtags. Não use em posts de usucapião, casa ou Kit (atrairia lead errado).
 - Nada de promessa jurídica: conteúdo de usucapião é educativo, sem garantir resultado.
 
 ## Comandos
