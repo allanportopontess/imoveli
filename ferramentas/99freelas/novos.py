@@ -14,7 +14,7 @@ SUBCATS = ('Arquitetura', 'Design de Interiores')
 # Modelagem 3D & CAD: só entra se for render/maquete de arquitetura ou interiores
 SUBCAT_RENDER = 'Modelagem 3D & CAD'
 RENDER_SIM = ('render', 'maquete', 'fachada', 'interior', 'ambiente', 'arquitet', 'imagem 3d', 'imagens 3d', 'perspectiva', 'sketchup', 'lumion', 'reforma', 'casa', 'loja')
-RENDER_NAO = ('impressão 3d', 'impressao 3d', 'stl', 'peça', 'peca', 'carro', 'mecânic', 'industrial', 'resina', 'pcb', 'móveis planejados', 'promob', 'civil 3d', 'rodovi')
+RENDER_NAO = ('impressão 3d', 'impressao 3d', 'stl', 'peça', 'peca', 'carro', 'mecânic', 'industrial', 'resina', 'pcb', 'móveis planejados', 'promob', 'civil 3d', 'rodovi', 'bim', 'revit', 'impermeabiliza')
 EXCLUIR = ('detalhamento', 'executivo', 'promob', 'cortecloud', 'marcenaria', 'móveis planejados', 'regulariza')
 
 
