@@ -26,10 +26,29 @@ def texto(fragmento):
     return html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', fragmento))).strip()
 
 
+# Consultorias: busca no site todo (qualquer categoria)
+BUSCAS_CONSULTORIA = ('consultoria+arquitetura', 'consultoria+interiores', 'consultoria+reforma', 'arquiteto', 'arquitetura', 'showroom', 'home+staging')
+CONSULT_SIM = ('consultor', 'assessor', 'orienta', 'parecer', 'viabilidade', 'conceito', 'briefing', 'home staging', 'sugest', 'showroom', 'loja conceito', 'retail')
+CONSULT_AREA = ('arquiteto', 'arquiteta', 'arquitetura de interiores', 'interiores', 'reforma', 'loja', 'fachada', 'showroom', 'layout', 'decora', 'home staging', 'apartamento', 'imóvel', 'imovel')
+CONSULT_SUBCAT_NAO = ('Desenvolvimento', 'IA', 'Banco de Dados', 'Mídias Sociais', 'Edição', 'Programação', 'Software', 'Mobile', 'Web')
+
+
 def listar(paginas):
+    cards = listar_url(f'{BASE}/projects?categoria=engenharia-e-arquitetura', paginas)
+    vistos = {c['link'] for c in cards}
+    for q in BUSCAS_CONSULTORIA:
+        for c in listar_url(f'{BASE}/projects?q={q}', 2):
+            if c['link'] not in vistos:
+                c['consultoria'] = True
+                vistos.add(c['link'])
+                cards.append(c)
+    return cards
+
+
+def listar_url(url, paginas):
     cards = []
     for pg in range(1, paginas + 1):
-        partes = re.split(r'<li class="[^"]*result-item', get(f'{BASE}/projects?categoria=engenharia-e-arquitetura&page={pg}'))[1:]
+        partes = re.split(r'<li class="[^"]*result-item', get(f'{url}&page={pg}'))[1:]
         if not partes:
             break
         for it in partes:
@@ -74,9 +93,13 @@ def main():
     os.makedirs(os.path.dirname(VISTOS), exist_ok=True)
     json.dump(sorted((vistos or set()) | {pid(c['link']) for c in cards}), open(VISTOS, 'w'))
 
-    relevantes = [detalhar(c) for c in novos if (c['subcategoria'] in SUBCATS or c['subcategoria'] == SUBCAT_RENDER)
+    relevantes = [detalhar(c) for c in novos if (c['subcategoria'] in SUBCATS or c['subcategoria'] == SUBCAT_RENDER or c.get('consultoria'))
                   and not any(x in c['titulo'].lower() for x in EXCLUIR)]
     relevantes = [c for c in relevantes if not any(x in c['descricao'].lower() for x in EXCLUIR)]
+    relevantes = [c for c in relevantes if not c.get('consultoria') or c['subcategoria'] in SUBCATS or (
+        not any(x in c['subcategoria'] for x in CONSULT_SUBCAT_NAO) and
+        any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in CONSULT_SIM)
+        and any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in CONSULT_AREA))]
     relevantes = [c for c in relevantes if c['subcategoria'] != SUBCAT_RENDER or (
         any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in RENDER_SIM)
         and not any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in RENDER_NAO))]
