@@ -1,35 +1,49 @@
 {
   "data": "2026-10-11",
   "horario": "18:30",
-  "pilar": "venda",
+  "pilar": "projeto",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Kit Usucapião PRO",
+  "kicker": "Bastidores de projeto",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Pare de começar todo processo de usucapião do zero",
-      "texto": "Um kit de **modelos editáveis** para arquitetos e engenheiros."
+      "titulo": "Como eu projeto uma loja para vender, não só para ser bonita",
+      "texto": "As **5 etapas** do meu processo de arquitetura comercial."
     },
     {
-      "titulo": "O que você recebe",
-      "texto": "📐 Plantas e desenhos\n📄 Memoriais descritivos e documentos\n📋 Checklists do processo\n💼 Contratos e propostas de honorários\n📊 Planilhas\n📁 Tudo em **arquivos editáveis**"
+      "numero": "01",
+      "titulo": "Entender o negócio antes do espaço",
+      "texto": "Ticket médio, produto campeão, público, horário de pico. **O layout nasce dos números** da loja, não de referência do Pinterest."
     },
     {
-      "titulo": "Para quem é",
-      "texto": "Arquitetos, engenheiros e técnicos que fazem ou querem fazer a **parte técnica de usucapião e regularização** e precisam ganhar tempo em cada processo."
+      "numero": "02",
+      "titulo": "Desenhar o percurso do cliente",
+      "texto": "Antes de qualquer móvel, defino **por onde o cliente anda**, onde ele para e onde decide. Cada ponto de parada é uma oportunidade de venda."
     },
     {
-      "titulo": "Por que usar modelo",
-      "texto": "Cada processo exige os mesmos documentos com estrutura parecida. Partir de um **modelo organizado** reduz retrabalho e erros que geram nota devolutiva no cartório."
+      "numero": "03",
+      "titulo": "Zonear a exposição",
+      "texto": "Zona quente, zona fria, área de impulso e área de experiência. Cada categoria vai para onde **vende mais**."
+    },
+    {
+      "numero": "04",
+      "titulo": "Luz, materiais e identidade",
+      "texto": "Aqui entra o lado estético: **iluminação em camadas**, materiais duráveis e a marca presente em cada detalhe, sem atrapalhar o produto."
+    },
+    {
+      "numero": "05",
+      "titulo": "Executar e medir",
+      "texto": "Depois da obra, acompanho o resultado: **fluxo, conversão e ticket**. Projeto bom é o que se paga."
     },
     {
       "tipo": "cta",
-      "kicker": "Acesso imediato",
-      "titulo": "Kit Usucapião PRO",
-      "texto": "Compra segura pela **Hotmart**, com acesso na hora.",
-      "botao": "Link na bio"
+      "kicker": "Quer começar pela sua loja?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "texto": "O mesmo diagnóstico que eu uso no início de **todo projeto comercial**.",
+      "botao": "Comente VENDA"
     }
   ],
-  "legenda": "Se você faz planta, memorial e documentação de usucapião, sabe: cada processo parece começar do zero. ⏰\n\nO Kit Usucapião PRO reúne, em um só lugar, modelos profissionais e editáveis:\n\n📐 Plantas e desenhos\n📄 Memoriais e documentos\n📋 Checklists\n💼 Contratos e propostas\n📊 Planilhas\n📁 Arquivos editáveis\n\nPara arquitetos, engenheiros e técnicos que querem ganhar tempo e errar menos.\n\n👉 Acesso imediato pelo link na bio (compra segura pela Hotmart).\n\n#usucapiao #kitusucapiaopro #arquiteto #engenheirocivil #regularizacaodeimoveis #usucapiaoextrajudicial #produtividade #modelos #templates #topografia"
+  "legenda": "Projeto comercial não é decoração: é estratégia de venda desenhada no espaço. 🛍️\n\nMeu processo, em 5 etapas:\n\n1️⃣ Entender o negócio (números antes do espaço)\n2️⃣ Desenhar o percurso do cliente\n3️⃣ Zonear a exposição\n4️⃣ Luz, materiais e identidade\n5️⃣ Executar e medir resultado\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct para conversarmos sobre o seu projeto.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #projetodeloja #varejo #visualmerchandising #arquiteto #designdeinteriores #lojista #empreendedorismo #pontodevenda #arquitetura",
+  "manychat": "VENDA"
 }
