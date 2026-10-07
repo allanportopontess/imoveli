@@ -1,0 +1,68 @@
+{
+  "produto": "Kit Usucapião PRO",
+  "lp": "https://usucapiao.allanportoarquiteto.com.br/",
+  "lp_organico": "https://usucapiao.allanportoarquiteto.com.br/?utm_source=instagram&utm_medium=organico&utm_campaign=kit_usucapiao&utm_content=autoridade_20261007",
+  "lp_ads": "https://usucapiao.allanportoarquiteto.com.br/?utm_source=meta&utm_medium=paid&utm_campaign=ProRoi&utm_content=autoridade_regularizacao",
+  "foto": "img/allan-autoridade.png",
+  "acento": "#C2834F",
+  "linha1": "Seu escritório",
+  "linha2": "recusa usucapião?",
+  "destaque": "Regularização de imóveis é demanda certa. E a parte técnica é sua.",
+  "apoio": "Sem planta, memorial e ART/RRT, o cartório não registra.",
+  "texto": [
+    "O problema é que ninguém te ensinou a montar a **documentação técnica**!",
+    "Com o **Kit Usucapião PRO** você recebe **modelos editáveis** de plantas, memoriais, checklists, contratos e propostas para __entregar com segurança__.",
+    "**Baixe. Edite. Entregue.** Menos retrabalho e menos nota devolutiva no cartório."
+  ],
+  "botao": "Quero o Kit Usucapião PRO",
+  "sub_botao": "Clique e veja tudo o que você recebe.",
+  "carrossel": [
+    {
+      "numero": "01",
+      "linha1": "Usucapião é",
+      "linha2": "mercado aberto",
+      "texto": [
+        "Milhões de imóveis no Brasil estão sem escritura. Todo processo de **usucapião extrajudicial** precisa de um arquiteto ou engenheiro responsável pela parte técnica.",
+        "É serviço recorrente, com demanda de advogados, cartórios e proprietários."
+      ]
+    },
+    {
+      "numero": "02",
+      "linha1": "O que você",
+      "linha2": "entrega",
+      "texto": [
+        "📐 **Planta** com a situação real do imóvel",
+        "📄 **Memorial descritivo** com os confrontantes",
+        "✍️ **ART ou RRT** recolhida",
+        "🤝 **Anuência dos vizinhos**, sempre que possível"
+      ]
+    },
+    {
+      "numero": "03",
+      "linha1": "Onde quase",
+      "linha2": "todo mundo erra",
+      "texto": [
+        "Medida que não bate com o local, confrontante sem identificação, memorial genérico.",
+        "Resultado: **nota devolutiva** e meses de atraso, com o cliente cobrando você."
+      ]
+    },
+    {
+      "tipo": "cta",
+      "linha1": "Comece com",
+      "linha2": "modelo pronto",
+      "texto": [
+        "**Kit Usucapião PRO:** plantas, memoriais, checklists, contratos, propostas e planilhas, tudo **editável**.",
+        "Acesso imediato. **Link na bio.**"
+      ],
+      "botao": "Quero o Kit",
+      "sub_botao": "usucapiao.allanportoarquiteto.com.br"
+    }
+  ],
+  "legenda": "Seu escritório recusa serviço de usucapião? 👀\n\nRegularização de imóveis é uma das demandas mais constantes para arquitetos e engenheiros. Todo processo de usucapião em cartório precisa da parte técnica:\n\n📐 Planta com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART ou RRT\n🤝 Anuência dos vizinhos\n\nO problema é que ninguém te ensinou a montar essa documentação. E qualquer erro vira nota devolutiva no cartório.\n\nCom o KIT USUCAPIÃO PRO você recebe modelos profissionais e editáveis (plantas, memoriais, checklists, contratos, propostas e planilhas) para entregar com segurança e sem retrabalho.\n\nBaixe. Edite. Entregue.\n\n👉 Acesse pelo link na bio\n🔗 usucapiao.allanportoarquiteto.com.br\n\n💾 Salva pra consultar no próximo processo\n📤 Manda pra um colega arquiteto ou engenheiro\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #regularizacaodeimoveis #arquiteto #engenheirocivil #usucapiaoextrajudicial",
+  "anuncio": {
+    "texto_principal": "Seu escritório recusa serviço de usucapião?\n\nRegularização de imóveis é demanda certa, e a parte técnica é do arquiteto ou engenheiro: planta, memorial descritivo, ART/RRT e confrontantes.\n\nCom o KIT USUCAPIÃO PRO você recebe modelos editáveis para entregar com segurança e sem retrabalho. Baixe. Edite. Entregue.",
+    "titulo": "Kit Usucapião PRO: modelos editáveis",
+    "descricao": "Plantas, memoriais, checklists e contratos",
+    "cta": "LEARN_MORE"
+  }
+}

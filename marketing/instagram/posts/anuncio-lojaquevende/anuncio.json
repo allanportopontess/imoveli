@@ -1,0 +1,67 @@
+{
+  "produto": "Loja que Vende (checklist grátis)",
+  "lp": "https://lojaquevende.allanportoarquiteto.com.br/loja-que-vende/",
+  "lp_organico": "https://lojaquevende.allanportoarquiteto.com.br/loja-que-vende/?utm_source=instagram&utm_medium=organico&utm_campaign=lqv_checklist&utm_content=autoridade_20261007",
+  "lp_ads": "https://lojaquevende.allanportoarquiteto.com.br/loja-que-vende/?utm_source=meta&utm_medium=paid&utm_campaign=LQV_Leads&utm_term=C1_checklist&utm_content=R3_autoridade_caixa",
+  "foto": "img/allan-retrato.png",
+  "acento": "#C2834F",
+  "linha1": "Sua loja enche",
+  "linha2": "e o caixa não?",
+  "destaque": "Movimento é consequência. Venda é projeto.",
+  "apoio": "O cliente entra, dá uma volta e sai sem comprar? Pode ser o espaço.",
+  "texto": [
+    "O problema é que ninguém te ensinou a **desenhar uma loja que vende**!",
+    "No checklist **Loja que Vende** eu te mostro os **5 erros de layout** que fazem o cliente sair sem comprar: __vitrine, zona quente, ponto de pausa, luz e fluxo__.",
+    "Em **3 minutos** você descobre quais estão na sua loja. **Sem reforma cara.**"
+  ],
+  "botao": "Baixar checklist grátis",
+  "sub_botao": "Clique e descubra onde sua loja perde venda.",
+  "assinatura": "Arquiteto de varejo · CAU-PE A166156-6",
+  "carrossel": [
+    {
+      "numero": "01",
+      "linha1": "Vitrine",
+      "linha2": "sem foco",
+      "texto": [
+        "Dez peças tentando vender tudo ao mesmo tempo: **ninguém para na calçada**.",
+        "Regra: **1 a 3 itens em destaque**, com luz dirigida."
+      ]
+    },
+    {
+      "numero": "02",
+      "linha1": "O lucro",
+      "linha2": "escondido",
+      "texto": [
+        "O produto que **mais dá margem** está justamente onde o cliente **menos olha**: a zona fria.",
+        "Leve ele para a **zona quente**, perto da entrada e no caminho natural."
+      ]
+    },
+    {
+      "numero": "03",
+      "linha1": "Nada faz",
+      "linha2": "o cliente parar",
+      "texto": [
+        "Sem um **ponto de pausa** no meio do trajeto, o cliente passa direto e vai embora.",
+        "Uma mesa ou ilha baixa já muda o jogo."
+      ]
+    },
+    {
+      "tipo": "cta",
+      "linha1": "Quantos erros",
+      "linha2": "tem a sua loja?",
+      "texto": [
+        "Baixe o **checklist grátis** e descubra em 3 minutos.",
+        "💬 Ou **comente VENDA** que eu te mando no direct."
+      ],
+      "botao": "Comente VENDA",
+      "sub_botao": "Ou toque no link da bio"
+    }
+  ],
+  "legenda": "Sua loja enche… e o caixa não acompanha? 👀\n\nMovimento é consequência. Venda é projeto.\n\nO cliente entra, dá uma volta, fala \"tô só olhando\" e vai embora. Na maioria das lojas que eu analiso, o problema não é o produto, nem o preço, nem o vendedor: é o ESPAÇO.\n\nOs 5 erros de layout que mais custam venda:\n\n1️⃣ Vitrine sem foco\n2️⃣ Produto de maior margem escondido na zona fria\n3️⃣ Nada no caminho que faça o cliente parar\n4️⃣ A mesma luz em tudo\n5️⃣ Fluxo confuso da entrada até o caixa\n\nA boa notícia: a maioria se corrige sem reforma cara.\n\n💬 Comenta VENDA que eu te mando o checklist GRÁTIS no direct\n👉 Ou pegue pelo link na bio\n\n📤 Manda pra um lojista que precisa ver isso\n💾 Salva pra aplicar na sua loja\n\nAllan Porto · Arquiteto de varejo · CAU-PE A166156-6\n\n#arquiteturacomercial #layoutdeloja #vitrinismo #varejo #lojista",
+  "anuncio": {
+    "texto_principal": "Sua loja enche, mas o caixa não acompanha?\n\nMovimento é consequência. Venda é projeto. O cliente entra, dá uma volta e sai sem comprar: na maioria das lojas, o problema é o espaço.\n\nBaixe grátis o checklist dos 5 erros de layout que fazem sua loja perder venda e descubra em 3 minutos quais estão te custando venda hoje. 👇",
+    "titulo": "Checklist grátis: por que sua loja não vende",
+    "descricao": "5 erros de layout · 3 minutos",
+    "cta": "DOWNLOAD"
+  }
+}
