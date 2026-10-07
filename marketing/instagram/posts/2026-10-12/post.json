@@ -1,35 +1,49 @@
 {
   "data": "2026-10-12",
   "horario": "18:30",
-  "pilar": "venda",
+  "pilar": "varejo",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Kit Usucapião PRO",
+  "kicker": "Iluminação e vitrinismo",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Pare de começar todo processo de usucapião do zero",
-      "texto": "Um kit de **modelos editáveis** para arquitetos e engenheiros."
+      "titulo": "Sua vitrine tem 3 segundos para parar o cliente",
+      "texto": "5 regras de **vitrinismo e luz** para não desperdiçar esse tempo."
     },
     {
-      "titulo": "O que você recebe",
-      "texto": "📐 Plantas e desenhos\n📄 Memoriais descritivos e documentos\n📋 Checklists do processo\n💼 Contratos e propostas de honorários\n📊 Planilhas\n📁 Tudo em **arquivos editáveis**"
+      "numero": "01",
+      "titulo": "Um tema, uma história",
+      "texto": "Vitrine com tudo vira prateleira. Escolha **um tema** por vez (lançamento, cor, ocasião) e conte só essa história."
     },
     {
-      "titulo": "Para quem é",
-      "texto": "Arquitetos, engenheiros e técnicos que fazem ou querem fazer a **parte técnica de usucapião e regularização** e precisam ganhar tempo em cada processo."
+      "numero": "02",
+      "titulo": "Pirâmide de composição",
+      "texto": "Monte em **triângulo**: peça mais alta no centro ou ao fundo, peças menores nas laterais. O olho percorre a vitrine em vez de travar num ponto."
     },
     {
-      "titulo": "Por que usar modelo",
-      "texto": "Cada processo exige os mesmos documentos com estrutura parecida. Partir de um **modelo organizado** reduz retrabalho e erros que geram nota devolutiva no cartório."
+      "numero": "03",
+      "titulo": "Luz de destaque, não só geral",
+      "texto": "Use **spots direcionáveis** no produto foco, com 2 a 3 vezes a luz do entorno. Vitrine sem contraste fica invisível à noite."
+    },
+    {
+      "numero": "04",
+      "titulo": "Temperatura de cor certa",
+      "texto": "**2700–3000 K** para moda, móveis e alimentos (acolhe). **4000 K** para farmácia, ótica e tecnologia (precisão). E sempre IRC acima de 90, para não distorcer as cores."
+    },
+    {
+      "numero": "05",
+      "titulo": "Troque a cada 15 dias",
+      "texto": "Quem passa todo dia pela sua porta para de enxergar a vitrine em **duas semanas**. Renovação é o que faz o cliente voltar a olhar."
     },
     {
       "tipo": "cta",
-      "kicker": "Acesso imediato",
-      "titulo": "Kit Usucapião PRO",
-      "texto": "Compra segura pela **Hotmart**, com acesso na hora.",
-      "botao": "Link na bio"
+      "kicker": "Quer revisar sua loja?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "texto": "Vitrine é só o 1º dos **5 erros de layout** que fazem a loja perder venda.",
+      "botao": "Comente VENDA"
     }
   ],
-  "legenda": "Se você faz planta, memorial e documentação de usucapião, sabe: cada processo parece começar do zero. ⏰\n\nO Kit Usucapião PRO reúne, em um só lugar, modelos profissionais e editáveis:\n\n📐 Plantas e desenhos\n📄 Memoriais e documentos\n📋 Checklists\n💼 Contratos e propostas\n📊 Planilhas\n📁 Arquivos editáveis\n\nPara arquitetos, engenheiros e técnicos que querem ganhar tempo e errar menos.\n\n👉 Acesso imediato pelo link na bio (compra segura pela Hotmart).\n\n#usucapiao #kitusucapiaopro #arquiteto #engenheirocivil #regularizacaodeimoveis #usucapiaoextrajudicial #produtividade #modelos #templates #topografia"
+  "legenda": "Vitrine é o anúncio mais barato da sua loja, e ela tem só 3 segundos para funcionar. ✨\n\n1️⃣ Um tema, uma história\n2️⃣ Composição em pirâmide\n3️⃣ Luz de destaque 2 a 3 vezes mais forte no produto foco\n4️⃣ 2700–3000 K para acolher, 4000 K para precisão, IRC > 90\n5️⃣ Troque a cada 15 dias\n\n📩 Manda uma foto da sua vitrine no direct: escolho uma por semana para comentar.\n💾 Salve para a próxima troca.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores",
+  "manychat": "VENDA"
 }

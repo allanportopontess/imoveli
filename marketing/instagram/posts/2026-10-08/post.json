@@ -4,40 +4,25 @@
   "pilar": "usucapiao",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Usucapião extrajudicial",
+  "aprovacao": "Allan pediu em 07/10 (estilo anúncio de autoridade)",
+  "origem": "anuncio-usucapiao",
+  "lp": "https://usucapiao.allanportoarquiteto.com.br/?utm_source=instagram&utm_medium=organico&utm_campaign=kit_usucapiao&utm_content=autoridade_20261007",
   "slides": [
     {
-      "tipo": "capa",
-      "titulo": "Usucapião em cartório: o que o arquiteto ou engenheiro entrega",
-      "texto": "O processo não anda sem a **parte técnica**. E é aí que muita gente erra."
+      "titulo": "Seu escritório recusa usucapião?"
     },
     {
-      "numero": "01",
-      "titulo": "Planta do imóvel",
-      "texto": "Planta com a situação real do imóvel, área, confrontações e, quando exigido, **coordenadas georreferenciadas**. Tem que bater com o que existe no local, não com o que está no papel antigo."
+      "titulo": "Usucapião é mercado aberto"
     },
     {
-      "numero": "02",
-      "titulo": "Memorial descritivo",
-      "texto": "A descrição técnica do perímetro, medida por medida, com **confrontantes identificados**. É o texto que vai virar a nova matrícula, então qualquer erro trava o registro."
+      "titulo": "O que você entrega"
     },
     {
-      "numero": "03",
-      "titulo": "ART ou RRT",
-      "texto": "Planta e memorial precisam ser assinados por profissional habilitado, com **ART (CREA) ou RRT (CAU)** recolhida. Sem isso o cartório devolve o pedido."
+      "titulo": "Onde quase todo mundo erra"
     },
     {
-      "numero": "04",
-      "titulo": "Assinatura dos confrontantes",
-      "texto": "O ideal é colher na planta a **anuência dos vizinhos confrontantes** e do titular registral. Quem não assina é notificado pelo cartório, o que atrasa o processo."
-    },
-    {
-      "tipo": "cta",
-      "kicker": "Você é arquiteto ou engenheiro?",
-      "titulo": "Usucapião é um mercado enorme para quem domina a parte técnica",
-      "texto": "Siga o perfil: toda semana tem conteúdo de **regularização de imóveis**.",
-      "botao": "Salve este checklist"
+      "titulo": "Comece com modelo pronto"
     }
   ],
-  "legenda": "Na usucapião extrajudicial (feita em cartório, Lei 6.015/73, art. 216-A), o advogado conduz o pedido, mas a parte técnica é do arquiteto ou engenheiro. 🏠\n\nO que você entrega:\n\n📐 Planta do imóvel com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART (CREA) ou RRT (CAU)\n🤝 Anuência dos confrontantes, sempre que possível\n\nErro em qualquer um desses itens = nota devolutiva e meses de atraso.\n\n💾 Salve este checklist\n📩 Dúvidas sobre usucapião? Manda no direct.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #topografia #memorialdescritivo #imoveis #rrt #art"
+  "legenda": "Seu escritório recusa serviço de usucapião? 👀\n\nRegularização de imóveis é uma das demandas mais constantes para arquitetos e engenheiros. Todo processo de usucapião em cartório precisa da parte técnica:\n\n📐 Planta com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART ou RRT\n🤝 Anuência dos vizinhos\n\nO problema é que ninguém te ensinou a montar essa documentação. E qualquer erro vira nota devolutiva no cartório.\n\nCom o KIT USUCAPIÃO PRO você recebe modelos profissionais e editáveis (plantas, memoriais, checklists, contratos, propostas e planilhas) para entregar com segurança e sem retrabalho.\n\nBaixe. Edite. Entregue.\n\n👉 Acesse pelo link na bio\n🔗 usucapiao.allanportoarquiteto.com.br\n\n💾 Salva pra consultar no próximo processo\n📤 Manda pra um colega arquiteto ou engenheiro\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #regularizacaodeimoveis #arquiteto #engenheirocivil #usucapiaoextrajudicial"
 }

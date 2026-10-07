@@ -1,49 +1,48 @@
 {
   "data": "2026-10-11",
   "horario": "18:30",
-  "pilar": "projeto",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Bastidores de projeto",
+  "kicker": "Arquitetura da vida real",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Como eu projeto uma loja para vender, não só para ser bonita",
-      "texto": "As **5 etapas** do meu processo de arquitetura comercial."
+      "titulo": "7 medidas que todo mundo erra em casa",
+      "texto": "E que fazem o ambiente parecer **errado** sem você saber por quê."
     },
     {
       "numero": "01",
-      "titulo": "Entender o negócio antes do espaço",
-      "texto": "Ticket médio, produto campeão, público, horário de pico. **O layout nasce dos números** da loja, não de referência do Pinterest."
+      "titulo": "Quadro alto demais",
+      "texto": "O centro do quadro deve ficar a cerca de **1,50 m do piso**, na altura dos olhos. Acima do sofá, deixe de 20 a 30 cm entre o encosto e a moldura."
     },
     {
       "numero": "02",
-      "titulo": "Desenhar o percurso do cliente",
-      "texto": "Antes de qualquer móvel, defino **por onde o cliente anda**, onde ele para e onde decide. Cada ponto de parada é uma oportunidade de venda."
+      "titulo": "Tapete pequeno",
+      "texto": "Na sala, os **pés da frente** do sofá e das poltronas devem ficar sobre o tapete. Tapete flutuando no meio deixa o ambiente menor."
     },
     {
       "numero": "03",
-      "titulo": "Zonear a exposição",
-      "texto": "Zona quente, zona fria, área de impulso e área de experiência. Cada categoria vai para onde **vende mais**."
+      "titulo": "Mesa de centro longe do sofá",
+      "texto": "Distância ideal: **40 a 45 cm** do sofá. Dá para passar e alcançar o copo sem se levantar."
     },
     {
       "numero": "04",
-      "titulo": "Luz, materiais e identidade",
-      "texto": "Aqui entra o lado estético: **iluminação em camadas**, materiais duráveis e a marca presente em cada detalhe, sem atrapalhar o produto."
+      "titulo": "Pendente da mesa de jantar",
+      "texto": "De **70 a 90 cm** acima do tampo. Mais alto ofusca quem está sentado; mais baixo atrapalha a conversa."
     },
     {
       "numero": "05",
-      "titulo": "Executar e medir",
-      "texto": "Depois da obra, acompanho o resultado: **fluxo, conversão e ticket**. Projeto bom é o que se paga."
+      "titulo": "Cortina curta e colada na janela",
+      "texto": "Instale o trilho **mais perto do teto** e mais largo que a janela. A cortina deve encostar no piso. O pé-direito parece maior na hora."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer começar pela sua loja?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "texto": "O mesmo diagnóstico que eu uso no início de **todo projeto comercial**.",
-      "botao": "Comente VENDA"
+      "kicker": "Qual você já errou?",
+      "titulo": "Confessa nos comentários: qual dessas tem na sua casa?",
+      "texto": "Arquitetura boa está nos **detalhes de medida**.",
+      "botao": "Salve antes da próxima compra"
     }
   ],
-  "legenda": "Projeto comercial não é decoração: é estratégia de venda desenhada no espaço. 🛍️\n\nMeu processo, em 5 etapas:\n\n1️⃣ Entender o negócio (números antes do espaço)\n2️⃣ Desenhar o percurso do cliente\n3️⃣ Zonear a exposição\n4️⃣ Luz, materiais e identidade\n5️⃣ Executar e medir resultado\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct para conversarmos sobre o seu projeto.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #projetodeloja #varejo #visualmerchandising #arquiteto #designdeinteriores #lojista #empreendedorismo #pontodevenda #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Às vezes o ambiente parece \"estranho\" e o problema é só medida. 📏\n\n✅ Quadro com o centro a 1,50 m do piso\n✅ Pés da frente do sofá sobre o tapete\n✅ Mesa de centro a 40–45 cm do sofá\n✅ Pendente a 70–90 cm do tampo da mesa\n✅ Cortina do teto ao piso, mais larga que a janela\n\n💬 Qual dessas tem na sua casa?\n💾 Salve antes da próxima compra.\n📲 Mande para quem está reformando.\n\n#arquitetura #designdeinteriores #reforma #decoracao #dicasdearquitetura #arquiteto #casa #interiores #projetoresidencial #homedecor"
 }
