@@ -30,7 +30,7 @@ def texto(fragmento):
 BUSCAS_CONSULTORIA = ('consultoria+arquitetura', 'consultoria+interiores', 'consultoria+reforma', 'arquiteto', 'arquitetura', 'showroom', 'home+staging')
 CONSULT_SIM = ('consultor', 'assessor', 'orienta', 'parecer', 'viabilidade', 'conceito', 'briefing', 'home staging', 'sugest', 'showroom', 'loja conceito', 'retail')
 CONSULT_AREA = ('arquiteto', 'arquiteta', 'arquitetura de interiores', 'interiores', 'reforma', 'loja', 'fachada', 'showroom', 'layout', 'decora', 'home staging', 'apartamento', 'imóvel', 'imovel')
-CONSULT_SUBCAT_NAO = ('Desenvolvimento', 'IA', 'Banco de Dados', 'Mídias Sociais', 'Edição', 'Programação', 'Software', 'Mobile', 'Web')
+CONSULT_SUBCAT_NAO = ('Desenvolvimento', 'IA', 'Banco de Dados', 'Mídias Sociais', 'Edição', 'Programação', 'Software', 'Mobile', 'Web', 'Recursos Humanos')
 
 
 def listar(paginas):
