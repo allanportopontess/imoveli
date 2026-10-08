@@ -1,48 +1,43 @@
 {
   "data": "2026-10-11",
   "horario": "18:30",
-  "pilar": "arquitetura",
+  "pilar": "usucapiao",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Arquitetura da vida real",
+  "kicker": "Usucapião extrajudicial",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "7 medidas que todo mundo erra em casa",
-      "texto": "E que fazem o ambiente parecer **errado** sem você saber por quê."
+      "titulo": "Usucapião em cartório: o que o arquiteto ou engenheiro entrega",
+      "texto": "O processo não anda sem a **parte técnica**. E é aí que muita gente erra."
     },
     {
       "numero": "01",
-      "titulo": "Quadro alto demais",
-      "texto": "O centro do quadro deve ficar a cerca de **1,50 m do piso**, na altura dos olhos. Acima do sofá, deixe de 20 a 30 cm entre o encosto e a moldura."
+      "titulo": "Planta do imóvel",
+      "texto": "Planta com a situação real do imóvel, área, confrontações e, quando exigido, **coordenadas georreferenciadas**. Tem que bater com o que existe no local, não com o que está no papel antigo."
     },
     {
       "numero": "02",
-      "titulo": "Tapete pequeno",
-      "texto": "Na sala, os **pés da frente** do sofá e das poltronas devem ficar sobre o tapete. Tapete flutuando no meio deixa o ambiente menor."
+      "titulo": "Memorial descritivo",
+      "texto": "A descrição técnica do perímetro, medida por medida, com **confrontantes identificados**. É o texto que vai virar a nova matrícula, então qualquer erro trava o registro."
     },
     {
       "numero": "03",
-      "titulo": "Mesa de centro longe do sofá",
-      "texto": "Distância ideal: **40 a 45 cm** do sofá. Dá para passar e alcançar o copo sem se levantar."
+      "titulo": "ART ou RRT",
+      "texto": "Planta e memorial precisam ser assinados por profissional habilitado, com **ART (CREA) ou RRT (CAU)** recolhida. Sem isso o cartório devolve o pedido."
     },
     {
       "numero": "04",
-      "titulo": "Pendente da mesa de jantar",
-      "texto": "De **70 a 90 cm** acima do tampo. Mais alto ofusca quem está sentado; mais baixo atrapalha a conversa."
-    },
-    {
-      "numero": "05",
-      "titulo": "Cortina curta e colada na janela",
-      "texto": "Instale o trilho **mais perto do teto** e mais largo que a janela. A cortina deve encostar no piso. O pé-direito parece maior na hora."
+      "titulo": "Assinatura dos confrontantes",
+      "texto": "O ideal é colher na planta a **anuência dos vizinhos confrontantes** e do titular registral. Quem não assina é notificado pelo cartório, o que atrasa o processo."
     },
     {
       "tipo": "cta",
-      "kicker": "Qual você já errou?",
-      "titulo": "Confessa nos comentários: qual dessas tem na sua casa?",
-      "texto": "Arquitetura boa está nos **detalhes de medida**.",
-      "botao": "Salve antes da próxima compra"
+      "kicker": "Você é arquiteto ou engenheiro?",
+      "titulo": "Usucapião é um mercado enorme para quem domina a parte técnica",
+      "texto": "Siga o perfil: toda semana tem conteúdo de **regularização de imóveis**.",
+      "botao": "Salve este checklist"
     }
   ],
-  "legenda": "Às vezes o ambiente parece \"estranho\" e o problema é só medida. 📏\n\n✅ Quadro com o centro a 1,50 m do piso\n✅ Pés da frente do sofá sobre o tapete\n✅ Mesa de centro a 40–45 cm do sofá\n✅ Pendente a 70–90 cm do tampo da mesa\n✅ Cortina do teto ao piso, mais larga que a janela\n\n💬 Qual dessas tem na sua casa?\n💾 Salve antes da próxima compra.\n📲 Mande para quem está reformando.\n\n#arquitetura #designdeinteriores #reforma #decoracao #dicasdearquitetura #arquiteto #casa #interiores #projetoresidencial #homedecor"
+  "legenda": "Na usucapião extrajudicial (feita em cartório, Lei 6.015/73, art. 216-A), o advogado conduz o pedido, mas a parte técnica é do arquiteto ou engenheiro. 🏠\n\nO que você entrega:\n\n📐 Planta do imóvel com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART (CREA) ou RRT (CAU)\n🤝 Anuência dos confrontantes, sempre que possível\n\nErro em qualquer um desses itens = nota devolutiva e meses de atraso.\n\n💾 Salve este checklist\n📩 Dúvidas sobre usucapião? Manda no direct.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #topografia #memorialdescritivo #imoveis #rrt #art"
 }

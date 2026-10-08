@@ -1,49 +1,49 @@
 {
   "data": "2026-10-13",
   "horario": "18:30",
-  "pilar": "projeto",
+  "pilar": "varejo",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Bastidores de projeto",
+  "kicker": "Iluminação e vitrinismo",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Como eu projeto uma loja para vender, não só para ser bonita",
-      "texto": "As **5 etapas** do meu processo de arquitetura comercial."
+      "titulo": "Sua vitrine tem 3 segundos para parar o cliente",
+      "texto": "5 regras de **vitrinismo e luz** para não desperdiçar esse tempo."
     },
     {
       "numero": "01",
-      "titulo": "Entender o negócio antes do espaço",
-      "texto": "Ticket médio, produto campeão, público, horário de pico. **O layout nasce dos números** da loja, não de referência do Pinterest."
+      "titulo": "Um tema, uma história",
+      "texto": "Vitrine com tudo vira prateleira. Escolha **um tema** por vez (lançamento, cor, ocasião) e conte só essa história."
     },
     {
       "numero": "02",
-      "titulo": "Desenhar o percurso do cliente",
-      "texto": "Antes de qualquer móvel, defino **por onde o cliente anda**, onde ele para e onde decide. Cada ponto de parada é uma oportunidade de venda."
+      "titulo": "Pirâmide de composição",
+      "texto": "Monte em **triângulo**: peça mais alta no centro ou ao fundo, peças menores nas laterais. O olho percorre a vitrine em vez de travar num ponto."
     },
     {
       "numero": "03",
-      "titulo": "Zonear a exposição",
-      "texto": "Zona quente, zona fria, área de impulso e área de experiência. Cada categoria vai para onde **vende mais**."
+      "titulo": "Luz de destaque, não só geral",
+      "texto": "Use **spots direcionáveis** no produto foco, com 2 a 3 vezes a luz do entorno. Vitrine sem contraste fica invisível à noite."
     },
     {
       "numero": "04",
-      "titulo": "Luz, materiais e identidade",
-      "texto": "Aqui entra o lado estético: **iluminação em camadas**, materiais duráveis e a marca presente em cada detalhe, sem atrapalhar o produto."
+      "titulo": "Temperatura de cor certa",
+      "texto": "**2700–3000 K** para moda, móveis e alimentos (acolhe). **4000 K** para farmácia, ótica e tecnologia (precisão). E sempre IRC acima de 90, para não distorcer as cores."
     },
     {
       "numero": "05",
-      "titulo": "Executar e medir",
-      "texto": "Depois da obra, acompanho o resultado: **fluxo, conversão e ticket**. Projeto bom é o que se paga."
+      "titulo": "Troque a cada 15 dias",
+      "texto": "Quem passa todo dia pela sua porta para de enxergar a vitrine em **duas semanas**. Renovação é o que faz o cliente voltar a olhar."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer começar pela sua loja?",
+      "kicker": "Quer revisar sua loja?",
       "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "texto": "O mesmo diagnóstico que eu uso no início de **todo projeto comercial**.",
+      "texto": "Vitrine é só o 1º dos **5 erros de layout** que fazem a loja perder venda.",
       "botao": "Comente VENDA"
     }
   ],
-  "legenda": "Projeto comercial não é decoração: é estratégia de venda desenhada no espaço. 🛍️\n\nMeu processo, em 5 etapas:\n\n1️⃣ Entender o negócio (números antes do espaço)\n2️⃣ Desenhar o percurso do cliente\n3️⃣ Zonear a exposição\n4️⃣ Luz, materiais e identidade\n5️⃣ Executar e medir resultado\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct para conversarmos sobre o seu projeto.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #projetodeloja #varejo #visualmerchandising #arquiteto #designdeinteriores #lojista #empreendedorismo #pontodevenda #arquitetura",
+  "legenda": "Vitrine é o anúncio mais barato da sua loja, e ela tem só 3 segundos para funcionar. ✨\n\n1️⃣ Um tema, uma história\n2️⃣ Composição em pirâmide\n3️⃣ Luz de destaque 2 a 3 vezes mais forte no produto foco\n4️⃣ 2700–3000 K para acolher, 4000 K para precisão, IRC > 90\n5️⃣ Troque a cada 15 dias\n\n📩 Manda uma foto da sua vitrine no direct: escolho uma por semana para comentar.\n💾 Salve para a próxima troca.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores",
   "manychat": "VENDA"
 }
