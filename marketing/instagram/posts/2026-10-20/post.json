@@ -1,0 +1,48 @@
+{
+  "data": "2026-10-20",
+  "horario": "18:30",
+  "pilar": "usucapiao",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Usucapião · guia rápido",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "As 5 modalidades de usucapião e seus prazos",
+      "texto": "Antes de orçar o serviço, saiba **qual caso** você tem nas mãos."
+    },
+    {
+      "numero": "01",
+      "titulo": "Extraordinária: 15 anos",
+      "texto": "Posse mansa e contínua, **sem precisar de justo título**. Cai para **10 anos** se for moradia ou houver obras produtivas. (CC, art. 1.238)"
+    },
+    {
+      "numero": "02",
+      "titulo": "Ordinária: 10 anos",
+      "texto": "Exige **justo título e boa-fé**. Pode cair para **5 anos** em casos específicos de aquisição onerosa. (CC, art. 1.242)"
+    },
+    {
+      "numero": "03",
+      "titulo": "Especial urbana: 5 anos",
+      "texto": "Imóvel urbano de até **250 m²**, usado como moradia, por quem **não tem outro imóvel**. (CF, art. 183)"
+    },
+    {
+      "numero": "04",
+      "titulo": "Especial rural: 5 anos",
+      "texto": "Área rural de até **50 hectares**, produtiva e usada como moradia. (CF, art. 191)"
+    },
+    {
+      "numero": "05",
+      "titulo": "Familiar: 2 anos",
+      "texto": "Imóvel urbano de até **250 m²** dividido com ex-cônjuge que **abandonou o lar**. (CC, art. 1.240-A)"
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Em todas elas",
+      "titulo": "A parte técnica é do arquiteto ou engenheiro",
+      "texto": "Planta, memorial e ART/RRT. Conteúdo educativo: cada caso deve ser analisado com **advogado**.",
+      "botao": "Salve este guia"
+    }
+  ],
+  "legenda": "Antes de orçar um serviço de usucapião, identifique a modalidade. 📋\n\n1️⃣ Extraordinária: 15 anos (10 se moradia ou obras), sem justo título\n2️⃣ Ordinária: 10 anos, com justo título e boa-fé\n3️⃣ Especial urbana: 5 anos, até 250 m², moradia, sem outro imóvel\n4️⃣ Especial rural: 5 anos, até 50 ha, produtiva e moradia\n5️⃣ Familiar: 2 anos, até 250 m², abandono do lar pelo ex-cônjuge\n\nEm todas, a documentação técnica (planta, memorial descritivo e ART/RRT) é do arquiteto ou engenheiro.\n\n💾 Salva pra consultar no próximo atendimento.\n📤 Manda pra um colega que atua com regularização.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #imoveis #direitoimobiliario #escritura"
+}

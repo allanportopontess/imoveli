@@ -1,0 +1,48 @@
+{
+  "data": "2026-10-18",
+  "horario": "18:30",
+  "pilar": "arquitetura",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Arquitetura de campo",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "Casa de campo: 5 decisões que fazem você querer morar lá",
+      "texto": "O que separa uma casa **gostosa de viver** de uma casa só bonita na foto."
+    },
+    {
+      "numero": "01",
+      "titulo": "Orientação solar antes de tudo",
+      "texto": "Salas e varandas para o **norte** recebem sol no inverno e sombra no verão. É conforto de graça, decidido no primeiro traço."
+    },
+    {
+      "numero": "02",
+      "titulo": "Varanda profunda, não decorativa",
+      "texto": "Com **2,5 m ou mais** de profundidade, a varanda vira o cômodo mais usado da casa: cabe mesa, rede e conversa."
+    },
+    {
+      "numero": "03",
+      "titulo": "Ventilação cruzada",
+      "texto": "Aberturas em **fachadas opostas** renovam o ar e reduzem o calor sem ar-condicionado."
+    },
+    {
+      "numero": "04",
+      "titulo": "Materiais do lugar",
+      "texto": "Pedra, madeira e tijolo da região **envelhecem bem**, custam menos e conversam com a paisagem."
+    },
+    {
+      "numero": "05",
+      "titulo": "A paisagem entra na casa",
+      "texto": "Janelas enquadrando a vista certa transformam o verde em **parte do projeto**."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "E você?",
+      "titulo": "Comenta \"EU MORARIA\" se esse também é o seu sonho",
+      "texto": "Projeto bom é o que faz você **querer ficar**.",
+      "botao": "Salve para o seu projeto"
+    }
+  ],
+  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
+}

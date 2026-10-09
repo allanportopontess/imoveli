@@ -1,0 +1,49 @@
+{
+  "data": "2026-10-17",
+  "horario": "18:30",
+  "pilar": "venda",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Teste rápido · Loja que Vende",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "Sua loja passa nesse teste de 5 perguntas?",
+      "texto": "Responda **sim ou não**. Cada \"não\" é venda escapando todo dia."
+    },
+    {
+      "numero": "01",
+      "titulo": "Sua vitrine tem até 3 itens em destaque?",
+      "texto": "Mais que isso, ninguém para na calçada. **Vitrine boa escolhe.**"
+    },
+    {
+      "numero": "02",
+      "titulo": "O produto de maior margem está na zona quente?",
+      "texto": "Se ele está no fundo ou no canto, o cliente **nem vê** o que mais te dá lucro."
+    },
+    {
+      "numero": "03",
+      "titulo": "Existe um ponto que obriga o cliente a parar?",
+      "texto": "Uma mesa ou ilha baixa no meio do caminho faz o cliente **olhar e considerar** comprar."
+    },
+    {
+      "numero": "04",
+      "titulo": "Seu produto-foco tem luz dirigida?",
+      "texto": "Luz igual em tudo apaga o que importa. **Destaque é contraste.**"
+    },
+    {
+      "numero": "05",
+      "titulo": "O caminho da entrada ao caixa é óbvio?",
+      "texto": "Quem não sabe por onde ir, **não compra**. O percurso precisa conduzir."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Quantos \"não\" você marcou?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "botao": "Comente VENDA",
+      "texto": "O checklist completo mostra **como corrigir** cada um, sem reforma cara."
+    }
+  ],
+  "legenda": "Faz esse teste rápido na sua loja: 5 perguntas, sim ou não. 👀\n\n1️⃣ Sua vitrine tem até 3 itens em destaque?\n2️⃣ O produto de maior margem está na zona quente?\n3️⃣ Existe um ponto que obriga o cliente a parar?\n4️⃣ Seu produto-foco tem luz dirigida?\n5️⃣ O caminho da entrada ao caixa é óbvio?\n\nCada \"não\" é venda escapando todo dia.\n\n💬 Comenta aqui quantos \"não\" você marcou.\n💾 Salva pra refazer o teste depois dos ajustes.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "manychat": "VENDA"
+}

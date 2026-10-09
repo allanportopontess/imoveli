@@ -1,0 +1,44 @@
+{
+  "data": "2026-10-22",
+  "horario": "18:30",
+  "pilar": "varejo",
+  "formato": "carrossel",
+  "status": "aguardando_aprovacao",
+  "kicker": "Provador que vende",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "O provador é onde a venda se decide",
+      "texto": "E quase toda loja trata ele como **depósito com cortina**."
+    },
+    {
+      "numero": "01",
+      "titulo": "Luz frontal e quente",
+      "texto": "Luz só de cima marca olheira e sombra. Luz **frontal, 2700–3000 K**, deixa o cliente bonito no espelho."
+    },
+    {
+      "numero": "02",
+      "titulo": "Espaço mínimo de 1,00 x 1,20 m",
+      "texto": "Provador apertado faz o cliente **desistir de experimentar**. E quem não experimenta, não compra."
+    },
+    {
+      "numero": "03",
+      "titulo": "Gancho, banco e espelho",
+      "texto": "Lugar para pendurar a roupa, sentar e se ver de corpo inteiro. **Conforto prolonga a visita.**"
+    },
+    {
+      "numero": "04",
+      "titulo": "Caminho pelas araras",
+      "texto": "O trajeto até o provador deve passar pelos produtos: o cliente **vê de novo** antes de pagar."
+    },
+    {
+      "tipo": "cta",
+      "kicker": "Quer o diagnóstico completo?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "botao": "Comente VENDA",
+      "texto": "Provador e fluxo estão entre os **5 erros de layout** do checklist."
+    }
+  ],
+  "legenda": "O provador é o lugar onde a venda se decide, e quase toda loja trata como depósito com cortina. 👗\n\n1️⃣ Luz frontal e quente (2700–3000 K)\n2️⃣ Espaço mínimo de 1,00 x 1,20 m\n3️⃣ Gancho, banco e espelho de corpo inteiro\n4️⃣ Caminho até o provador passando pelas araras\n\n💾 Salva pra revisar o provador da sua loja.\n💬 Comenta: qual desses o seu provador já tem?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "manychat": "VENDA"
+}
