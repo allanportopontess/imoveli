@@ -1,43 +1,49 @@
 {
   "data": "2026-10-16",
   "horario": "18:30",
-  "pilar": "arquitetura",
+  "pilar": "projeto",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Mitos da arquitetura",
+  "kicker": "Bastidores de projeto",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "4 mitos de decoração que estão deixando sua casa pior",
-      "texto": "Tem regra antiga que **não funciona mais**."
+      "titulo": "Como eu projeto uma loja para vender, não só para ser bonita",
+      "texto": "As **5 etapas** do meu processo de arquitetura comercial."
     },
     {
       "numero": "01",
-      "titulo": "\"Ambiente pequeno tem que ser todo branco\"",
-      "texto": "Branco total sem contraste deixa o espaço **chapado**. Uma parede de cor média ou escura no fundo cria profundidade e o ambiente parece maior."
+      "titulo": "Entender o negócio antes do espaço",
+      "texto": "Ticket médio, produto campeão, público, horário de pico. **O layout nasce dos números** da loja, não de referência do Pinterest."
     },
     {
       "numero": "02",
-      "titulo": "\"Móvel pequeno para espaço pequeno\"",
-      "texto": "Vários móveis pequenos poluem. **Menos peças, em escala certa**, organizam melhor: um sofá bom vale mais que dois pequenos com pufes."
+      "titulo": "Desenhar o percurso do cliente",
+      "texto": "Antes de qualquer móvel, defino **por onde o cliente anda**, onde ele para e onde decide. Cada ponto de parada é uma oportunidade de venda."
     },
     {
       "numero": "03",
-      "titulo": "\"Um lustre no meio resolve\"",
-      "texto": "Um ponto de luz central achata tudo. Pense em **camadas**: luz geral, luz de tarefa e luz de destaque com abajur, arandela ou fita de LED."
+      "titulo": "Zonear a exposição",
+      "texto": "Zona quente, zona fria, área de impulso e área de experiência. Cada categoria vai para onde **vende mais**."
     },
     {
       "numero": "04",
-      "titulo": "\"Tudo tem que combinar\"",
-      "texto": "Jogo de sala completo, tudo da mesma madeira: fica cara de **showroom**. Misture materiais com uma paleta em comum e a casa ganha personalidade."
+      "titulo": "Luz, materiais e identidade",
+      "texto": "Aqui entra o lado estético: **iluminação em camadas**, materiais duráveis e a marca presente em cada detalhe, sem atrapalhar o produto."
+    },
+    {
+      "numero": "05",
+      "titulo": "Executar e medir",
+      "texto": "Depois da obra, acompanho o resultado: **fluxo, conversão e ticket**. Projeto bom é o que se paga."
     },
     {
       "tipo": "cta",
-      "kicker": "Qual você acreditava?",
-      "titulo": "Conta nos comentários qual mito caiu pra você hoje",
-      "texto": "Toda semana tem **dica de arquitetura da vida real** aqui.",
-      "botao": "Siga para mais dicas"
+      "kicker": "Quer começar pela sua loja?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "texto": "O mesmo diagnóstico que eu uso no início de **todo projeto comercial**.",
+      "botao": "Comente VENDA"
     }
   ],
-  "legenda": "Tem regra de decoração que todo mundo repete e que na prática deixa a casa pior. 🙅\n\n❌ Ambiente pequeno todo branco → ✅ contraste cria profundidade\n❌ Móvel pequeno para espaço pequeno → ✅ menos peças, escala certa\n❌ Um lustre no meio resolve → ✅ luz em camadas\n❌ Tudo tem que combinar → ✅ materiais diferentes, paleta em comum\n\n💬 Qual desses você acreditava?\n📲 Mande para quem está decorando.\n\n#arquitetura #designdeinteriores #reforma #decoracao #dicasdearquitetura #arquiteto #casa #interiores #projetoresidencial #homedecor"
+  "legenda": "Projeto comercial não é decoração: é estratégia de venda desenhada no espaço. 🛍️\n\nMeu processo, em 5 etapas:\n\n1️⃣ Entender o negócio (números antes do espaço)\n2️⃣ Desenhar o percurso do cliente\n3️⃣ Zonear a exposição\n4️⃣ Luz, materiais e identidade\n5️⃣ Executar e medir resultado\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct para conversarmos sobre o seu projeto.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #projetodeloja #varejo #visualmerchandising #arquiteto #designdeinteriores #lojista #empreendedorismo #pontodevenda #arquitetura",
+  "manychat": "VENDA"
 }

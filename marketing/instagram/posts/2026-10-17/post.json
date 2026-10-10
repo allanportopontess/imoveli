@@ -3,47 +3,33 @@
   "horario": "18:30",
   "pilar": "venda",
   "formato": "carrossel",
-  "status": "aguardando_aprovacao",
-  "kicker": "Teste rápido · Loja que Vende",
+  "status": "aprovado",
+  "kicker": "Kit Usucapião PRO",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Sua loja passa nesse teste de 5 perguntas?",
-      "texto": "Responda **sim ou não**. Cada \"não\" é venda escapando todo dia."
+      "titulo": "Pare de começar todo processo de usucapião do zero",
+      "texto": "Um kit de **modelos editáveis** para arquitetos e engenheiros."
     },
     {
-      "numero": "01",
-      "titulo": "Sua vitrine tem até 3 itens em destaque?",
-      "texto": "Mais que isso, ninguém para na calçada. **Vitrine boa escolhe.**"
+      "titulo": "O que você recebe",
+      "texto": "📐 Plantas e desenhos\n📄 Memoriais descritivos e documentos\n📋 Checklists do processo\n💼 Contratos e propostas de honorários\n📊 Planilhas\n📁 Tudo em **arquivos editáveis**"
     },
     {
-      "numero": "02",
-      "titulo": "O produto de maior margem está na zona quente?",
-      "texto": "Se ele está no fundo ou no canto, o cliente **nem vê** o que mais te dá lucro."
+      "titulo": "Para quem é",
+      "texto": "Arquitetos, engenheiros e técnicos que fazem ou querem fazer a **parte técnica de usucapião e regularização** e precisam ganhar tempo em cada processo."
     },
     {
-      "numero": "03",
-      "titulo": "Existe um ponto que obriga o cliente a parar?",
-      "texto": "Uma mesa ou ilha baixa no meio do caminho faz o cliente **olhar e considerar** comprar."
-    },
-    {
-      "numero": "04",
-      "titulo": "Seu produto-foco tem luz dirigida?",
-      "texto": "Luz igual em tudo apaga o que importa. **Destaque é contraste.**"
-    },
-    {
-      "numero": "05",
-      "titulo": "O caminho da entrada ao caixa é óbvio?",
-      "texto": "Quem não sabe por onde ir, **não compra**. O percurso precisa conduzir."
+      "titulo": "Por que usar modelo",
+      "texto": "Cada processo exige os mesmos documentos com estrutura parecida. Partir de um **modelo organizado** reduz retrabalho e erros que geram nota devolutiva no cartório."
     },
     {
       "tipo": "cta",
-      "kicker": "Quantos \"não\" você marcou?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "botao": "Comente VENDA",
-      "texto": "O checklist completo mostra **como corrigir** cada um, sem reforma cara."
+      "kicker": "Acesso imediato",
+      "titulo": "Kit Usucapião PRO",
+      "texto": "Compra segura pela **Hotmart**, com acesso na hora.",
+      "botao": "Link na bio"
     }
   ],
-  "legenda": "Faz esse teste rápido na sua loja: 5 perguntas, sim ou não. 👀\n\n1️⃣ Sua vitrine tem até 3 itens em destaque?\n2️⃣ O produto de maior margem está na zona quente?\n3️⃣ Existe um ponto que obriga o cliente a parar?\n4️⃣ Seu produto-foco tem luz dirigida?\n5️⃣ O caminho da entrada ao caixa é óbvio?\n\nCada \"não\" é venda escapando todo dia.\n\n💬 Comenta aqui quantos \"não\" você marcou.\n💾 Salva pra refazer o teste depois dos ajustes.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Se você faz planta, memorial e documentação de usucapião, sabe: cada processo parece começar do zero. ⏰\n\nO Kit Usucapião PRO reúne, em um só lugar, modelos profissionais e editáveis:\n\n📐 Plantas e desenhos\n📄 Memoriais e documentos\n📋 Checklists\n💼 Contratos e propostas\n📊 Planilhas\n📁 Arquivos editáveis\n\nPara arquitetos, engenheiros e técnicos que querem ganhar tempo e errar menos.\n\n👉 Acesso imediato pelo link na bio (compra segura pela Hotmart).\n\n#usucapiao #kitusucapiaopro #arquiteto #engenheirocivil #regularizacaodeimoveis #usucapiaoextrajudicial #produtividade #modelos #templates #topografia"
 }

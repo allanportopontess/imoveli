@@ -1,44 +1,49 @@
 {
   "data": "2026-10-19",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "venda",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Zoneamento comercial",
+  "kicker": "Teste rápido · Loja que Vende",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Zona quente x zona fria: o mapa invisível da sua loja",
-      "texto": "Todo cliente percorre sua loja do mesmo jeito. **Use isso a seu favor.**"
+      "titulo": "Sua loja passa nesse teste de 5 perguntas?",
+      "texto": "Responda **sim ou não**. Cada \"não\" é venda escapando todo dia."
     },
     {
       "numero": "01",
-      "titulo": "Zona quente",
-      "texto": "Os primeiros metros depois da entrada e o **lado direito** do percurso. É onde o olhar chega primeiro: lugar de **lançamento e maior margem**."
+      "titulo": "Sua vitrine tem até 3 itens em destaque?",
+      "texto": "Mais que isso, ninguém para na calçada. **Vitrine boa escolhe.**"
     },
     {
       "numero": "02",
-      "titulo": "Zona fria",
-      "texto": "Fundos e cantos. Pouca gente chega lá **sem motivo**."
+      "titulo": "O produto de maior margem está na zona quente?",
+      "texto": "Se ele está no fundo ou no canto, o cliente **nem vê** o que mais te dá lucro."
     },
     {
       "numero": "03",
-      "titulo": "O truque: produto-ímã no fundo",
-      "texto": "Coloque na zona fria o item que o cliente **já veio buscar**. Para chegar nele, ele passa por toda a loja."
+      "titulo": "Existe um ponto que obriga o cliente a parar?",
+      "texto": "Uma mesa ou ilha baixa no meio do caminho faz o cliente **olhar e considerar** comprar."
     },
     {
       "numero": "04",
-      "titulo": "Reavalie a cada estação",
-      "texto": "Mudou a coleção, muda o mapa. **Zoneamento é rotina**, não projeto de uma vez só."
+      "titulo": "Seu produto-foco tem luz dirigida?",
+      "texto": "Luz igual em tudo apaga o que importa. **Destaque é contraste.**"
+    },
+    {
+      "numero": "05",
+      "titulo": "O caminho da entrada ao caixa é óbvio?",
+      "texto": "Quem não sabe por onde ir, **não compra**. O percurso precisa conduzir."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer o diagnóstico completo?",
+      "kicker": "Quantos \"não\" você marcou?",
       "titulo": "Comente VENDA e receba o checklist grátis no direct",
       "botao": "Comente VENDA",
-      "texto": "O **produto escondido na zona fria** é o erro nº 2 do checklist."
+      "texto": "O checklist completo mostra **como corrigir** cada um, sem reforma cara."
     }
   ],
-  "legenda": "Sua loja tem um mapa invisível, e ele decide o que vende. 🗺️\n\n🔥 Zona quente: entrada e lado direito → lançamentos e maior margem\n🧊 Zona fria: fundos e cantos → produto-ímã que o cliente já veio buscar\n\nAssim o cliente atravessa a loja inteira e passa por tudo antes de chegar no que procura.\n\n💾 Salva pra reorganizar sua loja.\n💬 Comenta: qual produto está escondido na sua zona fria?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "legenda": "Faz esse teste rápido na sua loja: 5 perguntas, sim ou não. 👀\n\n1️⃣ Sua vitrine tem até 3 itens em destaque?\n2️⃣ O produto de maior margem está na zona quente?\n3️⃣ Existe um ponto que obriga o cliente a parar?\n4️⃣ Seu produto-foco tem luz dirigida?\n5️⃣ O caminho da entrada ao caixa é óbvio?\n\nCada \"não\" é venda escapando todo dia.\n\n💬 Comenta aqui quantos \"não\" você marcou.\n💾 Salva pra refazer o teste depois dos ajustes.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
   "manychat": "VENDA"
 }

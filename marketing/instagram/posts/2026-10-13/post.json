@@ -1,49 +1,43 @@
 {
   "data": "2026-10-13",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "usucapiao",
   "formato": "carrossel",
   "status": "aprovado",
-  "kicker": "Iluminação e vitrinismo",
+  "kicker": "Usucapião extrajudicial",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Sua vitrine tem 3 segundos para parar o cliente",
-      "texto": "5 regras de **vitrinismo e luz** para não desperdiçar esse tempo."
+      "titulo": "Usucapião em cartório: o que o arquiteto ou engenheiro entrega",
+      "texto": "O processo não anda sem a **parte técnica**. E é aí que muita gente erra."
     },
     {
       "numero": "01",
-      "titulo": "Um tema, uma história",
-      "texto": "Vitrine com tudo vira prateleira. Escolha **um tema** por vez (lançamento, cor, ocasião) e conte só essa história."
+      "titulo": "Planta do imóvel",
+      "texto": "Planta com a situação real do imóvel, área, confrontações e, quando exigido, **coordenadas georreferenciadas**. Tem que bater com o que existe no local, não com o que está no papel antigo."
     },
     {
       "numero": "02",
-      "titulo": "Pirâmide de composição",
-      "texto": "Monte em **triângulo**: peça mais alta no centro ou ao fundo, peças menores nas laterais. O olho percorre a vitrine em vez de travar num ponto."
+      "titulo": "Memorial descritivo",
+      "texto": "A descrição técnica do perímetro, medida por medida, com **confrontantes identificados**. É o texto que vai virar a nova matrícula, então qualquer erro trava o registro."
     },
     {
       "numero": "03",
-      "titulo": "Luz de destaque, não só geral",
-      "texto": "Use **spots direcionáveis** no produto foco, com 2 a 3 vezes a luz do entorno. Vitrine sem contraste fica invisível à noite."
+      "titulo": "ART ou RRT",
+      "texto": "Planta e memorial precisam ser assinados por profissional habilitado, com **ART (CREA) ou RRT (CAU)** recolhida. Sem isso o cartório devolve o pedido."
     },
     {
       "numero": "04",
-      "titulo": "Temperatura de cor certa",
-      "texto": "**2700–3000 K** para moda, móveis e alimentos (acolhe). **4000 K** para farmácia, ótica e tecnologia (precisão). E sempre IRC acima de 90, para não distorcer as cores."
-    },
-    {
-      "numero": "05",
-      "titulo": "Troque a cada 15 dias",
-      "texto": "Quem passa todo dia pela sua porta para de enxergar a vitrine em **duas semanas**. Renovação é o que faz o cliente voltar a olhar."
+      "titulo": "Assinatura dos confrontantes",
+      "texto": "O ideal é colher na planta a **anuência dos vizinhos confrontantes** e do titular registral. Quem não assina é notificado pelo cartório, o que atrasa o processo."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer revisar sua loja?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "texto": "Vitrine é só o 1º dos **5 erros de layout** que fazem a loja perder venda.",
-      "botao": "Comente VENDA"
+      "kicker": "Você é arquiteto ou engenheiro?",
+      "titulo": "Usucapião é um mercado enorme para quem domina a parte técnica",
+      "texto": "Siga o perfil: toda semana tem conteúdo de **regularização de imóveis**.",
+      "botao": "Salve este checklist"
     }
   ],
-  "legenda": "Vitrine é o anúncio mais barato da sua loja, e ela tem só 3 segundos para funcionar. ✨\n\n1️⃣ Um tema, uma história\n2️⃣ Composição em pirâmide\n3️⃣ Luz de destaque 2 a 3 vezes mais forte no produto foco\n4️⃣ 2700–3000 K para acolher, 4000 K para precisão, IRC > 90\n5️⃣ Troque a cada 15 dias\n\n📩 Manda uma foto da sua vitrine no direct: escolho uma por semana para comentar.\n💾 Salve para a próxima troca.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #vitrinismo #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura #designdeinteriores",
-  "manychat": "VENDA"
+  "legenda": "Na usucapião extrajudicial (feita em cartório, Lei 6.015/73, art. 216-A), o advogado conduz o pedido, mas a parte técnica é do arquiteto ou engenheiro. 🏠\n\nO que você entrega:\n\n📐 Planta do imóvel com a situação real\n📄 Memorial descritivo com confrontantes\n✍️ ART (CREA) ou RRT (CAU)\n🤝 Anuência dos confrontantes, sempre que possível\n\nErro em qualquer um desses itens = nota devolutiva e meses de atraso.\n\n💾 Salve este checklist\n📩 Dúvidas sobre usucapião? Manda no direct.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #topografia #memorialdescritivo #imoveis #rrt #art"
 }

@@ -1,44 +1,48 @@
 {
   "data": "2026-10-23",
   "horario": "18:30",
-  "pilar": "projeto",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Projeto real · Caruaru/PE",
+  "kicker": "Arquitetura da vida real",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "19,52 m² desenhados para vender",
-      "texto": "Os bastidores de uma loja de **moda fitness** pequena, onde cada metro tem função."
+      "titulo": "Cozinha que funciona: 5 medidas que ninguém te conta",
+      "texto": "Bonita todo mundo quer. **Prática** é questão de medida."
     },
     {
       "numero": "01",
-      "titulo": "Vitrine com produto-foco",
-      "texto": "Nicho próprio, **2 manequins** e trilho de spots só para ela. Quem passa na calçada enxerga a vitrine alinhada com a porta."
+      "titulo": "Triângulo de trabalho",
+      "texto": "Pia, fogão e geladeira formando um triângulo com **4 a 7 m** de soma dos lados. Menos que isso aperta; mais, cansa."
     },
     {
       "numero": "02",
-      "titulo": "Ponto de pausa no meio",
-      "texto": "Puff e console de dobrados **no meio do trajeto** fazem o cliente parar, olhar e considerar."
+      "titulo": "Bancada a 90 cm",
+      "texto": "É a altura confortável para a maioria. Para quem é muito alto, **95 cm** já muda tudo."
     },
     {
       "numero": "03",
-      "titulo": "Circulação pelo provador",
-      "texto": "O caminho até o provador passa pelas araras: o cliente **vê o produto de novo** antes de pagar."
+      "titulo": "Circulação de 1,20 m",
+      "texto": "Entre bancadas paralelas ou ilha, **1,20 m** permite abrir portas e passar duas pessoas."
     },
     {
       "numero": "04",
-      "titulo": "Luz em camadas",
-      "texto": "Destaque na vitrine, luz de tarefa no caixa e **luz quente no provador**."
+      "titulo": "Área livre ao lado do fogão",
+      "texto": "Deixe pelo menos **40 cm** de bancada de cada lado para apoiar panelas com segurança."
+    },
+    {
+      "numero": "05",
+      "titulo": "Luz sobre a bancada",
+      "texto": "Luz só no teto faz sombra onde você corta. Use **fita ou spots sob o armário**."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer aplicar na sua loja?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "botao": "Comente VENDA",
-      "texto": "Os 4 pilares desse projeto estão no **checklist gratuito**."
+      "kicker": "Sua cozinha passa?",
+      "titulo": "Comenta quantas dessas a sua cozinha tem",
+      "texto": "Medida certa vale mais que **acabamento caro**.",
+      "botao": "Salve antes da reforma"
     }
   ],
-  "legenda": "Loja pequena não é desculpa para vender pouco. Esse é um projeto real: 19,52 m² em Caruaru/PE. 🛍️\n\n1️⃣ Vitrine com produto-foco e trilho de spots próprio\n2️⃣ Ponto de pausa no meio do trajeto\n3️⃣ Circulação passando pelas araras até o provador\n4️⃣ Luz em camadas: vitrine, caixa e provador\n\nCada decisão tem um motivo comercial.\n\n📩 Vai abrir ou reformar uma loja? Me chama no direct.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Cozinha bonita todo mundo quer. Cozinha que funciona é questão de medida. 📏🍳\n\n1️⃣ Triângulo pia-fogão-geladeira entre 4 e 7 m\n2️⃣ Bancada a 90 cm (95 cm para quem é alto)\n3️⃣ Circulação de 1,20 m entre bancadas\n4️⃣ 40 cm livres de cada lado do fogão\n5️⃣ Luz direta sobre a bancada\n\n💬 Comenta quantas dessas a sua cozinha tem.\n💾 Salva antes da reforma.\n📤 Manda pra quem está montando a cozinha.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
 }

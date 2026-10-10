@@ -1,48 +1,48 @@
 {
   "data": "2026-10-20",
   "horario": "18:30",
-  "pilar": "usucapiao",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Usucapião · guia rápido",
+  "kicker": "Arquitetura de campo",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "As 5 modalidades de usucapião e seus prazos",
-      "texto": "Antes de orçar o serviço, saiba **qual caso** você tem nas mãos."
+      "titulo": "Casa de campo: 5 decisões que fazem você querer morar lá",
+      "texto": "O que separa uma casa **gostosa de viver** de uma casa só bonita na foto."
     },
     {
       "numero": "01",
-      "titulo": "Extraordinária: 15 anos",
-      "texto": "Posse mansa e contínua, **sem precisar de justo título**. Cai para **10 anos** se for moradia ou houver obras produtivas. (CC, art. 1.238)"
+      "titulo": "Orientação solar antes de tudo",
+      "texto": "Salas e varandas para o **norte** recebem sol no inverno e sombra no verão. É conforto de graça, decidido no primeiro traço."
     },
     {
       "numero": "02",
-      "titulo": "Ordinária: 10 anos",
-      "texto": "Exige **justo título e boa-fé**. Pode cair para **5 anos** em casos específicos de aquisição onerosa. (CC, art. 1.242)"
+      "titulo": "Varanda profunda, não decorativa",
+      "texto": "Com **2,5 m ou mais** de profundidade, a varanda vira o cômodo mais usado da casa: cabe mesa, rede e conversa."
     },
     {
       "numero": "03",
-      "titulo": "Especial urbana: 5 anos",
-      "texto": "Imóvel urbano de até **250 m²**, usado como moradia, por quem **não tem outro imóvel**. (CF, art. 183)"
+      "titulo": "Ventilação cruzada",
+      "texto": "Aberturas em **fachadas opostas** renovam o ar e reduzem o calor sem ar-condicionado."
     },
     {
       "numero": "04",
-      "titulo": "Especial rural: 5 anos",
-      "texto": "Área rural de até **50 hectares**, produtiva e usada como moradia. (CF, art. 191)"
+      "titulo": "Materiais do lugar",
+      "texto": "Pedra, madeira e tijolo da região **envelhecem bem**, custam menos e conversam com a paisagem."
     },
     {
       "numero": "05",
-      "titulo": "Familiar: 2 anos",
-      "texto": "Imóvel urbano de até **250 m²** dividido com ex-cônjuge que **abandonou o lar**. (CC, art. 1.240-A)"
+      "titulo": "A paisagem entra na casa",
+      "texto": "Janelas enquadrando a vista certa transformam o verde em **parte do projeto**."
     },
     {
       "tipo": "cta",
-      "kicker": "Em todas elas",
-      "titulo": "A parte técnica é do arquiteto ou engenheiro",
-      "texto": "Planta, memorial e ART/RRT. Conteúdo educativo: cada caso deve ser analisado com **advogado**.",
-      "botao": "Salve este guia"
+      "kicker": "E você?",
+      "titulo": "Comenta \"EU MORARIA\" se esse também é o seu sonho",
+      "texto": "Projeto bom é o que faz você **querer ficar**.",
+      "botao": "Salve para o seu projeto"
     }
   ],
-  "legenda": "Antes de orçar um serviço de usucapião, identifique a modalidade. 📋\n\n1️⃣ Extraordinária: 15 anos (10 se moradia ou obras), sem justo título\n2️⃣ Ordinária: 10 anos, com justo título e boa-fé\n3️⃣ Especial urbana: 5 anos, até 250 m², moradia, sem outro imóvel\n4️⃣ Especial rural: 5 anos, até 50 ha, produtiva e moradia\n5️⃣ Familiar: 2 anos, até 250 m², abandono do lar pelo ex-cônjuge\n\nEm todas, a documentação técnica (planta, memorial descritivo e ART/RRT) é do arquiteto ou engenheiro.\n\n💾 Salva pra consultar no próximo atendimento.\n📤 Manda pra um colega que atua com regularização.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #imoveis #direitoimobiliario #escritura"
+  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
 }

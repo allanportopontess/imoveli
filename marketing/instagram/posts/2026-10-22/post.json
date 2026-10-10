@@ -1,44 +1,48 @@
 {
   "data": "2026-10-22",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "usucapiao",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Provador que vende",
+  "kicker": "Usucapião · guia rápido",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "O provador é onde a venda se decide",
-      "texto": "E quase toda loja trata ele como **depósito com cortina**."
+      "titulo": "As 5 modalidades de usucapião e seus prazos",
+      "texto": "Antes de orçar o serviço, saiba **qual caso** você tem nas mãos."
     },
     {
       "numero": "01",
-      "titulo": "Luz frontal e quente",
-      "texto": "Luz só de cima marca olheira e sombra. Luz **frontal, 2700–3000 K**, deixa o cliente bonito no espelho."
+      "titulo": "Extraordinária: 15 anos",
+      "texto": "Posse mansa e contínua, **sem precisar de justo título**. Cai para **10 anos** se for moradia ou houver obras produtivas. (CC, art. 1.238)"
     },
     {
       "numero": "02",
-      "titulo": "Espaço mínimo de 1,00 x 1,20 m",
-      "texto": "Provador apertado faz o cliente **desistir de experimentar**. E quem não experimenta, não compra."
+      "titulo": "Ordinária: 10 anos",
+      "texto": "Exige **justo título e boa-fé**. Pode cair para **5 anos** em casos específicos de aquisição onerosa. (CC, art. 1.242)"
     },
     {
       "numero": "03",
-      "titulo": "Gancho, banco e espelho",
-      "texto": "Lugar para pendurar a roupa, sentar e se ver de corpo inteiro. **Conforto prolonga a visita.**"
+      "titulo": "Especial urbana: 5 anos",
+      "texto": "Imóvel urbano de até **250 m²**, usado como moradia, por quem **não tem outro imóvel**. (CF, art. 183)"
     },
     {
       "numero": "04",
-      "titulo": "Caminho pelas araras",
-      "texto": "O trajeto até o provador deve passar pelos produtos: o cliente **vê de novo** antes de pagar."
+      "titulo": "Especial rural: 5 anos",
+      "texto": "Área rural de até **50 hectares**, produtiva e usada como moradia. (CF, art. 191)"
+    },
+    {
+      "numero": "05",
+      "titulo": "Familiar: 2 anos",
+      "texto": "Imóvel urbano de até **250 m²** dividido com ex-cônjuge que **abandonou o lar**. (CC, art. 1.240-A)"
     },
     {
       "tipo": "cta",
-      "kicker": "Quer o diagnóstico completo?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "botao": "Comente VENDA",
-      "texto": "Provador e fluxo estão entre os **5 erros de layout** do checklist."
+      "kicker": "Em todas elas",
+      "titulo": "A parte técnica é do arquiteto ou engenheiro",
+      "texto": "Planta, memorial e ART/RRT. Conteúdo educativo: cada caso deve ser analisado com **advogado**.",
+      "botao": "Salve este guia"
     }
   ],
-  "legenda": "O provador é o lugar onde a venda se decide, e quase toda loja trata como depósito com cortina. 👗\n\n1️⃣ Luz frontal e quente (2700–3000 K)\n2️⃣ Espaço mínimo de 1,00 x 1,20 m\n3️⃣ Gancho, banco e espelho de corpo inteiro\n4️⃣ Caminho até o provador passando pelas araras\n\n💾 Salva pra revisar o provador da sua loja.\n💬 Comenta: qual desses o seu provador já tem?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Antes de orçar um serviço de usucapião, identifique a modalidade. 📋\n\n1️⃣ Extraordinária: 15 anos (10 se moradia ou obras), sem justo título\n2️⃣ Ordinária: 10 anos, com justo título e boa-fé\n3️⃣ Especial urbana: 5 anos, até 250 m², moradia, sem outro imóvel\n4️⃣ Especial rural: 5 anos, até 50 ha, produtiva e moradia\n5️⃣ Familiar: 2 anos, até 250 m², abandono do lar pelo ex-cônjuge\n\nEm todas, a documentação técnica (planta, memorial descritivo e ART/RRT) é do arquiteto ou engenheiro.\n\n💾 Salva pra consultar no próximo atendimento.\n📤 Manda pra um colega que atua com regularização.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #imoveis #direitoimobiliario #escritura"
 }

@@ -1,48 +1,44 @@
 {
   "data": "2026-10-21",
   "horario": "18:30",
-  "pilar": "arquitetura",
+  "pilar": "varejo",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Arquitetura da vida real",
+  "kicker": "Zoneamento comercial",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Cozinha que funciona: 5 medidas que ninguém te conta",
-      "texto": "Bonita todo mundo quer. **Prática** é questão de medida."
+      "titulo": "Zona quente x zona fria: o mapa invisível da sua loja",
+      "texto": "Todo cliente percorre sua loja do mesmo jeito. **Use isso a seu favor.**"
     },
     {
       "numero": "01",
-      "titulo": "Triângulo de trabalho",
-      "texto": "Pia, fogão e geladeira formando um triângulo com **4 a 7 m** de soma dos lados. Menos que isso aperta; mais, cansa."
+      "titulo": "Zona quente",
+      "texto": "Os primeiros metros depois da entrada e o **lado direito** do percurso. É onde o olhar chega primeiro: lugar de **lançamento e maior margem**."
     },
     {
       "numero": "02",
-      "titulo": "Bancada a 90 cm",
-      "texto": "É a altura confortável para a maioria. Para quem é muito alto, **95 cm** já muda tudo."
+      "titulo": "Zona fria",
+      "texto": "Fundos e cantos. Pouca gente chega lá **sem motivo**."
     },
     {
       "numero": "03",
-      "titulo": "Circulação de 1,20 m",
-      "texto": "Entre bancadas paralelas ou ilha, **1,20 m** permite abrir portas e passar duas pessoas."
+      "titulo": "O truque: produto-ímã no fundo",
+      "texto": "Coloque na zona fria o item que o cliente **já veio buscar**. Para chegar nele, ele passa por toda a loja."
     },
     {
       "numero": "04",
-      "titulo": "Área livre ao lado do fogão",
-      "texto": "Deixe pelo menos **40 cm** de bancada de cada lado para apoiar panelas com segurança."
-    },
-    {
-      "numero": "05",
-      "titulo": "Luz sobre a bancada",
-      "texto": "Luz só no teto faz sombra onde você corta. Use **fita ou spots sob o armário**."
+      "titulo": "Reavalie a cada estação",
+      "texto": "Mudou a coleção, muda o mapa. **Zoneamento é rotina**, não projeto de uma vez só."
     },
     {
       "tipo": "cta",
-      "kicker": "Sua cozinha passa?",
-      "titulo": "Comenta quantas dessas a sua cozinha tem",
-      "texto": "Medida certa vale mais que **acabamento caro**.",
-      "botao": "Salve antes da reforma"
+      "kicker": "Quer o diagnóstico completo?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "botao": "Comente VENDA",
+      "texto": "O **produto escondido na zona fria** é o erro nº 2 do checklist."
     }
   ],
-  "legenda": "Cozinha bonita todo mundo quer. Cozinha que funciona é questão de medida. 📏🍳\n\n1️⃣ Triângulo pia-fogão-geladeira entre 4 e 7 m\n2️⃣ Bancada a 90 cm (95 cm para quem é alto)\n3️⃣ Circulação de 1,20 m entre bancadas\n4️⃣ 40 cm livres de cada lado do fogão\n5️⃣ Luz direta sobre a bancada\n\n💬 Comenta quantas dessas a sua cozinha tem.\n💾 Salva antes da reforma.\n📤 Manda pra quem está montando a cozinha.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
+  "legenda": "Sua loja tem um mapa invisível, e ele decide o que vende. 🗺️\n\n🔥 Zona quente: entrada e lado direito → lançamentos e maior margem\n🧊 Zona fria: fundos e cantos → produto-ímã que o cliente já veio buscar\n\nAssim o cliente atravessa a loja inteira e passa por tudo antes de chegar no que procura.\n\n💾 Salva pra reorganizar sua loja.\n💬 Comenta: qual produto está escondido na sua zona fria?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "manychat": "VENDA"
 }
