@@ -20,7 +20,7 @@ NAO = ('software', 'soluç', 'solucoes', 'soluções', 'dados', 'data ', 'cloud'
        'corporativo', 'aplicaç', 'tosca', 'engineer', 'especialista de arquitetura ii', 'arquiteto(a) de ia',
        'assistente de vendas', 'assistente de visual', 'assistente visual', 'líder de visual', 'lider de visual',
        'assessor de visual', 'vendedor', 'promob', 'móveis', 'moveis', 'orçamentista', 'professor', 'elétric', 'telecom', 'conectividade',
-       'infraestrutura', 'tubulação', 'mecânica', 'mecanica', 'framework')
+       'infraestrutura', 'tubulação', 'mecânica', 'mecanica', 'framework', 'ansible')
 SIM = ('arquitet', 'interiores', 'urbanis', 'visual merchandising', 'render', 'projetista',
        'retail design', 'layout de loja', 'expansão de lojas', 'obras', 'paisag')
 
