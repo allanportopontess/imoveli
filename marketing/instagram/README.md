@@ -31,6 +31,7 @@ Regras de conteúdo:
 - Posts de venda levam CTA "link na bio". A bio aponta para `lojaquevende.allanportoarquiteto.com.br/links/?utm_source=instagram&utm_medium=bio` (ativo desde 05/10): checklist grátis em destaque, curso Loja que Vende e Kit Usucapião PRO (`pay.hotmart.com/C106999952U`, com `src=instagram&sck=bio_kit`).
 - **ManyChat "Comenta VENDA"** (ativo, testado em 05/10): quem comenta VENDA recebe no direct o checklist grátis do Loja que Vende (`utm_medium=dm`). Use a chamada **só em posts de varejo/loja** (pilares `varejo`, `projeto` comercial e Reels do Loja que Vende): no slide final ("Comente VENDA e receba o checklist grátis no direct") e na legenda, antes das hashtags. Não use em posts de usucapião, casa ou Kit (atrairia lead errado).
 - Nada de promessa jurídica: conteúdo de usucapião é educativo, sem garantir resultado.
+- **Estilo visual (desde 11/10, pedido do Allan): referência @copfybr.** Foto do Allan em tela cheia, título serifado (Instrument Serif) com palavra em itálico e barra de destaque, legendas em caixa preta estilo TikTok, cards estilo tweet com avatar, checklist em cards. Gerar com `node criador.mjs <data>` a partir de `posts/<data>/criador.json` (tipos: `capa`, `lista`, `tweet`, `close`, `checklist`). O carrossel só de texto (`render.mjs`) fica como alternativa. Para variar as fotos, peça fotos novas ao Allan.
 
 ## Comandos
 

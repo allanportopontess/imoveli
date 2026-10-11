@@ -2,51 +2,10 @@
   "data": "2026-10-11",
   "horario": "18:30",
   "pilar": "usucapiao",
-  "formato": "carrossel",
+  "formato": "carrossel_criador",
   "status": "aguardando_aprovacao",
-  "pedido": "Allan pediu em 11/10: post do dia sobre regularização de imóveis pela usucapião urbana",
-  "kicker": "Usucapião urbana",
-  "slides": [
-    {
-      "tipo": "capa",
-      "titulo": "Mora há mais de 5 anos num imóvel sem escritura?",
-      "texto": "A **usucapião urbana** pode ser o caminho para regularizar. Veja se você se encaixa."
-    },
-    {
-      "numero": "01",
-      "titulo": "Imóvel na cidade com até 250 m²",
-      "texto": "A usucapião urbana (art. 183 da Constituição) vale para **área urbana de até 250 m²**. Acima disso, existem outras modalidades."
-    },
-    {
-      "numero": "02",
-      "titulo": "5 anos de posse, sem parar e sem briga",
-      "texto": "Você precisa estar no imóvel **há pelo menos 5 anos seguidos**, como se fosse dono, sem ninguém ter contestado a sua posse na Justiça."
-    },
-    {
-      "numero": "03",
-      "titulo": "Usado como moradia",
-      "texto": "O imóvel tem que ser **a sua casa ou a da sua família**. Imóvel só para alugar ou guardar não entra nessa modalidade."
-    },
-    {
-      "numero": "04",
-      "titulo": "Não ter outro imóvel",
-      "texto": "Você **não pode ser dono de outro imóvel**, urbano ou rural. E esse direito só pode ser usado **uma vez na vida**."
-    },
-    {
-      "titulo": "Dá para fazer no cartório",
-      "texto": "Na **usucapião extrajudicial**, o pedido vai direto ao Cartório de Registro de Imóveis, sem processo na Justiça, quando não há conflito. Você precisa de um **advogado** e da parte técnica feita por **arquiteto ou engenheiro**."
-    },
-    {
-      "titulo": "O que juntar desde já",
-      "texto": "📄 Ata notarial (no tabelionato)\n📐 Planta e memorial com **RRT/ART**\n🧾 IPTU, contas, recibos e contratos\n📸 Fotos e declarações de vizinhos\n🏛️ Certidões negativas"
-    },
-    {
-      "tipo": "cta",
-      "kicker": "Seu caso se encaixa?",
-      "titulo": "Cada imóvel tem a sua história",
-      "texto": "Antes de começar, converse com um **advogado** e com um **arquiteto** para conferir documentos e medidas. Isso evita exigências e atraso no cartório.",
-      "botao": "Salve e mande para quem precisa"
-    }
-  ],
-  "legenda": "Mora há mais de 5 anos num imóvel que não está no seu nome? 🏠\n\nA usucapião urbana pode ser o caminho para regularizar e finalmente ter a escritura. Os requisitos principais:\n\n1️⃣ Imóvel na cidade com até 250 m²\n2️⃣ 5 anos de posse contínua, sem contestação\n3️⃣ Usado como moradia sua ou da sua família\n4️⃣ Não ser dono de outro imóvel (e só vale uma vez na vida)\n\n✅ Quando não há conflito, dá para fazer direto no cartório (usucapião extrajudicial), com advogado e com a parte técnica (planta e memorial descritivo) feita por arquiteto ou engenheiro.\n\n📂 Comece a juntar: IPTU, contas de luz e água, recibos, contratos, fotos e declarações de vizinhos.\n\n⚠️ Conteúdo educativo. Cada caso precisa ser analisado por um advogado.\n\n💾 Salve para não perder\n📤 Mande para alguém que mora em imóvel sem escritura\n💬 Ficou com dúvida? Comenta aqui\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #usucapiaourbana #usucapiaoextrajudicial #regularizacaodeimoveis #escritura #imovelregularizado #direitoimobiliario #arquiteto #documentacaodeimovel #casapropria"
+  "pedido": "Allan pediu em 11/10: post sobre usucapião urbana com foto dele, estilo @copfybr, pegada viral",
+  "slides": "ver criador.json",
+  "legenda": "Seu imóvel sem escritura pode virar seu de verdade. 🏠\n\nSe você mora há mais de 5 anos no mesmo lugar e o imóvel não está no seu nome, presta atenção na usucapião urbana. Os 4 requisitos:\n\n📐 Até 250 m² na cidade\n⏳ 5 anos de posse, sem ninguém contestar\n🏠 É a sua moradia (ou da sua família)\n🚫 Você não tem outro imóvel\n\nE quando não há conflito, dá pra fazer direto no cartório, sem processo na Justiça. Precisa de advogado e da parte técnica (planta e memorial) feita por arquiteto ou engenheiro. É aqui que mais processo atrasa: medida errada vira exigência do cartório.\n\n📂 Comece a juntar hoje: IPTU, contas de luz e água, recibos, fotos antigas e declaração dos vizinhos.\n\n💾 Salva pra não perder\n📤 Manda pra quem mora sem escritura\n💬 Dúvida? Comenta aqui que eu respondo\n\n⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #usucapiaourbana #usucapiaoextrajudicial #regularizacaodeimoveis #escritura #imovelregularizado #casapropria #arquiteto #direitoimobiliario #documentacaodeimovel",
+  "estilo": "criador.mjs (referência @copfybr)"
 }
