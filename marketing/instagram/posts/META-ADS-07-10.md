@@ -39,3 +39,10 @@ Base dos links: `https://raw.githubusercontent.com/allanportopontess/imoveli/cla
 1. Conector Windsor.ai precisa ser reconectado no claude.ai (Configurações → Conectores).
 2. Em 01/10 a conta de anúncios mostrava "Erro no pagamento": se continuar, nada veicula.
 3. Os anúncios entram nos conjuntos existentes e usam o orçamento que já está configurado neles; nenhum orçamento novo é criado.
+
+## Status em 11/10
+- Stories de usucapião e Loja que Vende publicados (media 18347033335252397 e 17906495670579851).
+- Meta Ads reconectado no Windsor; campanhas ProRoi ADV e SEGMENTADO estão ACTIVE (campanha e conjunto), conta ACTIVE.
+- Gasto muito abaixo do orçamento (R$40 e R$88/dia): 06/10 R$3,34 · 07/10 R$0,17 · 08–09/10 R$0 · 10/10 R$19,87 · 11/10 R$0,56. Indica bloqueio de entrega (pagamento, anúncios reprovados/sem anúncio ativo) e não status pausado.
+- LQV Leads (120252208276050286) está PAUSADA.
+- Criação dos anúncios bloqueada: "Write actions are disabled" no Windsor (Settings > API Access).
