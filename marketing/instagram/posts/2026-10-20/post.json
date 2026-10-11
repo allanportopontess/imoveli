@@ -1,48 +1,49 @@
 {
   "data": "2026-10-20",
   "horario": "18:30",
-  "pilar": "arquitetura",
+  "pilar": "venda",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Arquitetura de campo",
+  "kicker": "Teste rápido · Loja que Vende",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Casa de campo: 5 decisões que fazem você querer morar lá",
-      "texto": "O que separa uma casa **gostosa de viver** de uma casa só bonita na foto."
+      "titulo": "Sua loja passa nesse teste de 5 perguntas?",
+      "texto": "Responda **sim ou não**. Cada \"não\" é venda escapando todo dia."
     },
     {
       "numero": "01",
-      "titulo": "Orientação solar antes de tudo",
-      "texto": "Salas e varandas para o **norte** recebem sol no inverno e sombra no verão. É conforto de graça, decidido no primeiro traço."
+      "titulo": "Sua vitrine tem até 3 itens em destaque?",
+      "texto": "Mais que isso, ninguém para na calçada. **Vitrine boa escolhe.**"
     },
     {
       "numero": "02",
-      "titulo": "Varanda profunda, não decorativa",
-      "texto": "Com **2,5 m ou mais** de profundidade, a varanda vira o cômodo mais usado da casa: cabe mesa, rede e conversa."
+      "titulo": "O produto de maior margem está na zona quente?",
+      "texto": "Se ele está no fundo ou no canto, o cliente **nem vê** o que mais te dá lucro."
     },
     {
       "numero": "03",
-      "titulo": "Ventilação cruzada",
-      "texto": "Aberturas em **fachadas opostas** renovam o ar e reduzem o calor sem ar-condicionado."
+      "titulo": "Existe um ponto que obriga o cliente a parar?",
+      "texto": "Uma mesa ou ilha baixa no meio do caminho faz o cliente **olhar e considerar** comprar."
     },
     {
       "numero": "04",
-      "titulo": "Materiais do lugar",
-      "texto": "Pedra, madeira e tijolo da região **envelhecem bem**, custam menos e conversam com a paisagem."
+      "titulo": "Seu produto-foco tem luz dirigida?",
+      "texto": "Luz igual em tudo apaga o que importa. **Destaque é contraste.**"
     },
     {
       "numero": "05",
-      "titulo": "A paisagem entra na casa",
-      "texto": "Janelas enquadrando a vista certa transformam o verde em **parte do projeto**."
+      "titulo": "O caminho da entrada ao caixa é óbvio?",
+      "texto": "Quem não sabe por onde ir, **não compra**. O percurso precisa conduzir."
     },
     {
       "tipo": "cta",
-      "kicker": "E você?",
-      "titulo": "Comenta \"EU MORARIA\" se esse também é o seu sonho",
-      "texto": "Projeto bom é o que faz você **querer ficar**.",
-      "botao": "Salve para o seu projeto"
+      "kicker": "Quantos \"não\" você marcou?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "botao": "Comente VENDA",
+      "texto": "O checklist completo mostra **como corrigir** cada um, sem reforma cara."
     }
   ],
-  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
+  "legenda": "Faz esse teste rápido na sua loja: 5 perguntas, sim ou não. 👀\n\n1️⃣ Sua vitrine tem até 3 itens em destaque?\n2️⃣ O produto de maior margem está na zona quente?\n3️⃣ Existe um ponto que obriga o cliente a parar?\n4️⃣ Seu produto-foco tem luz dirigida?\n5️⃣ O caminho da entrada ao caixa é óbvio?\n\nCada \"não\" é venda escapando todo dia.\n\n💬 Comenta aqui quantos \"não\" você marcou.\n💾 Salva pra refazer o teste depois dos ajustes.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "manychat": "VENDA"
 }
