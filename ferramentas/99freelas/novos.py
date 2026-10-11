@@ -16,6 +16,8 @@ SUBCAT_RENDER = 'Modelagem 3D & CAD'
 RENDER_SIM = ('render', 'maquete', 'fachada', 'interior', 'ambiente', 'arquitet', 'imagem 3d', 'imagens 3d', 'perspectiva', 'sketchup', 'lumion', 'reforma', 'casa', 'loja')
 RENDER_NAO = ('impressão 3d', 'impressao 3d', 'stl', 'peça', 'peca', 'carro', 'mecânic', 'industrial', 'resina', 'pcb', 'móveis planejados', 'promob', 'civil 3d', 'rodovi', 'bim', 'revit', 'impermeabiliza')
 EXCLUIR = ('detalhamento', 'executivo', 'promob', 'cortecloud', 'marcenaria', 'móveis planejados', 'regulariza')
+# Na descrição, só o que é claramente fora do perfil ("executivo, se disponível" ou "marcenaria" num projeto de interiores não descartam)
+EXCLUIR_DESC = ('promob', 'cortecloud', 'móveis planejados', 'archicad')
 
 
 def get(url):
@@ -95,7 +97,7 @@ def main():
 
     relevantes = [detalhar(c) for c in novos if (c['subcategoria'] in SUBCATS or c['subcategoria'] == SUBCAT_RENDER or c.get('consultoria'))
                   and not any(x in c['titulo'].lower() for x in EXCLUIR)]
-    relevantes = [c for c in relevantes if not any(x in c['descricao'].lower() for x in EXCLUIR)]
+    relevantes = [c for c in relevantes if not any(x in c['descricao'].lower() for x in EXCLUIR_DESC)]
     relevantes = [c for c in relevantes if not c.get('consultoria') or c['subcategoria'] in SUBCATS or (
         not any(x in c['subcategoria'] for x in CONSULT_SUBCAT_NAO) and
         any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in CONSULT_SIM)
