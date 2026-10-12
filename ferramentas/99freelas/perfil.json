@@ -1,6 +1,35 @@
 {
-  "nome": "Allan Porto",
-  "cidade": "Caruaru/Recife - PE",
-  "vagas_aceitas": "remotas ou presenciais/hibridas em Pernambuco",
-  "pretensao_salarial_minima": 5000
+ "nome": "Allan Porto",
+ "cidade": "Caruaru/Recife - PE",
+ "vagas_aceitas": "remotas ou presenciais/hibridas em Pernambuco",
+ "pretensao_salarial_minima": 5000,
+ "titulo": "Arquiteto e Urbanista — CAU-PE A166156-6",
+ "formacao": [
+  "Bacharel em Arquitetura e Urbanismo — UNIFAVIP DeVry (2016)",
+  "Pós-graduação em Arquitetura Comercial — Master em Retail Design — IPOG"
+ ],
+ "cursos": [
+  "Design Centrado no Usuário — PUCRS (2025)",
+  "Processos de UX e UI Design — PUCRS (2025)",
+  "Análise e Gerenciamento de Cidades — SEURB (2012)",
+  "Georreferenciamento Google Earth (2016)",
+  "Foresight — Cidades Inteligentes — CESAR School (2022)",
+  "Gestão de Projetos Arquitetônicos"
+ ],
+ "experiencia": [
+  "Gerente de Projetos Arquitetônicos — URB Caruaru (2010–2014)",
+  "Gestor de Obras Comerciais — Athena Engenharia (2017)",
+  "Arquiteto e Urbanista Sênior — Layout Arquitetura e Urbanismo (2017–2022)",
+  "Diretor de Expansão e Novos Negócios — Porto Office Coworking"
+ ],
+ "softwares": [
+  "AutoCAD (expert)",
+  "SketchUp (expert)",
+  "Layout",
+  "Revit (básico)",
+  "Photoshop",
+  "IA generativa para renderizações",
+  "Claude Code / GitHub"
+ ],
+ "resumo": "Arquiteto e urbanista com experiência no setor público e privado (construtoras, escritórios e agência de publicidade). Especialista em arquitetura comercial, integrando marketing, UX e UI Design para criar espaços estratégicos e funcionais."
 }
