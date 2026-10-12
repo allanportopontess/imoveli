@@ -1,44 +1,48 @@
 {
   "data": "2026-10-25",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Provador que vende",
+  "kicker": "Arquitetura da vida real",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "O provador é onde a venda se decide",
-      "texto": "E quase toda loja trata ele como **depósito com cortina**."
+      "titulo": "Cozinha que funciona: 5 medidas que ninguém te conta",
+      "texto": "Bonita todo mundo quer. **Prática** é questão de medida."
     },
     {
       "numero": "01",
-      "titulo": "Luz frontal e quente",
-      "texto": "Luz só de cima marca olheira e sombra. Luz **frontal, 2700–3000 K**, deixa o cliente bonito no espelho."
+      "titulo": "Triângulo de trabalho",
+      "texto": "Pia, fogão e geladeira formando um triângulo com **4 a 7 m** de soma dos lados. Menos que isso aperta; mais, cansa."
     },
     {
       "numero": "02",
-      "titulo": "Espaço mínimo de 1,00 x 1,20 m",
-      "texto": "Provador apertado faz o cliente **desistir de experimentar**. E quem não experimenta, não compra."
+      "titulo": "Bancada a 90 cm",
+      "texto": "É a altura confortável para a maioria. Para quem é muito alto, **95 cm** já muda tudo."
     },
     {
       "numero": "03",
-      "titulo": "Gancho, banco e espelho",
-      "texto": "Lugar para pendurar a roupa, sentar e se ver de corpo inteiro. **Conforto prolonga a visita.**"
+      "titulo": "Circulação de 1,20 m",
+      "texto": "Entre bancadas paralelas ou ilha, **1,20 m** permite abrir portas e passar duas pessoas."
     },
     {
       "numero": "04",
-      "titulo": "Caminho pelas araras",
-      "texto": "O trajeto até o provador deve passar pelos produtos: o cliente **vê de novo** antes de pagar."
+      "titulo": "Área livre ao lado do fogão",
+      "texto": "Deixe pelo menos **40 cm** de bancada de cada lado para apoiar panelas com segurança."
+    },
+    {
+      "numero": "05",
+      "titulo": "Luz sobre a bancada",
+      "texto": "Luz só no teto faz sombra onde você corta. Use **fita ou spots sob o armário**."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer o diagnóstico completo?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "botao": "Comente VENDA",
-      "texto": "Provador e fluxo estão entre os **5 erros de layout** do checklist."
+      "kicker": "Sua cozinha passa?",
+      "titulo": "Comenta quantas dessas a sua cozinha tem",
+      "texto": "Medida certa vale mais que **acabamento caro**.",
+      "botao": "Salve antes da reforma"
     }
   ],
-  "legenda": "O provador é o lugar onde a venda se decide, e quase toda loja trata como depósito com cortina. 👗\n\n1️⃣ Luz frontal e quente (2700–3000 K)\n2️⃣ Espaço mínimo de 1,00 x 1,20 m\n3️⃣ Gancho, banco e espelho de corpo inteiro\n4️⃣ Caminho até o provador passando pelas araras\n\n💾 Salva pra revisar o provador da sua loja.\n💬 Comenta: qual desses o seu provador já tem?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Cozinha bonita todo mundo quer. Cozinha que funciona é questão de medida. 📏🍳\n\n1️⃣ Triângulo pia-fogão-geladeira entre 4 e 7 m\n2️⃣ Bancada a 90 cm (95 cm para quem é alto)\n3️⃣ Circulação de 1,20 m entre bancadas\n4️⃣ 40 cm livres de cada lado do fogão\n5️⃣ Luz direta sobre a bancada\n\n💬 Comenta quantas dessas a sua cozinha tem.\n💾 Salva antes da reforma.\n📤 Manda pra quem está montando a cozinha.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
 }

@@ -1,48 +1,44 @@
 {
   "data": "2026-10-23",
   "horario": "18:30",
-  "pilar": "usucapiao",
+  "pilar": "varejo",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Usucapião · guia rápido",
+  "kicker": "Zoneamento comercial",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "As 5 modalidades de usucapião e seus prazos",
-      "texto": "Antes de orçar o serviço, saiba **qual caso** você tem nas mãos."
+      "titulo": "Zona quente x zona fria: o mapa invisível da sua loja",
+      "texto": "Todo cliente percorre sua loja do mesmo jeito. **Use isso a seu favor.**"
     },
     {
       "numero": "01",
-      "titulo": "Extraordinária: 15 anos",
-      "texto": "Posse mansa e contínua, **sem precisar de justo título**. Cai para **10 anos** se for moradia ou houver obras produtivas. (CC, art. 1.238)"
+      "titulo": "Zona quente",
+      "texto": "Os primeiros metros depois da entrada e o **lado direito** do percurso. É onde o olhar chega primeiro: lugar de **lançamento e maior margem**."
     },
     {
       "numero": "02",
-      "titulo": "Ordinária: 10 anos",
-      "texto": "Exige **justo título e boa-fé**. Pode cair para **5 anos** em casos específicos de aquisição onerosa. (CC, art. 1.242)"
+      "titulo": "Zona fria",
+      "texto": "Fundos e cantos. Pouca gente chega lá **sem motivo**."
     },
     {
       "numero": "03",
-      "titulo": "Especial urbana: 5 anos",
-      "texto": "Imóvel urbano de até **250 m²**, usado como moradia, por quem **não tem outro imóvel**. (CF, art. 183)"
+      "titulo": "O truque: produto-ímã no fundo",
+      "texto": "Coloque na zona fria o item que o cliente **já veio buscar**. Para chegar nele, ele passa por toda a loja."
     },
     {
       "numero": "04",
-      "titulo": "Especial rural: 5 anos",
-      "texto": "Área rural de até **50 hectares**, produtiva e usada como moradia. (CF, art. 191)"
-    },
-    {
-      "numero": "05",
-      "titulo": "Familiar: 2 anos",
-      "texto": "Imóvel urbano de até **250 m²** dividido com ex-cônjuge que **abandonou o lar**. (CC, art. 1.240-A)"
+      "titulo": "Reavalie a cada estação",
+      "texto": "Mudou a coleção, muda o mapa. **Zoneamento é rotina**, não projeto de uma vez só."
     },
     {
       "tipo": "cta",
-      "kicker": "Em todas elas",
-      "titulo": "A parte técnica é do arquiteto ou engenheiro",
-      "texto": "Planta, memorial e ART/RRT. Conteúdo educativo: cada caso deve ser analisado com **advogado**.",
-      "botao": "Salve este guia"
+      "kicker": "Quer o diagnóstico completo?",
+      "titulo": "Comente VENDA e receba o checklist grátis no direct",
+      "botao": "Comente VENDA",
+      "texto": "O **produto escondido na zona fria** é o erro nº 2 do checklist."
     }
   ],
-  "legenda": "Antes de orçar um serviço de usucapião, identifique a modalidade. 📋\n\n1️⃣ Extraordinária: 15 anos (10 se moradia ou obras), sem justo título\n2️⃣ Ordinária: 10 anos, com justo título e boa-fé\n3️⃣ Especial urbana: 5 anos, até 250 m², moradia, sem outro imóvel\n4️⃣ Especial rural: 5 anos, até 50 ha, produtiva e moradia\n5️⃣ Familiar: 2 anos, até 250 m², abandono do lar pelo ex-cônjuge\n\nEm todas, a documentação técnica (planta, memorial descritivo e ART/RRT) é do arquiteto ou engenheiro.\n\n💾 Salva pra consultar no próximo atendimento.\n📤 Manda pra um colega que atua com regularização.\n\nConteúdo educativo. Cada caso deve ser analisado com advogado e profissional habilitado.\n\n#usucapiao #usucapiaoextrajudicial #regularizacaodeimoveis #arquiteto #engenheirocivil #imoveis #direitoimobiliario #escritura"
+  "legenda": "Sua loja tem um mapa invisível, e ele decide o que vende. 🗺️\n\n🔥 Zona quente: entrada e lado direito → lançamentos e maior margem\n🧊 Zona fria: fundos e cantos → produto-ímã que o cliente já veio buscar\n\nAssim o cliente atravessa a loja inteira e passa por tudo antes de chegar no que procura.\n\n💾 Salva pra reorganizar sua loja.\n💬 Comenta: qual produto está escondido na sua zona fria?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
+  "manychat": "VENDA"
 }
