@@ -67,8 +67,10 @@ def detalhar(card):
     plano = texto(re.sub(r'<(script|style).*?</\1>', '', t, flags=re.S))
     campo = lambda k, fim: (re.search(k + r':\s*(.*?)\s*' + fim, plano) or [None, '?'])[1]
     d = re.search(r'class="(?:item-text )?project-description[^"]*"[^>]*>(.*?)</div>', t, re.S)
+    ex = re.search(r'title="Projeto Exclusivo[^"]*em ([^".]+)', t)
     card.update(orcamento=campo('Orçamento', 'Nível'), propostas=campo('Propostas', 'Interessados'),
-                descricao=texto(d.group(1)).split('">')[-1] if d else '')
+                descricao=texto(d.group(1)).split('">')[-1] if d else '',
+                exclusivo=ex.group(1) if ex else '')
     return card
 
 
@@ -107,7 +109,8 @@ def main():
         and not any(x in (c['titulo'] + ' ' + c['descricao']).lower() for x in RENDER_NAO))]
     print(f'{len(cards)} projetos lidos | {len(novos)} novos | {len(relevantes)} no perfil')
     for c in relevantes:
-        print(f"\n### {c['titulo']}\n{c['subcategoria']} | Orçamento: {c['orcamento']} | Propostas: {c['propostas']}\n{c['link']}\n{c['descricao'][:800]}")
+        print(f"\n### {c['titulo']}\n{c['subcategoria']} | Orçamento: {c['orcamento']} | Propostas: {c['propostas']}"
+              f"{' | EXCLUSIVO PREMIUM (livre em ' + c['exclusivo'] + ')' if c.get('exclusivo') else ' | LIVRE'}\n{c['link']}\n{c['descricao'][:800]}")
 
 
 if __name__ == '__main__':
