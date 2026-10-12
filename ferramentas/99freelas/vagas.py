@@ -15,7 +15,7 @@ NAO = ('software', 'soluç', 'solucoes', 'soluções', 'dados', 'data ', 'cloud'
        'java', 'salesforce', 'sap', 'ti ', 'tecnologia', 'segurança da informação', 'infraestrutura de ti',
        'enterprise', 'integração', 'integracao', 'rede', 'network', 'microsoft', 'aws', 'azure',
        'detalhamento', 'executivo', 'estágio', 'estagio', 'estagiári', 'trainee', 'jovem aprendiz',
-       'aprendiz', 'machine learning', ' ia ', 'genai',
+       'aprendiz', 'jovem', 'bolsista', 'est\u00e1gio', 'machine learning', ' ia ', 'genai',
        'mainframe', 'oracle', 'protheus', 'totvs', 'backend', 'frontend', 'cyber', 'cibern', 'automação',
        'corporativo', 'aplicaç', 'tosca', 'engineer', 'especialista de arquitetura ii', 'arquiteto(a) de ia',
        'assistente de vendas', 'assistente de visual', 'assistente visual', 'líder de visual', 'lider de visual',
