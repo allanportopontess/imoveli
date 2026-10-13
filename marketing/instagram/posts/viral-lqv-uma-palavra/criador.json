@@ -9,13 +9,15 @@
   "slides": [
     {
       "tipo": "capa",
-      "kicker": "Trend · responda em uma palavra",
+      "kicker": "a nova trend: responda em uma palavra",
       "titulo": "Pedi pra IA descrever\n*lojas que não vendem*\nem UMA palavra.",
       "tam": 88,
       "foco_y": 75,
       "legenda": "a 3ª dói 👀👉",
-      "legenda_y": 110,
-      "foto": "img/allan-selfie-1.jpg"
+      "legenda_y": 150,
+      "foto": "img/allan-selfie-1.jpg",
+      "titulo_imp": "Pedi pra IA descrever\n*lojas que não vendem*\nem *uma* palavra",
+      "tam_imp": 92
     },
     {
       "tipo": "chat",
@@ -65,7 +67,11 @@
         "comenta **VENDA** e recebe o checklist grátis",
         "📤 manda pro lojista que precisa ver isso"
       ],
-      "foto": "img/allan-selfie-3.jpg"
+      "foto": "img/allan-selfie-3.jpg",
+      "kicker": "agora é a sua vez",
+      "titulo_imp": "Sua loja em\n*uma palavra?*",
+      "tam_imp": 110,
+      "caixas_y": 110
     }
   ]
 }
