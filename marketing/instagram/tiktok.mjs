@@ -63,6 +63,40 @@ ${s.legenda ? `<div style="position:absolute;left:0;right:0;bottom:${s.legenda_y
  <div class="imp" style="font-size:${s.tam_imp || 92}px;margin-top:10px">${esc(s.titulo_imp || s.titulo)}</div></div>
 <div style="position:absolute;left:56px;right:56px;bottom:${s.caixas_y ?? 110}px;display:flex;flex-direction:column;gap:14px;align-items:center">
  ${s.caixas.map((t, i) => `<div class="tt" style="font-size:36px;transform:rotate(${i % 2 ? 1.5 : -1.5}deg)">${esc(t)}</div>`).join('')}</div>`,
+
+  // Foto em tela cheia com selo ERRO/SOLUÇÃO, título Impact numa faixa creme e caixas brancas estilo TikTok
+  antes: (s) => R._foto(s, '#FF3B30', s.selo || '❌ O ERRO', 'grayscale(.25) contrast(1.05) brightness(.95)'),
+  depois: (s) => R._foto(s, '#12B886', s.selo || '✅ A SOLUÇÃO', 'saturate(1.08)'),
+  _foto: (s, cor, selo, filtro) => `<div style="position:absolute;inset:0;background:url(../${s.img}) ${s.pos || 'center'}/cover;filter:${filtro}"></div>
+<div style="position:absolute;inset:0 0 auto 0;height:360px;background:linear-gradient(180deg,rgba(251,246,238,.97) 0%,rgba(251,246,238,.92) 62%,rgba(251,246,238,0) 100%)"></div>
+<div style="position:absolute;top:56px;left:56px;right:56px">
+ <div style="display:inline-block;background:${cor};color:#fff;font:800 28px Inter;letter-spacing:.06em;padding:10px 18px;border-radius:10px;transform:rotate(-2deg)">${esc(selo)}</div>
+ <div class="imp" style="font-size:${s.tam_imp || 84}px;margin-top:18px;color:#141414">${esc(s.titulo_imp)}</div></div>
+<div style="position:absolute;left:56px;right:56px;bottom:${s.caixas_y ?? 110}px;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+ ${s.caixas.map((t, i) => `<div class="tt" style="font-size:34px;transform:rotate(${i % 2 ? 1 : -1}deg)">${esc(t)}</div>`).join('')}</div>
+${s.credito ? `<div class="ser" style="position:absolute;right:56px;bottom:${(s.caixas_y ?? 110) + 10 + s.caixas.length * 74}px;font-size:30px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.7)">${esc(s.credito)}</div>` : ''}`,
+
+  // Final: foto real do Allan + lista numerada das soluções + CTA
+  solucoes: (s) => `<div style="position:absolute;left:40px;right:40px;top:40px;height:${s.foto_h || 560}px;border-radius:36px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(0,0,0,.35)">
+  <div style="position:absolute;inset:0;background:url(${foto(s)}) ${ROSTO.x}% ${s.foco_y ?? 40}%/cover"></div>
+  <div style="position:absolute;left:28px;bottom:24px" class="tt"><span style="font-size:30px">${esc(s.legenda || '')}</span></div></div>
+<div style="position:absolute;top:${(s.foto_h || 560) + 76}px;left:56px;right:56px">
+ <div class="imp" style="font-size:${s.tam_imp || 64}px">${esc(s.titulo_imp)}</div>
+ <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px">
+ ${s.itens.map((t, i) => `<div style="display:flex;align-items:center;gap:18px;background:#fff;border:3px solid #141414;border-radius:16px;padding:16px 22px;box-shadow:5px 5px 0 #141414">
+  <span class="imp" style="font-size:44px;color:${CORES[i % CORES.length]};min-width:34px">${i + 1}</span><span style="font-family:'Instrument Serif',serif;font-size:36px;line-height:1.15">${esc(t)}</span></div>`).join('')}
+ </div>
+ ${s.cta ? `<div style="margin-top:22px;text-align:center"><div class="tt" style="font-size:32px;background:#141414;color:#fff">${esc(s.cta)}</div></div>` : ''}</div>`,
+
+  // Capa dividida ANTES | DEPOIS com título Impact no topo
+  split: (s) => `<div style="position:absolute;top:400px;left:40px;right:40px;bottom:96px;display:flex;gap:12px">
+ ${[[s.img_a, '#FF3B30', 'ANTES', 'grayscale(.25) brightness(.95)'], [s.img_b, '#12B886', 'DEPOIS', 'saturate(1.08)']].map(([im, cor, t, f]) => `<div style="flex:1;position:relative;border-radius:28px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(0,0,0,.4)">
+  <div style="position:absolute;inset:0;background:url(../${im}) center/cover;filter:${f}"></div>
+  <div class="imp" style="position:absolute;top:18px;left:18px;background:${cor};color:#fff;font-size:44px;padding:8px 18px;border-radius:12px">${t}</div></div>`).join('')}</div>
+<div style="position:absolute;top:56px;left:56px;right:56px;text-align:center">
+ <div class="ser" style="font-size:38px;color:#6b6257">${esc(s.kicker || '')}</div>
+ <div class="imp" style="font-size:${s.tam_imp || 84}px;margin-top:10px">${esc(s.titulo_imp)}</div></div>
+${s.legenda ? `<div style="position:absolute;left:0;right:0;bottom:${s.legenda_y ?? 140}px;text-align:center"><div class="tt" style="font-size:38px;transform:rotate(-2deg)">${esc(s.legenda)}</div></div>` : ''}`,
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
