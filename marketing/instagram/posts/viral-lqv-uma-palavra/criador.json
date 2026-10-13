@@ -1,9 +1,9 @@
 {
   "referencia": "Trend 'Answer in One Word' (out/2026) + estilo @copfybr",
-  "foto": "img/allan-escritorio.jpg",
+  "foto": "img/allan-selfie-2.jpg",
   "rosto": {
-    "x": 50,
-    "y": 52
+    "x": 45,
+    "y": 55
   },
   "acento": "#C2834F",
   "slides": [
@@ -12,9 +12,10 @@
       "kicker": "Trend · responda em uma palavra",
       "titulo": "Pedi pra IA descrever\n*lojas que não vendem*\nem UMA palavra.",
       "tam": 88,
-      "foco_y": 80,
+      "foco_y": 75,
       "legenda": "a 3ª dói 👀👉",
-      "legenda_y": 110
+      "legenda_y": 110,
+      "foto": "img/allan-selfie-1.jpg"
     },
     {
       "tipo": "chat",
@@ -57,13 +58,14 @@
     {
       "tipo": "close",
       "titulo": "Agora é sua vez:\nsua loja em *uma palavra*.",
-      "zoom": 125,
-      "foco_y": 60,
+      "zoom": 110,
+      "foco_y": 55,
       "caixas": [
         "👇 responde aqui nos comentários",
         "comenta **VENDA** e recebe o checklist grátis",
         "📤 manda pro lojista que precisa ver isso"
-      ]
+      ],
+      "foto": "img/allan-selfie-3.jpg"
     }
   ]
 }

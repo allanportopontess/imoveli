@@ -43,7 +43,7 @@ const page = (inner, i, n, extra = '') => `<!doctype html><html><head><meta char
 
 const R = {
   // Foto em tela cheia + título no topo + legenda no meio-baixo
-  capa: (s) => `<div class="bg" style="background-image:url(${FOTO});background-position:${ROSTO.x}% ${s.foco_y ?? 70}%"></div>
+  capa: (s) => `<div class="bg" style="background-image:url(${s.foto ? "../" + s.foto : FOTO});background-position:${ROSTO.x}% ${s.foco_y ?? 70}%"></div>
 <div class="sh" style="background:linear-gradient(180deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 30%,rgba(0,0,0,0) 52%,rgba(0,0,0,0) 72%,rgba(0,0,0,.55) 100%)"></div>
 <div style="position:absolute;top:84px;left:60px;right:60px;text-align:center">
  <div class="kick">${esc(s.kicker)}</div>
@@ -66,7 +66,7 @@ ${s.legenda ? `<div class="sub" style="position:absolute;left:60px;right:60px;bo
  ${s.rodape ? `<div style="font:400 26px Inter;color:#8a8a8a;margin-top:36px">${esc(s.rodape)}</div>` : ''}</div>`,
 
   // Rosto em close + título serifado + legendas em caixa preta
-  close: (s) => `<div class="bg" style="background-image:url(${FOTO});background-size:${s.zoom || 150}%;background-position:${ROSTO.x}% ${s.foco_y ?? 58}%"></div>
+  close: (s) => `<div class="bg" style="background-image:url(${s.foto ? "../" + s.foto : FOTO});background-size:${s.zoom || 150}%;background-position:${ROSTO.x}% ${s.foco_y ?? 58}%"></div>
 <div class="sh" style="background:linear-gradient(180deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 34%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.75) 100%)"></div>
 <div style="position:absolute;top:90px;left:60px;right:60px;text-align:center">
  <div class="ser" style="font-size:${s.tam || 96}px">${esc(s.titulo)}</div><div class="bar"></div></div>
@@ -93,7 +93,7 @@ ${s.legenda ? `<div class="sub" style="position:absolute;left:60px;right:60px;bo
  <div style="display:inline-block;background:#1f1f1f;border:1px solid #2e2e2e;border-radius:34px 34px 34px 8px;padding:24px 48px 34px">
   <div class="ser" style="font-size:${s.tam || 170}px;line-height:1"><i>${esc(s.resposta)}</i></div></div></div>
 <div style="position:absolute;left:60px;right:60px;top:${s.nota_y || 800}px;background:#151515;border:1px solid #2a2a2a;border-radius:24px;padding:30px 34px">
- <div class="who" style="gap:16px"><div class="av" style="width:72px;height:72px"><img src="${FOTO}" style="width:216px;left:${36 - 216 * ROSTO.x / 100}px;top:${36 - 288 * ROSTO.y / 100}px"></div>
+ <div class="who" style="gap:16px"><div class="av" style="width:72px;height:72px"><img src="${FOTO}" style="width:150px;left:${36 - 150 * ROSTO.x / 100}px;top:${36 - 200 * ROSTO.y / 100}px"></div>
  <div style="font:700 24px Inter;color:${AC};letter-spacing:.06em;text-transform:uppercase">tradução do arquiteto</div></div>
  <div style="font:500 32px/1.4 Inter;margin-top:18px;color:#e9e9e9">${esc(s.nota)}</div></div>`
 };
