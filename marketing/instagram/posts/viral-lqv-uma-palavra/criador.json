@@ -1,0 +1,69 @@
+{
+  "referencia": "Trend 'Answer in One Word' (out/2026) + estilo @copfybr",
+  "foto": "img/allan-escritorio.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 52
+  },
+  "acento": "#C2834F",
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "Trend · responda em uma palavra",
+      "titulo": "Pedi pra IA descrever\n*lojas que não vendem*\nem UMA palavra.",
+      "tam": 88,
+      "foco_y": 80,
+      "legenda": "a 3ª dói 👀👉",
+      "legenda_y": 110
+    },
+    {
+      "tipo": "chat",
+      "contador": "1/5",
+      "pergunta": "Vitrine com 15 produtos tentando vender tudo ao mesmo tempo?",
+      "resposta": "Invisível.",
+      "nota": "Olho sem foco não para. Vitrine com **1 história** e 3 peças vende mais que vitrine lotada."
+    },
+    {
+      "tipo": "chat",
+      "contador": "2/5",
+      "pergunta": "Produto que mais dá lucro lá no fundo, sem luz nenhuma?",
+      "resposta": "Escondido.",
+      "nota": "Isso é **zona fria**. Leve o campeão de margem pro caminho do cliente e dê luz de destaque nele."
+    },
+    {
+      "tipo": "chat",
+      "contador": "3/5",
+      "pergunta": "Cliente entra, dá uma volta e fala \"tô só olhando\"?",
+      "resposta": "Perdido.",
+      "tam": 190,
+      "nota": "Não é falta de vontade de comprar. É falta de **caminho**. Layout bom conduz o cliente sem ele perceber."
+    },
+    {
+      "tipo": "chat",
+      "contador": "4/5",
+      "pergunta": "Fila do caixa sem nada pra pegar por impulso?",
+      "resposta": "Desperdício.",
+      "tam": 140,
+      "nota": "A fila é o único momento em que o cliente está **parado olhando**. PDV de impulso aumenta o ticket sem esforço."
+    },
+    {
+      "tipo": "chat",
+      "contador": "5/5",
+      "pergunta": "E a loja que só pensa em reforma cara pra vender mais?",
+      "resposta": "Enganada.",
+      "tam": 160,
+      "nota": "A maioria desses erros se corrige **sem reforma**: mudar produto de lugar, enxugar vitrine, ajustar luz."
+    },
+    {
+      "tipo": "close",
+      "titulo": "Agora é sua vez:\nsua loja em *uma palavra*.",
+      "zoom": 125,
+      "foco_y": 60,
+      "caixas": [
+        "👇 responde aqui nos comentários",
+        "comenta **VENDA** e recebe o checklist grátis",
+        "📤 manda pro lojista que precisa ver isso"
+      ]
+    }
+  ]
+}

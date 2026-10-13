@@ -82,6 +82,20 @@ ${s.legenda ? `<div class="sub" style="position:absolute;left:60px;right:60px;bo
  ${s.itens.map((t, k) => `<div style="display:flex;align-items:center;gap:24px;background:#1b1b1b;border:1px solid #2c2c2c;border-radius:18px;padding:24px 28px;font:600 36px Inter">
   <span style="flex:none;width:52px;height:52px;border-radius:12px;background:${AC};color:#111;font:800 28px Inter;display:flex;align-items:center;justify-content:center">${k + 1}</span>${esc(t)}</div>`).join('')}
  </div>${s.nota ? `<div style="font:400 26px/1.4 Inter;color:#8a8a8a;margin-top:40px">${esc(s.nota)}</div>` : ''}</div>`,
+  // Conversa com IA (trend "responda em uma palavra"): pergunta, resposta de 1 palavra, nota do Allan
+  chat: (s) => `<div style="position:absolute;inset:0;background:radial-gradient(80% 50% at 50% 30%,#1d1d1d 0%,#0e0e0e 75%)"></div>
+<div style="position:absolute;top:70px;left:60px;right:60px;display:flex;align-items:center;justify-content:space-between">
+ <div style="display:flex;align-items:center;gap:14px"><div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,${AC},#6d4a2c);display:flex;align-items:center;justify-content:center;font-size:28px">✦</div>
+ <div><div style="font:800 26px Inter">IA</div><div style="font:400 20px Inter;color:#8a8a8a">responda em uma palavra</div></div></div>
+ <div style="font:700 20px Inter;letter-spacing:.14em;color:#8a8a8a">${esc(s.contador || '')}</div></div>
+<div style="position:absolute;top:220px;right:60px;max-width:760px;background:${AC};color:#fff;border-radius:34px 34px 8px 34px;padding:30px 36px;font:600 38px/1.3 Inter">${esc(s.pergunta)}</div>
+<div style="position:absolute;top:${s.resposta_y || 470}px;left:60px;right:60px">
+ <div style="display:inline-block;background:#1f1f1f;border:1px solid #2e2e2e;border-radius:34px 34px 34px 8px;padding:24px 48px 34px">
+  <div class="ser" style="font-size:${s.tam || 170}px;line-height:1"><i>${esc(s.resposta)}</i></div></div></div>
+<div style="position:absolute;left:60px;right:60px;top:${s.nota_y || 800}px;background:#151515;border:1px solid #2a2a2a;border-radius:24px;padding:30px 34px">
+ <div class="who" style="gap:16px"><div class="av" style="width:72px;height:72px"><img src="${FOTO}" style="width:216px;left:${36 - 216 * ROSTO.x / 100}px;top:${36 - 288 * ROSTO.y / 100}px"></div>
+ <div style="font:700 24px Inter;color:${AC};letter-spacing:.06em;text-transform:uppercase">tradução do arquiteto</div></div>
+ <div style="font:500 32px/1.4 Inter;margin-top:18px;color:#e9e9e9">${esc(s.nota)}</div></div>`
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
