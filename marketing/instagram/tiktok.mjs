@@ -97,6 +97,16 @@ ${s.credito ? `<div class="ser" style="position:absolute;right:56px;bottom:${(s.
  <div class="ser" style="font-size:38px;color:#6b6257">${esc(s.kicker || '')}</div>
  <div class="imp" style="font-size:${s.tam_imp || 84}px;margin-top:10px">${esc(s.titulo_imp)}</div></div>
 ${s.legenda ? `<div style="position:absolute;left:0;right:0;bottom:${s.legenda_y ?? 140}px;text-align:center"><div class="tt" style="font-size:38px;transform:rotate(-2deg)">${esc(s.legenda)}</div></div>` : ''}`,
+
+  // Texto: título Impact + caixas grandes em cards brancos com borda preta
+  texto: (s) => `<div style="position:absolute;top:70px;left:56px;right:56px">
+ ${s.selo ? `<div style="display:inline-block;background:#141414;color:#fff;font:800 26px Inter;letter-spacing:.06em;padding:10px 18px;border-radius:10px;transform:rotate(-2deg)">${esc(s.selo)}</div>` : ''}
+ <div class="imp" style="font-size:${s.tam_imp || 96}px;margin-top:22px">${esc(s.titulo_imp)}</div>
+ <div style="display:flex;flex-direction:column;gap:30px;margin-top:60px">
+ ${s.itens.map((t, i) => `<div style="background:#fff;border:3px solid #141414;border-radius:22px;padding:34px 32px;box-shadow:8px 8px 0 #141414;transform:rotate(${i % 2 ? .6 : -.6}deg)">
+  <span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1.15">${esc(t)}</span></div>`).join('')}
+ </div>
+ ${s.nota ? `<div class="ser" style="font-size:30px;color:#6b6257;margin-top:30px">${esc(s.nota)}</div>` : ''}</div>`,
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));

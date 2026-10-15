@@ -1,0 +1,93 @@
+{
+  "foto": "img/allan-selfie-1.jpg",
+  "rosto": {
+    "x": 46,
+    "y": 52
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "o Senado aprovou o fim da 6x1",
+      "titulo_imp": "Acabou a *6x1*.\nSua loja está *pronta*?",
+      "tam_imp": 100,
+      "foco_y": 62,
+      "legenda": "quem se adiantar sai na frente 👀👉"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📰 O QUE MUDA",
+      "titulo_imp": "Menos horas,\n*mesma loja* aberta",
+      "itens": [
+        "Jornada cai aos poucos até **40h** por semana",
+        "**2 folgas**, uma de preferência no domingo",
+        "1ª etapa já em **dezembro**: de 44h para 42h"
+      ],
+      "nota": "segundo a PEC aprovada no Senado em 14/10",
+      "tam_imp": 118
+    },
+    {
+      "tipo": "texto",
+      "selo": "🏪 NA PRÁTICA",
+      "titulo_imp": "O que isso faz\ncom a *sua loja*",
+      "itens": [
+        "Menos horas de vendedor no salão",
+        "Cliente esperando atendimento = **venda perdida**",
+        "Cada hora da equipe precisa **render mais**"
+      ],
+      "tam_imp": 118,
+      "nota": "💡 a loja precisa vender mesmo quando o vendedor não está do lado"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-fachada.jpg",
+      "selo": "✅ SAÍDA 1",
+      "titulo_imp": "Vitrine que *vende sozinha*",
+      "caixas": [
+        "1 tema, poucas peças, luz no foco",
+        "o cliente entra já sabendo o que quer",
+        "menos explicação no balcão"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-provador.jpg",
+      "selo": "✅ SAÍDA 2",
+      "titulo_imp": "Produto que *se explica*",
+      "caixas": [
+        "preço e tamanho à vista",
+        "setores claros, sem labirinto",
+        "o cliente acha sem perguntar"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "✅ SAÍDA 3",
+      "titulo_imp": "Ilhas de *autoatendimento*",
+      "caixas": [
+        "o cliente pega, toca e decide",
+        "kits e combos prontos",
+        "o vendedor só fecha a venda"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "solucoes",
+      "foto": "img/allan-selfie-3.jpg",
+      "foco_y": 50,
+      "foto_h": 560,
+      "legenda": "Allan Porto · arquiteto de varejo",
+      "titulo_imp": "Prepare a loja *antes de dezembro*:",
+      "tam_imp": 58,
+      "itens": [
+        "Vitrine com 1 foco",
+        "Preço e setor à vista",
+        "Ilhas de autoatendimento",
+        "Equipe só no que fecha venda"
+      ],
+      "cta": "comenta VENDA e recebe o checklist grátis 👇"
+    }
+  ]
+}
