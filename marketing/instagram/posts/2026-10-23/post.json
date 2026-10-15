@@ -1,44 +1,48 @@
 {
   "data": "2026-10-23",
   "horario": "18:30",
-  "pilar": "varejo",
+  "pilar": "arquitetura",
   "formato": "carrossel",
   "status": "aguardando_aprovacao",
-  "kicker": "Zoneamento comercial",
+  "kicker": "Arquitetura de campo",
   "slides": [
     {
       "tipo": "capa",
-      "titulo": "Zona quente x zona fria: o mapa invisível da sua loja",
-      "texto": "Todo cliente percorre sua loja do mesmo jeito. **Use isso a seu favor.**"
+      "titulo": "Casa de campo: 5 decisões que fazem você querer morar lá",
+      "texto": "O que separa uma casa **gostosa de viver** de uma casa só bonita na foto."
     },
     {
       "numero": "01",
-      "titulo": "Zona quente",
-      "texto": "Os primeiros metros depois da entrada e o **lado direito** do percurso. É onde o olhar chega primeiro: lugar de **lançamento e maior margem**."
+      "titulo": "Orientação solar antes de tudo",
+      "texto": "Salas e varandas para o **norte** recebem sol no inverno e sombra no verão. É conforto de graça, decidido no primeiro traço."
     },
     {
       "numero": "02",
-      "titulo": "Zona fria",
-      "texto": "Fundos e cantos. Pouca gente chega lá **sem motivo**."
+      "titulo": "Varanda profunda, não decorativa",
+      "texto": "Com **2,5 m ou mais** de profundidade, a varanda vira o cômodo mais usado da casa: cabe mesa, rede e conversa."
     },
     {
       "numero": "03",
-      "titulo": "O truque: produto-ímã no fundo",
-      "texto": "Coloque na zona fria o item que o cliente **já veio buscar**. Para chegar nele, ele passa por toda a loja."
+      "titulo": "Ventilação cruzada",
+      "texto": "Aberturas em **fachadas opostas** renovam o ar e reduzem o calor sem ar-condicionado."
     },
     {
       "numero": "04",
-      "titulo": "Reavalie a cada estação",
-      "texto": "Mudou a coleção, muda o mapa. **Zoneamento é rotina**, não projeto de uma vez só."
+      "titulo": "Materiais do lugar",
+      "texto": "Pedra, madeira e tijolo da região **envelhecem bem**, custam menos e conversam com a paisagem."
+    },
+    {
+      "numero": "05",
+      "titulo": "A paisagem entra na casa",
+      "texto": "Janelas enquadrando a vista certa transformam o verde em **parte do projeto**."
     },
     {
       "tipo": "cta",
-      "kicker": "Quer o diagnóstico completo?",
-      "titulo": "Comente VENDA e receba o checklist grátis no direct",
-      "botao": "Comente VENDA",
-      "texto": "O **produto escondido na zona fria** é o erro nº 2 do checklist."
+      "kicker": "E você?",
+      "titulo": "Comenta \"EU MORARIA\" se esse também é o seu sonho",
+      "texto": "Projeto bom é o que faz você **querer ficar**.",
+      "botao": "Salve para o seu projeto"
     }
   ],
-  "legenda": "Sua loja tem um mapa invisível, e ele decide o que vende. 🗺️\n\n🔥 Zona quente: entrada e lado direito → lançamentos e maior margem\n🧊 Zona fria: fundos e cantos → produto-ímã que o cliente já veio buscar\n\nAssim o cliente atravessa a loja inteira e passa por tudo antes de chegar no que procura.\n\n💾 Salva pra reorganizar sua loja.\n💬 Comenta: qual produto está escondido na sua zona fria?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
 }
