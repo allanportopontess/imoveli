@@ -10,8 +10,9 @@
       "kicker": "o Senado aprovou o fim da 6x1 ontem",
       "titulo_imp": "O fim da *6x1* vai mudar\na *arquitetura*",
       "tam_imp": 92,
-      "foco_y": 62,
-      "legenda": "e quase ninguém está falando disso 👀👉"
+      "foco_y": 50,
+      "legenda": "e quase ninguém está falando disso 👀👉",
+      "foto": "img/depois-caso-luz.jpg"
     },
     {
       "tipo": "texto",
