@@ -1,0 +1,102 @@
+{
+ "slides": [
+  {
+   "tipo": "tabela",
+   "titulo": "Os papéis que provam",
+   "sub": "que o imóvel é seu",
+   "ilu": "docs:ok",
+   "col": "Junte:",
+   "itens": [
+    "IPTU",
+    "contas de luz e água",
+    "correspondências",
+    "fotos antigas",
+    "declaração de vizinhos",
+    "recibos de reforma",
+    "contrato de compra"
+   ],
+   "item_tam": 32,
+   "selo": "conteúdo educativo:\ncada caso precisa de advogado",
+   "tam": 70
+  },
+  {
+   "tipo": "duplo",
+   "blocos": [
+    {
+     "titulo": "Prova de tempo",
+     "pilula": "IPTU e contas de vários anos",
+     "ilu": "contas",
+     "tam": 104
+    },
+    {
+     "titulo": "Prova de posse",
+     "pilula": "declaração dos vizinhos",
+     "ilu": "vizinhos",
+     "tam": 104
+    }
+   ]
+  },
+  {
+   "tipo": "duplo",
+   "blocos": [
+    {
+     "titulo": "Evite isso",
+     "pilula": "papéis soltos, sem data",
+     "ilu": "docs"
+    },
+    {
+     "titulo": "Prefira isso",
+     "pilula": "tudo em uma pasta, por ano",
+     "ilu": "docs:ok"
+    }
+   ]
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Parte técnica",
+   "sub": "com profissional habilitado",
+   "ilu": "planta:ok",
+   "col": "Inclui:",
+   "itens": [
+    "levantamento das medidas reais",
+    "planta",
+    "memorial descritivo",
+    "feito por arquiteto ou engenheiro"
+   ],
+   "selo": "medida errada vira\nexigência do cartório",
+   "tam": 84
+  },
+  {
+   "tipo": "duplo",
+   "blocos": [
+    {
+     "titulo": "Medida errada",
+     "pilula": "vira exigência e atrasa",
+     "ilu": "planta",
+     "tam": 104
+    },
+    {
+     "titulo": "Medida certa",
+     "pilula": "processo anda",
+     "ilu": "planta:ok",
+     "tam": 104
+    }
+   ]
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Ficou com dúvida?",
+   "sub": "comenta aqui que eu respondo",
+   "ilu": "casa",
+   "col": "Atenção:",
+   "itens": [
+    "não é promessa de resultado",
+    "cada caso precisa de advogado",
+    "salva pra não perder",
+    "manda pra quem mora sem escritura"
+   ],
+   "selo": "Allan Porto · Arquiteto\nCAU-PE A166156-6",
+   "tam": 76
+  }
+ ]
+}

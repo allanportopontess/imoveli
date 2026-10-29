@@ -1,0 +1,89 @@
+{
+ "tema": "ambar",
+ "slides": [
+  {
+   "tipo": "capa_spot",
+   "sobre": "loja bonita é loja bem iluminada",
+   "linhas": [
+    {
+     "t": "Sua loja tem",
+     "tam": 118
+    },
+    {
+     "t": "luz",
+     "img": "img/depois-caso-luz.jpg",
+     "tam": 230
+    }
+   ],
+   "script": "mas não tem destaque",
+   "img": "img/depois-caso-luz.jpg",
+   "etiqueta": "3 camadas de luz",
+   "credito": "projeto do escritório · imagem 3D",
+   "foto_h": 420,
+   "barras_h": 500
+  },
+  {
+   "tipo": "numero",
+   "titulo": "Só luz branca\ne chapada",
+   "chips": [
+    "loja toda igual",
+    "nada se destaca",
+    "luz fria demais",
+    "spot que ofusca"
+   ],
+   "img": "img/depois-caso-provador.jpg",
+   "filtro": "grayscale(.85) brightness(1.15) contrast(.8) hue-rotate(180deg) saturate(.6)",
+   "credito": "simulação ilustrativa do erro (imagem 3D alterada)"
+  },
+  {
+   "tipo": "numero",
+   "num": "#1",
+   "titulo": "Geral",
+   "chips": [
+    "enxergar bem a loja",
+    "uniforme",
+    "sem sombras duras"
+   ],
+   "img": "img/depois-caso-pausa.jpg",
+   "credito": "projeto do escritório · imagem 3D"
+  },
+  {
+   "tipo": "numero",
+   "num": "#2",
+   "titulo": "Destaque",
+   "chips": [
+    "spot no produto-foco",
+    "vitrines",
+    "tons quentes 3.000–3.500 K"
+   ],
+   "img": "img/depois-caso-luz.jpg",
+   "credito": "projeto do escritório · imagem 3D · referências gerais"
+  },
+  {
+   "tipo": "numero",
+   "num": "#3",
+   "titulo": "Apoio",
+   "chips": [
+    "fita de LED",
+    "arandela",
+    "cria clima"
+   ],
+   "img": "img/diagrama-luz.jpg",
+   "pos": "center 50%",
+   "credito": "esquema ilustrativo"
+  },
+  {
+   "tipo": "frase",
+   "img": "img/depois-caso-luz.jpg",
+   "linhas": [
+    "Sua loja",
+    "tem luz de",
+    "destaque?"
+   ],
+   "tam": 150,
+   "y": 250,
+   "cta": "Comenta VENDA e receba o checklist grátis no direct",
+   "cta2": "💬 responde SIM ou NÃO aqui embaixo"
+  }
+ ]
+}

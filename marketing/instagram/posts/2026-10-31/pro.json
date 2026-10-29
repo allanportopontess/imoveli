@@ -1,0 +1,88 @@
+{
+ "tema": "ambar",
+ "slides": [
+  {
+   "tipo": "capa_spot",
+   "sobre": "projeto do escritório · Caruaru/PE",
+   "linhas": [
+    {
+     "t": "Uma loja de",
+     "tam": 120
+    },
+    {
+     "t": "19,52 m²",
+     "img": "img/depois-caso-luz.jpg",
+     "tam": 190
+    }
+   ],
+   "script": "que vende de verdade",
+   "img": "img/depois-caso-pausa.jpg",
+   "etiqueta": "caso real",
+   "credito": "projeto do escritório · imagem 3D",
+   "foto_h": 440,
+   "barras_h": 520
+  },
+  {
+   "tipo": "numero",
+   "titulo": "Pouco espaço,\nmuito produto",
+   "chips": [
+    "loja de 19,52 m²",
+    "enxergar, andar e parar",
+    "equipe pequena",
+    "atendimento rápido"
+   ],
+   "img": "img/depois-caso-fachada.jpg",
+   "pos": "62% 55%",
+   "credito": "projeto do escritório · imagem 3D"
+  },
+  {
+   "tipo": "numero",
+   "num": "#1",
+   "titulo": "Luz que guia\no olhar",
+   "chips": [
+    "trilho de spots",
+    "luz no produto-foco",
+    "parede de destaque ao fundo"
+   ],
+   "img": "img/depois-caso-luz.jpg",
+   "credito": "projeto do escritório · imagem 3D"
+  },
+  {
+   "tipo": "numero",
+   "num": "#2",
+   "titulo": "Ponto de pausa",
+   "chips": [
+    "lugar pra parar",
+    "sentar e considerar",
+    "caixa integrado ao fluxo"
+   ],
+   "img": "img/depois-caso-pausa.jpg",
+   "credito": "projeto do escritório · imagem 3D"
+  },
+  {
+   "tipo": "numero",
+   "num": "#3",
+   "titulo": "Provador à vista",
+   "chips": [
+    "perto do percurso",
+    "bem iluminado",
+    "sem esconder a compra"
+   ],
+   "img": "img/depois-caso-provador.jpg",
+   "credito": "projeto do escritório · imagem 3D"
+  },
+  {
+   "tipo": "frase",
+   "img": "img/depois-caso-luz.jpg",
+   "linhas": [
+    "E a sua",
+    "loja, quantos",
+    "m² tem?"
+   ],
+   "tam": 140,
+   "y": 250,
+   "cta": "Comenta VENDA e receba o checklist grátis no direct",
+   "cta2": "💬 comenta o tamanho que eu digo a 1ª mudança"
+  }
+ ]
+}

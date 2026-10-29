@@ -1,0 +1,8 @@
+{ "tema": "lima", "slides": [
+ { "tipo": "frase", "img": "img/depois-caso-fachada.jpg", "pos": "62% center", "sobre": "a vitrine é o seu primeiro vendedor", "linhas": ["Sua", "vitrine", "tem poucos", "segundos", "pra vender"], "tam": 140, "y": 210, "cta": "arrasta pro lado →", "cta_b": 120 },
+ { "tipo": "numero", "num": "#1", "titulo": "Vitrine lotada\nnão vende", "chips": ["muitos produtos", "preço ilegível", "luz fraca", "vidro sujo", "nada em destaque"], "ilu": "vitrine", "credito": "ilustração" },
+ { "tipo": "numero", "num": "#2", "titulo": "1 produto-foco\nna altura do olhar", "tam": 96, "chips": ["zona do olhar: 1,40 a 1,60 m", "apoio embaixo", "o resto respira"], "ilu": "vitrine:ok", "credito": "ilustração" },
+ { "tipo": "numero", "num": "#3", "titulo": "Faça isso\nesta semana", "chips": ["escolha 1 produto-foco", "tire o excesso", "luz quente e direcionada", "troque a cada 15 a 30 dias"], "img": "img/depois-caso-luz.jpg", "credito": "projeto do escritório · imagem 3D · referências gerais" },
+ { "tipo": "numero", "num": "#4", "titulo": "Fachada que chama", "chips": ["vitrine limpa", "luz no foco", "entrada clara e convidativa"], "img": "img/depois-caso-fachada.jpg", "pos": "62% 60%", "credito": "projeto do escritório · imagem 3D" },
+ { "tipo": "frase", "img": "img/depois-caso-provador.jpg", "linhas": ["Qual é o", "produto-foco", "da sua", "vitrine?"], "tam": 130, "y": 230, "cta": "Comenta VENDA e receba o checklist grátis no direct", "cta2": "💾 salva pra rever na hora de montar", "cta_b": 120 }
+]}
