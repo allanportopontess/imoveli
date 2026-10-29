@@ -3,7 +3,7 @@
   "horario": "18:30",
   "pilar": "arquitetura",
   "formato": "carrossel",
-  "status": "aguardando_aprovacao",
+  "status": "arquivado",
   "kicker": "Arquitetura de campo",
   "slides": [
     {
@@ -44,5 +44,6 @@
       "botao": "Salve para o seu projeto"
     }
   ],
-  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores"
+  "legenda": "Casa de campo boa não é a mais cara: é a que foi pensada pro lugar. 🏡🌳\n\n1️⃣ Orientação solar antes de tudo\n2️⃣ Varanda profunda (2,5 m ou mais)\n3️⃣ Ventilação cruzada\n4️⃣ Materiais do lugar\n5️⃣ A paisagem entra na casa\n\n💬 Comenta \"EU MORARIA\" se esse também é o seu sonho.\n💾 Salva pra mostrar no seu projeto.\n📤 Manda pra quem sonha com uma casa no campo.\n\n#arquitetura #designdeinteriores #reforma #projetoresidencial #casadecampo #dicasdearquitetura #arquiteto #interiores",
+  "nota": "Substituído em 29/10 pelo novo padrão (sem fotos pessoais), a pedido do Allan"
 }

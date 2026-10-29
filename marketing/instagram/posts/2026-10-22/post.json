@@ -3,7 +3,7 @@
   "horario": "18:30",
   "pilar": "venda",
   "formato": "carrossel",
-  "status": "aguardando_aprovacao",
+  "status": "arquivado",
   "kicker": "Teste rápido · Loja que Vende",
   "slides": [
     {
@@ -45,5 +45,6 @@
     }
   ],
   "legenda": "Faz esse teste rápido na sua loja: 5 perguntas, sim ou não. 👀\n\n1️⃣ Sua vitrine tem até 3 itens em destaque?\n2️⃣ O produto de maior margem está na zona quente?\n3️⃣ Existe um ponto que obriga o cliente a parar?\n4️⃣ Seu produto-foco tem luz dirigida?\n5️⃣ O caminho da entrada ao caixa é óbvio?\n\nCada \"não\" é venda escapando todo dia.\n\n💬 Comenta aqui quantos \"não\" você marcou.\n💾 Salva pra refazer o teste depois dos ajustes.\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "manychat": "VENDA",
+  "nota": "Substituído em 29/10 pelo novo padrão (sem fotos pessoais), a pedido do Allan"
 }

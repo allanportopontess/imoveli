@@ -3,7 +3,7 @@
   "horario": "18:30",
   "pilar": "varejo",
   "formato": "carrossel",
-  "status": "aguardando_aprovacao",
+  "status": "arquivado",
   "kicker": "Zoneamento comercial",
   "slides": [
     {
@@ -40,5 +40,6 @@
     }
   ],
   "legenda": "Sua loja tem um mapa invisível, e ele decide o que vende. 🗺️\n\n🔥 Zona quente: entrada e lado direito → lançamentos e maior margem\n🧊 Zona fria: fundos e cantos → produto-ímã que o cliente já veio buscar\n\nAssim o cliente atravessa a loja inteira e passa por tudo antes de chegar no que procura.\n\n💾 Salva pra reorganizar sua loja.\n💬 Comenta: qual produto está escondido na sua zona fria?\n\n💬 Comenta VENDA que eu te mando no direct o checklist grátis dos 5 erros de layout que fazem sua loja perder venda\n\n#arquiteturacomercial #varejo #visualmerchandising #layoutdeloja #pontodevenda #projetodeloja #lojista #arquitetura",
-  "manychat": "VENDA"
+  "manychat": "VENDA",
+  "nota": "Substituído em 29/10 pelo novo padrão (sem fotos pessoais), a pedido do Allan"
 }
