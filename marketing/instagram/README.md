@@ -12,6 +12,8 @@ Automação de posts diários no Instagram. Claude cria o conteúdo, renderiza a
 
 Post sem aprovação **não** é publicado.
 
+**Autorização permanente (Allan, 29/10/2026):** a rotina das 18:30 publica sem nova confirmação o post do dia com `status: aprovado` (máx. 1/dia); a rotina de sexta cria os 7 posts no padrão atual e envia para aprovação (não publica). Fotos novas: `python3 tools/busca_unsplash.py "termo"`.
+
 ## Calendário editorial
 
 | Dia | Pilar (`pilar`) | Exemplos de pauta |
