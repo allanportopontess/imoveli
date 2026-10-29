@@ -1,65 +1,63 @@
 {
- "tema": "ambar",
+ "tema": "azul",
  "slides": [
   {
-   "tipo": "capa_spot",
-   "sobre": "loja bonita é loja bem iluminada",
+   "tipo": "frase",
+   "img": "img/real/TswOPhWcrmQ.jpg",
+   "sobre": "regularização de imóvel",
    "linhas": [
-    {
-     "t": "Sua loja tem",
-     "tam": 118
-    },
-    {
-     "t": "luz",
-     "img": "img/real/wmfmzK2gDQo.jpg",
-     "tam": 240
-    }
+    "Os papéis",
+    "que provam",
+    "que é seu."
    ],
-   "script": "mas não tem destaque",
-   "img": "img/real/y5vzB7nisbk.jpg",
-   "foto_h": 440,
-   "barras_h": 520,
-   "credito": "foto ilustrativa"
+   "tam": 140,
+   "y": 200,
+   "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/V1tZWfLowRY.jpg",
-   "tag": "erro",
-   "tag_cor": "#E5392B",
-   "titulo": "Luz branca\ne chapada.",
-   "sub": "Tudo igual. Nada vende."
+   "img": "img/real/uKGZiYnF9Ys.jpg",
+   "tag": "prova de tempo",
+   "titulo": "Contas de\nvários anos.",
+   "sub": "IPTU, luz, água e correspondências."
   },
   {
    "tipo": "foco",
-   "img": "img/real/Ro0PNXcpCus.jpg",
-   "tag": "#1 destaque",
-   "titulo": "Spot no\nproduto-foco.",
-   "sub": "Tons quentes: 3.000 a 3.500 K.",
+   "img": "img/real/UHSc9d0WgGA.jpg",
+   "tag": "prova de posse",
+   "titulo": "Os vizinhos\nconfirmam.",
+   "sub": "Declaração de quem te vê morar ali."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/CXj2uFlySyI.jpg",
+   "tag": "organize",
+   "titulo": "Uma pasta,\npor ano.",
+   "sub": "Papel solto se perde."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/HtBlQdxfG9k.jpg",
+   "tag": "parte técnica",
+   "titulo": "Planta e\nmemorial.",
+   "sub": "Medida errada vira exigência do cartório.",
    "marca": {
-    "x": 540,
-    "y": 382,
-    "r": 110
+    "x": 270,
+    "y": 720,
+    "r": 120
    }
   },
   {
-   "tipo": "foco",
-   "img": "img/real/XiUf1MZIqhM.jpg",
-   "tag": "#2 apoio",
-   "titulo": "LED na\nprateleira.",
-   "sub": "Cria clima e profundidade."
-  },
-  {
    "tipo": "frase",
-   "img": "img/real/wmfmzK2gDQo.jpg",
+   "img": "img/real/kGE6fLbfKys.jpg",
    "linhas": [
-    "Sua loja",
-    "tem luz de",
-    "destaque?"
+    "Ficou com",
+    "dúvida?"
    ],
-   "tam": 140,
-   "y": 220,
-   "cta": "Comenta VENDA e receba o checklist grátis",
-   "cta2": "💬 responde SIM ou NÃO"
+   "tam": 170,
+   "y": 230,
+   "cta": "Comenta aqui que eu respondo",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
   }
  ]
 }

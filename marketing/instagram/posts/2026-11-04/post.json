@@ -1,11 +1,12 @@
 {
   "data": "2026-11-04",
   "horario": "18:30",
-  "pilar": "usucapiao",
-  "formato": "carrossel_pro (pro.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "Documentos para regularizar o imóvel",
-  "pedido": "Allan pediu em 29/10: refazer sem fotos dele, só imagens do próprio post (3D do escritório + esquemas ilustrativos)",
-  "slides": "ver pro.json",
-  "legenda": "Os papéis que ajudam a provar que o imóvel é seu. 📂\n\n🧾 Prova de tempo: IPTU, contas de luz e água de vários anos, correspondências e fotos antigas\n🤝 Prova de posse: declaração de vizinhos, recibos de reforma e manutenção, contrato ou recibo de compra e venda, se houver\n📐 Parte técnica: levantamento, planta e memorial feitos por arquiteto ou engenheiro\n\nComece a juntar hoje e guarde tudo em uma pasta.\n\n💾 Salva pra não perder\n📤 Manda pra quem mora sem escritura\n💬 Dúvida? Comenta aqui que eu respondo\n\n⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #regularizacaodeimoveis #escritura #imovelregularizado #documentacaodeimovel #casapropria #arquiteto #direitoimobiliario #imoveis #usucapiaourbana"
+  "pilar": "varejo",
+  "formato": "carrossel_tiktok",
+  "status": "aprovado",
+  "pedido": "Allan pediu em 26/10: refazer posts sem fotos dele, só imagens do próprio post (projeto 3D + plantas ilustrativas); sugerir tema e trazer para aprovação",
+  "slides": "ver criador.json",
+  "legenda": "Sua loja não é pequena. Ela só está mal desenhada. 📐\n\n4 decisões de layout que mudam tudo:\n\n1️⃣ Percurso em U em vez de labirinto\n2️⃣ Produtos nas paredes, centro respira (ilha baixa de até 1,20 m)\n3️⃣ Circulação mínima de 90 cm, ideal 1,20 m\n4️⃣ Caixa no fim do percurso, com produtos de impulso\n\n(Referências gerais de projeto: cada loja pede ajuste ao seu espaço.)\n\n💬 Comenta quantos m² tem a sua loja que eu digo a primeira mudança que faria.\n💬 Comente VENDA e receba o checklist grátis no direct.\n💾 Salva pra consultar no seu projeto.\n\nAllan Porto · Arquiteto de varejo · CAU-PE A166156-6\n\n#arquiteturacomercial #layoutdeloja #varejo #lojista #vitrinismo #projetodeloja #pontodevenda #arquitetura #lojaquevende #visualmerchandising",
+  "aprovado_em": "2026-10-29",
+  "nota": "piloto (layout em U), aprovado em 29/10; remanejado para 04/11 para abrir espaço à série nova"
 }

@@ -1,73 +1,57 @@
 {
- "tema": "ambar",
+ "tema": "azul",
  "slides": [
   {
-   "tipo": "capa_spot",
-   "sobre": "Caruaru/PE · projeto do escritório",
+   "tipo": "frase",
+   "img": "img/real/3HfGnyPfWqQ.jpg",
+   "sobre": "regularização de imóvel",
    "linhas": [
-    {
-     "t": "Loja de",
-     "tam": 120
-    },
-    {
-     "t": "19,52 m²",
-     "img": "img/depois-caso-luz.jpg",
-     "tam": 200
-    }
+    "Mora há",
+    "5 anos",
+    "sem escritura?"
    ],
-   "script": "que vende de verdade",
-   "img": "img/depois-caso-pausa.jpg",
-   "recorte": "img/real/recorte-compradora.png",
-   "recorte_h": 560,
-   "recorte_x": 560,
-   "credito": "imagem 3D do projeto · foto ilustrativa",
-   "foto_h": 420,
-   "barras_h": 500
+   "tam": 128,
+   "y": 200,
+   "cta": "veja os requisitos →"
   },
   {
-   "tipo": "numero",
-   "num": "#1",
-   "titulo": "Luz que guia\no olhar.",
-   "chips": [
-    "spot no produto-foco",
-    "parede de destaque"
-   ],
-   "img": "img/depois-caso-luz.jpg",
-   "credito": "projeto do escritório · imagem 3D"
+   "tipo": "foco",
+   "img": "img/real/XZuU2Di3x4w.jpg",
+   "tag": "requisito 1",
+   "titulo": "5 anos\nde posse.",
+   "sub": "Contínua e sem oposição.",
+   "marca": {
+    "x": 652,
+    "y": 765,
+    "r": 130
+   }
   },
   {
-   "tipo": "numero",
-   "num": "#2",
-   "titulo": "Ponto de pausa.",
-   "chips": [
-    "lugar pra parar",
-    "e decidir"
-   ],
-   "img": "img/depois-caso-pausa.jpg",
-   "credito": "projeto do escritório · imagem 3D"
+   "tipo": "foco",
+   "img": "img/real/khKowH7X-Uc.jpg",
+   "tag": "requisitos 2 a 4",
+   "titulo": "Até 250 m².",
+   "sub": "Imóvel urbano, sua moradia, e você sem outro imóvel."
   },
   {
-   "tipo": "numero",
-   "num": "#3",
-   "titulo": "Provador à vista.",
-   "chips": [
-    "no percurso",
-    "bem iluminado"
-   ],
-   "img": "img/depois-caso-provador.jpg",
-   "credito": "projeto do escritório · imagem 3D"
+   "tipo": "foco",
+   "img": "img/real/9i5eqBarv-k.jpg",
+   "tag": "sem conflito?",
+   "titulo": "Dá no\ncartório.",
+   "sub": "Com advogado + planta e memorial técnico."
   },
   {
    "tipo": "frase",
-   "img": "img/real/QGg-vsPYbu8.jpg",
+   "img": "img/real/EQSEnPS1bz8.jpg",
    "linhas": [
-    "E a sua",
-    "loja?"
+    "Comece",
+    "a juntar",
+    "hoje."
    ],
-   "tam": 200,
-   "y": 230,
-   "cta": "Comenta VENDA e receba o checklist grátis",
-   "cta2": "💬 diz quantos m² ela tem"
+   "tam": 160,
+   "y": 220,
+   "cta": "IPTU · contas · recibos · fotos antigas",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
   }
  ]
 }

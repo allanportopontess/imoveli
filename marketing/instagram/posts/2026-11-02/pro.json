@@ -1,80 +1,65 @@
 {
- "tema": "lima",
+ "tema": "ambar",
  "slides": [
   {
    "tipo": "capa_spot",
-   "sobre": "arquitetura da vida real",
+   "sobre": "loja bonita é loja bem iluminada",
    "linhas": [
     {
-     "t": "Medidas que",
+     "t": "Sua loja tem",
      "tam": 118
     },
     {
-     "t": "todo mundo",
-     "tam": 118
-    },
-    {
-     "t": "erra",
-     "img": "img/real/XiUf1MZIqhM.jpg",
-     "tam": 210
+     "t": "luz",
+     "img": "img/real/wmfmzK2gDQo.jpg",
+     "tam": 240
     }
    ],
-   "img": "img/real/cXmER3VNxUA.jpg",
-   "recorte": "img/real/recorte-medindo.png",
-   "recorte_h": 520,
-   "recorte_x": 330,
-   "foto_h": 380,
-   "barras_h": 440,
-   "credito": "fotos ilustrativas"
+   "script": "mas não tem destaque",
+   "img": "img/real/y5vzB7nisbk.jpg",
+   "foto_h": 440,
+   "barras_h": 520,
+   "credito": "foto ilustrativa"
   },
   {
    "tipo": "foco",
-   "img": "img/real/rCj4swJZ4kE.jpg",
-   "tag": "bancada",
-   "titulo": "≈ 0,90 m",
-   "tam": 150,
-   "sub": "Baixa demais, quem paga são as costas."
+   "img": "img/real/V1tZWfLowRY.jpg",
+   "tag": "erro",
+   "tag_cor": "#E5392B",
+   "titulo": "Luz branca\ne chapada.",
+   "sub": "Tudo igual. Nada vende."
   },
   {
    "tipo": "foco",
-   "img": "img/real/cXmER3VNxUA.jpg",
-   "tag": "atrás da mesa",
-   "titulo": "90 cm",
-   "tam": 150,
-   "sub": "Pra recuar a cadeira sem bater na parede."
-  },
-  {
-   "tipo": "foco",
-   "img": "img/real/4Ly61P3EWVY.jpg",
-   "tag": "ao lado da cama",
-   "titulo": "60 cm",
-   "tam": 150,
-   "sub": "De passagem livre."
-  },
-  {
-   "tipo": "foco",
-   "img": "img/real/39Npb2siceI.jpg",
-   "tag": "tomadas",
-   "titulo": "Móveis antes,\ntomadas depois.",
-   "tam": 92,
-   "sub": "Tomada baixa ~0,30 m · interruptor ~1,10 m.",
+   "img": "img/real/Ro0PNXcpCus.jpg",
+   "tag": "#1 destaque",
+   "titulo": "Spot no\nproduto-foco.",
+   "sub": "Tons quentes: 3.000 a 3.500 K.",
    "marca": {
-    "x": 787,
-    "y": 832,
-    "r": 170
+    "x": 540,
+    "y": 382,
+    "r": 110
    }
   },
   {
+   "tipo": "foco",
+   "img": "img/real/XiUf1MZIqhM.jpg",
+   "tag": "#2 apoio",
+   "titulo": "LED na\nprateleira.",
+   "sub": "Cria clima e profundidade."
+  },
+  {
    "tipo": "frase",
-   "img": "img/real/ohF5oGzMcUY.jpg",
+   "img": "img/real/wmfmzK2gDQo.jpg",
    "linhas": [
-    "Mede antes",
-    "de quebrar."
+    "Sua loja",
+    "tem luz de",
+    "destaque?"
    ],
-   "tam": 150,
-   "y": 230,
-   "cta": "💾 salva pra consultar antes da obra",
-   "cta2": "referências gerais · confirme com seu arquiteto"
+   "tam": 140,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💬 responde SIM ou NÃO"
   }
  ]
 }

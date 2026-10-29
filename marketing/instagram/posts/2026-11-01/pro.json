@@ -1,57 +1,80 @@
 {
- "tema": "azul",
+ "tema": "lima",
  "slides": [
   {
-   "tipo": "frase",
-   "img": "img/real/3HfGnyPfWqQ.jpg",
-   "sobre": "regularização de imóvel",
+   "tipo": "capa_spot",
+   "sobre": "arquitetura da vida real",
    "linhas": [
-    "Mora há",
-    "5 anos",
-    "sem escritura?"
+    {
+     "t": "Medidas que",
+     "tam": 118
+    },
+    {
+     "t": "todo mundo",
+     "tam": 118
+    },
+    {
+     "t": "erra",
+     "img": "img/real/XiUf1MZIqhM.jpg",
+     "tam": 210
+    }
    ],
-   "tam": 128,
-   "y": 200,
-   "cta": "veja os requisitos →"
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "recorte": "img/real/recorte-medindo.png",
+   "recorte_h": 520,
+   "recorte_x": 330,
+   "foto_h": 380,
+   "barras_h": 440,
+   "credito": "fotos ilustrativas"
   },
   {
    "tipo": "foco",
-   "img": "img/real/XZuU2Di3x4w.jpg",
-   "tag": "requisito 1",
-   "titulo": "5 anos\nde posse.",
-   "sub": "Contínua e sem oposição.",
+   "img": "img/real/rCj4swJZ4kE.jpg",
+   "tag": "bancada",
+   "titulo": "≈ 0,90 m",
+   "tam": 150,
+   "sub": "Baixa demais, quem paga são as costas."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "tag": "atrás da mesa",
+   "titulo": "90 cm",
+   "tam": 150,
+   "sub": "Pra recuar a cadeira sem bater na parede."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/4Ly61P3EWVY.jpg",
+   "tag": "ao lado da cama",
+   "titulo": "60 cm",
+   "tam": 150,
+   "sub": "De passagem livre."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/39Npb2siceI.jpg",
+   "tag": "tomadas",
+   "titulo": "Móveis antes,\ntomadas depois.",
+   "tam": 92,
+   "sub": "Tomada baixa ~0,30 m · interruptor ~1,10 m.",
    "marca": {
-    "x": 652,
-    "y": 765,
-    "r": 130
+    "x": 787,
+    "y": 832,
+    "r": 170
    }
   },
   {
-   "tipo": "foco",
-   "img": "img/real/khKowH7X-Uc.jpg",
-   "tag": "requisitos 2 a 4",
-   "titulo": "Até 250 m².",
-   "sub": "Imóvel urbano, sua moradia, e você sem outro imóvel."
-  },
-  {
-   "tipo": "foco",
-   "img": "img/real/9i5eqBarv-k.jpg",
-   "tag": "sem conflito?",
-   "titulo": "Dá no\ncartório.",
-   "sub": "Com advogado + planta e memorial técnico."
-  },
-  {
    "tipo": "frase",
-   "img": "img/real/EQSEnPS1bz8.jpg",
+   "img": "img/real/ohF5oGzMcUY.jpg",
    "linhas": [
-    "Comece",
-    "a juntar",
-    "hoje."
+    "Mede antes",
+    "de quebrar."
    ],
-   "tam": 160,
-   "y": 220,
-   "cta": "IPTU · contas · recibos · fotos antigas",
-   "cta2": "⚠️ educativo: cada caso precisa de advogado"
+   "tam": 150,
+   "y": 230,
+   "cta": "💾 salva pra consultar antes da obra",
+   "cta2": "referências gerais · confirme com seu arquiteto"
   }
  ]
 }

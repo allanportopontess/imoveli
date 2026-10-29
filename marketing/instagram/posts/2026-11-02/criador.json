@@ -7,70 +7,71 @@
   "slides": [
     {
       "tipo": "capa",
-      "kicker": "arquitetura da vida real",
-      "titulo_imp": "Medidas que *todo mundo erra*\nna hora de *reformar*",
-      "tam_imp": 74,
-      "foto": "img/diagrama-cotas.jpg",
+      "kicker": "loja bonita é loja bem iluminada",
+      "titulo_imp": "Sua loja tem *luz*\nmas não tem *destaque*",
+      "tam_imp": 82,
+      "foto": "img/depois-caso-luz.jpg",
       "foco_y": 50,
-      "legenda": "salva este post antes da obra 👇"
+      "legenda": "3 camadas de luz que mudam tudo 👇"
     },
     {
       "tipo": "depois",
-      "img": "img/diagrama-cotas.jpg",
-      "selo": "📏 AS COTAS",
-      "titulo_imp": "Alturas que *funcionam*",
+      "img": "img/diagrama-luz.jpg",
+      "selo": "💡 AS 3 CAMADAS",
+      "titulo_imp": "Geral, *destaque*, apoio",
       "tam_imp": 84,
       "caixas": [
-        "bancada ~0,90 m · porta ~2,10 m",
-        "tomada baixa 0,30 m · interruptor 1,10 m"
+        "geral: enxergar bem a loja",
+        "destaque: spot no produto-foco",
+        "apoio: fita ou arandela pra dar clima"
       ],
       "caixas_y": 70
     },
     {
       "tipo": "texto",
-      "selo": "🍽️ COZINHA E SALA",
-      "titulo_imp": "Espaço pra *viver*",
+      "selo": "❌ O ERRO",
+      "titulo_imp": "Só luz *branca*\n*e chapada*",
       "tam_imp": 104,
       "itens": [
-        "Circulação mínima de **90 cm**",
-        "Atrás da mesa: **90 cm** pra recuar a cadeira",
-        "Bancada de trabalho perto de **0,90 m**"
+        "Loja toda igual, nada se destaca",
+        "Luz fria demais no produto",
+        "Spots mal direcionados ofuscam o cliente"
       ],
-      "nota": "referências gerais; o projeto ajusta à altura de quem usa"
+      "nota": "é o erro mais comum em loja pequena"
     },
     {
       "tipo": "texto",
-      "selo": "🛏️ QUARTO E BANHO",
-      "titulo_imp": "Pequenos *detalhes*",
-      "tam_imp": 104,
+      "selo": "✅ O AJUSTE",
+      "titulo_imp": "Faça a luz\n*trabalhar*",
+      "tam_imp": 100,
       "itens": [
-        "Espaço lateral da cama: **60 cm** de passagem",
-        "Vaso: cerca de **40 cm** do eixo à parede lateral",
-        "Tomadas onde você vai **realmente usar**"
+        "Luz geral uniforme e sem sombras duras",
+        "Spots no **produto-foco** e nas vitrines",
+        "Tons **quentes** (3.000–3.500 K) em moda e decoração"
       ],
-      "nota": "referências gerais de projeto"
+      "nota": "referências gerais; teste o tom no seu produto"
     },
     {
-      "tipo": "texto",
-      "selo": "🏗️ ANTES DA OBRA",
-      "titulo_imp": "Confira *tudo*",
-      "tam_imp": 96,
-      "itens": [
-        "Pé-direito: **2,50 a 2,70 m** (veja a regra da sua cidade)",
-        "Defina móveis **antes** de posicionar tomadas",
-        "Meça com **fita** e simule no chão com fita-crepe"
+      "tipo": "depois",
+      "img": "img/depois-caso-luz.jpg",
+      "selo": "✅ NA PRÁTICA",
+      "titulo_imp": "Luz *no produto*",
+      "tam_imp": 88,
+      "caixas": [
+        "trilho de spots e parede de destaque",
+        "percurso iluminado até o caixa"
       ],
-      "nota": "cada casa pede um ajuste: leve ao seu arquiteto"
+      "credito": "projeto do escritório · imagem 3D"
     },
     {
       "tipo": "texto",
       "selo": "💬 SUA VEZ",
-      "titulo_imp": "Qual medida *já te*\n*causou dor de cabeça?*",
-      "tam_imp": 88,
+      "titulo_imp": "Sua loja tem\n*luz de destaque?*",
+      "tam_imp": 96,
       "itens": [
-        "Comenta aqui que eu respondo",
-        "Salva pra consultar antes da obra",
-        "Manda pra quem vai reformar"
+        "Comenta SIM ou NÃO aqui embaixo",
+        "Comenta **VENDA** e receba o checklist grátis no direct",
+        "Salva pra rever no seu projeto"
       ],
       "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
     }

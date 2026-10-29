@@ -1,56 +1,73 @@
 {
- "tema": "lima",
+ "tema": "ambar",
  "slides": [
   {
-   "tipo": "frase",
-   "img": "img/real/Ex6q4rqethg.jpg",
-   "sobre": "vitrine",
+   "tipo": "capa_spot",
+   "sobre": "Caruaru/PE · projeto do escritório",
    "linhas": [
-    "Sua vitrine",
-    "tem poucos",
-    "segundos."
+    {
+     "t": "Loja de",
+     "tam": 120
+    },
+    {
+     "t": "19,52 m²",
+     "img": "img/depois-caso-luz.jpg",
+     "tam": 200
+    }
    ],
-   "tam": 150,
-   "y": 200,
-   "cta": "arrasta →"
+   "script": "que vende de verdade",
+   "img": "img/depois-caso-pausa.jpg",
+   "recorte": "img/real/recorte-compradora.png",
+   "recorte_h": 560,
+   "recorte_x": 560,
+   "credito": "imagem 3D do projeto · foto ilustrativa",
+   "foto_h": 420,
+   "barras_h": 500
   },
   {
-   "tipo": "foco",
-   "img": "img/real/CzbJgV5H7wU.jpg",
-   "grade": "saturate(.7) contrast(1.1)",
-   "tag": "erro",
-   "tag_cor": "#E5392B",
-   "titulo": "Vitrine lotada\nnão vende.",
-   "sub": "Quando tudo aparece, nada se destaca."
+   "tipo": "numero",
+   "num": "#1",
+   "titulo": "Luz que guia\no olhar.",
+   "chips": [
+    "spot no produto-foco",
+    "parede de destaque"
+   ],
+   "img": "img/depois-caso-luz.jpg",
+   "credito": "projeto do escritório · imagem 3D"
   },
   {
-   "tipo": "foco",
-   "img": "img/real/qDBxfh5Idak.jpg",
-   "tag": "solução",
-   "titulo": "1 produto-foco.",
-   "sub": "Na altura do olhar: 1,40 a 1,60 m."
+   "tipo": "numero",
+   "num": "#2",
+   "titulo": "Ponto de pausa.",
+   "chips": [
+    "lugar pra parar",
+    "e decidir"
+   ],
+   "img": "img/depois-caso-pausa.jpg",
+   "credito": "projeto do escritório · imagem 3D"
   },
   {
-   "tipo": "foco",
-   "img": "img/real/RzT_Z6QGAbQ.jpg",
-   "tag": "esta semana",
-   "titulo": "Tire o excesso.\nIlumine o foco.",
-   "tam": 96,
-   "sub": "Troque a vitrine a cada 15 a 30 dias."
+   "tipo": "numero",
+   "num": "#3",
+   "titulo": "Provador à vista.",
+   "chips": [
+    "no percurso",
+    "bem iluminado"
+   ],
+   "img": "img/depois-caso-provador.jpg",
+   "credito": "projeto do escritório · imagem 3D"
   },
   {
    "tipo": "frase",
-   "img": "img/real/HZBMsBpWoKw.jpg",
+   "img": "img/real/QGg-vsPYbu8.jpg",
    "linhas": [
-    "Qual é o",
-    "produto-foco",
-    "da sua",
-    "vitrine?"
+    "E a sua",
+    "loja?"
    ],
-   "tam": 128,
-   "y": 220,
+   "tam": 200,
+   "y": 230,
    "cta": "Comenta VENDA e receba o checklist grátis",
-   "cta2": "💾 salva pra montar a sua"
+   "cta2": "💬 diz quantos m² ela tem"
   }
  ]
 }

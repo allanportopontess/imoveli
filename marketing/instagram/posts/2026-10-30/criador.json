@@ -7,71 +7,70 @@
   "slides": [
     {
       "tipo": "capa",
-      "kicker": "a vitrine é o seu primeiro vendedor",
-      "titulo_imp": "Sua vitrine tem\n*poucos segundos* pra vender",
-      "tam_imp": 78,
-      "foto": "img/depois-caso-provador.jpg",
+      "kicker": "projeto do escritório · Caruaru/PE",
+      "titulo_imp": "Uma loja de *19,52 m²*\nque vende de verdade",
+      "tam_imp": 82,
+      "foto": "img/depois-caso-pausa.jpg",
       "foco_y": 50,
-      "legenda": "o que o cliente vê antes de entrar 👇"
+      "legenda": "como o espaço foi pensado 👇"
     },
     {
       "tipo": "texto",
-      "selo": "❌ O ERRO",
-      "titulo_imp": "Vitrine *lotada*\nnão vende",
-      "tam_imp": 104,
-      "itens": [
-        "Muitos produtos brigando pela atenção",
-        "Preço ilegível e luz fraca",
-        "Vidro sujo, cartaz velho e nada em destaque"
-      ],
-      "nota": "o cliente não sabe pra onde olhar, então segue andando"
-    },
-    {
-      "tipo": "depois",
-      "img": "img/diagrama-vitrine.jpg",
-      "selo": "✅ A SOLUÇÃO",
-      "titulo_imp": "*1 produto-foco* na altura do olhar",
-      "tam_imp": 80,
-      "caixas": [
-        "zona do olhar: 1,40 a 1,60 m",
-        "apoio embaixo, o resto respira"
-      ],
-      "caixas_y": 70
-    },
-    {
-      "tipo": "texto",
-      "selo": "💡 3 AJUSTES",
-      "titulo_imp": "Faça isso\n*esta semana*",
+      "selo": "📐 O DESAFIO",
+      "titulo_imp": "Pouco espaço,\n*muito produto*",
       "tam_imp": 100,
       "itens": [
-        "Escolha **1 produto-foco** e tire o excesso",
-        "Ilumine o foco com luz **quente e direcionada**",
-        "Troque a vitrine a cada **15 a 30 dias**"
+        "Loja de apenas **19,52 m²**",
+        "Cliente precisa enxergar, andar e parar",
+        "Equipe pequena, atendimento rápido"
       ],
-      "nota": "referências gerais de varejo; teste e ajuste ao seu público"
+      "nota": "o desafio de quase toda loja pequena"
     },
     {
       "tipo": "depois",
-      "img": "img/depois-caso-fachada.jpg",
-      "selo": "✅ NA PRÁTICA",
-      "titulo_imp": "Fachada que *chama*",
-      "tam_imp": 92,
+      "img": "img/depois-caso-luz.jpg",
+      "selo": "✅ DECISÃO 1",
+      "titulo_imp": "Luz que *guia o olhar*",
+      "tam_imp": 86,
       "caixas": [
-        "vitrine limpa, luz no foco",
-        "entrada clara e convidativa"
+        "trilho de spots no produto-foco",
+        "parede de destaque ao fundo"
       ],
-      "credito": "projeto do escritório · imagem 3D",
-      "pos": "70% center"
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "✅ DECISÃO 2",
+      "titulo_imp": "Ponto de *pausa*",
+      "tam_imp": 86,
+      "caixas": [
+        "lugar pra parar, sentar e considerar",
+        "caixa integrado ao fluxo"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-provador.jpg",
+      "selo": "✅ DECISÃO 3",
+      "titulo_imp": "Provador *à vista*",
+      "tam_imp": 86,
+      "caixas": [
+        "perto do percurso e bem iluminado",
+        "sem esconder a compra"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
     },
     {
       "tipo": "texto",
       "selo": "💬 SUA VEZ",
-      "titulo_imp": "Qual é o produto-foco\nda *sua vitrine?*",
-      "tam_imp": 92,
+      "titulo_imp": "E a sua loja,\n*quantos m² tem?*",
+      "tam_imp": 96,
       "itens": [
-        "Comenta o produto aqui embaixo",
+        "Comenta o tamanho que eu digo a 1ª mudança",
         "Comenta **VENDA** e receba o checklist grátis no direct",
-        "Salva este post pra rever na hora de montar"
+        "Salva pra levar ao seu projeto"
       ],
       "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
     }

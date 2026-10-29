@@ -7,70 +7,70 @@
   "slides": [
     {
       "tipo": "capa",
-      "kicker": "projeto do escritório · Caruaru/PE",
-      "titulo_imp": "Uma loja de *19,52 m²*\nque vende de verdade",
-      "tam_imp": 82,
-      "foto": "img/depois-caso-pausa.jpg",
+      "kicker": "regularização de imóvel",
+      "titulo_imp": "Mora há *5 anos* sem escritura?\nVeja *os requisitos*",
+      "tam_imp": 76,
+      "foto": "img/diagrama-casa.jpg",
       "foco_y": 50,
-      "legenda": "como o espaço foi pensado 👇"
+      "legenda": "usucapião urbana, sem enrolação 👇"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-timeline.jpg",
+      "selo": "📅 O PRAZO",
+      "titulo_imp": "*5 anos* de posse",
+      "tam_imp": 92,
+      "caixas": [
+        "contínua e sem oposição",
+        "como se fosse seu"
+      ],
+      "caixas_y": 70
     },
     {
       "tipo": "texto",
-      "selo": "📐 O DESAFIO",
-      "titulo_imp": "Pouco espaço,\n*muito produto*",
+      "selo": "🏠 O IMÓVEL",
+      "titulo_imp": "Até *250 m²*\nna cidade",
       "tam_imp": 100,
       "itens": [
-        "Loja de apenas **19,52 m²**",
-        "Cliente precisa enxergar, andar e parar",
-        "Equipe pequena, atendimento rápido"
+        "Imóvel **urbano**, de até **250 m²**",
+        "É a sua **moradia** (ou da família)",
+        "Você **não tem outro imóvel**"
       ],
-      "nota": "o desafio de quase toda loja pequena"
-    },
-    {
-      "tipo": "depois",
-      "img": "img/depois-caso-luz.jpg",
-      "selo": "✅ DECISÃO 1",
-      "titulo_imp": "Luz que *guia o olhar*",
-      "tam_imp": 86,
-      "caixas": [
-        "trilho de spots no produto-foco",
-        "parede de destaque ao fundo"
-      ],
-      "credito": "projeto do escritório · imagem 3D"
-    },
-    {
-      "tipo": "depois",
-      "img": "img/depois-caso-pausa.jpg",
-      "selo": "✅ DECISÃO 2",
-      "titulo_imp": "Ponto de *pausa*",
-      "tam_imp": 86,
-      "caixas": [
-        "lugar pra parar, sentar e considerar",
-        "caixa integrado ao fluxo"
-      ],
-      "credito": "projeto do escritório · imagem 3D"
-    },
-    {
-      "tipo": "depois",
-      "img": "img/depois-caso-provador.jpg",
-      "selo": "✅ DECISÃO 3",
-      "titulo_imp": "Provador *à vista*",
-      "tam_imp": 86,
-      "caixas": [
-        "perto do percurso e bem iluminado",
-        "sem esconder a compra"
-      ],
-      "credito": "projeto do escritório · imagem 3D"
+      "nota": "requisitos gerais da usucapião urbana; cada caso precisa de análise"
     },
     {
       "tipo": "texto",
-      "selo": "💬 SUA VEZ",
-      "titulo_imp": "E a sua loja,\n*quantos m² tem?*",
-      "tam_imp": 96,
+      "selo": "🧰 NA PRÁTICA",
+      "titulo_imp": "Quando não há conflito,\n*dá no cartório*",
+      "tam_imp": 92,
       "itens": [
-        "Comenta o tamanho que eu digo a 1ª mudança",
-        "Comenta **VENDA** e receba o checklist grátis no direct",
-        "Salva pra levar ao seu projeto"
+        "Pode ser feita **direto no cartório**, sem processo",
+        "Precisa de **advogado** e da parte técnica",
+        "Planta e memorial feitos por **arquiteto ou engenheiro**"
+      ],
+      "nota": "medida errada vira exigência do cartório e atrasa o processo"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📂 COMECE HOJE",
+      "titulo_imp": "Junte *estes papéis*",
+      "tam_imp": 100,
+      "itens": [
+        "**IPTU** e contas de luz e água",
+        "Recibos, contratos e **fotos antigas**",
+        "Declaração de **vizinhos**"
+      ],
+      "nota": "quanto mais prova de tempo e moradia, melhor a análise"
+    },
+    {
+      "tipo": "texto",
+      "selo": "⚠️ ATENÇÃO",
+      "titulo_imp": "Conteúdo *educativo*",
+      "tam_imp": 100,
+      "itens": [
+        "Não é promessa de resultado",
+        "Cada caso precisa de análise de um **advogado**",
+        "Dúvida? **Comenta aqui** que eu respondo"
       ],
       "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
     }
