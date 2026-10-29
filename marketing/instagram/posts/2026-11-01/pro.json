@@ -1,94 +1,57 @@
 {
+ "tema": "azul",
  "slides": [
   {
-   "tipo": "tabela",
-   "titulo": "Mora há 5 anos\nsem escritura?",
-   "sub": "veja os requisitos",
-   "ilu": "casa",
-   "col": "Requisitos:",
-   "itens": [
-    [
-     "5",
-     "anos de posse sem oposição"
-    ],
-    [
-     "250",
-     "m² no máximo, na cidade"
-    ],
-    [
-     "🏠",
-     "é a sua moradia"
-    ],
-    [
-     "1",
-     "único imóvel: você não tem outro"
-    ]
+   "tipo": "frase",
+   "img": "img/real/3HfGnyPfWqQ.jpg",
+   "sobre": "regularização de imóvel",
+   "linhas": [
+    "Mora há",
+    "5 anos",
+    "sem escritura?"
    ],
-   "selo": "conteúdo educativo:\ncada caso precisa de advogado",
-   "tam": 72,
-   "foto_y": 330,
-   "foto_h": 640
+   "tam": 128,
+   "y": 200,
+   "cta": "veja os requisitos →"
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "O prazo",
-     "pilula": "5 anos de posse contínua e sem oposição",
-     "ilu": "tempo"
-    },
-    {
-     "titulo": "O imóvel",
-     "pilula": "urbano, até 250 m², sua moradia",
-     "ilu": "casa"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/XZuU2Di3x4w.jpg",
+   "tag": "requisito 1",
+   "titulo": "5 anos\nde posse.",
+   "sub": "Contínua e sem oposição.",
+   "marca": {
+    "x": 652,
+    "y": 765,
+    "r": 130
+   }
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Sem conflito?",
-     "pilula": "dá pra fazer direto no cartório",
-     "ilu": "cartorio"
-    },
-    {
-     "titulo": "Precisa de",
-     "pilula": "advogado + planta e memorial técnico",
-     "ilu": "planta:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/khKowH7X-Uc.jpg",
+   "tag": "requisitos 2 a 4",
+   "titulo": "Até 250 m².",
+   "sub": "Imóvel urbano, sua moradia, e você sem outro imóvel."
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Evite isso",
-     "pilula": "medida errada na planta",
-     "ilu": "planta"
-    },
-    {
-     "titulo": "Prefira isso",
-     "pilula": "levantamento por arquiteto ou engenheiro",
-     "ilu": "planta:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/9i5eqBarv-k.jpg",
+   "tag": "sem conflito?",
+   "titulo": "Dá no\ncartório.",
+   "sub": "Com advogado + planta e memorial técnico."
   },
   {
-   "tipo": "tabela",
-   "titulo": "Comece hoje",
-   "sub": "junte estes papéis",
-   "ilu": "docs:ok",
-   "col": "Separe:",
-   "itens": [
-    "IPTU",
-    "contas de luz e água",
-    "recibos e contratos",
-    "fotos antigas",
-    "declaração de vizinhos"
+   "tipo": "frase",
+   "img": "img/real/EQSEnPS1bz8.jpg",
+   "linhas": [
+    "Comece",
+    "a juntar",
+    "hoje."
    ],
-   "selo": "dúvida? comenta aqui\nque eu respondo",
-   "tam": 84
+   "tam": 160,
+   "y": 220,
+   "cta": "IPTU · contas · recibos · fotos antigas",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
   }
  ]
 }

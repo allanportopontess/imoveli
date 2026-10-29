@@ -3,46 +3,34 @@
  "slides": [
   {
    "tipo": "capa_spot",
-   "sobre": "projeto do escritório · Caruaru/PE",
+   "sobre": "Caruaru/PE · projeto do escritório",
    "linhas": [
     {
-     "t": "Uma loja de",
+     "t": "Loja de",
      "tam": 120
     },
     {
      "t": "19,52 m²",
      "img": "img/depois-caso-luz.jpg",
-     "tam": 190
+     "tam": 200
     }
    ],
    "script": "que vende de verdade",
    "img": "img/depois-caso-pausa.jpg",
-   "etiqueta": "caso real",
-   "credito": "projeto do escritório · imagem 3D",
-   "foto_h": 440,
-   "barras_h": 520
-  },
-  {
-   "tipo": "numero",
-   "titulo": "Pouco espaço,\nmuito produto",
-   "chips": [
-    "loja de 19,52 m²",
-    "enxergar, andar e parar",
-    "equipe pequena",
-    "atendimento rápido"
-   ],
-   "img": "img/depois-caso-fachada.jpg",
-   "pos": "62% 55%",
-   "credito": "projeto do escritório · imagem 3D"
+   "recorte": "img/real/recorte-compradora.png",
+   "recorte_h": 560,
+   "recorte_x": 560,
+   "credito": "imagem 3D do projeto · foto ilustrativa",
+   "foto_h": 420,
+   "barras_h": 500
   },
   {
    "tipo": "numero",
    "num": "#1",
-   "titulo": "Luz que guia\no olhar",
+   "titulo": "Luz que guia\no olhar.",
    "chips": [
-    "trilho de spots",
-    "luz no produto-foco",
-    "parede de destaque ao fundo"
+    "spot no produto-foco",
+    "parede de destaque"
    ],
    "img": "img/depois-caso-luz.jpg",
    "credito": "projeto do escritório · imagem 3D"
@@ -50,11 +38,10 @@
   {
    "tipo": "numero",
    "num": "#2",
-   "titulo": "Ponto de pausa",
+   "titulo": "Ponto de pausa.",
    "chips": [
     "lugar pra parar",
-    "sentar e considerar",
-    "caixa integrado ao fluxo"
+    "e decidir"
    ],
    "img": "img/depois-caso-pausa.jpg",
    "credito": "projeto do escritório · imagem 3D"
@@ -62,27 +49,25 @@
   {
    "tipo": "numero",
    "num": "#3",
-   "titulo": "Provador à vista",
+   "titulo": "Provador à vista.",
    "chips": [
-    "perto do percurso",
-    "bem iluminado",
-    "sem esconder a compra"
+    "no percurso",
+    "bem iluminado"
    ],
    "img": "img/depois-caso-provador.jpg",
    "credito": "projeto do escritório · imagem 3D"
   },
   {
    "tipo": "frase",
-   "img": "img/depois-caso-luz.jpg",
+   "img": "img/real/QGg-vsPYbu8.jpg",
    "linhas": [
     "E a sua",
-    "loja, quantos",
-    "m² tem?"
+    "loja?"
    ],
-   "tam": 140,
-   "y": 250,
-   "cta": "Comenta VENDA e receba o checklist grátis no direct",
-   "cta2": "💬 comenta o tamanho que eu digo a 1ª mudança"
+   "tam": 200,
+   "y": 230,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💬 diz quantos m² ela tem"
   }
  ]
 }

@@ -1,120 +1,80 @@
 {
+ "tema": "lima",
  "slides": [
   {
-   "tipo": "tabela",
-   "titulo": "Medidas que todo\nmundo erra",
-   "sub": "na hora de reformar",
-   "ilu": "bancada:ok",
-   "col": "Referências:",
-   "itens": [
-    [
-     "90",
-     "cm de circulação"
-    ],
-    [
-     "90",
-     "cm atrás da mesa"
-    ],
-    [
-     "0,90",
-     "m de bancada"
-    ],
-    [
-     "60",
-     "cm ao lado da cama"
-    ],
-    [
-     "40",
-     "cm do eixo do vaso"
-    ],
-    [
-     "1,10",
-     "m do interruptor"
-    ],
-    [
-     "0,30",
-     "m da tomada baixa"
-    ]
+   "tipo": "capa_spot",
+   "sobre": "arquitetura da vida real",
+   "linhas": [
+    {
+     "t": "Medidas que",
+     "tam": 118
+    },
+    {
+     "t": "todo mundo",
+     "tam": 118
+    },
+    {
+     "t": "erra",
+     "img": "img/real/XiUf1MZIqhM.jpg",
+     "tam": 210
+    }
    ],
-   "item_tam": 32,
-   "selo": "referências gerais:\nleve ao seu arquiteto",
-   "tam": 70
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "recorte": "img/real/recorte-medindo.png",
+   "recorte_h": 520,
+   "recorte_x": 330,
+   "foto_h": 380,
+   "barras_h": 440,
+   "credito": "fotos ilustrativas"
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Evite isso",
-     "pilula": "bancada baixa: 0,75 m",
-     "ilu": "bancada"
-    },
-    {
-     "titulo": "Prefira isso",
-     "pilula": "bancada perto de 0,90 m",
-     "ilu": "bancada:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/rCj4swJZ4kE.jpg",
+   "tag": "bancada",
+   "titulo": "≈ 0,90 m",
+   "tam": 150,
+   "sub": "Baixa demais, quem paga são as costas."
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Evite isso",
-     "pilula": "50 cm atrás da mesa",
-     "ilu": "mesa"
-    },
-    {
-     "titulo": "Prefira isso",
-     "pilula": "90 cm pra recuar a cadeira",
-     "ilu": "mesa:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "tag": "atrás da mesa",
+   "titulo": "90 cm",
+   "tam": 150,
+   "sub": "Pra recuar a cadeira sem bater na parede."
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Evite isso",
-     "pilula": "30 cm ao lado da cama",
-     "ilu": "cama"
-    },
-    {
-     "titulo": "Prefira isso",
-     "pilula": "60 cm de passagem",
-     "ilu": "cama:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/4Ly61P3EWVY.jpg",
+   "tag": "ao lado da cama",
+   "titulo": "60 cm",
+   "tam": 150,
+   "sub": "De passagem livre."
   },
   {
-   "tipo": "duplo",
-   "blocos": [
-    {
-     "titulo": "Evite isso",
-     "pilula": "tomada escondida atrás do sofá",
-     "ilu": "tomada"
-    },
-    {
-     "titulo": "Prefira isso",
-     "pilula": "defina os móveis antes das tomadas",
-     "ilu": "tomada:ok"
-    }
-   ]
+   "tipo": "foco",
+   "img": "img/real/39Npb2siceI.jpg",
+   "tag": "tomadas",
+   "titulo": "Móveis antes,\ntomadas depois.",
+   "tam": 92,
+   "sub": "Tomada baixa ~0,30 m · interruptor ~1,10 m.",
+   "marca": {
+    "x": 787,
+    "y": 832,
+    "r": 170
+   }
   },
   {
-   "tipo": "tabela",
-   "titulo": "Antes da obra",
-   "sub": "confira tudo",
-   "ilu": "mesa:ok",
-   "col": "Checklist:",
-   "itens": [
-    "pé-direito 2,50 a 2,70 m (regra da sua cidade)",
-    "móveis antes das tomadas",
-    "simule no chão com fita-crepe",
-    "qual medida já te deu dor de cabeça? comenta"
+   "tipo": "frase",
+   "img": "img/real/ohF5oGzMcUY.jpg",
+   "linhas": [
+    "Mede antes",
+    "de quebrar."
    ],
-   "item_tam": 30,
-   "selo": "salva pra consultar\nantes da obra",
-   "tam": 84
+   "tam": 150,
+   "y": 230,
+   "cta": "💾 salva pra consultar antes da obra",
+   "cta2": "referências gerais · confirme com seu arquiteto"
   }
  ]
 }

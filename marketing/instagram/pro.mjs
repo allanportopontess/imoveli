@@ -59,6 +59,7 @@ const R = {
 <div style="position:absolute;left:70px;right:70px;bottom:0;height:${s.barras_h || 560}px;display:flex;gap:26px">
  ${['#FF3D3D', '#7BE04A', '#B57CFF', '#FF9A3D', '#2FD3C4'].map(cc => `<div style="flex:1;border-radius:26px 26px 0 0;background:linear-gradient(180deg,${cc},${cc}aa);opacity:.95"></div>`).join('')}</div>
 <div style="position:absolute;left:110px;right:110px;bottom:70px;height:${s.foto_h || 470}px;border-radius:30px;overflow:hidden;border:8px solid #fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);transform:rotate(-2deg)">${midia(s)}</div>
+${s.recorte ? `<img src="../${s.recorte}" style="position:absolute;${s.recorte_x != null ? `left:${s.recorte_x}px` : 'left:50%;transform:translateX(-50%)'};bottom:0;height:${s.recorte_h || 640}px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))">` : ''}
 ${s.etiqueta ? `<div style="position:absolute;right:70px;bottom:${(s.foto_h || 470) + 30}px;background:#fff;border:3px solid #111;border-radius:10px;padding:10px 18px;font:800 26px Inter;transform:rotate(6deg);box-shadow:0 8px 20px rgba(0,0,0,.25)">${esc(s.etiqueta)}</div>` : ''}
 ${s.credito ? `<div class="cred" style="position:absolute;left:120px;bottom:30px;color:#222">${esc(s.credito)}</div>` : ''}`,
 
@@ -72,6 +73,22 @@ ${header(i, n, '#fff')}
  ${s.chips.map((t, k) => `<span style="font:700 30px Inter;padding:10px 18px;border-radius:8px;${[`background:#0F1A0B;color:#fff`, `background:${A1}55;color:#fff`, `background:${A1};color:#fff`, `background:${A2};color:#111`, `background:${A3};color:#111`][k % 5]}">${esc(t)}</span>`).join('')}</div>
 <div style="position:absolute;left:80px;right:80px;bottom:${s.foto_b || 140}px;height:${s.foto_h || 430}px;border-radius:20px;overflow:hidden;border:3px solid ${A2};box-shadow:0 0 50px -10px ${A1}88">${midia(s)}</div>
 ${s.credito ? `<div class="cred" style="position:absolute;right:90px;bottom:${(s.foto_b || 140) - 40}px;color:#ddd">${esc(s.credito)}</div>` : ''}
+${dots(i, n, '#fff')}`,
+
+  // Foto real em tela cheia com tratamento (grade), etiqueta, título curto, 1 linha de apoio e marcação da ação
+  // (círculo com brilho em s.marca {x,y,r} e/ou cota em s.cota {x1,y1,x2,y2,txt,cor}, coordenadas do slide)
+  foco: (s, i, n) => `${midia(s, s.grade ? `filter:${s.grade}` : 'filter:contrast(1.08) saturate(1.05)')}
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 48%,rgba(0,0,0,.88) 100%)"></div>
+${s.marca ? `<div style="position:absolute;left:${s.marca.x - s.marca.r}px;top:${s.marca.y - s.marca.r}px;width:${s.marca.r * 2}px;height:${s.marca.r * 2}px;border-radius:50%;border:7px solid ${s.marca.cor || A2};box-shadow:0 0 0 6px rgba(0,0,0,.25),0 0 40px ${s.marca.cor || A2}"></div>` : ''}
+${s.cota ? (() => { const q = s.cota, cor = q.cor || A2, ang = Math.atan2(q.y2 - q.y1, q.x2 - q.x1) * 180 / Math.PI, len = Math.hypot(q.x2 - q.x1, q.y2 - q.y1);
+    return `<div style="position:absolute;left:${q.x1}px;top:${q.y1 - 4}px;width:${len}px;height:8px;background:${cor};transform-origin:0 50%;transform:rotate(${ang}deg);box-shadow:0 0 18px ${cor};border-radius:4px"></div>
+<div style="position:absolute;left:${(q.x1 + q.x2) / 2}px;top:${(q.y1 + q.y2) / 2}px;transform:translate(-50%,-50%);background:${cor};color:#111;font:900 44px 'Inter Tight';letter-spacing:-.02em;padding:8px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.45)">${esc(q.txt)}</div>`; })() : ''}
+${header(i, n, '#fff')}
+<div style="position:absolute;left:64px;right:64px;bottom:${s.texto_b || 120}px;color:#fff">
+ ${s.tag ? `<div style="display:inline-block;background:${s.tag_cor || A2};color:${s.tag_cor ? '#fff' : '#111'};font:800 26px Inter;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:8px;margin-bottom:18px">${esc(s.tag)}</div>` : ''}
+ <div class="tt" style="font-size:${s.tam || 104}px;text-shadow:0 6px 30px rgba(0,0,0,.4)">${esc(s.titulo)}</div>
+ ${s.sub ? `<div style="font:500 36px/1.3 Inter;margin-top:18px;color:#eee;max-width:900px">${esc(s.sub)}</div>` : ''}
+ ${s.credito ? `<div class="cred" style="margin-top:14px;color:#bbb">${esc(s.credito)}</div>` : ''}</div>
 ${dots(i, n, '#fff')}`,
 
   // Frase gigante sobre foto em tela cheia (estilo @michamenezes) + CTA

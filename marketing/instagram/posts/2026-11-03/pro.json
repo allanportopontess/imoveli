@@ -11,79 +11,55 @@
     },
     {
      "t": "luz",
-     "img": "img/depois-caso-luz.jpg",
-     "tam": 230
+     "img": "img/real/wmfmzK2gDQo.jpg",
+     "tam": 240
     }
    ],
    "script": "mas não tem destaque",
-   "img": "img/depois-caso-luz.jpg",
-   "etiqueta": "3 camadas de luz",
-   "credito": "projeto do escritório · imagem 3D",
-   "foto_h": 420,
-   "barras_h": 500
+   "img": "img/real/y5vzB7nisbk.jpg",
+   "foto_h": 440,
+   "barras_h": 520,
+   "credito": "foto ilustrativa"
   },
   {
-   "tipo": "numero",
-   "titulo": "Só luz branca\ne chapada",
-   "chips": [
-    "loja toda igual",
-    "nada se destaca",
-    "luz fria demais",
-    "spot que ofusca"
-   ],
-   "img": "img/depois-caso-provador.jpg",
-   "filtro": "grayscale(.85) brightness(1.15) contrast(.8) hue-rotate(180deg) saturate(.6)",
-   "credito": "simulação ilustrativa do erro (imagem 3D alterada)"
+   "tipo": "foco",
+   "img": "img/real/V1tZWfLowRY.jpg",
+   "tag": "erro",
+   "tag_cor": "#E5392B",
+   "titulo": "Luz branca\ne chapada.",
+   "sub": "Tudo igual. Nada vende."
   },
   {
-   "tipo": "numero",
-   "num": "#1",
-   "titulo": "Geral",
-   "chips": [
-    "enxergar bem a loja",
-    "uniforme",
-    "sem sombras duras"
-   ],
-   "img": "img/depois-caso-pausa.jpg",
-   "credito": "projeto do escritório · imagem 3D"
+   "tipo": "foco",
+   "img": "img/real/Ro0PNXcpCus.jpg",
+   "tag": "#1 destaque",
+   "titulo": "Spot no\nproduto-foco.",
+   "sub": "Tons quentes: 3.000 a 3.500 K.",
+   "marca": {
+    "x": 540,
+    "y": 382,
+    "r": 110
+   }
   },
   {
-   "tipo": "numero",
-   "num": "#2",
-   "titulo": "Destaque",
-   "chips": [
-    "spot no produto-foco",
-    "vitrines",
-    "tons quentes 3.000–3.500 K"
-   ],
-   "img": "img/depois-caso-luz.jpg",
-   "credito": "projeto do escritório · imagem 3D · referências gerais"
-  },
-  {
-   "tipo": "numero",
-   "num": "#3",
-   "titulo": "Apoio",
-   "chips": [
-    "fita de LED",
-    "arandela",
-    "cria clima"
-   ],
-   "img": "img/diagrama-luz.jpg",
-   "pos": "center 50%",
-   "credito": "esquema ilustrativo"
+   "tipo": "foco",
+   "img": "img/real/XiUf1MZIqhM.jpg",
+   "tag": "#2 apoio",
+   "titulo": "LED na\nprateleira.",
+   "sub": "Cria clima e profundidade."
   },
   {
    "tipo": "frase",
-   "img": "img/depois-caso-luz.jpg",
+   "img": "img/real/wmfmzK2gDQo.jpg",
    "linhas": [
     "Sua loja",
     "tem luz de",
     "destaque?"
    ],
-   "tam": 150,
-   "y": 250,
-   "cta": "Comenta VENDA e receba o checklist grátis no direct",
-   "cta2": "💬 responde SIM ou NÃO aqui embaixo"
+   "tam": 140,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💬 responde SIM ou NÃO"
   }
  ]
 }
