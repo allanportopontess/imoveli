@@ -1,0 +1,79 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "loja bonita é loja bem iluminada",
+      "titulo_imp": "Sua loja tem *luz*\nmas não tem *destaque*",
+      "tam_imp": 82,
+      "foto": "img/depois-caso-luz.jpg",
+      "foco_y": 50,
+      "legenda": "3 camadas de luz que mudam tudo 👇"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-luz.jpg",
+      "selo": "💡 AS 3 CAMADAS",
+      "titulo_imp": "Geral, *destaque*, apoio",
+      "tam_imp": 84,
+      "caixas": [
+        "geral: enxergar bem a loja",
+        "destaque: spot no produto-foco",
+        "apoio: fita ou arandela pra dar clima"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "texto",
+      "selo": "❌ O ERRO",
+      "titulo_imp": "Só luz *branca*\n*e chapada*",
+      "tam_imp": 104,
+      "itens": [
+        "Loja toda igual, nada se destaca",
+        "Luz fria demais no produto",
+        "Spots mal direcionados ofuscam o cliente"
+      ],
+      "nota": "é o erro mais comum em loja pequena"
+    },
+    {
+      "tipo": "texto",
+      "selo": "✅ O AJUSTE",
+      "titulo_imp": "Faça a luz\n*trabalhar*",
+      "tam_imp": 100,
+      "itens": [
+        "Luz geral uniforme e sem sombras duras",
+        "Spots no **produto-foco** e nas vitrines",
+        "Tons **quentes** (3.000–3.500 K) em moda e decoração"
+      ],
+      "nota": "referências gerais; teste o tom no seu produto"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-luz.jpg",
+      "selo": "✅ NA PRÁTICA",
+      "titulo_imp": "Luz *no produto*",
+      "tam_imp": 88,
+      "caixas": [
+        "trilho de spots e parede de destaque",
+        "percurso iluminado até o caixa"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "texto",
+      "selo": "💬 SUA VEZ",
+      "titulo_imp": "Sua loja tem\n*luz de destaque?*",
+      "tam_imp": 96,
+      "itens": [
+        "Comenta SIM ou NÃO aqui embaixo",
+        "Comenta **VENDA** e receba o checklist grátis no direct",
+        "Salva pra rever no seu projeto"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

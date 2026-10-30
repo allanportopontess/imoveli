@@ -1,0 +1,32 @@
+# Fotos (Unsplash License: uso comercial livre, sem atribuição obrigatória)
+
+- `Ex6q4rqethg.jpg`: https://unsplash.com/photos/Ex6q4rqethg
+- `CzbJgV5H7wU.jpg`: https://unsplash.com/photos/CzbJgV5H7wU
+- `qDBxfh5Idak.jpg`: https://unsplash.com/photos/qDBxfh5Idak
+- `RzT_Z6QGAbQ.jpg`: https://unsplash.com/photos/RzT_Z6QGAbQ
+- `HZBMsBpWoKw.jpg`: https://unsplash.com/photos/HZBMsBpWoKw
+- `9xu3rxgV9H4.jpg`: https://unsplash.com/photos/9xu3rxgV9H4
+- `QGg-vsPYbu8.jpg`: https://unsplash.com/photos/QGg-vsPYbu8
+- `3HfGnyPfWqQ.jpg`: https://unsplash.com/photos/3HfGnyPfWqQ
+- `XZuU2Di3x4w.jpg`: https://unsplash.com/photos/XZuU2Di3x4w
+- `khKowH7X-Uc.jpg`: https://unsplash.com/photos/khKowH7X-Uc
+- `9i5eqBarv-k.jpg`: https://unsplash.com/photos/9i5eqBarv-k
+- `tDq4Ljxqm6w.jpg`: https://unsplash.com/photos/tDq4Ljxqm6w
+- `bAGo7O4prtY.jpg`: https://unsplash.com/photos/bAGo7O4prtY
+- `rCj4swJZ4kE.jpg`: https://unsplash.com/photos/rCj4swJZ4kE
+- `cXmER3VNxUA.jpg`: https://unsplash.com/photos/cXmER3VNxUA
+- `4Ly61P3EWVY.jpg`: https://unsplash.com/photos/4Ly61P3EWVY
+- `39Npb2siceI.jpg`: https://unsplash.com/photos/39Npb2siceI
+- `ohF5oGzMcUY.jpg`: https://unsplash.com/photos/ohF5oGzMcUY
+- `y5vzB7nisbk.jpg`: https://unsplash.com/photos/y5vzB7nisbk
+- `V1tZWfLowRY.jpg`: https://unsplash.com/photos/V1tZWfLowRY
+- `Ro0PNXcpCus.jpg`: https://unsplash.com/photos/Ro0PNXcpCus
+- `XiUf1MZIqhM.jpg`: https://unsplash.com/photos/XiUf1MZIqhM
+- `wmfmzK2gDQo.jpg`: https://unsplash.com/photos/wmfmzK2gDQo
+- `TswOPhWcrmQ.jpg`: https://unsplash.com/photos/TswOPhWcrmQ
+- `uKGZiYnF9Ys.jpg`: https://unsplash.com/photos/uKGZiYnF9Ys
+- `UHSc9d0WgGA.jpg`: https://unsplash.com/photos/UHSc9d0WgGA
+- `CXj2uFlySyI.jpg`: https://unsplash.com/photos/CXj2uFlySyI
+- `HtBlQdxfG9k.jpg`: https://unsplash.com/photos/HtBlQdxfG9k
+- `kGE6fLbfKys.jpg`: https://unsplash.com/photos/kGE6fLbfKys
+- `EQSEnPS1bz8.jpg`: https://unsplash.com/photos/EQSEnPS1bz8

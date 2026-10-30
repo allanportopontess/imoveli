@@ -1,0 +1,80 @@
+{
+ "tema": "lima",
+ "slides": [
+  {
+   "tipo": "capa_spot",
+   "sobre": "arquitetura da vida real",
+   "linhas": [
+    {
+     "t": "Medidas que",
+     "tam": 118
+    },
+    {
+     "t": "todo mundo",
+     "tam": 118
+    },
+    {
+     "t": "erra",
+     "img": "img/real/XiUf1MZIqhM.jpg",
+     "tam": 210
+    }
+   ],
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "recorte": "img/real/recorte-medindo.png",
+   "recorte_h": 520,
+   "recorte_x": 330,
+   "foto_h": 380,
+   "barras_h": 440,
+   "credito": "fotos ilustrativas"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/rCj4swJZ4kE.jpg",
+   "tag": "bancada",
+   "titulo": "≈ 0,90 m",
+   "tam": 150,
+   "sub": "Baixa demais, quem paga são as costas."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/cXmER3VNxUA.jpg",
+   "tag": "atrás da mesa",
+   "titulo": "90 cm",
+   "tam": 150,
+   "sub": "Pra recuar a cadeira sem bater na parede."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/4Ly61P3EWVY.jpg",
+   "tag": "ao lado da cama",
+   "titulo": "60 cm",
+   "tam": 150,
+   "sub": "De passagem livre."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/39Npb2siceI.jpg",
+   "tag": "tomadas",
+   "titulo": "Móveis antes,\ntomadas depois.",
+   "tam": 92,
+   "sub": "Tomada baixa ~0,30 m · interruptor ~1,10 m.",
+   "marca": {
+    "x": 787,
+    "y": 832,
+    "r": 170
+   }
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/ohF5oGzMcUY.jpg",
+   "linhas": [
+    "Mede antes",
+    "de quebrar."
+   ],
+   "tam": 150,
+   "y": 230,
+   "cta": "💾 salva pra consultar antes da obra",
+   "cta2": "referências gerais · confirme com seu arquiteto"
+  }
+ ]
+}
