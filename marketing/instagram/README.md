@@ -8,11 +8,11 @@ Automação de posts diários no Instagram. Claude cria o conteúdo, renderiza a
 |---|---|---|
 | Sexta, 09:52 | Instagram: preparar posts da próxima semana | Claude cria os 7 posts da semana seguinte (`status: aguardando_aprovacao`), renderiza, faz push e envia a prévia |
 | após o "ok" | — | Posts aprovados passam para `status: aprovado` |
-| Todo dia, 18:30 | Instagram: publicar post do dia | Publica o post do dia via Windsor **somente se** `status == aprovado` e marca `publicado` |
+| Todo dia, 10:00 | Instagram: publicar post do dia | Publica o post do dia via Windsor **somente se** `status == aprovado` e marca `publicado` |
 
 Post sem aprovação **não** é publicado.
 
-**Autorização permanente (Allan, 29/10/2026):** a rotina das 18:30 publica sem nova confirmação o post do dia com `status: aprovado` (máx. 1/dia); a rotina de sexta cria os 7 posts no padrão atual e envia para aprovação (não publica). Fotos novas: `python3 tools/busca_unsplash.py "termo"`.
+**Autorização permanente (Allan, 29/10/2026):** a rotina das 10:00 publica sem nova confirmação o post do dia com `status: aprovado` (máx. 1/dia); a rotina de sexta cria os 7 posts no padrão atual e envia para aprovação (não publica). Fotos novas: `python3 tools/busca_unsplash.py "termo"`.
 
 ## Calendário editorial
 
@@ -27,7 +27,7 @@ Post sem aprovação **não** é publicado.
 | Dom | `arquitetura` | Antes e depois, mitos, perguntas e respostas |
 
 Regras de conteúdo:
-- **Máximo 1 post no feed por dia.** Se entrar um post extra (ex.: Reels avulso), o post agendado daquele dia é adiado e a semana é empurrada 1 dia. A rotina das 18:30 não publica se já houver post no feed no mesmo dia.
+- **Máximo 1 post no feed por dia.** Se entrar um post extra (ex.: Reels avulso), o post agendado daquele dia é adiado e a semana é empurrada 1 dia. A rotina das 10:00 não publica se já houver post no feed no mesmo dia.
 - Carrossel de 5 a 8 slides: capa com gancho, 1 ideia por slide, CTA no final.
 - Legenda: gancho → resumo em lista → CTA (salvar, comentar, direct) → 8 a 12 hashtags do nicho.
 - Posts de venda levam CTA "link na bio". A bio aponta para `lojaquevende.allanportoarquiteto.com.br/links/?utm_source=instagram&utm_medium=bio` (ativo desde 05/10): checklist grátis em destaque, curso Loja que Vende e Kit Usucapião PRO (`pay.hotmart.com/C106999952U`, com `src=instagram&sck=bio_kit`).
