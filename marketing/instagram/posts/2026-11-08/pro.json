@@ -1,0 +1,55 @@
+{
+ "tema": "lima",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/sPW5sPCnOak.jpg",
+   "sobre": "casa pequena",
+   "linhas": [
+    "3 mitos",
+    "que te fazem",
+    "errar."
+   ],
+   "tam": 140,
+   "y": 200,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/uFXWhRfSe7A.jpg",
+   "tag": "mito 1",
+   "titulo": "Parede escura\nencolhe a sala?",
+   "tam": 92,
+   "sub": "Numa parede só, ela dá profundidade."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/f1oM5AZntSk.jpg",
+   "tag": "mito 2",
+   "titulo": "Espelho\nsempre amplia?",
+   "tam": 92,
+   "sub": "Amplia quando reflete luz ou janela."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/5aJpyxXaCyA.jpg",
+   "tag": "mito 3",
+   "titulo": "Planejado é\nsempre melhor?",
+   "tam": 92,
+   "sub": "Só quando resolve o uso real. Senão, encarece."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/9FFtnyiV4Dg.jpg",
+   "linhas": [
+    "Qual mito",
+    "você já",
+    "ouviu?"
+   ],
+   "tam": 150,
+   "y": 220,
+   "cta": "💬 Comenta aqui",
+   "cta2": "💾 salva pra sua reforma"
+  }
+ ]
+}
