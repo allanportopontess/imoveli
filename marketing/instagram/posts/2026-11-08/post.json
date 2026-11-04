@@ -2,9 +2,9 @@
   "data": "2026-11-08",
   "horario": "10:00",
   "pilar": "arquitetura",
-  "formato": "carrossel_editorial (editorial.mjs)",
+  "formato": "carrossel_cinema (cinema.mjs)",
   "status": "aguardando_aprovacao",
-  "assunto": "Domingo: casa boa deixa o vento entrar",
-  "slides": "ver editorial.json",
-  "legenda": "Casa boa deixa o vento entrar. 🌿\n\nAntes do ar-condicionado, a janela.\n\n💬 Qual é o cômodo mais fresco da sua casa?\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #ventilacaonatural #casa #nordeste #confortotermico #domingo"
+  "assunto": "Domingo: deixa o vento entrar",
+  "slides": "ver cinema.json",
+  "legenda": "Domingo é dia de abrir a janela. 🌿\n\nAntes do ar-condicionado, a arquitetura já resolvia o calor: uma abertura para o ar entrar, outra para sair.\n\n💬 Qual é o cômodo mais fresco da sua casa?\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #ventilacaonatural #casa #nordeste #confortotermico #domingo"
 }

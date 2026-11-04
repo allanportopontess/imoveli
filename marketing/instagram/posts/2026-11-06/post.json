@@ -2,9 +2,9 @@
   "data": "2026-11-06",
   "horario": "10:00",
   "pilar": "projeto",
-  "formato": "carrossel_editorial (editorial.mjs)",
+  "formato": "carrossel_cinema (cinema.mjs)",
   "status": "aguardando_aprovacao",
-  "assunto": "Sombra também é material",
-  "slides": "ver editorial.json",
-  "legenda": "Sombra também é material.\n\nNa arquitetura, o que não é construído (luz, sombra, vazio) pesa tanto quanto o que é.\n\n💾 Salve para a sua referência.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #referenciadearquitetura #concreto #luzesombra #brutalismo #arquiteturamoderna"
+  "assunto": "Referência: a luz é material",
+  "slides": "ver cinema.json",
+  "legenda": "Nenhum acabamento. E mesmo assim, inesquecível.\n\nRitmo, luz e sombra: na boa arquitetura, o que não é construído pesa tanto quanto o que é.\n\n💾 Salve como referência.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #referenciadearquitetura #concreto #luzesombra #brutalismo #arquiteturamoderna"
 }

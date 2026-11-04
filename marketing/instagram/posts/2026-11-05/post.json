@@ -2,9 +2,9 @@
   "data": "2026-11-05",
   "horario": "10:00",
   "pilar": "varejo",
-  "formato": "carrossel_editorial (editorial.mjs)",
+  "formato": "carrossel_cinema (cinema.mjs)",
   "status": "aguardando_aprovacao",
-  "assunto": "Luz que vende",
-  "slides": "ver editorial.json",
-  "legenda": "A luz vende antes do vendedor.\n\nGeral para ver. Destaque para desejar. Natural para ficar.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquiteturacomercial #iluminacao #varejo #lojista #projetodeloja #arquitetura"
+  "assunto": "Loja que vende",
+  "slides": "ver cinema.json",
+  "legenda": "Você entra. Acha tudo lindo. E sai sem comprar. 🛍️\n\nMuitas vezes o problema não é o produto nem o preço. É a luz: a geral mostra a loja, a de destaque vende o produto.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquiteturacomercial #iluminacao #varejo #lojista #projetodeloja #lojaquevende"
 }

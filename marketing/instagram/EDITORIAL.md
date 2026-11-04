@@ -2,7 +2,12 @@
 
 **Ideia:** sair do "post pronto". O feed vira uma revista de arquitetura: fotografia em primeiro plano, frase curta, muito respiro.
 
-## Identidade visual
+## Identidade visual (v2 · cinema, desde 04/11)
+- Gerador: `node cinema.mjs <data>` a partir de `posts/<data>/cinema.json`. Foto de arquitetura em tela cheia em todo slide, tratamento de cor de cinema (`pb`, `quente`, `frio`), grão leve, barra de progresso estilo stories.
+- Narrativa de criador de conteúdo: **gancho** (curiosidade) → **cenas** (capítulos, 1 frase cada) → **virada** (a ideia central, centralizada) → **detalhe** (opcional) → **fecho** (pergunta + 1 CTA em pílula fina).
+- Textos em segunda pessoa ("você"), sem inventar histórias pessoais do Allan.
+
+## Identidade visual (v1 · editorial, referência)
 - Papel off-white `#F4F1EC`, tinta `#1C1B19`, cinza `#8A847A`.
 - Um acento por pilar: terracota `#B5652F` (varejo/projeto), petróleo `#2F5D62` (imóvel em dia/Kit), oliva `#6B7A4B` (casa/domingo).
 - Títulos em **Cormorant Garamond** (serifa clássica, com itálico na palavra-chave); apoio em **Inter Tight** fina, caixa-alta espaçada.
