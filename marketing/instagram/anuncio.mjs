@@ -96,7 +96,7 @@ ${cta ? `<div class="btn">${esc(s.botao || a.botao)}</div><div class="sb">${esc(
 }
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
-const b = await chromium.launch();
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 async function shot(html, w, h, out) {
   const tmp = join(ROOT, 'fonts', '_anuncio.html'); writeFileSync(tmp, html);
   const p = await b.newPage({ viewport: { width: w, height: h } });

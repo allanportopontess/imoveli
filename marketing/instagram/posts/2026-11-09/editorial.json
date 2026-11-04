@@ -1,0 +1,36 @@
+{
+ "acento": "#B5652F",
+ "slides": [
+  {
+   "tipo": "capa",
+   "img": "img/real/g7Tg0fcvB7M.jpg",
+   "sobre": "Arquitetura de varejo",
+   "titulo": "A fachada é o seu\nprimeiro *anúncio*.",
+   "tam": 96
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "num": "01",
+   "texto": "Vitrine acesa\nparece *aberta*."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/c50augmA1gk.jpg",
+   "num": "02",
+   "texto": "Um nome.\nUma *placa*."
+  },
+  {
+   "tipo": "moldura",
+   "img": "img/real/IkcrLge-EEU.jpg",
+   "num": "03",
+   "texto": "Entrada *clara*\nconvida a entrar."
+  },
+  {
+   "tipo": "final",
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa decide\nem *segundos*.",
+   "cta": "Comente VENDA e receba o checklist da loja que vende."
+  }
+ ]
+}

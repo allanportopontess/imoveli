@@ -14,6 +14,6 @@ const html = `<!doctype html><html><body style="margin:0;width:${W}px;height:${H
 <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,200,150,.05),rgba(0,0,0,.06));mix-blend-mode:soft-light"></div>
 </body></html>`;
 const tmp = resolve('fonts/_compor.html'); writeFileSync(tmp, html);
-const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: W, height: H } });
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) }); const p = await b.newPage({ viewport: { width: W, height: H } });
 await p.goto('file://' + tmp, { waitUntil: 'load' }); await p.screenshot({ path: out, type: 'jpeg', quality: 92 });
 await b.close(); unlinkSync(tmp); console.log(out);

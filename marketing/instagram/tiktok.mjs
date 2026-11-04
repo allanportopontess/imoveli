@@ -110,7 +110,7 @@ ${s.legenda ? `<div style="position:absolute;left:0;right:0;bottom:${s.legenda_y
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
-const b = await chromium.launch();
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
 const tmp = join(ROOT, 'fonts', '_tiktok.html');
 const n = c.slides.length;

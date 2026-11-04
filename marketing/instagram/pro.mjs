@@ -129,7 +129,7 @@ ${s.selo ? `<div style="position:absolute;left:30px;bottom:40px;width:640px;back
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
-const b = await chromium.launch();
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
 const tmp = join(ROOT, 'fonts', '_pro.html');
 const n = c.slides.length;

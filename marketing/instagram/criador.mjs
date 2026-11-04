@@ -99,7 +99,7 @@ ${s.legenda ? `<div class="sub" style="position:absolute;left:60px;right:60px;bo
 };
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
-const b = await chromium.launch();
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
 const tmp = join(ROOT, 'fonts', '_criador.html');
 for (let i = 0; i < c.slides.length; i++) {

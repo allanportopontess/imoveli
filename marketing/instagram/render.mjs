@@ -77,7 +77,7 @@ function slideHtml(s, i, total) {
 
 for (const f of readdirSync(dir)) if (/^slide-\d+\.jpg$/.test(f)) unlinkSync(join(dir, f));
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
 const slides = post.slides;
 for (let i = 0; i < slides.length; i++) {

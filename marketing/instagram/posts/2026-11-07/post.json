@@ -1,11 +1,10 @@
 {
   "data": "2026-11-07",
   "horario": "10:00",
-  "pilar": "projeto",
-  "formato": "carrossel_pro (pro.mjs)",
-  "status": "substituido",
-  "assunto": "Fachada: o primeiro anúncio da loja",
-  "slides": "ver pro.json",
-  "legenda": "Sua fachada é o primeiro anúncio da sua loja. 🏪\n\nAntes de ver um produto, o cliente vê a fachada. E decide em segundos se entra.\n\n❌ Placa demais, cartaz colado, informação brigando\n✅ Uma marca, uma placa, nome legível\n✅ Vitrine acesa: loja iluminada parece aberta e cuidada\n\n(Imagem 3D: projeto do escritório em Caruaru/PE. Demais fotos ilustrativas.)\n\n💬 Comente VENDA e receba o checklist grátis no direct.\n💾 Salva pra rever antes de mexer na fachada.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#fachadacomercial #arquiteturacomercial #vitrinismo #varejo #lojista #projetodeloja #comunicacaovisual #lojaquevende #arquitetura #caruaru",
-  "nota": "Substituído pela nova identidade (pedido do Allan em 04/11)"
+  "pilar": "venda",
+  "formato": "carrossel_editorial (editorial.mjs)",
+  "status": "aguardando_aprovacao",
+  "assunto": "Kit Usucapião PRO",
+  "slides": "ver editorial.json",
+  "legenda": "Usucapião sem começar do zero.\n\nO Kit Usucapião PRO reúne modelos editáveis de plantas, memoriais, checklists, contratos, propostas e planilhas para a parte técnica da regularização.\n\n🔗 Link na bio.\n\n⚠️ Material de apoio técnico. Não substitui a análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #regularizacaodeimoveis #arquiteto #engenheirocivil #memorialdescritivo #kitusucapiao"
 }

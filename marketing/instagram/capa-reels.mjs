@@ -45,7 +45,7 @@ ${c.tag ? `<div class="tag">${esc(c.tag)}</div>` : ''}
 <div class="bot"><p>${esc(c.sub)}</p><div class="selo">${esc(c.selo)}</div></div>
 <div class="sig">ALLAN PORTO ® · Arquiteto de varejo</div></body></html>`; }
 const tmp = join(ROOT, 'fonts', '_capa.html'); writeFileSync(tmp, html);
-const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || ((await import('node:fs')).existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) }); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
 await p.goto('file://' + tmp, { waitUntil: 'load' }); await p.evaluate(() => document.fonts.ready);
 await p.screenshot({ path: join(dir, 'capa.jpg'), type: 'jpeg', quality: 90 }); await b.close(); unlinkSync(tmp);
 console.log(join(dir, 'capa.jpg'));
