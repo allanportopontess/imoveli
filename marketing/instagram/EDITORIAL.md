@@ -2,7 +2,13 @@
 
 **Ideia:** sair do "post pronto". O feed vira uma revista de arquitetura: fotografia em primeiro plano, frase curta, muito respiro.
 
-## Identidade visual (v2 · cinema, desde 04/11)
+## Identidade visual ATUAL (v3 · vibe neutra, aprovada em 04/11)
+- Gerador: `node vibe.mjs <data>` a partir de `posts/<data>/vibe.json` (tipos `gancho`, `cena`, `virada`, `lista`, `fecho`).
+- Paletas neutras: `argila`, `pedra`, `grafite`, `oliva`. Fotos claras, levemente dessaturadas, com pessoas reais (homens e mulheres) e arquitetura de referência — não só interiores/decoração.
+- Títulos em Syne ExtraBold + itálico Instrument Serif no destaque; texto de apoio em Bricolage Grotesque. Cards arredondados, adesivos bege, bolinhas de progresso.
+- Narrativa: gancho → cenas → virada → fecho com 1 CTA.
+
+## Identidade visual (v2 · cinema, referência)
 - Gerador: `node cinema.mjs <data>` a partir de `posts/<data>/cinema.json`. Foto de arquitetura em tela cheia em todo slide, tratamento de cor de cinema (`pb`, `quente`, `frio`), grão leve, barra de progresso estilo stories.
 - Narrativa de criador de conteúdo: **gancho** (curiosidade) → **cenas** (capítulos, 1 frase cada) → **virada** (a ideia central, centralizada) → **detalhe** (opcional) → **fecho** (pergunta + 1 CTA em pílula fina).
 - Textos em segunda pessoa ("você"), sem inventar histórias pessoais do Allan.
