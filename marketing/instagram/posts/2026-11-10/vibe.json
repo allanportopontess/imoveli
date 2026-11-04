@@ -1,0 +1,38 @@
+{
+ "paleta": "cobalto",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/QpRjfYmGtbk.jpg",
+   "sobre": "Imóvel em dia",
+   "texto": "Você tem a *chave*.\nMas tem o **papel**?",
+   "adesivo": "pergunta séria 🗝️"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/mTtTJE6SU78.jpg",
+   "cap": "Caso 1 · Escritura",
+   "texto": "Quando houve\n*compra e venda*.",
+   "apoio": "Documento feito em cartório entre quem vende e quem compra."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/7y3NYkYdwic.jpg",
+   "cap": "Caso 2 · Usucapião",
+   "texto": "Quando o *tempo*\nde posse prova.",
+   "apoio": "Posse prolongada, com os requisitos da lei."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/x8l4lN6-xd0.jpg",
+   "texto": "Nos dois casos,\nsó é dono\nquem *registra*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/pepI5KneFgQ.jpg",
+   "texto": "Qual é o\n*seu* caso?",
+   "cta": "Comente ESCRITURA ou USUCAPIÃO",
+   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+  }
+ ]
+}

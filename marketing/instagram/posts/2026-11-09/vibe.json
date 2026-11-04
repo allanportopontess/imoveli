@@ -1,0 +1,43 @@
+{
+ "paleta": "coral",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/ytsTAGE4lvE.jpg",
+   "sobre": "Arquitetura de varejo",
+   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*.",
+   "adesivo": "verdade dura 👀"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "cap": "Regra 1",
+   "texto": "Vitrine acesa diz:\n*estamos abertos*.",
+   "filtro": "brightness(1.15) saturate(1.1)"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/21miXvATFtY.jpg",
+   "cap": "Regra 2",
+   "texto": "Um nome. Uma placa.\nNada *brigando*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/SIheec-QZr4.jpg",
+   "cap": "Regra 3",
+   "texto": "Entrada *clara*\nconvida a entrar."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/T6ez7Pm5wFg.jpg",
+   "texto": "Sua fachada é\no anúncio que roda\n*24 horas*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa\ndecide em *segundos*.",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
+  }
+ ]
+}

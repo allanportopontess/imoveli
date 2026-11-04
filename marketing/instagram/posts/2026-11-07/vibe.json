@@ -1,0 +1,50 @@
+{
+ "paleta": "cobalto",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/ax9hV0Ufrp0.jpg",
+   "sobre": "Para arquitetas e arquitetos",
+   "texto": "Toda usucapião\ncomeça do *zero*?",
+   "adesivo": "chega disso 🙅"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/1Y2MqZi1ujs.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist. *De novo.*"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/GTYPaQyspYA.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando o que\njá podia estar **pronto**."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/Je5p36XoRKI.jpg",
+   "texto": "Comece do\n*modelo*.\nAjuste ao caso."
+  },
+  {
+   "tipo": "lista",
+   "img": "img/real/7sRt1XGv9DY.jpg",
+   "texto": "Dentro do *Kit PRO*:",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/RGoKqAtDE2Y.jpg",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado.",
+   "adesivo": "tudo editável ✏️"
+  }
+ ]
+}

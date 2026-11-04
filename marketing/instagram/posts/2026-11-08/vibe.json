@@ -1,0 +1,29 @@
+{
+ "paleta": "lima",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/JbYLsnOaMVI.jpg",
+   "sobre": "Domingo",
+   "texto": "Domingo é dia\nde abrir\na *janela*.",
+   "adesivo": "vento grátis 🌬️"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/1q2TWQyEdAU.jpg",
+   "cap": "Truque antigo",
+   "texto": "Uma janela pro ar *entrar*.\nOutra pra *sair*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/IzG2qDWP-XM.jpg",
+   "texto": "Antes do\nar‑condicionado,\na *arquitetura*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/0bCeIwI729k.jpg",
+   "texto": "Qual é o cômodo\nmais *fresco*\nda sua casa?",
+   "cta": "Conta aqui 👇"
+  }
+ ]
+}
