@@ -1,54 +1,53 @@
 {
- "tema": "azul",
+ "tema": "lima",
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/AW5QbIkgmzc.jpg",
-   "sobre": "regularização de imóvel",
+   "img": "img/real/OVLxgCtuMNU.jpg",
+   "sobre": "ponto de venda",
    "linhas": [
-    "Escritura",
-    "ou",
-    "usucapião?"
+    "O caixa",
+    "também",
+    "vende."
    ],
-   "tam": 150,
+   "tam": 160,
    "y": 200,
-   "cta": "entenda em 3 slides →"
+   "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/jaHmB2Z996I.jpg",
-   "tag": "escritura",
-   "titulo": "Quando houve\ncompra e venda.",
+   "img": "img/real/kko_dvCpnCw.jpg",
+   "tag": "#1 impulso",
+   "titulo": "Produto pequeno\nperto do caixa.",
    "tam": 88,
-   "sub": "Documento feito em cartório entre vendedor e comprador."
+   "sub": "Item barato, decisão rápida."
   },
   {
    "tipo": "foco",
-   "img": "img/real/-L2tUvJ80ho.jpg",
-   "tag": "usucapião",
-   "titulo": "Quando o tempo\nde posse prova.",
-   "tam": 88,
-   "sub": "Forma de adquirir a propriedade pela posse prolongada."
+   "img": "img/real/FbespiO-VQ8.jpg",
+   "tag": "#2 espera",
+   "titulo": "Quem espera,\nolha.",
+   "sub": "Deixe algo útil ao alcance da mão."
   },
   {
    "tipo": "foco",
-   "img": "img/real/E5iwKLsLdyY.jpg",
-   "tag": "nos dois casos",
-   "titulo": "Só é dono\nquem registra.",
-   "tam": 92,
-   "sub": "O registro na matrícula do imóvel é o passo final."
+   "img": "img/real/2cGIkBSspFM.jpg",
+   "tag": "#3 posição",
+   "titulo": "Caixa no fim\ndo percurso.",
+   "sub": "O cliente passa por tudo antes de pagar."
   },
   {
    "tipo": "frase",
-   "img": "img/real/t0CRdNl_mTg.jpg",
+   "img": "img/real/MTiXPXy16Fs.jpg",
    "linhas": [
-    "Qual é o",
-    "seu caso?"
+    "Seu caixa",
+    "vende ou",
+    "só cobra?"
    ],
-   "tam": 170,
-   "y": 230,
-   "cta": "Comenta ESCRITURA ou USUCAPIÃO",
-   "cta2": "⚠️ educativo: cada caso precisa de advogado"
+   "tam": 150,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💾 salva pra ajustar seu balcão"
   }
  ]
 }

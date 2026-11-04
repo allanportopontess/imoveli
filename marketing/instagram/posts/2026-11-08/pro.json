@@ -1,55 +1,53 @@
 {
- "tema": "lima",
+ "tema": "azul",
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/sPW5sPCnOak.jpg",
-   "sobre": "casa pequena",
+   "img": "img/real/4UcHg1EFhl4.jpg",
+   "sobre": "para arquitetos e engenheiros",
    "linhas": [
-    "3 mitos",
-    "que te fazem",
-    "errar."
+    "Usucapião:",
+    "pare de",
+    "começar do",
+    "zero."
    ],
-   "tam": 140,
-   "y": 200,
+   "tam": 136,
+   "y": 190,
    "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/uFXWhRfSe7A.jpg",
-   "tag": "mito 1",
-   "titulo": "Parede escura\nencolhe a sala?",
-   "tam": 92,
-   "sub": "Numa parede só, ela dá profundidade."
+   "img": "img/real/Wlg-hDGCQ08.jpg",
+   "tag": "plantas e memoriais",
+   "titulo": "Modelos\neditáveis.",
+   "sub": "Ajuste ao seu caso e entregue mais rápido."
   },
   {
    "tipo": "foco",
-   "img": "img/real/f1oM5AZntSk.jpg",
-   "tag": "mito 2",
-   "titulo": "Espelho\nsempre amplia?",
-   "tam": 92,
-   "sub": "Amplia quando reflete luz ou janela."
+   "img": "img/real/RahFim8GkXk.jpg",
+   "tag": "contratos e propostas",
+   "titulo": "Prontos pra\npersonalizar.",
+   "sub": "Feche o serviço com mais segurança."
   },
   {
    "tipo": "foco",
-   "img": "img/real/5aJpyxXaCyA.jpg",
-   "tag": "mito 3",
-   "titulo": "Planejado é\nsempre melhor?",
-   "tam": 92,
-   "sub": "Só quando resolve o uso real. Senão, encarece."
+   "img": "img/real/-q_lg2uUTjk.jpg",
+   "tag": "checklists e planilhas",
+   "titulo": "Nada fica\npra trás.",
+   "sub": "Documentos e etapas organizados."
   },
   {
    "tipo": "frase",
-   "img": "img/real/9FFtnyiV4Dg.jpg",
+   "img": "img/real/BJx8whKXCgc.jpg",
    "linhas": [
-    "Qual mito",
-    "você já",
-    "ouviu?"
+    "Kit",
+    "Usucapião",
+    "PRO"
    ],
-   "tam": 150,
+   "tam": 170,
    "y": 220,
-   "cta": "💬 Comenta aqui",
-   "cta2": "💾 salva pra sua reforma"
+   "cta": "🔗 Link na bio",
+   "cta2": "material de apoio técnico · não substitui advogado"
   }
  ]
 }

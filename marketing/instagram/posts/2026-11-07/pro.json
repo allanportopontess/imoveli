@@ -1,53 +1,59 @@
 {
- "tema": "azul",
+ "tema": "ambar",
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/4UcHg1EFhl4.jpg",
-   "sobre": "para arquitetos e engenheiros",
+   "img": "img/real/SVj4mL3dVxY.jpg",
+   "sobre": "fachada",
    "linhas": [
-    "Usucapião:",
-    "pare de",
-    "começar do",
-    "zero."
+    "Sua fachada",
+    "é o seu",
+    "1º anúncio."
    ],
-   "tam": 136,
-   "y": 190,
+   "tam": 140,
+   "y": 200,
    "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/Wlg-hDGCQ08.jpg",
-   "tag": "plantas e memoriais",
-   "titulo": "Modelos\neditáveis.",
-   "sub": "Ajuste ao seu caso e entregue mais rápido."
+   "img": "img/real/llxP5wlZEis.jpg",
+   "grade": "saturate(.8) contrast(1.1)",
+   "tag": "erro",
+   "tag_cor": "#E5392B",
+   "titulo": "Placa demais,\nnada se lê.",
+   "sub": "Quem passa não entende o que você vende."
+  },
+  {
+   "tipo": "numero",
+   "num": "#1",
+   "titulo": "Uma marca,\numa placa.",
+   "chips": [
+    "nome legível",
+    "cor da marca"
+   ],
+   "img": "img/depois-caso-fachada.jpg",
+   "pos": "62% 50%",
+   "credito": "projeto do escritório · imagem 3D"
   },
   {
    "tipo": "foco",
-   "img": "img/real/RahFim8GkXk.jpg",
-   "tag": "contratos e propostas",
-   "titulo": "Prontos pra\npersonalizar.",
-   "sub": "Feche o serviço com mais segurança."
-  },
-  {
-   "tipo": "foco",
-   "img": "img/real/-q_lg2uUTjk.jpg",
-   "tag": "checklists e planilhas",
-   "titulo": "Nada fica\npra trás.",
-   "sub": "Documentos e etapas organizados."
+   "img": "img/real/Fx6AH79oQ2A.jpg",
+   "tag": "#2",
+   "titulo": "Vitrine acesa.",
+   "sub": "Loja iluminada parece aberta e cuidada."
   },
   {
    "tipo": "frase",
-   "img": "img/real/BJx8whKXCgc.jpg",
+   "img": "img/real/pOfkkaDbrl4.jpg",
    "linhas": [
-    "Kit",
-    "Usucapião",
-    "PRO"
+    "Sua fachada",
+    "convida",
+    "a entrar?"
    ],
-   "tam": 170,
+   "tam": 140,
    "y": 220,
-   "cta": "🔗 Link na bio",
-   "cta2": "material de apoio técnico · não substitui advogado"
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💬 manda a foto da sua fachada no direct"
   }
  ]
 }

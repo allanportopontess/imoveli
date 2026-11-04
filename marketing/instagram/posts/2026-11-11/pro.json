@@ -3,52 +3,52 @@
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/2cZYUA1AwnQ.jpg",
-   "sobre": "conforto térmico",
+   "img": "img/real/AW5QbIkgmzc.jpg",
+   "sobre": "regularização de imóvel",
    "linhas": [
-    "Casa fresca",
-    "sem ligar",
-    "o ar."
+    "Escritura",
+    "ou",
+    "usucapião?"
    ],
-   "tam": 146,
+   "tam": 150,
    "y": 200,
-   "cta": "arrasta →"
+   "cta": "entenda em 3 slides →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/EPxTsEJV5yg.jpg",
-   "tag": "ventilação cruzada",
-   "titulo": "Uma janela entra,\noutra sai.",
-   "tam": 86,
-   "sub": "Aberturas em paredes opostas fazem o ar circular."
+   "img": "img/real/jaHmB2Z996I.jpg",
+   "tag": "escritura",
+   "titulo": "Quando houve\ncompra e venda.",
+   "tam": 88,
+   "sub": "Documento feito em cartório entre vendedor e comprador."
   },
   {
    "tipo": "foco",
-   "img": "img/real/0GIodjVKUWE.jpg",
-   "tag": "veneziana",
-   "titulo": "Ventila mesmo\nfechada.",
+   "img": "img/real/-L2tUvJ80ho.jpg",
+   "tag": "usucapião",
+   "titulo": "Quando o tempo\nde posse prova.",
+   "tam": 88,
+   "sub": "Forma de adquirir a propriedade pela posse prolongada."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/E5iwKLsLdyY.jpg",
+   "tag": "nos dois casos",
+   "titulo": "Só é dono\nquem registra.",
    "tam": 92,
-   "sub": "Bandeira ou veneziana deixam o ar passar com privacidade."
-  },
-  {
-   "tipo": "foco",
-   "img": "img/real/Q4PvX80itZ0.jpg",
-   "tag": "cortina leve",
-   "titulo": "Filtra o sol,\ndeixa o vento.",
-   "tam": 92,
-   "sub": "Tecido claro e leve nas janelas de sol forte."
+   "sub": "O registro na matrícula do imóvel é o passo final."
   },
   {
    "tipo": "frase",
-   "img": "img/real/96XdNTU9EXQ.jpg",
+   "img": "img/real/t0CRdNl_mTg.jpg",
    "linhas": [
-    "Sua casa",
-    "respira?"
+    "Qual é o",
+    "seu caso?"
    ],
-   "tam": 180,
+   "tam": 170,
    "y": 230,
-   "cta": "💾 Salva pra sua reforma",
-   "cta2": "💬 comenta: qual cômodo esquenta mais?"
+   "cta": "Comenta ESCRITURA ou USUCAPIÃO",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
   }
  ]
 }

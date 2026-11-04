@@ -1,54 +1,54 @@
 {
- "tema": "ambar",
+ "tema": "azul",
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/kTd2PvtqE_o.jpg",
-   "sobre": "loja que vende",
+   "img": "img/real/2cZYUA1AwnQ.jpg",
+   "sobre": "conforto térmico",
    "linhas": [
-    "Cliente que",
-    "não acha",
-    "o preço,",
-    "não pergunta."
+    "Casa fresca",
+    "sem ligar",
+    "o ar."
    ],
-   "tam": 124,
-   "y": 190,
+   "tam": 146,
+   "y": 200,
    "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/GzMZ86vsVjk.jpg",
-   "tag": "erro",
-   "tag_cor": "#E5392B",
-   "titulo": "Etiqueta\nescondida.",
-   "sub": "Tem cliente que desiste antes de perguntar."
+   "img": "img/real/EPxTsEJV5yg.jpg",
+   "tag": "ventilação cruzada",
+   "titulo": "Uma janela entra,\noutra sai.",
+   "tam": 86,
+   "sub": "Aberturas em paredes opostas fazem o ar circular."
   },
   {
    "tipo": "foco",
-   "img": "img/real/__Oyy0AjGXU.jpg",
-   "tag": "#1",
-   "titulo": "Preço visível.",
-   "sub": "Etiqueta legível, sempre no mesmo lugar."
+   "img": "img/real/0GIodjVKUWE.jpg",
+   "tag": "veneziana",
+   "titulo": "Ventila mesmo\nfechada.",
+   "tam": 92,
+   "sub": "Bandeira ou veneziana deixam o ar passar com privacidade."
   },
   {
    "tipo": "foco",
-   "img": "img/real/PpkID3ejSig.jpg",
-   "tag": "#2",
-   "titulo": "Seções\nsinalizadas.",
-   "sub": "Cliente que se localiza circula mais."
+   "img": "img/real/Q4PvX80itZ0.jpg",
+   "tag": "cortina leve",
+   "titulo": "Filtra o sol,\ndeixa o vento.",
+   "tam": 92,
+   "sub": "Tecido claro e leve nas janelas de sol forte."
   },
   {
    "tipo": "frase",
-   "img": "img/real/NmKZ0SRGsd0.jpg",
+   "img": "img/real/96XdNTU9EXQ.jpg",
    "linhas": [
-    "Sua loja",
-    "fala",
-    "sozinha?"
+    "Sua casa",
+    "respira?"
    ],
-   "tam": 160,
-   "y": 220,
-   "cta": "Comenta VENDA e receba o checklist grátis",
-   "cta2": "💾 salva pra revisar sua loja"
+   "tam": 180,
+   "y": 230,
+   "cta": "💾 Salva pra sua reforma",
+   "cta2": "💬 comenta: qual cômodo esquenta mais?"
   }
  ]
 }

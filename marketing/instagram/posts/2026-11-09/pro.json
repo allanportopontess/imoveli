@@ -3,51 +3,53 @@
  "slides": [
   {
    "tipo": "frase",
-   "img": "img/real/OVLxgCtuMNU.jpg",
-   "sobre": "ponto de venda",
+   "img": "img/real/sPW5sPCnOak.jpg",
+   "sobre": "casa pequena",
    "linhas": [
-    "O caixa",
-    "também",
-    "vende."
+    "3 mitos",
+    "que te fazem",
+    "errar."
    ],
-   "tam": 160,
+   "tam": 140,
    "y": 200,
    "cta": "arrasta →"
   },
   {
    "tipo": "foco",
-   "img": "img/real/kko_dvCpnCw.jpg",
-   "tag": "#1 impulso",
-   "titulo": "Produto pequeno\nperto do caixa.",
-   "tam": 88,
-   "sub": "Item barato, decisão rápida."
+   "img": "img/real/uFXWhRfSe7A.jpg",
+   "tag": "mito 1",
+   "titulo": "Parede escura\nencolhe a sala?",
+   "tam": 92,
+   "sub": "Numa parede só, ela dá profundidade."
   },
   {
    "tipo": "foco",
-   "img": "img/real/FbespiO-VQ8.jpg",
-   "tag": "#2 espera",
-   "titulo": "Quem espera,\nolha.",
-   "sub": "Deixe algo útil ao alcance da mão."
+   "img": "img/real/f1oM5AZntSk.jpg",
+   "tag": "mito 2",
+   "titulo": "Espelho\nsempre amplia?",
+   "tam": 92,
+   "sub": "Amplia quando reflete luz ou janela."
   },
   {
    "tipo": "foco",
-   "img": "img/real/2cGIkBSspFM.jpg",
-   "tag": "#3 posição",
-   "titulo": "Caixa no fim\ndo percurso.",
-   "sub": "O cliente passa por tudo antes de pagar."
+   "img": "img/real/5aJpyxXaCyA.jpg",
+   "tag": "mito 3",
+   "titulo": "Planejado é\nsempre melhor?",
+   "tam": 92,
+   "sub": "Só quando resolve o uso real. Senão, encarece."
   },
   {
    "tipo": "frase",
-   "img": "img/real/MTiXPXy16Fs.jpg",
+   "img": "img/real/9FFtnyiV4Dg.jpg",
    "linhas": [
-    "Seu caixa",
-    "vende ou",
-    "só cobra?"
+    "Qual mito",
+    "você já",
+    "ouviu?"
    ],
    "tam": 150,
    "y": 220,
-   "cta": "Comenta VENDA e receba o checklist grátis",
-   "cta2": "💾 salva pra ajustar seu balcão"
+   "cta": "💬 Comenta aqui",
+   "cta2": "💾 salva pra sua reforma"
   }
  ]
 }
