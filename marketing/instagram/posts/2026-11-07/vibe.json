@@ -1,33 +1,33 @@
 {
- "paleta": "cobalto",
+ "paleta": "grafite",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/ax9hV0Ufrp0.jpg",
-   "sobre": "Para arquitetas e arquitetos",
+   "img": "img/real/4QhDfdkzHUY.jpg",
+   "sobre": "Para arquitetos e engenheiros",
    "texto": "Toda usucapião\ncomeça do *zero*?",
    "adesivo": "chega disso 🙅"
   },
   {
    "tipo": "cena",
-   "img": "img/real/1Y2MqZi1ujs.jpg",
+   "img": "img/real/jy2q5tz7JUI.jpg",
    "cap": "Toda vez",
    "texto": "Planta. Memorial.\nChecklist. *De novo.*"
   },
   {
    "tipo": "cena",
-   "img": "img/real/GTYPaQyspYA.jpg",
+   "img": "img/real/DowtEyavqsY.jpg",
    "cap": "E o tempo",
    "texto": "Horas montando o que\njá podia estar **pronto**."
   },
   {
    "tipo": "virada",
-   "img": "img/real/Je5p36XoRKI.jpg",
+   "img": "img/real/mQiZnKwGXW0.jpg",
    "texto": "Comece do\n*modelo*.\nAjuste ao caso."
   },
   {
    "tipo": "lista",
-   "img": "img/real/7sRt1XGv9DY.jpg",
+   "img": "img/real/WUY0W2RSiBw.jpg",
    "texto": "Dentro do *Kit PRO*:",
    "itens": [
     "plantas",
@@ -40,7 +40,7 @@
   },
   {
    "tipo": "fecho",
-   "img": "img/real/RGoKqAtDE2Y.jpg",
+   "img": "img/real/Fc9jeKBxlBI.jpg",
    "texto": "Menos retrabalho.\nMais *entrega*.",
    "cta": "Link na bio",
    "nota": "Material de apoio técnico. Não substitui a análise de um advogado.",

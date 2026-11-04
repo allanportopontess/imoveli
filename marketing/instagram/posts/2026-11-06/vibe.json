@@ -1,43 +1,42 @@
 {
- "paleta": "rosa",
+ "paleta": "pedra",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/wfHqzttDB10.jpg",
-   "sobre": "Arquitetura instagramável",
-   "texto": "Por que *todo mundo*\npara pra tirar\nfoto aqui?",
-   "adesivo": "spoiler: é projeto 📸"
+   "img": "img/real/4G6DOKSwO8U.jpg",
+   "sobre": "Arquitetura de referência",
+   "texto": "Por que esse prédio faz *todo mundo* parar?",
+   "adesivo": "spoiler: é projeto 📐"
   },
   {
    "tipo": "cena",
-   "img": "img/real/Dfb8xW4VbNc.jpg",
+   "img": "img/real/RFDP7_80v5A.jpg",
    "cap": "Segredo 1",
-   "texto": "Uma cor\nque *ninguém esquece*."
+   "texto": "Uma forma que *ninguém esquece*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/irX71JThSwc.jpg",
+   "img": "img/real/0mXdghvJ61U.jpg",
    "cap": "Segredo 2",
-   "texto": "Um detalhe\nque vira *moldura*."
+   "texto": "Sombra que vira *desenho*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/T6ez7Pm5wFg.jpg",
+   "img": "img/real/fpsUex--kes.jpg",
    "cap": "Segredo 3",
-   "texto": "Vitrine que\nparece *convite*."
+   "texto": "Repetição que cria *ritmo*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/Ht_kU5-JfpM.jpg",
-   "texto": "Quem tira foto\nna sua fachada\nfaz *propaganda\nde graça*."
+   "img": "img/real/DqV7R-iU4-I.jpg",
+   "texto": "Arquitetura boa vira cenário. E *propaganda de graça*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/wfHqzttDB10.jpg",
-   "pos": "center 30%",
-   "texto": "Sua loja\nmerece um *story*?",
-   "cta": "Salva pra se inspirar",
-   "adesivo": "marca quem ama 💗"
+   "img": "img/real/ItvVUpgac0o.jpg",
+   "texto": "Qual prédio da sua cidade você *fotografaria*?",
+   "cta": "Conta aqui 👇",
+   "adesivo": "salva como referência"
   }
  ]
 }

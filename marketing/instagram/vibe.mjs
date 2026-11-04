@@ -11,13 +11,13 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const dir = join(ROOT, 'posts', process.argv[2]);
 const c = JSON.parse(readFileSync(join(dir, 'vibe.json'), 'utf8'));
 const PALETAS = {
-  coral: { fundo: '#FFF4EC', cor: '#FF5A3C', cor2: '#FFC93C', tinta: '#141414' },
-  cobalto: { fundo: '#EEF3FF', cor: '#2B5BFF', cor2: '#FF8FB8', tinta: '#101320' },
-  lima: { fundo: '#F6F8EA', cor: '#3FA34D', cor2: '#C6F24E', tinta: '#121512' },
-  rosa: { fundo: '#FFF0F5', cor: '#E8447A', cor2: '#FFD23F', tinta: '#1A1015' },
+  argila: { fundo: '#F3EEE8', cor: '#9A6A4F', cor2: '#E2D5C6', tinta: '#1D1B19' },
+  pedra: { fundo: '#F1EFEB', cor: '#7D7368', cor2: '#DCD6CC', tinta: '#1C1C1A' },
+  grafite: { fundo: '#EEEEEC', cor: '#2F3130', cor2: '#D3D0C9', tinta: '#161716' },
+  oliva: { fundo: '#F1F0EA', cor: '#6C705A', cor2: '#DAD7C6', tinta: '#1A1B17' },
 };
-const P = PALETAS[c.paleta || 'coral'];
-const LUZ = 'brightness(1.06) saturate(1.12) contrast(1.02)';
+const P = PALETAS[c.paleta || 'argila'];
+const LUZ = 'brightness(1.04) saturate(.78) contrast(1.03)';
 
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/\*\*([\s\S]+?)\*\*/g, '<mark>$1</mark>').replace(/\*([\s\S]+?)\*/g, '<i>$1</i>').replace(/\n/g, ' ');
