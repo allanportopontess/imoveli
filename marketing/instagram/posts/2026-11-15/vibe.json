@@ -1,0 +1,23 @@
+{
+ "paleta": "oliva",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "sobre": "Domingo",
+   "texto": "O melhor lugar da casa é o que tem *luz*.",
+   "adesivo": "modo domingo ☀️"
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/7Y6ZOkBnqAI.jpg",
+   "texto": "Uma cadeira, uma janela e *tempo*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/lwLreiMS25k.jpg",
+   "texto": "Qual é o *seu* canto preferido?",
+   "cta": "Conta aqui 👇"
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "tema": "azul",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/2cZYUA1AwnQ.jpg",
+   "sobre": "conforto térmico",
+   "linhas": [
+    "Casa fresca",
+    "sem ligar",
+    "o ar."
+   ],
+   "tam": 146,
+   "y": 200,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/EPxTsEJV5yg.jpg",
+   "tag": "ventilação cruzada",
+   "titulo": "Uma janela entra,\noutra sai.",
+   "tam": 86,
+   "sub": "Aberturas em paredes opostas fazem o ar circular."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/0GIodjVKUWE.jpg",
+   "tag": "veneziana",
+   "titulo": "Ventila mesmo\nfechada.",
+   "tam": 92,
+   "sub": "Bandeira ou veneziana deixam o ar passar com privacidade."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/Q4PvX80itZ0.jpg",
+   "tag": "cortina leve",
+   "titulo": "Filtra o sol,\ndeixa o vento.",
+   "tam": 92,
+   "sub": "Tecido claro e leve nas janelas de sol forte."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/96XdNTU9EXQ.jpg",
+   "linhas": [
+    "Sua casa",
+    "respira?"
+   ],
+   "tam": 180,
+   "y": 230,
+   "cta": "💾 Salva pra sua reforma",
+   "cta2": "💬 comenta: qual cômodo esquenta mais?"
+  }
+ ]
+}

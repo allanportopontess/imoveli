@@ -1,0 +1,125 @@
+{
+  "foto": "img/allan-selfie-3.jpg",
+  "rosto": {
+    "x": 45,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "split",
+      "img_a": "img/antes-2-araras.jpg",
+      "img_b": "img/depois-caso-luz.jpg",
+      "kicker": "do caos ao projeto que vende",
+      "titulo_imp": "4 erros que *matam* sua loja\n(e como eu *resolvo*)",
+      "tam_imp": 80,
+      "legenda": "o nº 3 quase ninguém percebe 👀👉"
+    },
+    {
+      "tipo": "antes",
+      "img": "img/antes-1-vitrine.jpg",
+      "selo": "❌ ERRO 1",
+      "titulo_imp": "Vitrine *gritando*",
+      "caixas": [
+        "15 produtos e 20 plaquinhas",
+        "o olho não sabe onde parar",
+        "resultado: ninguém para 🚶‍♀️"
+      ]
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-fachada.jpg",
+      "selo": "✅ SOLUÇÃO 1",
+      "titulo_imp": "1 *história*, 1 foco",
+      "caixas": [
+        "menos peças, um tema",
+        "luz direcionada na vitrine",
+        "fachada que faz parar na calçada"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "antes",
+      "img": "img/antes-2-araras.jpg",
+      "selo": "❌ ERRO 2",
+      "titulo_imp": "Tudo *amontoado*",
+      "caixas": [
+        "arara lotada, caixa no chão",
+        "produto que dá lucro escondido",
+        "cliente não acha nada"
+      ]
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-provador.jpg",
+      "selo": "✅ SOLUÇÃO 2",
+      "titulo_imp": "Zona *quente* certa",
+      "caixas": [
+        "maior margem no caminho do cliente",
+        "exposição respirando",
+        "provador que ajuda a vender"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "antes",
+      "img": "img/antes-3-corredor.jpg",
+      "selo": "❌ ERRO 3",
+      "titulo_imp": "Corredor *sem fim*",
+      "caixas": [
+        "nada faz o cliente parar",
+        "ele atravessa e vai embora",
+        "\"tô só olhando\" 🙃"
+      ]
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "✅ SOLUÇÃO 3",
+      "titulo_imp": "Pontos de *pausa*",
+      "caixas": [
+        "ilhas e mesas no meio do fluxo",
+        "o cliente para, toca e considera",
+        "parar = comprar"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "antes",
+      "img": "img/antes-4-luz.jpg",
+      "selo": "❌ ERRO 4",
+      "titulo_imp": "Luz de *hospital*",
+      "caixas": [
+        "fluorescente chapada em tudo",
+        "nenhum produto se destaca",
+        "loja sem vida, sem desejo"
+      ]
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-luz.jpg",
+      "selo": "✅ SOLUÇÃO 4",
+      "titulo_imp": "Luz que *vende*",
+      "caixas": [
+        "trilho com spots no produto-foco",
+        "luz geral suave + destaque 3x",
+        "o olho vai direto pro que importa"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "solucoes",
+      "foto": "img/allan-selfie-3.jpg",
+      "foco_y": 50,
+      "foto_h": 600,
+      "legenda": "Allan Porto · arquiteto de varejo",
+      "titulo_imp": "As *4 soluções* simples:",
+      "itens": [
+        "Vitrine com 1 foco e luz",
+        "Lucro na zona quente",
+        "Pontos de pausa no fluxo",
+        "Luz de destaque no produto"
+      ],
+      "cta": "comenta VENDA e recebe o checklist grátis 👇"
+    }
+  ]
+}

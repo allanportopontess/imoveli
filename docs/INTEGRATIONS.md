@@ -54,6 +54,21 @@
 
 ---
 
+### 3b. Windsor.ai → Instagram (marketing, fora do produto)
+| Campo | Valor |
+|-------|-------|
+| **Serviço** | Windsor.ai (conector `instagram`, ações de escrita) |
+| **Finalidade** | Publicação diária de posts no Instagram do Allan Porto (`marketing/instagram/`) |
+| **Método** | MCP Windsor.ai (`execute_action` → `create_carousel_post` / `create_image_post`) |
+| **Ambiente** | Sessão Claude Code (não roda no backend do IMOVELI) |
+| **Credencial** | OAuth no Windsor.ai — nenhuma chave no repositório |
+| **Hospedagem das imagens** | `raw.githubusercontent.com` (repositório público) |
+| **Status** | ⏳ Aguardando conexão OAuth do Instagram no Windsor |
+| **Risco** | Publicação pública — só publica após aprovação explícita do usuário em cada post |
+| **Configurado em** | 2026-10 |
+
+---
+
 ## Integrações Planejadas para o MVP
 
 ### 4. Railway (Deploy — Backend + Banco)

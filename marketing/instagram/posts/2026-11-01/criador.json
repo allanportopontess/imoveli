@@ -1,0 +1,78 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "regularização de imóvel",
+      "titulo_imp": "Mora há *5 anos* sem escritura?\nVeja *os requisitos*",
+      "tam_imp": 76,
+      "foto": "img/diagrama-casa.jpg",
+      "foco_y": 50,
+      "legenda": "usucapião urbana, sem enrolação 👇"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-timeline.jpg",
+      "selo": "📅 O PRAZO",
+      "titulo_imp": "*5 anos* de posse",
+      "tam_imp": 92,
+      "caixas": [
+        "contínua e sem oposição",
+        "como se fosse seu"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "texto",
+      "selo": "🏠 O IMÓVEL",
+      "titulo_imp": "Até *250 m²*\nna cidade",
+      "tam_imp": 100,
+      "itens": [
+        "Imóvel **urbano**, de até **250 m²**",
+        "É a sua **moradia** (ou da família)",
+        "Você **não tem outro imóvel**"
+      ],
+      "nota": "requisitos gerais da usucapião urbana; cada caso precisa de análise"
+    },
+    {
+      "tipo": "texto",
+      "selo": "🧰 NA PRÁTICA",
+      "titulo_imp": "Quando não há conflito,\n*dá no cartório*",
+      "tam_imp": 92,
+      "itens": [
+        "Pode ser feita **direto no cartório**, sem processo",
+        "Precisa de **advogado** e da parte técnica",
+        "Planta e memorial feitos por **arquiteto ou engenheiro**"
+      ],
+      "nota": "medida errada vira exigência do cartório e atrasa o processo"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📂 COMECE HOJE",
+      "titulo_imp": "Junte *estes papéis*",
+      "tam_imp": 100,
+      "itens": [
+        "**IPTU** e contas de luz e água",
+        "Recibos, contratos e **fotos antigas**",
+        "Declaração de **vizinhos**"
+      ],
+      "nota": "quanto mais prova de tempo e moradia, melhor a análise"
+    },
+    {
+      "tipo": "texto",
+      "selo": "⚠️ ATENÇÃO",
+      "titulo_imp": "Conteúdo *educativo*",
+      "tam_imp": 100,
+      "itens": [
+        "Não é promessa de resultado",
+        "Cada caso precisa de análise de um **advogado**",
+        "Dúvida? **Comenta aqui** que eu respondo"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

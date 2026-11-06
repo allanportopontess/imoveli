@@ -1,0 +1,36 @@
+{
+ "acento": "#B5652F",
+ "slides": [
+  {
+   "tipo": "capa",
+   "img": "img/real/KfqgYzoH3Vk.jpg",
+   "sobre": "Arquitetura de varejo",
+   "titulo": "A luz vende\n*antes* do vendedor."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/E496lLBWGDY.jpg",
+   "num": "01 · geral",
+   "texto": "Luz geral para *ver*."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/cMT-u75jwAs.jpg",
+   "num": "02 · destaque",
+   "texto": "Luz de destaque\npara *desejar*."
+  },
+  {
+   "tipo": "moldura",
+   "img": "img/real/Apw4z0D9xVE.jpg",
+   "num": "03 · natural",
+   "texto": "Luz natural para *ficar*.",
+   "nota": "Loja que parece um bom lugar de estar segura o cliente por mais tempo."
+  },
+  {
+   "tipo": "final",
+   "img": "img/real/hljsm19I4Ps.jpg",
+   "texto": "Loja bem iluminada\nnão grita. *Conduz.*",
+   "cta": "Comente VENDA e receba o checklist da loja que vende."
+  }
+ ]
+}

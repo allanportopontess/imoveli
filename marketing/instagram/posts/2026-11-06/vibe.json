@@ -1,0 +1,42 @@
+{
+ "paleta": "pedra",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/4G6DOKSwO8U.jpg",
+   "sobre": "Arquitetura de referência",
+   "texto": "Por que esse prédio faz *todo mundo* parar?",
+   "adesivo": "spoiler: é projeto 📐"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/RFDP7_80v5A.jpg",
+   "cap": "Segredo 1",
+   "texto": "Uma forma que *ninguém esquece*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/0mXdghvJ61U.jpg",
+   "cap": "Segredo 2",
+   "texto": "Sombra que vira *desenho*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/fpsUex--kes.jpg",
+   "cap": "Segredo 3",
+   "texto": "Repetição que cria *ritmo*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/DqV7R-iU4-I.jpg",
+   "texto": "Arquitetura boa vira cenário. E *propaganda de graça*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/ItvVUpgac0o.jpg",
+   "texto": "Qual prédio da sua cidade você *fotografaria*?",
+   "cta": "Conta aqui 👇",
+   "adesivo": "salva como referência"
+  }
+ ]
+}

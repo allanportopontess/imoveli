@@ -1,0 +1,53 @@
+{
+ "tema": "azul",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/4UcHg1EFhl4.jpg",
+   "sobre": "para arquitetos e engenheiros",
+   "linhas": [
+    "Usucapião:",
+    "pare de",
+    "começar do",
+    "zero."
+   ],
+   "tam": 136,
+   "y": 190,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/Wlg-hDGCQ08.jpg",
+   "tag": "plantas e memoriais",
+   "titulo": "Modelos\neditáveis.",
+   "sub": "Ajuste ao seu caso e entregue mais rápido."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/RahFim8GkXk.jpg",
+   "tag": "contratos e propostas",
+   "titulo": "Prontos pra\npersonalizar.",
+   "sub": "Feche o serviço com mais segurança."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/-q_lg2uUTjk.jpg",
+   "tag": "checklists e planilhas",
+   "titulo": "Nada fica\npra trás.",
+   "sub": "Documentos e etapas organizados."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/BJx8whKXCgc.jpg",
+   "linhas": [
+    "Kit",
+    "Usucapião",
+    "PRO"
+   ],
+   "tam": 170,
+   "y": 220,
+   "cta": "🔗 Link na bio",
+   "cta2": "material de apoio técnico · não substitui advogado"
+  }
+ ]
+}
