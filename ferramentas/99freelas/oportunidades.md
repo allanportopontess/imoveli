@@ -24,9 +24,16 @@ Nada aqui foi enviado. Quando você escolher, eu escrevo o texto e monto o bloco
 | 1 | Arquiteto(a) júnior de interiores, Llum Arquitetura | Remota, nível júnior, salário não informado. Envio de currículo e portfólio para contato@llumarquitetura.com. Provavelmente abaixo de R$ 5.000. | https://www.linkedin.com/jobs/view/4485876281 |
 | 2 | Arquiteto(a) de Criação, Fitters Decorafit | 100% remoto, banco de parceiros, projetos 3D e renderizações. Não confirmei se é PJ nem o valor. | https://br.indeed.com/q-3d-arquitetura-vagas.html |
 
-## Concursos
+## Concursos e seleções públicas (rodada de 07/11/2026)
 
-Nenhum edital aberto para arquiteto em Pernambuco. O de Caruaru (Edital 01/2025) já encerrou as inscrições.
+Nenhuma com inscrição aberta para arquiteto, em Pernambuco ou remota. Já encerradas:
+- UFPE, Edital 12/2026 (técnico-administrativo, Arquiteto, 1 vaga, vencimento R$ 5.215,39): taxa de inscrição vencia em 09/09/2026.
+- Prefeitura de Ipojuca (seleção simplificada, arquitetos): inscrições de 26/01 a 04/02/2026.
+- Prefeitura de Parnamirim (seleção simplificada, inclui arquiteto): inscrições de 01 a 10/06/2026.
+- Prefeitura de Caruaru (Edital 01/2025): encerrada.
+- CAU-SP, CAU-RJ, CAU-RO e CAU-CE: encerradas.
+Aberto, mas sem arquiteto identificado: Prefeitura de Floresta (431 vagas, inscrições até 12/11/2026).
+Acompanhar: concurso da Alepe (previsto para 2026) e novos editais no Diário Oficial dos Municípios de Pernambuco.
 
 ## 99freelas (propostas já salvas em propostas.json)
 
