@@ -3,33 +3,20 @@
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "titulo": "Casa pequena,\nvida *grande*."
+   "img": "img/real/_X1mLUmE9_s.jpg",
+   "sobre": "Domingo",
+   "titulo": "Casa boa deixa\no vento *entrar*."
   },
   {
-   "tipo": "foto",
-   "img": "img/real/_3IHwTxft2w.jpg",
-   "num": "01",
-   "texto": "Luz natural *primeiro*."
-  },
-  {
-   "tipo": "foto",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "num": "02",
-   "texto": "Cada canto\ncom *função*."
-  },
-  {
-   "tipo": "moldura",
-   "img": "img/real/Y7zup896jrI.jpg",
-   "num": "03",
-   "texto": "Menos móvel,\nmais *circulação*."
+   "tipo": "frase",
+   "texto": "Antes do ar-condicionado,\na *janela*.",
+   "assinatura": "Allan Porto · Caruaru"
   },
   {
    "tipo": "final",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salve para a sua reforma."
+   "img": "img/real/k-TJnBLvDdk.jpg",
+   "texto": "Bom *domingo*.",
+   "cta": "Qual é o cômodo mais fresco da sua casa?"
   }
  ]
 }

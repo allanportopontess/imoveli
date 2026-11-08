@@ -1,36 +1,42 @@
 {
- "paleta": "grafite",
+ "paleta": "pedra",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/2oGwk-qFAhE.jpg",
-   "sobre": "Arquitetura de varejo",
-   "texto": "Seu vendedor está no lugar *certo*?",
-   "adesivo": "pergunta séria 👀"
+   "img": "img/real/ttS--i2y9Bo.jpg",
+   "sobre": "Arquitetura de referência",
+   "texto": "Ninguém entra aqui *com pressa*.",
+   "adesivo": "repara na curva 📐"
   },
   {
    "tipo": "cena",
-   "img": "img/real/kf_PMqfPDxw.jpg",
-   "cap": "Erro comum",
-   "texto": "Balcão que vira *barreira*."
+   "img": "img/real/IWYcrdO93WY.jpg",
+   "cap": "A estrutura",
+   "texto": "Pilar que vira *escultura*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/_wb8P6oy3FE.jpg",
-   "cap": "O que funciona",
-   "texto": "Atendimento no *caminho* do cliente."
+   "img": "img/real/0xEVqxBPkdM.jpg",
+   "cap": "A escala",
+   "texto": "Uma pessoa e o espaço *inteiro*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/k6le-Ist8C4.jpg",
+   "cap": "A luz",
+   "texto": "Branco que *acolhe* em vez de cegar."
   },
   {
    "tipo": "virada",
-   "img": "img/real/n8wgapkNu-I.jpg",
-   "texto": "O layout decide onde a *conversa* acontece."
+   "img": "img/real/HYsXj18eEkk.jpg",
+   "texto": "Boa arquitetura muda o *ritmo* de quem passa."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/PwSrkyTC-Mo.jpg",
-   "texto": "Onde fica o atendimento na *sua* loja?",
-   "cta": "Comente VENDA",
-   "adesivo": "checklist grátis ✨"
+   "img": "img/real/XK0faa4_mCQ.jpg",
+   "texto": "Qual lugar te fez *desacelerar*?",
+   "cta": "Conta aqui 👇",
+   "adesivo": "salva como referência"
   }
  ]
 }

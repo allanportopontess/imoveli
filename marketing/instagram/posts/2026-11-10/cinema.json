@@ -1,38 +1,52 @@
 {
- "grade": "frio",
+ "grade": "pb",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/UBIqmkNE96M.jpg",
-   "sobre": "Imóvel em dia",
-   "texto": "Você tem a *chave*.\nMas tem\no *papel*?"
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?"
   },
   {
    "tipo": "cena",
-   "img": "img/real/ia01WrerC2c.jpg",
-   "cap": "Caso 1 · Escritura",
-   "texto": "Quando houve\n*compra e venda*.",
-   "apoio": "Documento feito em cartório entre quem vende e quem compra."
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist.\nTudo *de novo*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/izGAbuahyFo.jpg",
-   "cap": "Caso 2 · Usucapião",
-   "texto": "Quando o *tempo*\nde posse prova.",
-   "apoio": "Posse prolongada, com os requisitos da lei."
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando\no que já podia\nestar *pronto*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/OS2CI_kw0gg.jpg",
-   "texto": "Nos dois casos,\nsó é dono\nquem *registra*.",
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Comece do *modelo*.\nAjuste ao caso.",
    "tam": 110
   },
   {
+   "tipo": "detalhe",
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "pos": "center 30%",
+   "cap": "Dentro do kit",
+   "texto": "Kit Usucapião *PRO*",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
+  },
+  {
    "tipo": "fecho",
-   "img": "img/real/V7Q94jc04wQ.jpg",
-   "texto": "Qual é o\n*seu* caso?",
-   "cta": "Comente ESCRITURA ou USUCAPIÃO",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "pos": "70% center",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }

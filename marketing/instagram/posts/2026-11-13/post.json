@@ -1,10 +1,11 @@
 {
   "data": "2026-11-13",
   "horario": "10:00",
-  "pilar": "referencia",
+  "pilar": "usucapiao",
   "formato": "carrossel_vibe (vibe.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "Concreto, curva e gente",
+  "status": "aprovado",
+  "assunto": "Escritura ou usucapião?",
   "slides": "ver vibe.json",
-  "legenda": "Ninguém entra aqui com pressa. 📐\n\nPilar que vira escultura, escala humana, luz que acolhe. Boa arquitetura muda o ritmo de quem passa.\n\n💬 Qual lugar te fez desacelerar?\n💾 Salva como referência.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #referenciadearquitetura #concreto #arquiteturacontemporanea #museu #arquiteto"
+  "legenda": "Você tem a chave. Mas tem o papel? 🗝️\n\nEscritura: quando houve compra e venda. Usucapião: quando o tempo de posse, com os requisitos da lei, permite adquirir a propriedade. Nos dois casos, só é dono quem registra na matrícula do imóvel.\n\n💬 Comente ESCRITURA ou USUCAPIÃO.\n\n⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #escritura #regularizacaodeimoveis #registrodeimoveis #imovelregularizado #casapropria",
+  "aprovado_em": "2026-11-04"
 }

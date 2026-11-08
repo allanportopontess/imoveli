@@ -3,36 +3,28 @@
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/UBIqmkNE96M.jpg",
-   "sobre": "Imóvel em dia",
-   "titulo": "Escritura ou\n*usucapião*?"
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "titulo": "Usucapião sem\ncomeçar do *zero*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/ia01WrerC2c.jpg",
-   "num": "escritura",
-   "texto": "Quando houve\n*compra e venda*.",
-   "nota": "Documento feito em cartório entre quem vende e quem compra."
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "num": "o que vem no kit",
+   "texto": "Plantas, memoriais\ne checklists *editáveis*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/izGAbuahyFo.jpg",
-   "num": "usucapião",
-   "texto": "Quando o *tempo*\nde posse prova.",
-   "nota": "A posse prolongada, com os requisitos da lei, permite adquirir a propriedade."
-  },
-  {
-   "tipo": "frase",
-   "img": "img/real/OS2CI_kw0gg.jpg",
-   "texto": "Nos dois casos,\nsó é dono\nquem *registra*.",
-   "assinatura": "Na matrícula do imóvel"
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "num": "e também",
+   "texto": "Contratos, propostas\ne planilhas."
   },
   {
    "tipo": "final",
-   "img": "img/real/V7Q94jc04wQ.jpg",
-   "texto": "Qual é o *seu* caso?",
-   "cta": "Comente ESCRITURA ou USUCAPIÃO.",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Kit Usucapião *PRO*.",
+   "cta": "Link na bio.",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }

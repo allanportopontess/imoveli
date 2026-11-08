@@ -1,42 +1,42 @@
 {
- "paleta": "argila",
+ "paleta": "oliva",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/rmrTOC59HVo.jpg",
-   "sobre": "Para lojistas",
-   "texto": "Sua loja pode vender *mais* sem reforma cara.",
-   "adesivo": "sério ✋"
+   "img": "img/real/zS3nwvUpg9A.jpg",
+   "sobre": "Morar bem",
+   "texto": "O problema da sua\ncasa não é o\n*tamanho*.",
+   "adesivo": "sério 🏠"
   },
   {
    "tipo": "cena",
-   "img": "img/real/2oGwk-qFAhE.jpg",
-   "cap": "O que muda",
-   "texto": "Vitrine, percurso, pausa e *luz*."
+   "img": "img/real/DR2ZXxZpU1o.jpg",
+   "cap": "É a luz",
+   "texto": "que não *entra*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/uk3ey_vhDKA.jpg",
-   "cap": "Como",
-   "texto": "Uma mudança por aula, aplicada no *mesmo dia*."
+   "img": "img/real/2cfj0Y5ch00.jpg",
+   "cap": "É o canto",
+   "texto": "sem *função*."
   },
   {
-   "tipo": "lista",
-   "img": "img/real/fY11qin5kIs.jpg",
-   "texto": "No *Loja que Vende*:",
-   "itens": [
-    "4 aulas curtas",
-    "PDFs e checklists",
-    "caso real em Caruaru",
-    "7 dias de garantia"
-   ]
+   "tipo": "cena",
+   "img": "img/real/4_gR8nkzeuQ.jpg",
+   "cap": "É o móvel",
+   "texto": "que *sobra*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/0bCeIwI729k.jpg",
+   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/DKI8P5zmB7s.jpg",
-   "texto": "O espaço você já *pagou*. Faça ele vender.",
-   "cta": "Link na bio",
-   "adesivo": "Comente VENDA 💬"
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "texto": "Espaço bom é\no que *funciona*.",
+   "cta": "Salva pra sua reforma",
+   "adesivo": "manda pra quem vai reformar 📤"
   }
  ]
 }

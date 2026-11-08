@@ -1,42 +1,38 @@
 {
- "paleta": "pedra",
+ "paleta": "grafite",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/ttS--i2y9Bo.jpg",
-   "sobre": "Arquitetura de referência",
-   "texto": "Ninguém entra aqui *com pressa*.",
-   "adesivo": "repara na curva 📐"
+   "img": "img/real/QpRjfYmGtbk.jpg",
+   "sobre": "Imóvel em dia",
+   "texto": "Você tem a *chave*.\nMas tem o **papel**?",
+   "adesivo": "pergunta séria 🗝️"
   },
   {
    "tipo": "cena",
-   "img": "img/real/IWYcrdO93WY.jpg",
-   "cap": "A estrutura",
-   "texto": "Pilar que vira *escultura*."
+   "img": "img/real/mTtTJE6SU78.jpg",
+   "cap": "Caso 1 · Escritura",
+   "texto": "Quando houve\n*compra e venda*.",
+   "apoio": "Documento feito em cartório entre quem vende e quem compra."
   },
   {
    "tipo": "cena",
-   "img": "img/real/0xEVqxBPkdM.jpg",
-   "cap": "A escala",
-   "texto": "Uma pessoa e o espaço *inteiro*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/k6le-Ist8C4.jpg",
-   "cap": "A luz",
-   "texto": "Branco que *acolhe* em vez de cegar."
+   "img": "img/real/7y3NYkYdwic.jpg",
+   "cap": "Caso 2 · Usucapião",
+   "texto": "Quando o *tempo*\nde posse prova.",
+   "apoio": "Posse prolongada, com os requisitos da lei."
   },
   {
    "tipo": "virada",
-   "img": "img/real/HYsXj18eEkk.jpg",
-   "texto": "Boa arquitetura muda o *ritmo* de quem passa."
+   "img": "img/real/x8l4lN6-xd0.jpg",
+   "texto": "Nos dois casos,\nsó é dono\nquem *registra*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/XK0faa4_mCQ.jpg",
-   "texto": "Qual lugar te fez *desacelerar*?",
-   "cta": "Conta aqui 👇",
-   "adesivo": "salva como referência"
+   "img": "img/real/pepI5KneFgQ.jpg",
+   "texto": "Qual é o\n*seu* caso?",
+   "cta": "Comente ESCRITURA ou USUCAPIÃO",
+   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
   }
  ]
 }

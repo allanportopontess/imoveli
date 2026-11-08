@@ -1,23 +1,36 @@
 {
- "paleta": "oliva",
+ "paleta": "argila",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Domingo",
-   "texto": "O melhor lugar da casa é o que tem *luz*.",
-   "adesivo": "modo domingo ☀️"
+   "img": "img/real/u1DVI-1UUV8.jpg",
+   "sobre": "Ponto de venda",
+   "texto": "O lugar que mais vende na sua loja é o *último*.",
+   "adesivo": "quase ninguém usa 👀"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/4jcvOcZ3h4Q.jpg",
+   "cap": "Na fila",
+   "texto": "Quem espera, *olha*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/lkei65jSCzw.jpg",
+   "cap": "Ao alcance da mão",
+   "texto": "Item pequeno, decisão **rápida**."
   },
   {
    "tipo": "virada",
-   "img": "img/real/7Y6ZOkBnqAI.jpg",
-   "texto": "Uma cadeira, uma janela e *tempo*."
+   "img": "img/real/q597U6nqfBs.jpg",
+   "texto": "Caixa no fim do percurso: o cliente passa por *tudo* antes de pagar."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/lwLreiMS25k.jpg",
-   "texto": "Qual é o *seu* canto preferido?",
-   "cta": "Conta aqui 👇"
+   "img": "img/real/8o2QOXYlZx8.jpg",
+   "texto": "Seu caixa vende ou só *cobra*?",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
   }
  ]
 }

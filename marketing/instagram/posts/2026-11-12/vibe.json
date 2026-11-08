@@ -3,32 +3,38 @@
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/u1DVI-1UUV8.jpg",
-   "sobre": "Ponto de venda",
-   "texto": "O lugar que mais vende na sua loja é o *último*.",
-   "adesivo": "quase ninguém usa 👀"
+   "img": "img/real/IkcrLge-EEU.jpg",
+   "sobre": "Arquitetura de varejo",
+   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*.",
+   "adesivo": "verdade dura 👀"
   },
   {
    "tipo": "cena",
-   "img": "img/real/4jcvOcZ3h4Q.jpg",
-   "cap": "Na fila",
-   "texto": "Quem espera, *olha*."
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "cap": "Regra 1",
+   "texto": "Vitrine acesa diz:\n*estamos abertos*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/lkei65jSCzw.jpg",
-   "cap": "Ao alcance da mão",
-   "texto": "Item pequeno, decisão **rápida**."
+   "img": "img/real/21miXvATFtY.jpg",
+   "cap": "Regra 2",
+   "texto": "Um nome. Uma placa.\nNada *brigando*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/c50augmA1gk.jpg",
+   "cap": "Regra 3",
+   "texto": "Entrada *clara*\nconvida a entrar."
   },
   {
    "tipo": "virada",
-   "img": "img/real/q597U6nqfBs.jpg",
-   "texto": "Caixa no fim do percurso: o cliente passa por *tudo* antes de pagar."
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "texto": "Sua fachada é\no anúncio que roda\n*24 horas*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/8o2QOXYlZx8.jpg",
-   "texto": "Seu caixa vende ou só *cobra*?",
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa\ndecide em *segundos*.",
    "cta": "Comente VENDA",
    "adesivo": "checklist grátis ✨"
   }

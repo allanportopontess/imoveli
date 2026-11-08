@@ -3,34 +3,30 @@
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/g7Tg0fcvB7M.jpg",
-   "sobre": "Arquitetura de varejo",
-   "titulo": "A fachada é o seu\nprimeiro *anúncio*.",
-   "tam": 96
+   "img": "img/real/9DRX_cW48RQ.jpg",
+   "sobre": "Referência",
+   "titulo": "Sombra também\né *material*."
   },
   {
    "tipo": "foto",
-   "img": "img/real/Uw9wQp0uv7I.jpg",
-   "num": "01",
-   "texto": "Vitrine acesa\nparece *aberta*."
+   "img": "img/real/MPWbGMrZ6eo.jpg",
+   "texto": "Repetição cria *ritmo*."
   },
   {
    "tipo": "foto",
-   "img": "img/real/c50augmA1gk.jpg",
-   "num": "02",
-   "texto": "Um nome.\nUma *placa*."
+   "img": "img/real/bWXMh1a9rVw.jpg",
+   "texto": "A luz desenha\no que o concreto *cala*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/IkcrLge-EEU.jpg",
-   "num": "03",
-   "texto": "Entrada *clara*\nconvida a entrar."
+   "img": "img/real/rKgb2jb7wk0.jpg",
+   "texto": "Menos acabamento,\nmais *intenção*."
   },
   {
-   "tipo": "final",
-   "img": "img/real/Ex6q4rqethg.jpg",
-   "texto": "Quem passa decide\nem *segundos*.",
-   "cta": "Comente VENDA e receba o checklist da loja que vende."
+   "tipo": "frase",
+   "img": "img/real/i7h0aeMSyRo.jpg",
+   "texto": "Projetar é decidir\nonde a luz *entra*.",
+   "assinatura": "Allan Porto"
   }
  ]
 }

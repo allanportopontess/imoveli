@@ -3,8 +3,9 @@
   "horario": "10:00",
   "pilar": "varejo",
   "formato": "carrossel_vibe (vibe.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "O caixa também vende",
+  "status": "aprovado",
+  "assunto": "A fachada é o primeiro anúncio",
   "slides": "ver vibe.json",
-  "legenda": "O lugar que mais vende na sua loja é o último. 💳\n\nQuem espera, olha. Item pequeno perto do caixa, decisão rápida. E o caixa no fim do percurso faz o cliente passar por tudo antes de pagar.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#pontodevenda #arquiteturacomercial #varejo #lojista #layoutdeloja #lojaquevende"
+  "legenda": "Ninguém entra numa loja que parece fechada. 👀\n\nVitrine acesa. Um nome, uma placa. Entrada clara. Sua fachada é o anúncio que roda 24 horas.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#fachadacomercial #arquiteturacomercial #vitrinismo #varejo #lojista #projetodeloja",
+  "aprovado_em": "2026-11-04"
 }
