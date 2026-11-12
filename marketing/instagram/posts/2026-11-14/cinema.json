@@ -3,50 +3,34 @@
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/g_Mx0MQdQqE.jpg",
-   "sobre": "Para arquitetos e engenheiros",
-   "texto": "Toda usucapião\ncomeça do *zero*?"
+   "img": "img/real/9DRX_cW48RQ.jpg",
+   "sobre": "Referência",
+   "texto": "Nenhum\nacabamento.\nE mesmo assim,\n*inesquecível*.",
+   "tam": 120
   },
   {
    "tipo": "cena",
-   "img": "img/real/SAFF_1rWBqE.jpg",
-   "cap": "Toda vez",
-   "texto": "Planta. Memorial.\nChecklist.\nTudo *de novo*."
+   "img": "img/real/MPWbGMrZ6eo.jpg",
+   "cap": "O segredo 1",
+   "texto": "Repetição\ncria *ritmo*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/Yn8D5B8C-eY.jpg",
-   "cap": "E o tempo",
-   "texto": "Horas montando\no que já podia\nestar *pronto*."
+   "img": "img/real/bWXMh1a9rVw.jpg",
+   "cap": "O segredo 2",
+   "texto": "A luz entra\nno lugar *certo*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/KFRS0B2q05I.jpg",
-   "texto": "Comece do *modelo*.\nAjuste ao caso.",
-   "tam": 110
-  },
-  {
-   "tipo": "detalhe",
-   "img": "img/real/SAFF_1rWBqE.jpg",
-   "pos": "center 30%",
-   "cap": "Dentro do kit",
-   "texto": "Kit Usucapião *PRO*",
-   "itens": [
-    "plantas",
-    "memoriais",
-    "checklists",
-    "contratos",
-    "propostas",
-    "planilhas"
-   ]
+   "img": "img/real/rKgb2jb7wk0.jpg",
+   "texto": "Arquitetura boa\nnão precisa de enfeite.\nPrecisa de *intenção*.",
+   "tam": 96
   },
   {
    "tipo": "fecho",
-   "img": "img/real/g_Mx0MQdQqE.jpg",
-   "pos": "70% center",
-   "texto": "Menos retrabalho.\nMais *entrega*.",
-   "cta": "Link na bio",
-   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
+   "img": "img/real/i7h0aeMSyRo.jpg",
+   "texto": "Salva pra lembrar:\na luz também\né *material*.",
+   "cta": "Salvar"
   }
  ]
 }

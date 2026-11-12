@@ -1,38 +1,36 @@
 {
- "acento": "#2F5D62",
+ "acento": "#B5652F",
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/UBIqmkNE96M.jpg",
-   "sobre": "Imóvel em dia",
-   "titulo": "Escritura ou\n*usucapião*?"
+   "img": "img/real/g7Tg0fcvB7M.jpg",
+   "sobre": "Arquitetura de varejo",
+   "titulo": "A fachada é o seu\nprimeiro *anúncio*.",
+   "tam": 96
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "num": "01",
+   "texto": "Vitrine acesa\nparece *aberta*."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/c50augmA1gk.jpg",
+   "num": "02",
+   "texto": "Um nome.\nUma *placa*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/ia01WrerC2c.jpg",
-   "num": "escritura",
-   "texto": "Quando houve\n*compra e venda*.",
-   "nota": "Documento feito em cartório entre quem vende e quem compra."
-  },
-  {
-   "tipo": "moldura",
-   "img": "img/real/izGAbuahyFo.jpg",
-   "num": "usucapião",
-   "texto": "Quando o *tempo*\nde posse prova.",
-   "nota": "A posse prolongada, com os requisitos da lei, permite adquirir a propriedade."
-  },
-  {
-   "tipo": "frase",
-   "img": "img/real/OS2CI_kw0gg.jpg",
-   "texto": "Nos dois casos,\nsó é dono\nquem *registra*.",
-   "assinatura": "Na matrícula do imóvel"
+   "img": "img/real/IkcrLge-EEU.jpg",
+   "num": "03",
+   "texto": "Entrada *clara*\nconvida a entrar."
   },
   {
    "tipo": "final",
-   "img": "img/real/V7Q94jc04wQ.jpg",
-   "texto": "Qual é o *seu* caso?",
-   "cta": "Comente ESCRITURA ou USUCAPIÃO.",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa decide\nem *segundos*.",
+   "cta": "Comente VENDA e receba o checklist da loja que vende."
   }
  ]
 }

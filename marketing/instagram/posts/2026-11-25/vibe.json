@@ -1,42 +1,47 @@
 {
- "paleta": "oliva",
+ "paleta": "grafite",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "sobre": "Morar bem",
-   "texto": "Seu home office cansa você *antes das 15h*?",
-   "adesivo": "acontece 😮‍💨"
+   "img": "img/real/BXd2yLUj_e4.jpg",
+   "sobre": "Imóvel em dia",
+   "texto": "Tem a chave, falta o *papel*. Por onde começar?",
+   "adesivo": "passo 1 🗝️"
   },
   {
    "tipo": "cena",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "cap": "Luz",
-   "texto": "Mesa ao lado da janela, *não de frente*."
+   "img": "img/real/HNje_5arfEk.jpg",
+   "cap": "Passo 1",
+   "texto": "Junte o que prova o *tempo*.",
+   "apoio": "IPTU, contas, recibos, fotos antigas."
   },
   {
    "tipo": "cena",
-   "img": "img/real/lwLreiMS25k.jpg",
-   "cap": "Altura",
-   "texto": "Tela na altura dos *olhos*."
+   "img": "img/real/icdl4pUpIXA.jpg",
+   "cap": "Passo 2",
+   "texto": "Busque a *matrícula* do imóvel.",
+   "apoio": "No cartório de registro de imóveis da sua cidade."
   },
   {
    "tipo": "cena",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "pos": "70% center",
-   "cap": "Verde",
-   "texto": "Uma planta muda o *clima*."
+   "img": "img/real/AvWfCletVGk.jpg",
+   "cap": "Passo 3",
+   "texto": "Converse com um *advogado*.",
+   "apoio": "Ele define o caminho: escritura, usucapião ou outro."
   },
   {
    "tipo": "virada",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "texto": "Trabalhar bem em casa é *projeto*, não sorte."
+   "img": "img/real/BXd2yLUj_e4.jpg",
+   "pos": "center 30%",
+   "texto": "Quem se organiza antes economiza *tempo* depois."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/jibmzuiq4so.jpg",
-   "texto": "Manda pra quem *trabalha de casa*.",
-   "cta": "Salva e compartilha"
+   "img": "img/real/HNje_5arfEk.jpg",
+   "pos": "center 40%",
+   "texto": "Em que *passo* você está?",
+   "cta": "Comente 1, 2 ou 3",
+   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
   }
  ]
 }

@@ -3,45 +3,34 @@
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "sobre": "Imóvel em dia",
-   "texto": "Tem a chave, falta o *papel*. Por onde começar?",
-   "adesivo": "passo 1 🗝️"
+   "img": "img/real/2oGwk-qFAhE.jpg",
+   "sobre": "Arquitetura de varejo",
+   "texto": "Seu vendedor está no lugar *certo*?",
+   "adesivo": "pergunta séria 👀"
   },
   {
    "tipo": "cena",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "cap": "Passo 1",
-   "texto": "Junte o que prova o *tempo*.",
-   "apoio": "IPTU, contas, recibos, fotos antigas."
+   "img": "img/real/kf_PMqfPDxw.jpg",
+   "cap": "Erro comum",
+   "texto": "Balcão que vira *barreira*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/icdl4pUpIXA.jpg",
-   "cap": "Passo 2",
-   "texto": "Busque a *matrícula* do imóvel.",
-   "apoio": "No cartório de registro de imóveis da sua cidade."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/AvWfCletVGk.jpg",
-   "cap": "Passo 3",
-   "texto": "Converse com um *advogado*.",
-   "apoio": "Ele define o caminho: escritura, usucapião ou outro."
+   "img": "img/real/_wb8P6oy3FE.jpg",
+   "cap": "O que funciona",
+   "texto": "Atendimento no *caminho* do cliente."
   },
   {
    "tipo": "virada",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "pos": "center 30%",
-   "texto": "Quem se organiza antes economiza *tempo* depois."
+   "img": "img/real/n8wgapkNu-I.jpg",
+   "texto": "O layout decide onde a *conversa* acontece."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "pos": "center 40%",
-   "texto": "Em que *passo* você está?",
-   "cta": "Comente 1, 2 ou 3",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/PwSrkyTC-Mo.jpg",
+   "texto": "Onde fica o atendimento na *sua* loja?",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
   }
  ]
 }

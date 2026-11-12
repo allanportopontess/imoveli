@@ -1,41 +1,38 @@
 {
- "grade": "quente",
+ "grade": "frio",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "texto": "O problema da\nsua casa não é\no *tamanho*."
+   "img": "img/real/UBIqmkNE96M.jpg",
+   "sobre": "Imóvel em dia",
+   "texto": "Você tem a *chave*.\nMas tem\no *papel*?"
   },
   {
    "tipo": "cena",
-   "img": "img/real/_3IHwTxft2w.jpg",
-   "cap": "É a luz",
-   "texto": "que não\n*entra*."
+   "img": "img/real/ia01WrerC2c.jpg",
+   "cap": "Caso 1 · Escritura",
+   "texto": "Quando houve\n*compra e venda*.",
+   "apoio": "Documento feito em cartório entre quem vende e quem compra."
   },
   {
    "tipo": "cena",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "cap": "É o canto",
-   "texto": "sem\n*função*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/Y7zup896jrI.jpg",
-   "cap": "É o móvel",
-   "texto": "que\n*sobra*."
+   "img": "img/real/izGAbuahyFo.jpg",
+   "cap": "Caso 2 · Usucapião",
+   "texto": "Quando o *tempo*\nde posse prova.",
+   "apoio": "Posse prolongada, com os requisitos da lei."
   },
   {
    "tipo": "virada",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*.",
-   "tam": 100
+   "img": "img/real/OS2CI_kw0gg.jpg",
+   "texto": "Nos dois casos,\nsó é dono\nquem *registra*.",
+   "tam": 110
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salva pra sua reforma"
+   "img": "img/real/V7Q94jc04wQ.jpg",
+   "texto": "Qual é o\n*seu* caso?",
+   "cta": "Comente ESCRITURA ou USUCAPIÃO",
+   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
   }
  ]
 }

@@ -1,29 +1,50 @@
 {
- "paleta": "oliva",
+ "paleta": "grafite",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/JbYLsnOaMVI.jpg",
-   "sobre": "Domingo",
-   "texto": "Domingo é dia\nde abrir\na *janela*.",
-   "adesivo": "vento grátis 🌬️"
+   "img": "img/real/4QhDfdkzHUY.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?",
+   "adesivo": "chega disso 🙅"
   },
   {
    "tipo": "cena",
-   "img": "img/real/1q2TWQyEdAU.jpg",
-   "cap": "Truque antigo",
-   "texto": "Uma janela pro ar *entrar*.\nOutra pra *sair*."
+   "img": "img/real/jy2q5tz7JUI.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist. *De novo.*"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/DowtEyavqsY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando o que\njá podia estar **pronto**."
   },
   {
    "tipo": "virada",
-   "img": "img/real/IzG2qDWP-XM.jpg",
-   "texto": "Antes do\nar‑condicionado,\na *arquitetura*."
+   "img": "img/real/mQiZnKwGXW0.jpg",
+   "texto": "Comece do\n*modelo*.\nAjuste ao caso."
+  },
+  {
+   "tipo": "lista",
+   "img": "img/real/WUY0W2RSiBw.jpg",
+   "texto": "Dentro do *Kit PRO*:",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/0bCeIwI729k.jpg",
-   "texto": "Qual é o cômodo\nmais *fresco*\nda sua casa?",
-   "cta": "Conta aqui 👇"
+   "img": "img/real/Fc9jeKBxlBI.jpg",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado.",
+   "adesivo": "tudo editável ✏️"
   }
  ]
 }

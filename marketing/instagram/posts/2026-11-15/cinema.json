@@ -1,31 +1,52 @@
 {
- "grade": "quente",
+ "grade": "pb",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/_X1mLUmE9_s.jpg",
-   "sobre": "Domingo",
-   "texto": "Domingo é dia\nde abrir\na *janela*."
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?"
   },
   {
    "tipo": "cena",
-   "img": "img/real/k-TJnBLvDdk.jpg",
-   "cap": "Sabedoria antiga",
-   "texto": "Antes do ar-condicionado,\na arquitetura\njá resolvia o *calor*.",
-   "tam": 80
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist.\nTudo *de novo*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando\no que já podia\nestar *pronto*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/_X1mLUmE9_s.jpg",
-   "texto": "Uma janela\npara o ar *entrar*.\nOutra para *sair*.",
-   "tam": 100
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Comece do *modelo*.\nAjuste ao caso.",
+   "tam": 110
+  },
+  {
+   "tipo": "detalhe",
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "pos": "center 30%",
+   "cap": "Dentro do kit",
+   "texto": "Kit Usucapião *PRO*",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/k-TJnBLvDdk.jpg",
-   "pos": "center 70%",
-   "texto": "Qual é o cômodo\nmais *fresco*\nda sua casa?",
-   "cta": "Conta aqui"
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "pos": "70% center",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }

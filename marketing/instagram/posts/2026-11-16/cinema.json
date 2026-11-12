@@ -3,39 +3,29 @@
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/g7Tg0fcvB7M.jpg",
-   "sobre": "Arquitetura de varejo",
-   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*."
+   "img": "img/real/_X1mLUmE9_s.jpg",
+   "sobre": "Domingo",
+   "texto": "Domingo é dia\nde abrir\na *janela*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/Uw9wQp0uv7I.jpg",
-   "cap": "Regra 1",
-   "texto": "Vitrine acesa diz:\n*estamos abertos*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/c50augmA1gk.jpg",
-   "cap": "Regra 2",
-   "texto": "Um nome.\nUma placa.\nNada *brigando*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/IkcrLge-EEU.jpg",
-   "cap": "Regra 3",
-   "texto": "Entrada *clara*\nconvida a entrar."
+   "img": "img/real/k-TJnBLvDdk.jpg",
+   "cap": "Sabedoria antiga",
+   "texto": "Antes do ar-condicionado,\na arquitetura\njá resolvia o *calor*.",
+   "tam": 80
   },
   {
    "tipo": "virada",
-   "img": "img/real/Uw9wQp0uv7I.jpg",
-   "texto": "Sua fachada é o\nanúncio que roda\n*24 horas*.",
-   "tam": 104
+   "img": "img/real/_X1mLUmE9_s.jpg",
+   "texto": "Uma janela\npara o ar *entrar*.\nOutra para *sair*.",
+   "tam": 100
   },
   {
    "tipo": "fecho",
-   "img": "img/real/Ex6q4rqethg.jpg",
-   "texto": "Quem passa\ndecide em\n*segundos*.",
-   "cta": "Comente VENDA"
+   "img": "img/real/k-TJnBLvDdk.jpg",
+   "pos": "center 70%",
+   "texto": "Qual é o cômodo\nmais *fresco*\nda sua casa?",
+   "cta": "Conta aqui"
   }
  ]
 }

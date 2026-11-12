@@ -1,36 +1,23 @@
 {
- "paleta": "grafite",
+ "paleta": "oliva",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/2oGwk-qFAhE.jpg",
-   "sobre": "Arquitetura de varejo",
-   "texto": "Seu vendedor está no lugar *certo*?",
-   "adesivo": "pergunta séria 👀"
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/kf_PMqfPDxw.jpg",
-   "cap": "Erro comum",
-   "texto": "Balcão que vira *barreira*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/_wb8P6oy3FE.jpg",
-   "cap": "O que funciona",
-   "texto": "Atendimento no *caminho* do cliente."
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "sobre": "Domingo",
+   "texto": "O melhor lugar da casa é o que tem *luz*.",
+   "adesivo": "modo domingo ☀️"
   },
   {
    "tipo": "virada",
-   "img": "img/real/n8wgapkNu-I.jpg",
-   "texto": "O layout decide onde a *conversa* acontece."
+   "img": "img/real/7Y6ZOkBnqAI.jpg",
+   "texto": "Uma cadeira, uma janela e *tempo*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/PwSrkyTC-Mo.jpg",
-   "texto": "Onde fica o atendimento na *sua* loja?",
-   "cta": "Comente VENDA",
-   "adesivo": "checklist grátis ✨"
+   "img": "img/real/lwLreiMS25k.jpg",
+   "texto": "Qual é o *seu* canto preferido?",
+   "cta": "Conta aqui 👇"
   }
  ]
 }

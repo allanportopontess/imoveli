@@ -1,23 +1,42 @@
 {
- "paleta": "oliva",
+ "paleta": "argila",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Domingo",
-   "texto": "O melhor lugar da casa é o que tem *luz*.",
-   "adesivo": "modo domingo ☀️"
+   "img": "img/real/rmrTOC59HVo.jpg",
+   "sobre": "Para lojistas",
+   "texto": "Sua loja pode vender *mais* sem reforma cara.",
+   "adesivo": "sério ✋"
   },
   {
-   "tipo": "virada",
-   "img": "img/real/7Y6ZOkBnqAI.jpg",
-   "texto": "Uma cadeira, uma janela e *tempo*."
+   "tipo": "cena",
+   "img": "img/real/2oGwk-qFAhE.jpg",
+   "cap": "O que muda",
+   "texto": "Vitrine, percurso, pausa e *luz*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/uk3ey_vhDKA.jpg",
+   "cap": "Como",
+   "texto": "Uma mudança por aula, aplicada no *mesmo dia*."
+  },
+  {
+   "tipo": "lista",
+   "img": "img/real/fY11qin5kIs.jpg",
+   "texto": "No *Loja que Vende*:",
+   "itens": [
+    "4 aulas curtas",
+    "PDFs e checklists",
+    "caso real em Caruaru",
+    "7 dias de garantia"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/lwLreiMS25k.jpg",
-   "texto": "Qual é o *seu* canto preferido?",
-   "cta": "Conta aqui 👇"
+   "img": "img/real/DKI8P5zmB7s.jpg",
+   "texto": "O espaço você já *pagou*. Faça ele vender.",
+   "cta": "Link na bio",
+   "adesivo": "Comente VENDA 💬"
   }
  ]
 }
