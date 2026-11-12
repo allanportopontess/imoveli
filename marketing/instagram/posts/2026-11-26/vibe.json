@@ -1,42 +1,36 @@
 {
- "paleta": "oliva",
+ "paleta": "argila",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "sobre": "Morar bem",
-   "texto": "Seu home office cansa você *antes das 15h*?",
-   "adesivo": "acontece 😮‍💨"
+   "img": "img/real/u1DVI-1UUV8.jpg",
+   "sobre": "Ponto de venda",
+   "texto": "O lugar que mais vende na sua loja é o *último*.",
+   "adesivo": "quase ninguém usa 👀"
   },
   {
    "tipo": "cena",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "cap": "Luz",
-   "texto": "Mesa ao lado da janela, *não de frente*."
+   "img": "img/real/4jcvOcZ3h4Q.jpg",
+   "cap": "Na fila",
+   "texto": "Quem espera, *olha*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/lwLreiMS25k.jpg",
-   "cap": "Altura",
-   "texto": "Tela na altura dos *olhos*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "pos": "70% center",
-   "cap": "Verde",
-   "texto": "Uma planta muda o *clima*."
+   "img": "img/real/lkei65jSCzw.jpg",
+   "cap": "Ao alcance da mão",
+   "texto": "Item pequeno, decisão **rápida**."
   },
   {
    "tipo": "virada",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "texto": "Trabalhar bem em casa é *projeto*, não sorte."
+   "img": "img/real/q597U6nqfBs.jpg",
+   "texto": "Caixa no fim do percurso: o cliente passa por *tudo* antes de pagar."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/jibmzuiq4so.jpg",
-   "texto": "Manda pra quem *trabalha de casa*.",
-   "cta": "Salva e compartilha"
+   "img": "img/real/8o2QOXYlZx8.jpg",
+   "texto": "Seu caixa vende ou só *cobra*?",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
   }
  ]
 }

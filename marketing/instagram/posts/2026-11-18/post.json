@@ -1,11 +1,11 @@
 {
   "data": "2026-11-18",
   "horario": "10:00",
-  "pilar": "usucapiao",
-  "formato": "carrossel_vibe (vibe.mjs)",
+  "pilar": "temporada",
+  "formato": "carrossel_minimal (minimal.mjs)",
   "status": "aprovado",
-  "assunto": "Escritura ou usucapião?",
-  "slides": "ver vibe.json",
-  "legenda": "Você tem a chave. Mas tem o papel? 🗝️\n\nEscritura: quando houve compra e venda. Usucapião: quando o tempo de posse, com os requisitos da lei, permite adquirir a propriedade. Nos dois casos, só é dono quem registra na matrícula do imóvel.\n\n💬 Comente ESCRITURA ou USUCAPIÃO.\n\n⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #escritura #regularizacaodeimoveis #registrodeimoveis #imovelregularizado #casapropria",
-  "aprovado_em": "2026-11-04"
+  "assunto": "O hóspede decide na porta",
+  "slides": "ver minimal.json",
+  "legenda": "O hóspede decide na porta. 🚪\n\nCama bem feita, luz de cabeceira e cortina que filtra a luz fazem o quarto parecer cuidado, sem gastar muito.\n\n💬 O que você já tem no seu quarto de temporada?\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#aluguelpertemporada #quartodecasal #decoracaobarata #apartamentodetemporada #anfitriao #airbnbbrasil",
+  "aprovado_em": "2026-11-12"
 }

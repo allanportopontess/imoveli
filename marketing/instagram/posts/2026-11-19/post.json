@@ -1,11 +1,11 @@
 {
   "data": "2026-11-19",
   "horario": "10:00",
-  "pilar": "arquitetura",
-  "formato": "carrossel_vibe (vibe.mjs)",
+  "pilar": "temporada",
+  "formato": "carrossel_minimal (minimal.mjs)",
   "status": "aprovado",
-  "assunto": "Casa pequena, vida grande",
-  "slides": "ver vibe.json",
-  "legenda": "O problema da sua casa não é o tamanho. 🏠\n\nÉ a luz que não entra, o canto sem função, o móvel que sobra. Casa pequena pede menos coisas e mais decisão.\n\n💾 Salva pra sua reforma.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#casapequena #arquitetura #designdeinteriores #reforma #morarbem #apartamentopequeno",
-  "aprovado_em": "2026-11-04"
+  "assunto": "Pequeno não é o problema",
+  "slides": "ver minimal.json",
+  "legenda": "Pequeno não é o problema. Bagunça é. 📐\n\nParede clara, móvel que faz duas funções e uma cor só: apartamento pequeno bem resolvido hospeda melhor.\n\n📌 Manda pra quem tem apê pequeno.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#apartamentopequeno #aluguelpertemporada #decoracaobarata #arquiteturaeconomica #airbnbbrasil #espacospequenos",
+  "aprovado_em": "2026-11-12"
 }

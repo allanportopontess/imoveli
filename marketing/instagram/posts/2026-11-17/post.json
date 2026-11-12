@@ -1,11 +1,11 @@
 {
   "data": "2026-11-17",
   "horario": "10:00",
-  "pilar": "varejo",
-  "formato": "carrossel_vibe (vibe.mjs)",
+  "pilar": "temporada",
+  "formato": "carrossel_minimal (minimal.mjs)",
   "status": "aprovado",
-  "assunto": "A fachada é o primeiro anúncio",
-  "slides": "ver vibe.json",
-  "legenda": "Ninguém entra numa loja que parece fechada. 👀\n\nVitrine acesa. Um nome, uma placa. Entrada clara. Sua fachada é o anúncio que roda 24 horas.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#fachadacomercial #arquiteturacomercial #vitrinismo #varejo #lojista #projetodeloja",
-  "aprovado_em": "2026-11-04"
+  "assunto": "Banheiro novo sem quebra-quebra",
+  "slides": "ver minimal.json",
+  "legenda": "Banheiro novo sem quebrar nada? Dá. 🚿\n\nMetais, espelho e toalhas já mudam a cara do ambiente. Obra grande fica para quando realmente precisar.\n\n📌 Salve para a próxima reforma.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#aluguelpertemporada #banheiro #reformabarata #decoracaobarata #apartamentodetemporada #airbnbbrasil",
+  "aprovado_em": "2026-11-12"
 }

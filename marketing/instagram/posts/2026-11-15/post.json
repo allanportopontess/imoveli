@@ -1,11 +1,11 @@
 {
   "data": "2026-11-15",
   "horario": "10:00",
-  "pilar": "venda",
-  "formato": "carrossel_vibe (vibe.mjs)",
+  "pilar": "temporada",
+  "formato": "carrossel_minimal (minimal.mjs)",
   "status": "aprovado",
-  "assunto": "Kit Usucapião PRO",
-  "slides": "ver vibe.json",
-  "legenda": "Toda usucapião começa do zero? 🙅\n\nO Kit Usucapião PRO reúne modelos editáveis de plantas, memoriais, checklists, contratos, propostas e planilhas para a parte técnica da regularização.\n\n🔗 Link na bio.\n\n⚠️ Material de apoio técnico. Não substitui a análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #regularizacaodeimoveis #arquiteto #engenheirocivil #memorialdescritivo #kitusucapiao",
-  "aprovado_em": "2026-11-04"
+  "assunto": "Qual detalhe fez você querer voltar?",
+  "slides": "ver minimal.json",
+  "legenda": "Qual detalhe fez você querer voltar a um lugar onde se hospedou? ☕\n\nA luz, o cheiro, a cama, o café? Me conta nos comentários.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#aluguelpertemporada #hospedagem #anfitriao #airbnbbrasil #apartamentodetemporada #domingo",
+  "aprovado_em": "2026-11-12"
 }

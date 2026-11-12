@@ -1,10 +1,11 @@
 {
   "data": "2026-11-24",
   "horario": "10:00",
-  "pilar": "varejo",
+  "pilar": "usucapiao",
   "formato": "carrossel_vibe (vibe.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "Quem atende também é arquitetura",
+  "status": "aprovado",
+  "assunto": "Escritura ou usucapião?",
   "slides": "ver vibe.json",
-  "legenda": "Seu vendedor está no lugar certo? 👀\n\nBalcão que vira barreira afasta. Atendimento no caminho do cliente aproxima. O layout decide onde a conversa acontece.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquiteturacomercial #layoutdeloja #varejo #lojista #atendimento #lojaquevende"
+  "legenda": "Você tem a chave. Mas tem o papel? 🗝️\n\nEscritura: quando houve compra e venda. Usucapião: quando o tempo de posse, com os requisitos da lei, permite adquirir a propriedade. Nos dois casos, só é dono quem registra na matrícula do imóvel.\n\n💬 Comente ESCRITURA ou USUCAPIÃO.\n\n⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#usucapiao #escritura #regularizacaodeimoveis #registrodeimoveis #imovelregularizado #casapropria",
+  "aprovado_em": "2026-11-04"
 }

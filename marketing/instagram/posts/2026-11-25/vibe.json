@@ -1,47 +1,42 @@
 {
- "paleta": "grafite",
+ "paleta": "oliva",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "sobre": "Imóvel em dia",
-   "texto": "Tem a chave, falta o *papel*. Por onde começar?",
-   "adesivo": "passo 1 🗝️"
+   "img": "img/real/zS3nwvUpg9A.jpg",
+   "sobre": "Morar bem",
+   "texto": "O problema da sua\ncasa não é o\n*tamanho*.",
+   "adesivo": "sério 🏠"
   },
   {
    "tipo": "cena",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "cap": "Passo 1",
-   "texto": "Junte o que prova o *tempo*.",
-   "apoio": "IPTU, contas, recibos, fotos antigas."
+   "img": "img/real/DR2ZXxZpU1o.jpg",
+   "cap": "É a luz",
+   "texto": "que não *entra*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/icdl4pUpIXA.jpg",
-   "cap": "Passo 2",
-   "texto": "Busque a *matrícula* do imóvel.",
-   "apoio": "No cartório de registro de imóveis da sua cidade."
+   "img": "img/real/2cfj0Y5ch00.jpg",
+   "cap": "É o canto",
+   "texto": "sem *função*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/AvWfCletVGk.jpg",
-   "cap": "Passo 3",
-   "texto": "Converse com um *advogado*.",
-   "apoio": "Ele define o caminho: escritura, usucapião ou outro."
+   "img": "img/real/4_gR8nkzeuQ.jpg",
+   "cap": "É o móvel",
+   "texto": "que *sobra*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "pos": "center 30%",
-   "texto": "Quem se organiza antes economiza *tempo* depois."
+   "img": "img/real/0bCeIwI729k.jpg",
+   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "pos": "center 40%",
-   "texto": "Em que *passo* você está?",
-   "cta": "Comente 1, 2 ou 3",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "texto": "Espaço bom é\no que *funciona*.",
+   "cta": "Salva pra sua reforma",
+   "adesivo": "manda pra quem vai reformar 📤"
   }
  ]
 }

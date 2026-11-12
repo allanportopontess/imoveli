@@ -1,11 +1,11 @@
 {
   "data": "2026-11-14",
   "horario": "10:00",
-  "pilar": "projeto",
-  "formato": "carrossel_vibe (vibe.mjs)",
+  "pilar": "temporada",
+  "formato": "carrossel_minimal (minimal.mjs)",
   "status": "aprovado",
-  "assunto": "Arquitetura de referência: por que alguns prédios fazem todo mundo parar",
-  "slides": "ver vibe.json",
-  "legenda": "Por que alguns prédios fazem todo mundo parar? 📐\n\nUma forma que ninguém esquece, sombra que vira desenho, repetição que cria ritmo. Arquitetura boa vira cenário e propaganda de graça.\n\n💬 Qual prédio da sua cidade você fotografaria?\n💾 Salva como referência.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #referenciadearquitetura #arquiteturacontemporanea #fachada #design #arquiteto",
-  "aprovado_em": "2026-11-04"
+  "assunto": "Você não mora aí",
+  "slides": "ver minimal.json",
+  "legenda": "Você não mora aí. Seu hóspede também não. 🔑\n\nMenos objeto, mais luz e tudo funcionando: é isso que o hóspede sente quando entra.\n\n💬 Qual erro de anfitrião você já cometeu?\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#anfitriao #aluguelpertemporada #airbnbbrasil #decoracaobarata #apartamentodetemporada #hospedagem",
+  "aprovado_em": "2026-11-12"
 }
