@@ -2,7 +2,17 @@
 
 **Ideia:** sair do "post pronto". O feed vira uma revista de arquitetura: fotografia em primeiro plano, frase curta, muito respiro.
 
-## Identidade visual ATUAL (v3 · vibe neutra, aprovada em 04/11)
+## REGRA DE OURO (Allan, 12/11): post minimalista
+**Minimalista, tipografia leve, identidade visual equilibrada.** Vale para todo post daqui para frente.
+- Gerador: `node minimal.mjs <pasta>` a partir de `posts/<pasta>/minimal.json` (tipos `capa`, `foto`, `frase`, `fecho`). `vibe.mjs` fica só como referência antiga.
+- Tipografia: Instrument Serif regular (frase) + Inter Tight 300 (rótulos e apoio). Nada de ExtraBold/negrito. Itálico é o único destaque.
+- Sem adesivos, sombras, botões, bolinhas, ícones, marca-texto ou cores vivas. Fundo papel `#F4F2EE`, tinta `#1E1D1B`, cinza `#8C877F`.
+- Uma foto limpa por slide, uma frase curta (até ~6 palavras), muito espaço em branco.
+- **UX:** 1 ideia e 1 ponto focal por slide; hierarquia só por tamanho; leitura em Z/F; CTA único e discreto; mesma posição de texto em todos os slides; contraste legível.
+- **Gestalt:** proximidade (rótulo colado à sua frase), similaridade (mesma grade e margem de 72px em todos os slides), figura/fundo (foto limpa sobre papel liso), continuidade (alinhamento à esquerda do começo ao fim), espaço negativo como elemento de design.
+- Foco atual de conteúdo (12/11): economia criativa e apartamentos de aluguel por temporada, reformar gastando pouco.
+
+## Identidade visual (v3 · vibe neutra, 04/11; substituída pelo minimalista)
 - Gerador: `node vibe.mjs <data>` a partir de `posts/<data>/vibe.json` (tipos `gancho`, `cena`, `virada`, `lista`, `fecho`).
 - Paletas neutras: `argila`, `pedra`, `grafite`, `oliva`. Fotos claras, levemente dessaturadas, com pessoas reais (homens e mulheres) e arquitetura de referência — não só interiores/decoração.
 - Títulos em Syne ExtraBold + itálico Instrument Serif no destaque; texto de apoio em Bricolage Grotesque. Cards arredondados, adesivos bege, bolinhas de progresso.
