@@ -30,7 +30,7 @@ body{width:1080px;height:1350px;position:relative;overflow:hidden;background:${P
 const num = (i, n, cor) => `<div class="n"${cor ? ` style="color:${cor}"` : ''}>${String(i).padStart(2, '0')} / ${String(n).padStart(2, '0')}</div>`;
 const R = {
   capa: (s, i, n) => `<div style="position:absolute;inset:0;${foto(s)}"></div>
-<div style="position:absolute;inset:auto 0 0 0;height:520px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.42))"></div>
+<div style="position:absolute;inset:auto 0 0 0;height:${s.grad_h || 520}px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,${s.grad || .42}))"></div>
 <div class="t" style="position:absolute;left:${M}px;right:${M + 120}px;bottom:150px;color:#fff;font-size:${s.tam || 96}px">${esc(s.texto)}</div>
 <div class="r" style="position:absolute;left:${M}px;bottom:72px;color:rgba(255,255,255,.8)">@allanporto_arquitetura</div>${num(i, n, 'rgba(255,255,255,.8)')}`,
 

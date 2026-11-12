@@ -1,0 +1,42 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/KqqKF9lDg8Q.jpg",
+      "texto": "Você não mora aí.\nSeu hóspede\n*também não*.",
+      "grad": 0.62,
+      "grad_h": 760,
+      "pos": "center 20%"
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/FR1E16qw4Jk.jpg",
+      "rotulo": "01",
+      "texto": "Menos *objeto*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/pPcKyqUEmcs.jpg",
+      "rotulo": "02",
+      "texto": "Mais *luz*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/E5iwKLsLdyY.jpg",
+      "rotulo": "03",
+      "texto": "Tudo *funcionando*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/dGq2ZCa9R2Q.jpg",
+      "texto": "Decore para *receber*,\nnão para morar.",
+      "pos": "88% center"
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/wmVzh1Ky7FY.jpg",
+      "texto": "Qual erro você\n*já cometeu*?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}
