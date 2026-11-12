@@ -1,41 +1,52 @@
 {
- "grade": "quente",
+ "grade": "pb",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "texto": "O problema da\nsua casa não é\no *tamanho*."
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?"
   },
   {
    "tipo": "cena",
-   "img": "img/real/_3IHwTxft2w.jpg",
-   "cap": "É a luz",
-   "texto": "que não\n*entra*."
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist.\nTudo *de novo*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "cap": "É o canto",
-   "texto": "sem\n*função*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/Y7zup896jrI.jpg",
-   "cap": "É o móvel",
-   "texto": "que\n*sobra*."
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando\no que já podia\nestar *pronto*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*.",
-   "tam": 100
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Comece do *modelo*.\nAjuste ao caso.",
+   "tam": 110
+  },
+  {
+   "tipo": "detalhe",
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "pos": "center 30%",
+   "cap": "Dentro do kit",
+   "texto": "Kit Usucapião *PRO*",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salva pra sua reforma"
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "pos": "70% center",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }

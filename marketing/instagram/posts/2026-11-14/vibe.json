@@ -1,42 +1,50 @@
 {
- "paleta": "oliva",
+ "paleta": "grafite",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/zS3nwvUpg9A.jpg",
-   "sobre": "Morar bem",
-   "texto": "O problema da sua\ncasa não é o\n*tamanho*.",
-   "adesivo": "sério 🏠"
+   "img": "img/real/4QhDfdkzHUY.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?",
+   "adesivo": "chega disso 🙅"
   },
   {
    "tipo": "cena",
-   "img": "img/real/DR2ZXxZpU1o.jpg",
-   "cap": "É a luz",
-   "texto": "que não *entra*."
+   "img": "img/real/jy2q5tz7JUI.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist. *De novo.*"
   },
   {
    "tipo": "cena",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "cap": "É o canto",
-   "texto": "sem *função*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/4_gR8nkzeuQ.jpg",
-   "cap": "É o móvel",
-   "texto": "que *sobra*."
+   "img": "img/real/DowtEyavqsY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando o que\njá podia estar **pronto**."
   },
   {
    "tipo": "virada",
-   "img": "img/real/0bCeIwI729k.jpg",
-   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*."
+   "img": "img/real/mQiZnKwGXW0.jpg",
+   "texto": "Comece do\n*modelo*.\nAjuste ao caso."
+  },
+  {
+   "tipo": "lista",
+   "img": "img/real/WUY0W2RSiBw.jpg",
+   "texto": "Dentro do *Kit PRO*:",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salva pra sua reforma",
-   "adesivo": "manda pra quem vai reformar 📤"
+   "img": "img/real/Fc9jeKBxlBI.jpg",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado.",
+   "adesivo": "tudo editável ✏️"
   }
  ]
 }

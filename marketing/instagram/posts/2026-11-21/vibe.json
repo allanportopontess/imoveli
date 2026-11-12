@@ -1,42 +1,42 @@
 {
- "paleta": "oliva",
+ "paleta": "argila",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "sobre": "Morar bem",
-   "texto": "Seu home office cansa você *antes das 15h*?",
-   "adesivo": "acontece 😮‍💨"
+   "img": "img/real/rmrTOC59HVo.jpg",
+   "sobre": "Para lojistas",
+   "texto": "Sua loja pode vender *mais* sem reforma cara.",
+   "adesivo": "sério ✋"
   },
   {
    "tipo": "cena",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "cap": "Luz",
-   "texto": "Mesa ao lado da janela, *não de frente*."
+   "img": "img/real/2oGwk-qFAhE.jpg",
+   "cap": "O que muda",
+   "texto": "Vitrine, percurso, pausa e *luz*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/lwLreiMS25k.jpg",
-   "cap": "Altura",
-   "texto": "Tela na altura dos *olhos*."
+   "img": "img/real/uk3ey_vhDKA.jpg",
+   "cap": "Como",
+   "texto": "Uma mudança por aula, aplicada no *mesmo dia*."
   },
   {
-   "tipo": "cena",
-   "img": "img/real/kw0z6RyvC0s.jpg",
-   "pos": "70% center",
-   "cap": "Verde",
-   "texto": "Uma planta muda o *clima*."
-  },
-  {
-   "tipo": "virada",
-   "img": "img/real/2pia6OAe5rA.jpg",
-   "texto": "Trabalhar bem em casa é *projeto*, não sorte."
+   "tipo": "lista",
+   "img": "img/real/fY11qin5kIs.jpg",
+   "texto": "No *Loja que Vende*:",
+   "itens": [
+    "4 aulas curtas",
+    "PDFs e checklists",
+    "caso real em Caruaru",
+    "7 dias de garantia"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/jibmzuiq4so.jpg",
-   "texto": "Manda pra quem *trabalha de casa*.",
-   "cta": "Salva e compartilha"
+   "img": "img/real/DKI8P5zmB7s.jpg",
+   "texto": "O espaço você já *pagou*. Faça ele vender.",
+   "cta": "Link na bio",
+   "adesivo": "Comente VENDA 💬"
   }
  ]
 }

@@ -1,10 +1,11 @@
 {
   "data": "2026-11-16",
   "horario": "10:00",
-  "pilar": "referencia",
+  "pilar": "varejo",
   "formato": "carrossel_vibe (vibe.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "Concreto, curva e gente",
+  "status": "aprovado",
+  "assunto": "A fachada é o primeiro anúncio",
   "slides": "ver vibe.json",
-  "legenda": "Ninguém entra aqui com pressa. 📐\n\nPilar que vira escultura, escala humana, luz que acolhe. Boa arquitetura muda o ritmo de quem passa.\n\n💬 Qual lugar te fez desacelerar?\n💾 Salva como referência.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#arquitetura #referenciadearquitetura #concreto #arquiteturacontemporanea #museu #arquiteto"
+  "legenda": "Ninguém entra numa loja que parece fechada. 👀\n\nVitrine acesa. Um nome, uma placa. Entrada clara. Sua fachada é o anúncio que roda 24 horas.\n\n💬 Comente VENDA e receba no direct o checklist da loja que vende.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#fachadacomercial #arquiteturacomercial #vitrinismo #varejo #lojista #projetodeloja",
+  "aprovado_em": "2026-11-04"
 }

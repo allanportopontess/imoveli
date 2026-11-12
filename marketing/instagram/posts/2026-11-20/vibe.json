@@ -1,47 +1,42 @@
 {
- "paleta": "grafite",
+ "paleta": "pedra",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "sobre": "Imóvel em dia",
-   "texto": "Tem a chave, falta o *papel*. Por onde começar?",
-   "adesivo": "passo 1 🗝️"
+   "img": "img/real/ttS--i2y9Bo.jpg",
+   "sobre": "Arquitetura de referência",
+   "texto": "Ninguém entra aqui *com pressa*.",
+   "adesivo": "repara na curva 📐"
   },
   {
    "tipo": "cena",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "cap": "Passo 1",
-   "texto": "Junte o que prova o *tempo*.",
-   "apoio": "IPTU, contas, recibos, fotos antigas."
+   "img": "img/real/IWYcrdO93WY.jpg",
+   "cap": "A estrutura",
+   "texto": "Pilar que vira *escultura*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/icdl4pUpIXA.jpg",
-   "cap": "Passo 2",
-   "texto": "Busque a *matrícula* do imóvel.",
-   "apoio": "No cartório de registro de imóveis da sua cidade."
+   "img": "img/real/0xEVqxBPkdM.jpg",
+   "cap": "A escala",
+   "texto": "Uma pessoa e o espaço *inteiro*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/AvWfCletVGk.jpg",
-   "cap": "Passo 3",
-   "texto": "Converse com um *advogado*.",
-   "apoio": "Ele define o caminho: escritura, usucapião ou outro."
+   "img": "img/real/k6le-Ist8C4.jpg",
+   "cap": "A luz",
+   "texto": "Branco que *acolhe* em vez de cegar."
   },
   {
    "tipo": "virada",
-   "img": "img/real/BXd2yLUj_e4.jpg",
-   "pos": "center 30%",
-   "texto": "Quem se organiza antes economiza *tempo* depois."
+   "img": "img/real/HYsXj18eEkk.jpg",
+   "texto": "Boa arquitetura muda o *ritmo* de quem passa."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HNje_5arfEk.jpg",
-   "pos": "center 40%",
-   "texto": "Em que *passo* você está?",
-   "cta": "Comente 1, 2 ou 3",
-   "nota": "Conteúdo educativo. Cada caso precisa de análise de um advogado."
+   "img": "img/real/XK0faa4_mCQ.jpg",
+   "texto": "Qual lugar te fez *desacelerar*?",
+   "cta": "Conta aqui 👇",
+   "adesivo": "salva como referência"
   }
  ]
 }

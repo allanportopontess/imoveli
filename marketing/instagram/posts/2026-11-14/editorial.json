@@ -1,35 +1,30 @@
 {
- "acento": "#6B7A4B",
+ "acento": "#2F5D62",
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "titulo": "Casa pequena,\nvida *grande*."
-  },
-  {
-   "tipo": "foto",
-   "img": "img/real/_3IHwTxft2w.jpg",
-   "num": "01",
-   "texto": "Luz natural *primeiro*."
-  },
-  {
-   "tipo": "foto",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "num": "02",
-   "texto": "Cada canto\ncom *função*."
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "titulo": "Usucapião sem\ncomeçar do *zero*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/Y7zup896jrI.jpg",
-   "num": "03",
-   "texto": "Menos móvel,\nmais *circulação*."
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "num": "o que vem no kit",
+   "texto": "Plantas, memoriais\ne checklists *editáveis*."
+  },
+  {
+   "tipo": "moldura",
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "num": "e também",
+   "texto": "Contratos, propostas\ne planilhas."
   },
   {
    "tipo": "final",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salve para a sua reforma."
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Kit Usucapião *PRO*.",
+   "cta": "Link na bio.",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }
