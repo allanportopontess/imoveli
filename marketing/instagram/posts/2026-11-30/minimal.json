@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/NfyeP5Bcvd8.jpg",
+      "texto": "A entrada é o\nprimeiro *check-in*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/bjKTxo1wmpc.jpg",
+      "rotulo": "01 · Gancho",
+      "texto": "Um gancho. *Bagunça* some."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/z7xoUoQs2hE.jpg",
+      "rotulo": "02 · Chave",
+      "texto": "Um lugar pra *chave*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/e0ReP2ZWIMw.jpg",
+      "rotulo": "03 · Tapete",
+      "texto": "Tapete é *boas-vindas*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/uu7lZjb00as.jpg",
+      "texto": "Entrou.\n*Respirou*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/o7xhDvErdgQ.jpg",
+      "texto": "Como é a\n*sua* entrada?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

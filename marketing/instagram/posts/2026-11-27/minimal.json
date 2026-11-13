@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/GZ5cKOgeIB0.jpg",
+      "texto": "Sala pequena,\nsem *aperto*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/2dcYhvbHV-M.jpg",
+      "rotulo": "01 · Passagem",
+      "texto": "Menos móvel, mais *passagem*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/lLDh9JppH2c.jpg",
+      "rotulo": "02 · Tapete",
+      "texto": "Tapete define o *território*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/10wiineWd_s.jpg",
+      "rotulo": "03 · Verde",
+      "texto": "Uma planta. *Vida*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/6dSv0_5JTxs.jpg",
+      "texto": "Sala boa deixa\n*espaço* pra gente."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/Mq3HfpG5DkM.jpg",
+      "texto": "Sua sala\n*cabe* todo mundo?",
+      "cta": "Manda pra quem tem sala pequena"
+    }
+  ]
+}

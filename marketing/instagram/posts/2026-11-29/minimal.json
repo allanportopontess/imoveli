@@ -1,0 +1,22 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/NJIf4tYJaGw.jpg",
+      "texto": "Domingo:\na luz *entrando*\nem casa.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/QCA0YTkoYZM.jpg",
+      "texto": "Qual é o seu\n*canto* favorito?"
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/AlkC0ts6a70.jpg",
+      "texto": "Me conta\n*nos comentários*.",
+      "cta": "Responda aqui"
+    }
+  ]
+}
