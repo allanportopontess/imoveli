@@ -1,0 +1,42 @@
+{
+ "paleta": "oliva",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/zS3nwvUpg9A.jpg",
+   "sobre": "Morar bem",
+   "texto": "O problema da sua\ncasa não é o\n*tamanho*.",
+   "adesivo": "sério 🏠"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/DR2ZXxZpU1o.jpg",
+   "cap": "É a luz",
+   "texto": "que não *entra*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/2cfj0Y5ch00.jpg",
+   "cap": "É o canto",
+   "texto": "sem *função*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/4_gR8nkzeuQ.jpg",
+   "cap": "É o móvel",
+   "texto": "que *sobra*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/0bCeIwI729k.jpg",
+   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*."
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "texto": "Espaço bom é\no que *funciona*.",
+   "cta": "Salva pra sua reforma",
+   "adesivo": "manda pra quem vai reformar 📤"
+  }
+ ]
+}

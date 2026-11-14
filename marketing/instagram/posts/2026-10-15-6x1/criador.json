@@ -1,0 +1,94 @@
+{
+  "foto": "img/allan-selfie-1.jpg",
+  "rosto": {
+    "x": 46,
+    "y": 52
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "o Senado aprovou o fim da 6x1 ontem",
+      "titulo_imp": "O fim da *6x1* vai mudar\na *arquitetura*",
+      "tam_imp": 92,
+      "foco_y": 50,
+      "legenda": "e quase ninguém está falando disso 👀👉",
+      "foto": "img/depois-caso-luz.jpg"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📰 O QUE MUDA",
+      "titulo_imp": "Menos horas,\n*mesma loja* aberta",
+      "itens": [
+        "Jornada cai aos poucos até **40h** por semana",
+        "**2 folgas**, uma de preferência no domingo",
+        "1ª etapa já em **dezembro**: de 44h para 42h"
+      ],
+      "nota": "segundo a PEC aprovada no Senado em 14/10",
+      "tam_imp": 118
+    },
+    {
+      "tipo": "texto",
+      "selo": "🏠 NA CASA",
+      "titulo_imp": "A casa deixa de ser\nsó *dormitório*",
+      "tam_imp": 104,
+      "itens": [
+        "Mais tempo em casa = mais uso da **sala, varanda e cozinha**",
+        "Área de convívio e lazer ganha **prioridade**",
+        "Cantinho de hobby e descanso entra no projeto"
+      ],
+      "nota": "na minha visão: o projeto vai girar em torno de viver, não só de dormir"
+    },
+    {
+      "tipo": "texto",
+      "selo": "🌳 NA CIDADE",
+      "titulo_imp": "O bairro vira\n*destino*",
+      "tam_imp": 104,
+      "itens": [
+        "Praças, calçadas e parques **mais usados**",
+        "Comércio de rua e café de bairro **ganham força**",
+        "Domingo livre muda o movimento das lojas"
+      ],
+      "nota": "💡 lazer perto de casa passa a valer mais do que nunca"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "🏪 NO COMÉRCIO",
+      "titulo_imp": "Loja que *vende sozinha*",
+      "caixas": [
+        "menos horas de equipe no salão",
+        "layout que guia o cliente sem vendedor",
+        "ilhas de autoatendimento e kits prontos"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "texto",
+      "selo": "💼 NO TRABALHO",
+      "titulo_imp": "Cada hora no espaço\nprecisa *render mais*",
+      "tam_imp": 96,
+      "itens": [
+        "Layouts mais **eficientes** e sem desperdício",
+        "Espaços de descanso de verdade pra equipe",
+        "Menos m² parado, mais m² que **produz**"
+      ],
+      "nota": "💡 escritório, consultório ou loja: o m² precisa trabalhar a favor da equipe"
+    },
+    {
+      "tipo": "solucoes",
+      "foto": "img/allan-selfie-3.jpg",
+      "foco_y": 50,
+      "foto_h": 560,
+      "legenda": "Allan Porto · arquiteto e urbanista",
+      "titulo_imp": "Arquitetura pra *nova rotina*:",
+      "tam_imp": 58,
+      "itens": [
+        "Casa feita pra viver",
+        "Bairro e rua com vida",
+        "Loja que vende sozinha",
+        "Espaço de trabalho eficiente"
+      ],
+      "cta": "💬 e você, o que faria com a folga extra?"
+    }
+  ]
+}

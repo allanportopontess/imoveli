@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/2ZwFL6lObw8.jpg",
+      "texto": "Seu anúncio perde\nhóspede na *foto*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/kMGil47E27M.jpg",
+      "rotulo": "01 · Luz",
+      "texto": "Luz do dia, sem *flash*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/crjt6vBgYeg.jpg",
+      "rotulo": "02 · Ângulo",
+      "texto": "Foto na altura dos *olhos*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/Kh4tedFdHz4.jpg",
+      "rotulo": "03 · Ordem",
+      "texto": "Arrume antes de *clicar*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/c8Gn_ojTCoI.jpg",
+      "texto": "O hóspede *vê*\nantes de ler."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/h2FIDYqL_SA.jpg",
+      "texto": "Qual foto do anúncio\nvocê *trocaria*?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

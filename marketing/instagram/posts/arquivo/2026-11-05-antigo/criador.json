@@ -1,0 +1,78 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "regularização de imóvel",
+      "titulo_imp": "Os *papéis* que provam\nque o imóvel é *seu*",
+      "tam_imp": 78,
+      "foto": "img/diagrama-casa.jpg",
+      "foco_y": 50,
+      "legenda": "comece a juntar hoje 👇"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-docs.jpg",
+      "selo": "📂 A PASTA",
+      "titulo_imp": "*5 tipos* de prova",
+      "tam_imp": 88,
+      "caixas": [
+        "IPTU, luz e água",
+        "recibos, contratos e fotos antigas"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "texto",
+      "selo": "🧾 PROVA DE TEMPO",
+      "titulo_imp": "Mostre *há quanto tempo*\nvocê mora",
+      "tam_imp": 88,
+      "itens": [
+        "**IPTU** em seu nome ou do endereço",
+        "Contas de **luz e água** de vários anos",
+        "Correspondências e **fotos antigas** do imóvel"
+      ],
+      "nota": "quanto mais antigo o documento, melhor"
+    },
+    {
+      "tipo": "texto",
+      "selo": "🤝 PROVA DE POSSE",
+      "titulo_imp": "Posse *sem conflito*",
+      "tam_imp": 96,
+      "itens": [
+        "**Declaração de vizinhos** confirmando a moradia",
+        "Recibos de **reforma e manutenção**",
+        "Contrato ou recibo de **compra e venda**, se houver"
+      ],
+      "nota": "cada documento ajuda a contar a história do imóvel"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📐 PARTE TÉCNICA",
+      "titulo_imp": "Planta e memorial\n*com profissional*\n*habilitado*",
+      "tam_imp": 84,
+      "itens": [
+        "Levantamento das **medidas reais** do imóvel",
+        "Planta e **memorial descritivo**",
+        "Feitos por **arquiteto ou engenheiro**"
+      ],
+      "nota": "medida errada vira exigência do cartório"
+    },
+    {
+      "tipo": "texto",
+      "selo": "⚠️ ATENÇÃO",
+      "titulo_imp": "Conteúdo *educativo*",
+      "tam_imp": 100,
+      "itens": [
+        "Não é promessa de resultado",
+        "Cada caso precisa de análise de um **advogado**",
+        "Dúvida? **Comenta aqui** que eu respondo"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

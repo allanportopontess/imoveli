@@ -1,0 +1,22 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/3LbpZo8MG8A.jpg",
+      "texto": "Aquele lugar em que\nvocê se hospedou\ne *amou*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/lAWAEVtPLks.jpg",
+      "texto": "Qual detalhe fez\nvocê *querer voltar*?"
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/BamI6Clwgo4.jpg",
+      "texto": "Me conta\n*nos comentários*.",
+      "cta": "Responda aqui"
+    }
+  ]
+}

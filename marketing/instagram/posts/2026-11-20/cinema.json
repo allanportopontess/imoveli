@@ -1,0 +1,36 @@
+{
+ "grade": "pb",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/9DRX_cW48RQ.jpg",
+   "sobre": "Referência",
+   "texto": "Nenhum\nacabamento.\nE mesmo assim,\n*inesquecível*.",
+   "tam": 120
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/MPWbGMrZ6eo.jpg",
+   "cap": "O segredo 1",
+   "texto": "Repetição\ncria *ritmo*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/bWXMh1a9rVw.jpg",
+   "cap": "O segredo 2",
+   "texto": "A luz entra\nno lugar *certo*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/rKgb2jb7wk0.jpg",
+   "texto": "Arquitetura boa\nnão precisa de enfeite.\nPrecisa de *intenção*.",
+   "tam": 96
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/i7h0aeMSyRo.jpg",
+   "texto": "Salva pra lembrar:\na luz também\né *material*.",
+   "cta": "Salvar"
+  }
+ ]
+}

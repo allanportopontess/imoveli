@@ -1,0 +1,10 @@
+{
+  "slides": [
+    { "tipo": "capa", "img": "img/real/ABohRftG_Os.jpg", "texto": "Reformar sem gastar\numa *fortuna*." },
+    { "tipo": "foto", "img": "img/real/Azz07JvM-EA.jpg", "rotulo": "01 · Tinta", "texto": "A mudança mais *barata*." },
+    { "tipo": "foto", "img": "img/real/V8CSUtCP04E.jpg", "rotulo": "02 · Luz", "texto": "Luz quente muda o *ambiente*." },
+    { "tipo": "foto", "img": "img/real/pMY1mpaaUAs.jpg", "rotulo": "03 · Garimpo", "texto": "Peça com *história*." },
+    { "tipo": "frase", "img": "img/real/87dlkGwIQMY.jpg", "texto": "O hóspede lembra do\n*clima*, não do sofá." },
+    { "tipo": "fecho", "img": "img/real/91oGFaZEbe0.jpg", "texto": "Qual canto você\n*reformaria* primeiro?", "cta": "Salve para sua reforma" }
+  ]
+}
