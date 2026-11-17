@@ -1,10 +1,11 @@
 {
   "data": "2026-11-27",
   "horario": "10:00",
-  "pilar": "temporada",
-  "formato": "carrossel_minimal (minimal.mjs)",
-  "status": "aguardando_aprovacao",
-  "assunto": "Sala pequena sem aperto",
-  "slides": "ver minimal.json",
-  "legenda": "Sala pequena, sem aperto. 🛋️\n\nMenos móvel, tapete que define o espaço e uma planta: a sala fica leve, e o hóspede circula sem esbarrar em nada.\n\n📌 Manda pra quem tem sala pequena.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#salapequena #aluguelpertemporada #decoracaobarata #apartamentodetemporada #arquiteturaeconomica #airbnbbrasil"
+  "pilar": "arquitetura",
+  "formato": "carrossel_vibe (vibe.mjs)",
+  "status": "aprovado",
+  "assunto": "Casa pequena, vida grande",
+  "slides": "ver vibe.json",
+  "legenda": "O problema da sua casa não é o tamanho. 🏠\n\nÉ a luz que não entra, o canto sem função, o móvel que sobra. Casa pequena pede menos coisas e mais decisão.\n\n💾 Salva pra sua reforma.\n\nAllan Porto · Arquiteto · CAU-PE A166156-6\n\n#casapequena #arquitetura #designdeinteriores #reforma #morarbem #apartamentopequeno",
+  "aprovado_em": "2026-11-04"
 }

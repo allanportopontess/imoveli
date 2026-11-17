@@ -1,35 +1,36 @@
 {
- "acento": "#6B7A4B",
+ "acento": "#B5652F",
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "titulo": "Casa pequena,\nvida *grande*."
+   "img": "img/real/g7Tg0fcvB7M.jpg",
+   "sobre": "Arquitetura de varejo",
+   "titulo": "A fachada é o seu\nprimeiro *anúncio*.",
+   "tam": 96
   },
   {
    "tipo": "foto",
-   "img": "img/real/_3IHwTxft2w.jpg",
+   "img": "img/real/Uw9wQp0uv7I.jpg",
    "num": "01",
-   "texto": "Luz natural *primeiro*."
+   "texto": "Vitrine acesa\nparece *aberta*."
   },
   {
    "tipo": "foto",
-   "img": "img/real/2cfj0Y5ch00.jpg",
+   "img": "img/real/c50augmA1gk.jpg",
    "num": "02",
-   "texto": "Cada canto\ncom *função*."
+   "texto": "Um nome.\nUma *placa*."
   },
   {
    "tipo": "moldura",
-   "img": "img/real/Y7zup896jrI.jpg",
+   "img": "img/real/IkcrLge-EEU.jpg",
    "num": "03",
-   "texto": "Menos móvel,\nmais *circulação*."
+   "texto": "Entrada *clara*\nconvida a entrar."
   },
   {
    "tipo": "final",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salve para a sua reforma."
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa decide\nem *segundos*.",
+   "cta": "Comente VENDA e receba o checklist da loja que vende."
   }
  ]
 }

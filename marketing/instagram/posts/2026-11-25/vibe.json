@@ -1,42 +1,42 @@
 {
- "paleta": "oliva",
+ "paleta": "argila",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/zS3nwvUpg9A.jpg",
-   "sobre": "Morar bem",
-   "texto": "O problema da sua\ncasa não é o\n*tamanho*.",
-   "adesivo": "sério 🏠"
+   "img": "img/real/IkcrLge-EEU.jpg",
+   "sobre": "Arquitetura de varejo",
+   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*.",
+   "adesivo": "verdade dura 👀"
   },
   {
    "tipo": "cena",
-   "img": "img/real/DR2ZXxZpU1o.jpg",
-   "cap": "É a luz",
-   "texto": "que não *entra*."
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "cap": "Regra 1",
+   "texto": "Vitrine acesa diz:\n*estamos abertos*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "cap": "É o canto",
-   "texto": "sem *função*."
+   "img": "img/real/21miXvATFtY.jpg",
+   "cap": "Regra 2",
+   "texto": "Um nome. Uma placa.\nNada *brigando*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/4_gR8nkzeuQ.jpg",
-   "cap": "É o móvel",
-   "texto": "que *sobra*."
+   "img": "img/real/c50augmA1gk.jpg",
+   "cap": "Regra 3",
+   "texto": "Entrada *clara*\nconvida a entrar."
   },
   {
    "tipo": "virada",
-   "img": "img/real/0bCeIwI729k.jpg",
-   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*."
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "texto": "Sua fachada é\no anúncio que roda\n*24 horas*."
   },
   {
    "tipo": "fecho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salva pra sua reforma",
-   "adesivo": "manda pra quem vai reformar 📤"
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa\ndecide em *segundos*.",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
   }
  ]
 }

@@ -3,39 +3,39 @@
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "sobre": "Morar bem",
-   "texto": "O problema da\nsua casa não é\no *tamanho*."
+   "img": "img/real/g7Tg0fcvB7M.jpg",
+   "sobre": "Arquitetura de varejo",
+   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/_3IHwTxft2w.jpg",
-   "cap": "É a luz",
-   "texto": "que não\n*entra*."
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "cap": "Regra 1",
+   "texto": "Vitrine acesa diz:\n*estamos abertos*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/2cfj0Y5ch00.jpg",
-   "cap": "É o canto",
-   "texto": "sem\n*função*."
+   "img": "img/real/c50augmA1gk.jpg",
+   "cap": "Regra 2",
+   "texto": "Um nome.\nUma placa.\nNada *brigando*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/Y7zup896jrI.jpg",
-   "cap": "É o móvel",
-   "texto": "que\n*sobra*."
+   "img": "img/real/IkcrLge-EEU.jpg",
+   "cap": "Regra 3",
+   "texto": "Entrada *clara*\nconvida a entrar."
   },
   {
    "tipo": "virada",
-   "img": "img/real/AgK_XAqSbfk.jpg",
-   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*.",
-   "tam": 100
+   "img": "img/real/Uw9wQp0uv7I.jpg",
+   "texto": "Sua fachada é o\nanúncio que roda\n*24 horas*.",
+   "tam": 104
   },
   {
    "tipo": "fecho",
-   "img": "img/real/HOD7O7e01Qk.jpg",
-   "texto": "Espaço bom é\no que *funciona*.",
-   "cta": "Salva pra sua reforma"
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "texto": "Quem passa\ndecide em\n*segundos*.",
+   "cta": "Comente VENDA"
   }
  ]
 }

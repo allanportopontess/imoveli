@@ -1,22 +1,32 @@
 {
- "acento": "#6B7A4B",
+ "acento": "#B5652F",
  "slides": [
   {
    "tipo": "capa",
-   "img": "img/real/_X1mLUmE9_s.jpg",
-   "sobre": "Domingo",
-   "titulo": "Casa boa deixa\no vento *entrar*."
+   "img": "img/real/9DRX_cW48RQ.jpg",
+   "sobre": "Referência",
+   "titulo": "Sombra também\né *material*."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/MPWbGMrZ6eo.jpg",
+   "texto": "Repetição cria *ritmo*."
+  },
+  {
+   "tipo": "foto",
+   "img": "img/real/bWXMh1a9rVw.jpg",
+   "texto": "A luz desenha\no que o concreto *cala*."
+  },
+  {
+   "tipo": "moldura",
+   "img": "img/real/rKgb2jb7wk0.jpg",
+   "texto": "Menos acabamento,\nmais *intenção*."
   },
   {
    "tipo": "frase",
-   "texto": "Antes do ar-condicionado,\na *janela*.",
-   "assinatura": "Allan Porto · Caruaru"
-  },
-  {
-   "tipo": "final",
-   "img": "img/real/k-TJnBLvDdk.jpg",
-   "texto": "Bom *domingo*.",
-   "cta": "Qual é o cômodo mais fresco da sua casa?"
+   "img": "img/real/i7h0aeMSyRo.jpg",
+   "texto": "Projetar é decidir\nonde a luz *entra*.",
+   "assinatura": "Allan Porto"
   }
  ]
 }

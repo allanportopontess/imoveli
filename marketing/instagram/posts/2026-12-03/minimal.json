@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/g8Y8BOGpvBk.jpg",
+      "texto": "Planta resolve\n*tudo*? Quase.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/xALgQ6VC8ps.jpg",
+      "rotulo": "01 · Tamanho",
+      "texto": "Uma planta *grande*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/eg6JOdycgf0.jpg",
+      "rotulo": "02 · Janela",
+      "texto": "Planta na janela, *zero* obra."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/q4Y6PWL3Uyk.jpg",
+      "rotulo": "03 · Escolha",
+      "texto": "A que *perdoa* esquecimento."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/ZTTgT5NsD40.jpg",
+      "texto": "Verde é o enfeite\nmais *barato*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/H8wOVv0U8FI.jpg",
+      "texto": "Qual planta\n*sobrevive* aí?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

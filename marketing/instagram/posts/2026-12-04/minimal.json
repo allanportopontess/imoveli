@@ -1,0 +1,34 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/7BIl2jJ6SnE.jpg",
+      "texto": "O hóspede não quer\n*gaveta cheia*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/SU-Yw_pkpn4.jpg",
+      "rotulo": "01 · Cabeceira",
+      "texto": "Mesa de cabeceira *livre*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/CgHNmQ0c2w4.jpg",
+      "rotulo": "02 · Cabides",
+      "texto": "Cabide de *sobra*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/XhLdjyQQi2I.jpg",
+      "texto": "Espaço vazio\né *conforto*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/C0oKQj_kjNE.jpg",
+      "texto": "O que você\n*tiraria* hoje?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

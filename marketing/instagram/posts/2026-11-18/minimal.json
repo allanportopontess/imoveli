@@ -2,37 +2,39 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "img/real/B4rEJ09-Puo.jpg",
-      "texto": "O hóspede decide\nna *porta*."
+      "img": "img/real/YWxpCIqfDKs.jpg",
+      "texto": "Cozinha cara\né *pegadinha*.",
+      "grad": 0.55,
+      "grad_h": 680
     },
     {
       "tipo": "foto",
-      "img": "img/real/6MYm-cUJRB0.jpg",
-      "rotulo": "01 · Cama",
-      "texto": "Cama branca. Cara de *hotel*."
+      "img": "img/real/Nlc_YJsNiog.jpg",
+      "rotulo": "01 · Puxador",
+      "texto": "Puxador novo. Cozinha *outra*."
     },
     {
       "tipo": "foto",
-      "img": "img/real/cAkJn5M13mo.jpg",
-      "rotulo": "02 · Luz",
-      "texto": "Luz de cabeceira. *Aconchego*."
+      "img": "img/real/E_JrOCEeG20.jpg",
+      "rotulo": "02 · Tinta",
+      "texto": "Armário pintado, cozinha *nova*."
     },
     {
       "tipo": "foto",
-      "img": "img/real/b4S3r5sNn8E.jpg",
-      "rotulo": "03 · Cortina",
-      "texto": "Cortina que filtra a *luz*."
+      "img": "img/real/MvY303vrKR0.jpg",
+      "rotulo": "03 · Luz",
+      "texto": "Luz embaixo do armário. *Uau*."
     },
     {
       "tipo": "frase",
-      "img": "img/real/k4ByjHIT02k.jpg",
-      "texto": "Dormir bem é\no seu *produto*."
+      "img": "img/real/-kwhkrKLpII.jpg",
+      "texto": "Parece reforma.\n*Não é.*"
     },
     {
       "tipo": "fecho",
-      "img": "img/real/uI5WSGDdkhQ.jpg",
-      "texto": "O que você já tem\nno *quarto*?",
-      "cta": "Conta nos comentários"
+      "img": "img/real/antlPQPVcjo.jpg",
+      "texto": "Qual você faz\n*primeiro*?",
+      "cta": "Manda pra quem tem apê de temporada"
     }
   ]
 }

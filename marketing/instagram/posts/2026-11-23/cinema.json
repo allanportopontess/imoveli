@@ -1,41 +1,52 @@
 {
- "grade": "quente",
+ "grade": "pb",
  "slides": [
   {
    "tipo": "gancho",
-   "img": "img/real/g7Tg0fcvB7M.jpg",
-   "sobre": "Arquitetura de varejo",
-   "texto": "Ninguém entra\nnuma loja que\nparece *fechada*."
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "sobre": "Para arquitetos e engenheiros",
+   "texto": "Toda usucapião\ncomeça do *zero*?"
   },
   {
    "tipo": "cena",
-   "img": "img/real/Uw9wQp0uv7I.jpg",
-   "cap": "Regra 1",
-   "texto": "Vitrine acesa diz:\n*estamos abertos*."
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "cap": "Toda vez",
+   "texto": "Planta. Memorial.\nChecklist.\nTudo *de novo*."
   },
   {
    "tipo": "cena",
-   "img": "img/real/c50augmA1gk.jpg",
-   "cap": "Regra 2",
-   "texto": "Um nome.\nUma placa.\nNada *brigando*."
-  },
-  {
-   "tipo": "cena",
-   "img": "img/real/IkcrLge-EEU.jpg",
-   "cap": "Regra 3",
-   "texto": "Entrada *clara*\nconvida a entrar."
+   "img": "img/real/Yn8D5B8C-eY.jpg",
+   "cap": "E o tempo",
+   "texto": "Horas montando\no que já podia\nestar *pronto*."
   },
   {
    "tipo": "virada",
-   "img": "img/real/Uw9wQp0uv7I.jpg",
-   "texto": "Sua fachada é o\nanúncio que roda\n*24 horas*.",
-   "tam": 104
+   "img": "img/real/KFRS0B2q05I.jpg",
+   "texto": "Comece do *modelo*.\nAjuste ao caso.",
+   "tam": 110
+  },
+  {
+   "tipo": "detalhe",
+   "img": "img/real/SAFF_1rWBqE.jpg",
+   "pos": "center 30%",
+   "cap": "Dentro do kit",
+   "texto": "Kit Usucapião *PRO*",
+   "itens": [
+    "plantas",
+    "memoriais",
+    "checklists",
+    "contratos",
+    "propostas",
+    "planilhas"
+   ]
   },
   {
    "tipo": "fecho",
-   "img": "img/real/Ex6q4rqethg.jpg",
-   "texto": "Quem passa\ndecide em\n*segundos*.",
-   "cta": "Comente VENDA"
+   "img": "img/real/g_Mx0MQdQqE.jpg",
+   "pos": "70% center",
+   "texto": "Menos retrabalho.\nMais *entrega*.",
+   "cta": "Link na bio",
+   "nota": "Material de apoio técnico. Não substitui a análise de um advogado."
   }
  ]
 }

@@ -2,32 +2,38 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "img/real/7BIl2jJ6SnE.jpg",
-      "texto": "O hóspede não quer\n*gaveta cheia*.",
+      "img": "img/real/NfyeP5Bcvd8.jpg",
+      "texto": "A entrada é o\nprimeiro *check-in*.",
       "grad": 0.55,
       "grad_h": 680
     },
     {
       "tipo": "foto",
-      "img": "img/real/SU-Yw_pkpn4.jpg",
-      "rotulo": "01 · Cabeceira",
-      "texto": "Mesa de cabeceira *livre*."
+      "img": "img/real/bjKTxo1wmpc.jpg",
+      "rotulo": "01 · Gancho",
+      "texto": "Um gancho. *Bagunça* some."
     },
     {
       "tipo": "foto",
-      "img": "img/real/CgHNmQ0c2w4.jpg",
-      "rotulo": "02 · Cabides",
-      "texto": "Cabide de *sobra*."
+      "img": "img/real/z7xoUoQs2hE.jpg",
+      "rotulo": "02 · Chave",
+      "texto": "Um lugar pra *chave*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/e0ReP2ZWIMw.jpg",
+      "rotulo": "03 · Tapete",
+      "texto": "Tapete é *boas-vindas*."
     },
     {
       "tipo": "frase",
-      "img": "img/real/XhLdjyQQi2I.jpg",
-      "texto": "Espaço vazio\né *conforto*."
+      "img": "img/real/uu7lZjb00as.jpg",
+      "texto": "Entrou.\n*Respirou*."
     },
     {
       "tipo": "fecho",
-      "img": "img/real/C0oKQj_kjNE.jpg",
-      "texto": "O que você\n*tiraria* hoje?",
+      "img": "img/real/o7xhDvErdgQ.jpg",
+      "texto": "Como é a\n*sua* entrada?",
       "cta": "Conta nos comentários"
     }
   ]
