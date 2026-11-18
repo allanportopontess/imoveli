@@ -1,0 +1,43 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/IJkSskfEqrM.jpg",
+      "texto": "Quiz do hóspede:\nvocê *sabe*?",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "Pergunta",
+      "texto": "O que é\n*self check-in*?",
+      "itens": [
+        "Recepção 24 horas",
+        "Você entra sozinho, com cofre ou senha",
+        "Check-in pelo app do banco"
+      ]
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/H84kQcOMVzQ.jpg",
+      "texto": "Resposta: *B*.\nVocê chega no seu horário."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/corredor-janela.jpg",
+      "texto": "Acertou?\nConta *aqui*.",
+      "cta": "Responda nos comentários",
+      "pos": "center 55%"
+    }
+  ]
+}

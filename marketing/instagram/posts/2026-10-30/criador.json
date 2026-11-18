@@ -1,0 +1,78 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "projeto do escritório · Caruaru/PE",
+      "titulo_imp": "Uma loja de *19,52 m²*\nque vende de verdade",
+      "tam_imp": 82,
+      "foto": "img/depois-caso-pausa.jpg",
+      "foco_y": 50,
+      "legenda": "como o espaço foi pensado 👇"
+    },
+    {
+      "tipo": "texto",
+      "selo": "📐 O DESAFIO",
+      "titulo_imp": "Pouco espaço,\n*muito produto*",
+      "tam_imp": 100,
+      "itens": [
+        "Loja de apenas **19,52 m²**",
+        "Cliente precisa enxergar, andar e parar",
+        "Equipe pequena, atendimento rápido"
+      ],
+      "nota": "o desafio de quase toda loja pequena"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-luz.jpg",
+      "selo": "✅ DECISÃO 1",
+      "titulo_imp": "Luz que *guia o olhar*",
+      "tam_imp": 86,
+      "caixas": [
+        "trilho de spots no produto-foco",
+        "parede de destaque ao fundo"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "✅ DECISÃO 2",
+      "titulo_imp": "Ponto de *pausa*",
+      "tam_imp": 86,
+      "caixas": [
+        "lugar pra parar, sentar e considerar",
+        "caixa integrado ao fluxo"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-provador.jpg",
+      "selo": "✅ DECISÃO 3",
+      "titulo_imp": "Provador *à vista*",
+      "tam_imp": 86,
+      "caixas": [
+        "perto do percurso e bem iluminado",
+        "sem esconder a compra"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "texto",
+      "selo": "💬 SUA VEZ",
+      "titulo_imp": "E a sua loja,\n*quantos m² tem?*",
+      "tam_imp": 96,
+      "itens": [
+        "Comenta o tamanho que eu digo a 1ª mudança",
+        "Comenta **VENDA** e receba o checklist grátis no direct",
+        "Salva pra levar ao seu projeto"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

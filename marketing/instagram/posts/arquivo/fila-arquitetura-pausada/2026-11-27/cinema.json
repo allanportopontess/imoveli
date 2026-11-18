@@ -1,0 +1,41 @@
+{
+ "grade": "quente",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "sobre": "Morar bem",
+   "texto": "O problema da\nsua casa não é\no *tamanho*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/_3IHwTxft2w.jpg",
+   "cap": "É a luz",
+   "texto": "que não\n*entra*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/2cfj0Y5ch00.jpg",
+   "cap": "É o canto",
+   "texto": "sem\n*função*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/Y7zup896jrI.jpg",
+   "cap": "É o móvel",
+   "texto": "que\n*sobra*."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/AgK_XAqSbfk.jpg",
+   "texto": "Casa pequena pede\nmenos coisas\ne mais *decisão*.",
+   "tam": 100
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/HOD7O7e01Qk.jpg",
+   "texto": "Espaço bom é\no que *funciona*.",
+   "cta": "Salva pra sua reforma"
+  }
+ ]
+}

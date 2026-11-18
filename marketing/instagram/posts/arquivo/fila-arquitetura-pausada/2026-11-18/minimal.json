@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/YWxpCIqfDKs.jpg",
+      "texto": "Cozinha cara\né *pegadinha*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/Nlc_YJsNiog.jpg",
+      "rotulo": "01 · Puxador",
+      "texto": "Puxador novo. Cozinha *outra*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/E_JrOCEeG20.jpg",
+      "rotulo": "02 · Tinta",
+      "texto": "Armário pintado, cozinha *nova*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/MvY303vrKR0.jpg",
+      "rotulo": "03 · Luz",
+      "texto": "Luz embaixo do armário. *Uau*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/-kwhkrKLpII.jpg",
+      "texto": "Parece reforma.\n*Não é.*"
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/antlPQPVcjo.jpg",
+      "texto": "Qual você faz\n*primeiro*?",
+      "cta": "Manda pra quem tem apê de temporada"
+    }
+  ]
+}

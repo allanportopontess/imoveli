@@ -1,0 +1,38 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/B4rEJ09-Puo.jpg",
+      "texto": "O hóspede decide\nna *porta*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/6MYm-cUJRB0.jpg",
+      "rotulo": "01 · Cama",
+      "texto": "Cama branca. Cara de *hotel*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/cAkJn5M13mo.jpg",
+      "rotulo": "02 · Luz",
+      "texto": "Luz de cabeceira. *Aconchego*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/b4S3r5sNn8E.jpg",
+      "rotulo": "03 · Cortina",
+      "texto": "Cortina que filtra a *luz*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/k4ByjHIT02k.jpg",
+      "texto": "Dormir bem é\no seu *produto*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/uI5WSGDdkhQ.jpg",
+      "texto": "O que você já tem\nno *quarto*?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

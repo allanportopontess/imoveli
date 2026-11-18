@@ -1,0 +1,54 @@
+{
+ "tema": "azul",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/AW5QbIkgmzc.jpg",
+   "sobre": "regularização de imóvel",
+   "linhas": [
+    "Escritura",
+    "ou",
+    "usucapião?"
+   ],
+   "tam": 150,
+   "y": 200,
+   "cta": "entenda em 3 slides →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/jaHmB2Z996I.jpg",
+   "tag": "escritura",
+   "titulo": "Quando houve\ncompra e venda.",
+   "tam": 88,
+   "sub": "Documento feito em cartório entre vendedor e comprador."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/-L2tUvJ80ho.jpg",
+   "tag": "usucapião",
+   "titulo": "Quando o tempo\nde posse prova.",
+   "tam": 88,
+   "sub": "Forma de adquirir a propriedade pela posse prolongada."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/E5iwKLsLdyY.jpg",
+   "tag": "nos dois casos",
+   "titulo": "Só é dono\nquem registra.",
+   "tam": 92,
+   "sub": "O registro na matrícula do imóvel é o passo final."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/t0CRdNl_mTg.jpg",
+   "linhas": [
+    "Qual é o",
+    "seu caso?"
+   ],
+   "tam": 170,
+   "y": 230,
+   "cta": "Comenta ESCRITURA ou USUCAPIÃO",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
+  }
+ ]
+}

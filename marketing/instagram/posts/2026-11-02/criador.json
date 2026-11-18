@@ -1,0 +1,78 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "arquitetura da vida real",
+      "titulo_imp": "Medidas que *todo mundo erra*\nna hora de *reformar*",
+      "tam_imp": 74,
+      "foto": "img/diagrama-cotas.jpg",
+      "foco_y": 50,
+      "legenda": "salva este post antes da obra 👇"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-cotas.jpg",
+      "selo": "📏 AS COTAS",
+      "titulo_imp": "Alturas que *funcionam*",
+      "tam_imp": 84,
+      "caixas": [
+        "bancada ~0,90 m · porta ~2,10 m",
+        "tomada baixa 0,30 m · interruptor 1,10 m"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "texto",
+      "selo": "🍽️ COZINHA E SALA",
+      "titulo_imp": "Espaço pra *viver*",
+      "tam_imp": 104,
+      "itens": [
+        "Circulação mínima de **90 cm**",
+        "Atrás da mesa: **90 cm** pra recuar a cadeira",
+        "Bancada de trabalho perto de **0,90 m**"
+      ],
+      "nota": "referências gerais; o projeto ajusta à altura de quem usa"
+    },
+    {
+      "tipo": "texto",
+      "selo": "🛏️ QUARTO E BANHO",
+      "titulo_imp": "Pequenos *detalhes*",
+      "tam_imp": 104,
+      "itens": [
+        "Espaço lateral da cama: **60 cm** de passagem",
+        "Vaso: cerca de **40 cm** do eixo à parede lateral",
+        "Tomadas onde você vai **realmente usar**"
+      ],
+      "nota": "referências gerais de projeto"
+    },
+    {
+      "tipo": "texto",
+      "selo": "🏗️ ANTES DA OBRA",
+      "titulo_imp": "Confira *tudo*",
+      "tam_imp": 96,
+      "itens": [
+        "Pé-direito: **2,50 a 2,70 m** (veja a regra da sua cidade)",
+        "Defina móveis **antes** de posicionar tomadas",
+        "Meça com **fita** e simule no chão com fita-crepe"
+      ],
+      "nota": "cada casa pede um ajuste: leve ao seu arquiteto"
+    },
+    {
+      "tipo": "texto",
+      "selo": "💬 SUA VEZ",
+      "titulo_imp": "Qual medida *já te*\n*causou dor de cabeça?*",
+      "tam_imp": 88,
+      "itens": [
+        "Comenta aqui que eu respondo",
+        "Salva pra consultar antes da obra",
+        "Manda pra quem vai reformar"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

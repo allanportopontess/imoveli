@@ -1,0 +1,48 @@
+{
+ "paleta": "argila",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/OjU4WzMvMSQ.jpg",
+   "sobre": "Loja que vende",
+   "texto": "Ela entrou,\namou tudo…\ne saiu *sem comprar*.",
+   "adesivo": "acontece todo dia 😬"
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/vFcfeKAKGlg.jpg",
+   "cap": "O produto?",
+   "texto": "Lindo. Preço *justo*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/Ql0hvzr4wVM.jpg",
+   "cap": "O problema?",
+   "texto": "Ela não **viu** o que\nvocê queria vender."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/3Q6Hu58ZM8U.jpg",
+   "cap": "A virada",
+   "texto": "Luz geral\nmostra a loja.\nLuz de destaque\n*vende*."
+  },
+  {
+   "tipo": "lista",
+   "img": "img/real/LGhl6nV528E.jpg",
+   "texto": "O que muda na *prática*:",
+   "itens": [
+    "spot no produto-foco",
+    "luz quente",
+    "vitrine limpa",
+    "menos é mais"
+   ]
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/KRhtGeSupJg.jpg",
+   "texto": "Sua loja é *vista*\nou só iluminada?",
+   "cta": "Comente VENDA",
+   "adesivo": "checklist grátis ✨"
+  }
+ ]
+}

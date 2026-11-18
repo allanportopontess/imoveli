@@ -1,0 +1,63 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "Chegue e só\n*descanse*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "No flat",
+      "texto": "Tudo *pronto*\npra você.",
+      "letras": false,
+      "tam": 76,
+      "itens": [
+        "Self check-in com cofre de chaves",
+        "Wi-Fi e Smart TV",
+        "Ar-condicionado split",
+        "Café, chaleira e torradeira",
+        "Enxoval de hotel · aceita pet"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/copa-chaleira.png",
+      "rotulo": "Copa",
+      "texto": "Café e chá *à mão*.",
+      "pos": "center 60%"
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mantas.png",
+      "rotulo": "Quarto",
+      "texto": "Enxoval de *hotel*.",
+      "pos": "center 55%"
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/banheiro.png",
+      "pos": "center 45%",
+      "rotulo": "Banheiro",
+      "texto": "Banheiro + *lavabo*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/toalhas.jpg",
+      "texto": "Ficando mais dias?\n*Tem condição especial*.",
+      "cta": "Consulte pelo link da bio",
+      "pos": "center 60%"
+    }
+  ]
+}

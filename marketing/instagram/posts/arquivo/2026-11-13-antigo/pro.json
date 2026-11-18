@@ -1,0 +1,54 @@
+{
+ "tema": "ambar",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/kTd2PvtqE_o.jpg",
+   "sobre": "loja que vende",
+   "linhas": [
+    "Cliente que",
+    "não acha",
+    "o preço,",
+    "não pergunta."
+   ],
+   "tam": 124,
+   "y": 190,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/GzMZ86vsVjk.jpg",
+   "tag": "erro",
+   "tag_cor": "#E5392B",
+   "titulo": "Etiqueta\nescondida.",
+   "sub": "Tem cliente que desiste antes de perguntar."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/__Oyy0AjGXU.jpg",
+   "tag": "#1",
+   "titulo": "Preço visível.",
+   "sub": "Etiqueta legível, sempre no mesmo lugar."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/PpkID3ejSig.jpg",
+   "tag": "#2",
+   "titulo": "Seções\nsinalizadas.",
+   "sub": "Cliente que se localiza circula mais."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/NmKZ0SRGsd0.jpg",
+   "linhas": [
+    "Sua loja",
+    "fala",
+    "sozinha?"
+   ],
+   "tam": 160,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💾 salva pra revisar sua loja"
+  }
+ ]
+}

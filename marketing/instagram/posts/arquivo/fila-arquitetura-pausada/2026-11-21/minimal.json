@@ -1,0 +1,38 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/DR2ZXxZpU1o.jpg",
+      "texto": "Pequeno não é\no problema.\n*Bagunça* é."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/WDUtNbot6Qw.jpg",
+      "rotulo": "01 · Parede",
+      "texto": "Parede clara *amplia*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/3EariUCKobw.jpg",
+      "rotulo": "02 · Móvel",
+      "texto": "Móvel que faz *duas coisas*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/CCCFqNljjOM.jpg",
+      "rotulo": "03 · Cor",
+      "texto": "Uma cor. Um *clima*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/-bKPWxIX3nI.jpg",
+      "texto": "Menos coisa.\nMais *decisão*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/g22szjIGImA.jpg",
+      "texto": "Seu apê é\n*pequeno*?",
+      "cta": "Manda pra quem tem apê pequeno"
+    }
+  ]
+}
