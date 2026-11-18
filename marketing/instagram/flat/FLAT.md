@@ -9,7 +9,7 @@ Conta conectada no Windsor em 18/11/2026 (id 17841406816747918). A rotina diári
 - Reservas: [Booking](https://www.booking.com/hotel/br/flat-refugio-urbano.pt-br.html) · [Airbnb](https://www.airbnb.com.br/rooms/1765204509216637262) · site/WhatsApp.
 - Público: casais, viagem a trabalho, público jovem que vem para eventos, festas e atividades na cidade.
 - Promoção: estadias mais longas têm condição especial. **Nunca citar valores.**
-- Distância do centro: o Allan citou 1,2 km e 1,4 km. Até confirmar, usar "perto do centro".
+- Distâncias (Allan, 18/11): 1,4 km do centro · 1,2 km do Shopping Difusora · 4 km do Alto do Moura. Perto da UPA Boa Vista, mercados, pizzaria, restaurantes e farmácias.
 
 ## Linha editorial (Allan, 18/11)
 Post diário às 10h. Por semana: **3 posts da acomodação + 4 gerais**, intercalados.

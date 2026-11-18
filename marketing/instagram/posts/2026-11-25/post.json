@@ -4,8 +4,9 @@
   "conta": "flat_refugiourbano",
   "pilar": "plataformas",
   "formato": "carrossel_clean (clean.mjs)",
-  "status": "aguardando_aprovacao",
+  "status": "aprovado",
   "assunto": "Airbnb ou Booking?",
   "slides": "ver minimal.json",
-  "legenda": "Airbnb ou Booking? O que muda pra você. 🤔\n\nAntes de fechar, compare o preço final com taxas, a política de cancelamento e as avaliações recentes. Cada anúncio tem as próprias regras, então vale ler com calma.\n\n💬 Qual você usa mais?\n\n#airbnb #booking #aluguelpertemporada #dicasdeviagem #caruaru #refugiourbano"
+  "legenda": "Airbnb ou Booking? O que muda pra você. 🤔\n\nAntes de fechar, compare o preço final com taxas, a política de cancelamento e as avaliações recentes. Cada anúncio tem as próprias regras, então vale ler com calma.\n\n💬 Qual você usa mais?\n\n#airbnb #booking #aluguelpertemporada #dicasdeviagem #caruaru #refugiourbano",
+  "aprovado_em": "2026-11-18"
 }
