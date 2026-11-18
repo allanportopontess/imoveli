@@ -1,12 +1,13 @@
 {
   "marca": {
     "handle": "@flat_refugiourbano",
-    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
     "logo": "flat/img/logo.webp",
     "papel": "#F1EAE3",
     "tinta": "#2A2420",
     "cinza": "#9A8E80",
-    "acento": "#8B6B4C"
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
   },
   "slides": [
     {

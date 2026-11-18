@@ -3,7 +3,7 @@
   "horario": "10:00",
   "conta": "flat_refugiourbano",
   "pilar": "plataformas",
-  "formato": "carrossel_minimal (minimal.mjs)",
+  "formato": "carrossel_clean (clean.mjs)",
   "status": "aguardando_aprovacao",
   "assunto": "Airbnb ou Booking?",
   "slides": "ver minimal.json",

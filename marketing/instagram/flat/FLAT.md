@@ -15,7 +15,7 @@ Conta conectada no Windsor em 18/11/2026 (id 17841406816747918). A rotina diári
 Post diário às 10h. Por semana: **3 posts da acomodação + 4 gerais**, intercalados.
 - Acomodação: o flat, localização, comodidades, estadia longa. **Só fotos reais do flat** (`flat/img/`). Nunca banco de imagens representando o flat.
 - Gerais: mercado de locação por temporada (com fonte na legenda), mundo Airbnb e Booking, dicas de segurança, dicas de locação, quiz, dicas para hóspedes. Podem usar Unsplash (crédito em `img/real/CREDITOS.md`) e fecham com uma foto real do flat.
-- Visual: o mesmo minimalista aprovado (`minimal.mjs`), com o bloco `marca` do flat: papel `#F1EAE3`, tinta `#2A2420`, acento bronze `#8B6B4C` (cor do logo), handle `@flat_refugiourbano`, logo no fecho.
+- Visual (Allan, 18/11): **clean, fundo branco, pegada digital/tech com influência de anúncio do Airbnb**. Gerador `node clean.mjs <data>` (lê o mesmo `minimal.json`): fotos mais claras em cards arredondados, Inter Tight, chips, barra de progresso, botão em pílula, destaque em bronze `#8B6B4C` (cor do logo), logo no fecho. Bloco `marca`: handle `@flat_refugiourbano`, local `Caruaru, PE`, rodapé `Refúgio Urbano · Flat em Caruaru`.
 - Texto: gancho → cenas curtas → virada → fecho com 1 CTA ("Reserve pelo link da bio", "Responda nos comentários", "Salve"). Fala com o hóspede. Sem promessa de preço, sem dados sem fonte.
 
 ## Bio sugerida
