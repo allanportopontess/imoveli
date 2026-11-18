@@ -1,0 +1,51 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/quarto-janela.jpg",
+      "texto": "Seu *refúgio*\nem Caruaru.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/sala-netflix.jpg",
+      "rotulo": "01 · Chegou",
+      "texto": "Self check-in, no *seu* horário."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "pos": "left center",
+      "rotulo": "02 · Descansa",
+      "texto": "Vista para a *Via Parque*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mesa-tv.jpg",
+      "rotulo": "03 · Fica",
+      "texto": "Tudo pronto pra *ficar*."
+    },
+    {
+      "tipo": "frase",
+      "img": "flat/img/sala-netflix.jpg",
+      "pos": "80% center",
+      "texto": "Arquitetura\nque *acolhe*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/quarto-janela.jpg",
+      "texto": "Bora marcar\nsuas *datas*?",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}

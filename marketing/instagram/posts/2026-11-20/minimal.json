@@ -1,0 +1,49 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/U4XSfzGOWSY.jpg",
+      "texto": "Todo mundo\nquer um *studio*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/tAnrp8P51tY.jpg",
+      "rotulo": "Trabalho",
+      "texto": "Viagem a trabalho, *sem hotel*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/Yq3SpFKZcxY.jpg",
+      "rotulo": "Lazer",
+      "texto": "Fim de semana *a dois*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/Zd-6QZ0SvQQ.jpg",
+      "rotulo": "Eventos",
+      "texto": "Festa na cidade, *cama boa* depois."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/41S8eu6nImg.jpg",
+      "texto": "Mais de 20% a mais\nde *noites* reservadas."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "texto": "Seu próximo studio\nfica em *Caruaru*.",
+      "cta": "Conheça o Refúgio Urbano"
+    }
+  ]
+}

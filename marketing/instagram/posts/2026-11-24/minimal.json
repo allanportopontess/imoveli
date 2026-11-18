@@ -1,0 +1,52 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "Chegue e só\n*descanse*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "No flat",
+      "texto": "Tudo *pronto*\npra você.",
+      "letras": false,
+      "tam": 76,
+      "itens": [
+        "Self check-in com cofre de chaves",
+        "Wi-Fi e Smart TV",
+        "Ar-condicionado split",
+        "Café, chaleira e torradeira",
+        "Enxoval de hotel · aceita pet"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mesa-tv.jpg",
+      "rotulo": "Copa",
+      "texto": "Café e chá *à mão*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/quarto-janela.jpg",
+      "rotulo": "Quarto",
+      "texto": "Enxoval de *hotel*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "texto": "Ficando mais dias?\n*Tem condição especial*.",
+      "cta": "Consulte pelo link da bio"
+    }
+  ]
+}

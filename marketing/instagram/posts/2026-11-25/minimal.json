@@ -1,0 +1,48 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/XGC_1eH_ZGI.jpg",
+      "texto": "Airbnb ou Booking?\nO que *muda* pra você.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "Antes de fechar",
+      "texto": "Compare\n*três* coisas.",
+      "letras": false,
+      "itens": [
+        "Preço final, com taxas",
+        "Política de cancelamento",
+        "Avaliações recentes"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/2hn2rhDp5sM.jpg",
+      "rotulo": "Dica",
+      "texto": "A regra muda de *anúncio* pra anúncio."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/olrlEphpEqA.jpg",
+      "texto": "Plataforma boa é\na que você *entende*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/mesa-tv.jpg",
+      "texto": "O Refúgio está\nnas *duas*.",
+      "cta": "Links na bio"
+    }
+  ]
+}

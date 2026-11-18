@@ -1,0 +1,52 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Caruaru-PE",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "pos": "left center",
+      "texto": "Caruaru logo\nna *porta*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/quarto-janela.jpg",
+      "pos": "left center",
+      "rotulo": "01 · Via Parque",
+      "texto": "Caminhada e corrida *na porta*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/sala-netflix.jpg",
+      "rotulo": "02 · Centro",
+      "texto": "Perto do centro e das *feiras*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mesa-tv.jpg",
+      "rotulo": "03 · Alto do Moura",
+      "texto": "No caminho do *barro* e do forró."
+    },
+    {
+      "tipo": "frase",
+      "img": "flat/img/quarto-janela.jpg",
+      "pos": "30% center",
+      "texto": "Fique perto\nde *tudo*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "Vem pra\n*Caruaru*?",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}
