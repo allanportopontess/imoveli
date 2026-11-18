@@ -12,40 +12,52 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "img/real/R6dSBkz32B8.jpg",
-      "texto": "Antes de reservar,\nconfira *isto*.",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "Chegue e só\n*descanse*.",
       "grad": 0.55,
       "grad_h": 680
     },
     {
-      "tipo": "foto",
-      "img": "img/real/1AmEImwtnFk.jpg",
-      "rotulo": "01 · Anfitrião",
-      "texto": "Confirme quem é o *anfitrião*."
+      "tipo": "lista",
+      "rotulo": "No flat",
+      "texto": "Tudo *pronto*\npra você.",
+      "letras": false,
+      "tam": 76,
+      "itens": [
+        "Self check-in com cofre de chaves",
+        "Wi-Fi e Smart TV",
+        "Ar-condicionado split",
+        "Café, chaleira e torradeira",
+        "Enxoval de hotel · aceita pet"
+      ]
     },
     {
       "tipo": "foto",
-      "img": "img/real/uE2T1tCFsn8.jpg",
-      "rotulo": "02 · Avaliações",
-      "texto": "Leia as avaliações *recentes*."
+      "img": "flat/img/copa-chaleira.png",
+      "rotulo": "Copa",
+      "texto": "Café e chá *à mão*.",
+      "pos": "center 60%"
     },
     {
       "tipo": "foto",
-      "img": "img/real/soa31u8I5R8.jpg",
-      "rotulo": "03 · Preço",
-      "texto": "Desconfie de preço *bom demais*."
+      "img": "flat/img/mantas.png",
+      "rotulo": "Quarto",
+      "texto": "Enxoval de *hotel*.",
+      "pos": "center 55%"
     },
     {
-      "tipo": "frase",
-      "img": "img/real/X1NkL0V-CK4.jpg",
-      "texto": "Dúvida? *Pergunte*\nantes de pagar."
+      "tipo": "foto",
+      "img": "flat/img/banheiro.png",
+      "pos": "center 45%",
+      "rotulo": "Banheiro",
+      "texto": "Banheiro + *lavabo*."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/mantas.png",
-      "texto": "Viajar tranquilo\ntambém é *viagem*.",
-      "cta": "Salve para a próxima viagem",
-      "pos": "center 55%"
+      "img": "flat/img/toalhas.jpg",
+      "texto": "Ficando mais dias?\n*Tem condição especial*.",
+      "cta": "Consulte pelo link da bio",
+      "pos": "center 60%"
     }
   ]
 }

@@ -12,52 +12,39 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "flat/img/sala-netflix.jpg",
-      "texto": "Chegue e só\n*descanse*.",
+      "img": "img/real/XGC_1eH_ZGI.jpg",
+      "texto": "Airbnb ou Booking?\nO que *muda* pra você.",
       "grad": 0.55,
       "grad_h": 680
     },
     {
       "tipo": "lista",
-      "rotulo": "No flat",
-      "texto": "Tudo *pronto*\npra você.",
+      "rotulo": "Antes de fechar",
+      "texto": "Compare\n*três* coisas.",
       "letras": false,
-      "tam": 76,
       "itens": [
-        "Self check-in com cofre de chaves",
-        "Wi-Fi e Smart TV",
-        "Ar-condicionado split",
-        "Café, chaleira e torradeira",
-        "Enxoval de hotel · aceita pet"
+        "Preço final, com taxas",
+        "Política de cancelamento",
+        "Avaliações recentes"
       ]
     },
     {
       "tipo": "foto",
-      "img": "flat/img/copa-chaleira.png",
-      "rotulo": "Copa",
-      "texto": "Café e chá *à mão*.",
-      "pos": "center 60%"
+      "img": "img/real/2hn2rhDp5sM.jpg",
+      "rotulo": "Dica",
+      "texto": "A regra muda de *anúncio* pra anúncio."
     },
     {
-      "tipo": "foto",
-      "img": "flat/img/mantas.png",
-      "rotulo": "Quarto",
-      "texto": "Enxoval de *hotel*.",
-      "pos": "center 55%"
-    },
-    {
-      "tipo": "foto",
-      "img": "flat/img/banheiro.png",
-      "pos": "center 45%",
-      "rotulo": "Banheiro",
-      "texto": "Banheiro + *lavabo*."
+      "tipo": "frase",
+      "img": "img/real/olrlEphpEqA.jpg",
+      "texto": "Plataforma boa é\na que você *entende*."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/toalhas.jpg",
-      "texto": "Ficando mais dias?\n*Tem condição especial*.",
-      "cta": "Consulte pelo link da bio",
-      "pos": "center 60%"
+      "img": "flat/img/copa-cafe.png",
+      "texto": "O Refúgio está\nnas *duas*.",
+      "cta": "Links na bio",
+      "pos": "center 70%"
     }
   ]
 }

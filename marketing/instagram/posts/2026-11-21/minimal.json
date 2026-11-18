@@ -12,43 +12,32 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "flat/img/quarto-janela-2.jpg",
-      "pos": "left center",
-      "texto": "Caruaru logo\nna *porta*.",
+      "img": "img/real/IJkSskfEqrM.jpg",
+      "texto": "Quiz do hóspede:\nvocê *sabe*?",
       "grad": 0.55,
       "grad_h": 680
     },
     {
-      "tipo": "foto",
-      "img": "flat/img/corredor-janela.jpg",
-      "pos": "center 35%",
-      "rotulo": "01 · Via Parque",
-      "texto": "Caminhada e corrida *na porta*."
-    },
-    {
-      "tipo": "foto",
-      "img": "flat/img/sala-netflix.jpg",
-      "rotulo": "02 · Centro",
-      "texto": "Perto do centro e das *feiras*."
-    },
-    {
-      "tipo": "foto",
-      "img": "flat/img/mesa-tv.jpg",
-      "rotulo": "03 · Alto do Moura",
-      "texto": "No caminho do *barro* e do forró."
+      "tipo": "lista",
+      "rotulo": "Pergunta",
+      "texto": "O que é\n*self check-in*?",
+      "itens": [
+        "Recepção 24 horas",
+        "Você entra sozinho, com cofre ou senha",
+        "Check-in pelo app do banco"
+      ]
     },
     {
       "tipo": "frase",
-      "img": "flat/img/quarto-janela.jpg",
-      "pos": "30% center",
-      "texto": "Fique perto\nde *tudo*."
+      "img": "img/real/H84kQcOMVzQ.jpg",
+      "texto": "Resposta: *B*.\nVocê chega no seu horário."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/cama-detalhe.png",
-      "texto": "Vem pra\n*Caruaru*?",
-      "cta": "Reserve pelo link da bio",
-      "pos": "center 40%"
+      "img": "flat/img/corredor-janela.jpg",
+      "texto": "Acertou?\nConta *aqui*.",
+      "cta": "Responda nos comentários",
+      "pos": "center 55%"
     }
   ]
 }

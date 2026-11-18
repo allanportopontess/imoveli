@@ -12,44 +12,40 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "flat/img/quarto-janela.jpg",
-      "texto": "Seu *refúgio*\nem Caruaru.",
+      "img": "img/real/U4XSfzGOWSY.jpg",
+      "texto": "Todo mundo\nquer um *studio*.",
       "grad": 0.55,
       "grad_h": 680
     },
     {
       "tipo": "foto",
-      "img": "flat/img/corredor-janela.jpg",
-      "rotulo": "01 · Chegou",
-      "texto": "Self check-in, no *seu* horário.",
-      "pos": "center 60%"
+      "img": "img/real/tAnrp8P51tY.jpg",
+      "rotulo": "Trabalho",
+      "texto": "Viagem a trabalho, *sem hotel*."
     },
     {
       "tipo": "foto",
-      "img": "flat/img/quarto-janela-2.jpg",
-      "pos": "left center",
-      "rotulo": "02 · Descansa",
-      "texto": "Vista para a *Via Parque*."
+      "img": "img/real/Yq3SpFKZcxY.jpg",
+      "rotulo": "Lazer",
+      "texto": "Fim de semana *a dois*."
     },
     {
       "tipo": "foto",
-      "img": "flat/img/copa-cafe.png",
-      "rotulo": "03 · Fica",
-      "texto": "Tudo pronto pra *ficar*.",
-      "pos": "center 70%"
+      "img": "img/real/Zd-6QZ0SvQQ.jpg",
+      "rotulo": "Eventos",
+      "texto": "Festa na cidade, *cama boa* depois."
     },
     {
       "tipo": "frase",
-      "img": "flat/img/cama-detalhe.png",
-      "pos": "center 40%",
-      "texto": "Arquitetura\nque *acolhe*."
+      "img": "img/real/41S8eu6nImg.jpg",
+      "texto": "Mais de 20% a mais\nde *noites* reservadas."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/sala-netflix.jpg",
-      "texto": "Bora marcar\nsuas *datas*?",
-      "cta": "Reserve pelo link da bio",
-      "pos": "center"
+      "img": "flat/img/cama-detalhe.png",
+      "texto": "Seu próximo studio\nfica em *Caruaru*.",
+      "cta": "Conheça o Refúgio Urbano",
+      "pos": "center 40%"
     }
   ]
 }

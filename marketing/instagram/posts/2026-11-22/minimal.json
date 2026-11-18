@@ -12,31 +12,39 @@
   "slides": [
     {
       "tipo": "capa",
-      "img": "img/real/IJkSskfEqrM.jpg",
-      "texto": "Quiz do hóspede:\nvocê *sabe*?",
+      "img": "img/real/R6dSBkz32B8.jpg",
+      "texto": "Antes de reservar,\nconfira *isto*.",
       "grad": 0.55,
       "grad_h": 680
     },
     {
-      "tipo": "lista",
-      "rotulo": "Pergunta",
-      "texto": "O que é\n*self check-in*?",
-      "itens": [
-        "Recepção 24 horas",
-        "Você entra sozinho, com cofre ou senha",
-        "Check-in pelo app do banco"
-      ]
+      "tipo": "foto",
+      "img": "img/real/1AmEImwtnFk.jpg",
+      "rotulo": "01 · Anfitrião",
+      "texto": "Confirme quem é o *anfitrião*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/uE2T1tCFsn8.jpg",
+      "rotulo": "02 · Avaliações",
+      "texto": "Leia as avaliações *recentes*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/soa31u8I5R8.jpg",
+      "rotulo": "03 · Preço",
+      "texto": "Desconfie de preço *bom demais*."
     },
     {
       "tipo": "frase",
-      "img": "img/real/H84kQcOMVzQ.jpg",
-      "texto": "Resposta: *B*.\nVocê chega no seu horário."
+      "img": "img/real/X1NkL0V-CK4.jpg",
+      "texto": "Dúvida? *Pergunte*\nantes de pagar."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/corredor-janela.jpg",
-      "texto": "Acertou?\nConta *aqui*.",
-      "cta": "Responda nos comentários",
+      "img": "flat/img/mantas.png",
+      "texto": "Viajar tranquilo\ntambém é *viagem*.",
+      "cta": "Salve para a próxima viagem",
       "pos": "center 55%"
     }
   ]
