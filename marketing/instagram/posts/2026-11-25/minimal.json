@@ -41,9 +41,10 @@
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/mesa-tv.jpg",
+      "img": "flat/img/copa-cafe.png",
       "texto": "O Refúgio está\nnas *duas*.",
-      "cta": "Links na bio"
+      "cta": "Links na bio",
+      "pos": "center 70%"
     }
   ]
 }

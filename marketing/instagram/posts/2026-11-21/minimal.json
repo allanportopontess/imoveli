@@ -20,8 +20,8 @@
     },
     {
       "tipo": "foto",
-      "img": "flat/img/quarto-janela.jpg",
-      "pos": "left center",
+      "img": "flat/img/corredor-janela.jpg",
+      "pos": "center 35%",
       "rotulo": "01 · Via Parque",
       "texto": "Caminhada e corrida *na porta*."
     },
@@ -45,9 +45,10 @@
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/sala-netflix.jpg",
+      "img": "flat/img/cama-detalhe.png",
       "texto": "Vem pra\n*Caruaru*?",
-      "cta": "Reserve pelo link da bio"
+      "cta": "Reserve pelo link da bio",
+      "pos": "center 40%"
     }
   ]
 }

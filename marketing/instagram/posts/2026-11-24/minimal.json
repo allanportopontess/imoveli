@@ -33,21 +33,31 @@
     },
     {
       "tipo": "foto",
-      "img": "flat/img/mesa-tv.jpg",
+      "img": "flat/img/copa-chaleira.png",
       "rotulo": "Copa",
-      "texto": "Café e chá *à mão*."
+      "texto": "Café e chá *à mão*.",
+      "pos": "center 60%"
     },
     {
       "tipo": "foto",
-      "img": "flat/img/quarto-janela.jpg",
+      "img": "flat/img/mantas.png",
       "rotulo": "Quarto",
-      "texto": "Enxoval de *hotel*."
+      "texto": "Enxoval de *hotel*.",
+      "pos": "center 55%"
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/banheiro.png",
+      "pos": "center 45%",
+      "rotulo": "Banheiro",
+      "texto": "Banheiro + *lavabo*."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/quarto-janela-2.jpg",
+      "img": "flat/img/toalhas.jpg",
       "texto": "Ficando mais dias?\n*Tem condição especial*.",
-      "cta": "Consulte pelo link da bio"
+      "cta": "Consulte pelo link da bio",
+      "pos": "center 60%"
     }
   ]
 }

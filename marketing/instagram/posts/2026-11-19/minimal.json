@@ -19,9 +19,10 @@
     },
     {
       "tipo": "foto",
-      "img": "flat/img/sala-netflix.jpg",
+      "img": "flat/img/corredor-janela.jpg",
       "rotulo": "01 · Chegou",
-      "texto": "Self check-in, no *seu* horário."
+      "texto": "Self check-in, no *seu* horário.",
+      "pos": "center 60%"
     },
     {
       "tipo": "foto",
@@ -32,21 +33,23 @@
     },
     {
       "tipo": "foto",
-      "img": "flat/img/mesa-tv.jpg",
+      "img": "flat/img/copa-cafe.png",
       "rotulo": "03 · Fica",
-      "texto": "Tudo pronto pra *ficar*."
+      "texto": "Tudo pronto pra *ficar*.",
+      "pos": "center 70%"
     },
     {
       "tipo": "frase",
-      "img": "flat/img/sala-netflix.jpg",
-      "pos": "80% center",
+      "img": "flat/img/cama-detalhe.png",
+      "pos": "center 40%",
       "texto": "Arquitetura\nque *acolhe*."
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/quarto-janela.jpg",
+      "img": "flat/img/sala-netflix.jpg",
       "texto": "Bora marcar\nsuas *datas*?",
-      "cta": "Reserve pelo link da bio"
+      "cta": "Reserve pelo link da bio",
+      "pos": "center"
     }
   ]
 }

@@ -42,9 +42,10 @@
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/quarto-janela.jpg",
+      "img": "flat/img/mantas.png",
       "texto": "Viajar tranquilo\ntambém é *viagem*.",
-      "cta": "Salve para a próxima viagem"
+      "cta": "Salve para a próxima viagem",
+      "pos": "center 55%"
     }
   ]
 }

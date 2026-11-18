@@ -34,9 +34,10 @@
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/sala-netflix.jpg",
+      "img": "flat/img/corredor-janela.jpg",
       "texto": "Acertou?\nConta *aqui*.",
-      "cta": "Responda nos comentários"
+      "cta": "Responda nos comentários",
+      "pos": "center 55%"
     }
   ]
 }

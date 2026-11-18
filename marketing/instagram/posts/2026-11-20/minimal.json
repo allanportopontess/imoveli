@@ -42,9 +42,10 @@
     },
     {
       "tipo": "fecho",
-      "img": "flat/img/quarto-janela-2.jpg",
+      "img": "flat/img/cama-detalhe.png",
       "texto": "Seu próximo studio\nfica em *Caruaru*.",
-      "cta": "Conheça o Refúgio Urbano"
+      "cta": "Conheça o Refúgio Urbano",
+      "pos": "center 40%"
     }
   ]
 }
