@@ -1,0 +1,55 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "pos": "left center",
+      "texto": "Tudo que você\nprecisa, *por perto*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "Perto do flat",
+      "texto": "Resolva a\nviagem a *pé*.",
+      "letras": false,
+      "itens": [
+        "Mercados e farmácias",
+        "Restaurantes e pizzaria",
+        "UPA Boa Vista",
+        "Shopping Difusora, a 1,2 km",
+        "Centro, a 1,4 km"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/sala-netflix.jpg",
+      "rotulo": "Estacionamento",
+      "texto": "Vaga pública *em frente*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/corredor-janela.jpg",
+      "pos": "center 40%",
+      "rotulo": "Vista",
+      "texto": "E a *Via Parque* na porta."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/cama-detalhe.png",
+      "pos": "center 40%",
+      "texto": "Praticidade\nem *Caruaru*.",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}

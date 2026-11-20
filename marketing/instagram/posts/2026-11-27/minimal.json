@@ -1,0 +1,51 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/UAHTeN80JGw.jpg",
+      "texto": "Como ler um anúncio\ncomo *profissional*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "Antes de reservar",
+      "texto": "Cinco sinais de\nanúncio *confiável*.",
+      "letras": false,
+      "itens": [
+        "Fotos reais e atuais",
+        "Avaliações recentes",
+        "Regras da casa claras",
+        "Política de cancelamento",
+        "Localização no mapa"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/0EWGEaMD_Gw.jpg",
+      "rotulo": "Dica",
+      "texto": "Leia as avaliações *mais novas*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/HdcRevsMfrk.jpg",
+      "texto": "Anúncio bom\nresponde *antes* de você perguntar."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/mesa-tv.jpg",
+      "texto": "Airbnb ou\nBooking?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

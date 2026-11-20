@@ -1,0 +1,51 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/jjtptFoCQ9U.jpg",
+      "texto": "Checklist do\nhóspede *esperto*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "lista",
+      "rotulo": "Antes de viajar",
+      "texto": "Cinco coisas\npra *conferir*.",
+      "letras": false,
+      "itens": [
+        "Documento com foto",
+        "Carregador e adaptador",
+        "Horário combinado de chegada",
+        "Endereço salvo no mapa",
+        "Mensagem do anfitrião lida"
+      ]
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/DJKeTl9dfh0.jpg",
+      "rotulo": "Na chegada",
+      "texto": "Confira o *flat* na hora."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/34UBjc-vOgo.jpg",
+      "texto": "Viagem boa começa\nantes da *mala*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "O que você\n*nunca* esquece?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}
