@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/24fe4bXlbu8.jpg",
+      "texto": "Gaste na *cama*.\nEconomize no resto.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/LSrTxayEhyg.jpg",
+      "rotulo": "Gaste · Cama",
+      "texto": "Colchão e lençol: *invista*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/Q8IBPtlRCx8.jpg",
+      "rotulo": "Economize · Decoração",
+      "texto": "Menos quadro, mais *luz*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/TDIdPmW2P9k.jpg",
+      "rotulo": "Economize · Móveis",
+      "texto": "Móvel usado, olho *bom*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/XhLdjyQQi2I.jpg",
+      "texto": "Hóspede sente a cama.\nNão o *quadro*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/sr_qf4MrXC8.jpg",
+      "texto": "Onde você\n*mais gasta*?",
+      "cta": "Conta nos comentários"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/cama-detalhe.png",
+      "pos": "center 40%",
+      "texto": "Dormir bem\nem *Caruaru*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mantas.png",
+      "pos": "center 55%",
+      "rotulo": "01 · Cama",
+      "texto": "Cama de casal, *enxoval de hotel*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/quarto-janela.jpg",
+      "pos": "center",
+      "rotulo": "02 · Luz",
+      "texto": "Luz que *acalma*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/quarto-janela-2.jpg",
+      "pos": "left center",
+      "rotulo": "03 · Janela",
+      "texto": "Acorde com a *vista*."
+    },
+    {
+      "tipo": "frase",
+      "img": "flat/img/toalhas.jpg",
+      "pos": "center 60%",
+      "texto": "Descanso é o\n*luxo* da viagem."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/cama-detalhe.png",
+      "pos": "center 40%",
+      "texto": "Bora marcar\nsuas *datas*?",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}

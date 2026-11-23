@@ -1,0 +1,54 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "flat/img/copa-cafe.png",
+      "pos": "center 70%",
+      "texto": "Seu café,\ndo seu *jeito*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/copa-chaleira.png",
+      "pos": "center 60%",
+      "rotulo": "01 · Copa",
+      "texto": "Chaleira, cafeteira e *potes*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/copa-cafe.png",
+      "pos": "center 60%",
+      "rotulo": "02 · Luz",
+      "texto": "Luminária *aconchegante*."
+    },
+    {
+      "tipo": "foto",
+      "img": "flat/img/mesa-tv.jpg",
+      "rotulo": "03 · Mesa",
+      "texto": "Mesa de vidro pra *dois*."
+    },
+    {
+      "tipo": "frase",
+      "img": "flat/img/copa-chaleira.png",
+      "pos": "center 55%",
+      "texto": "Manhã boa\nnão tem *pressa*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/sala-netflix.jpg",
+      "texto": "Café quente\nem *Caruaru*.",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}

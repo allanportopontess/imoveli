@@ -1,0 +1,53 @@
+{
+ "tema": "lima",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/OVLxgCtuMNU.jpg",
+   "sobre": "ponto de venda",
+   "linhas": [
+    "O caixa",
+    "também",
+    "vende."
+   ],
+   "tam": 160,
+   "y": 200,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/kko_dvCpnCw.jpg",
+   "tag": "#1 impulso",
+   "titulo": "Produto pequeno\nperto do caixa.",
+   "tam": 88,
+   "sub": "Item barato, decisão rápida."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/FbespiO-VQ8.jpg",
+   "tag": "#2 espera",
+   "titulo": "Quem espera,\nolha.",
+   "sub": "Deixe algo útil ao alcance da mão."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/2cGIkBSspFM.jpg",
+   "tag": "#3 posição",
+   "titulo": "Caixa no fim\ndo percurso.",
+   "sub": "O cliente passa por tudo antes de pagar."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/MTiXPXy16Fs.jpg",
+   "linhas": [
+    "Seu caixa",
+    "vende ou",
+    "só cobra?"
+   ],
+   "tam": 150,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💾 salva pra ajustar seu balcão"
+  }
+ ]
+}

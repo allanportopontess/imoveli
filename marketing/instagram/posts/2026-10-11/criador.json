@@ -1,0 +1,68 @@
+{
+  "referencia": "@copfybr (pedido do Allan em 11/10: usar como referência daqui pra frente)",
+  "foto": "img/allan-escritorio.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 52
+  },
+  "acento": "#C2834F",
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "Regularização de imóveis",
+      "titulo": "Seu imóvel sem escritura\npode virar *seu de verdade.*",
+      "tam": 92,
+      "foco_y": 80,
+      "legenda": "mora há 5 anos no mesmo lugar? 👇",
+      "legenda_y": 110
+    },
+    {
+      "tipo": "lista",
+      "recorte": "img/allan-autoridade.png",
+      "titulo": "Usucapião urbana:\nos *4 requisitos*",
+      "itens": [
+        "📐 Até **250 m²** na cidade",
+        "⏳ **5 anos** sem contestação",
+        "🏠 É a **sua moradia**",
+        "🚫 Você **não tem outro imóvel**"
+      ]
+    },
+    {
+      "tipo": "tweet",
+      "texto": "Muita gente acha que precisa de processo na Justiça.\n\nQuando não há conflito, a usucapião pode ser feita **direto no cartório**. É a usucapião extrajudicial.",
+      "rodape": "Precisa de advogado + parte técnica de arquiteto ou engenheiro"
+    },
+    {
+      "tipo": "close",
+      "titulo": "O erro que mais\n*atrasa* o processo:",
+      "zoom": 135,
+      "foco_y": 62,
+      "caixas": [
+        "planta e memorial com medida errada",
+        "= **exigência do cartório** e meses de atraso"
+      ]
+    },
+    {
+      "tipo": "checklist",
+      "titulo": "Comece a juntar *hoje*",
+      "itens": [
+        "IPTU e carnês antigos",
+        "Contas de luz e água",
+        "Recibos e contrato de compra",
+        "Fotos antigas do imóvel",
+        "Declaração dos vizinhos"
+      ],
+      "nota": "⚠️ Conteúdo educativo. Cada caso precisa de análise de um advogado."
+    },
+    {
+      "tipo": "close",
+      "titulo": "Manda pra quem mora\n*sem escritura.*",
+      "zoom": 125,
+      "foco_y": 60,
+      "caixas": [
+        "💾 salva esse post",
+        "dúvida? **comenta aqui** que eu respondo 👇"
+      ]
+    }
+  ]
+}

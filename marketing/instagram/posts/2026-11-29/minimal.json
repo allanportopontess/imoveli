@@ -1,0 +1,32 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/t5WJ05mJKs8.jpg",
+      "texto": "Domingo é dia\nde *lembrar*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/3GOfXlhkpxQ.jpg",
+      "texto": "Qual o melhor lugar\nem que você já\nse *hospedou*?"
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/quarto-janela.jpg",
+      "texto": "Me conta\n*nos comentários*.",
+      "cta": "Responda aqui"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "allanporto-instagram",
+  "private": true,
+  "type": "module",
+  "description": "Gerador de posts diários do Instagram (carrosséis 1080x1350)",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.56.0"
+  }
+}

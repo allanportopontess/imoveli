@@ -1,0 +1,80 @@
+{
+  "foto": "img/depois-caso-luz.jpg",
+  "rosto": {
+    "x": 50,
+    "y": 50
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "kicker": "loja pequena também vende muito",
+      "titulo_imp": "Sua loja *não é pequena*,\nela só está *mal desenhada*",
+      "tam_imp": 84,
+      "foto": "img/depois-caso-luz.jpg",
+      "foco_y": 50,
+      "legenda": "4 decisões de layout que mudam tudo 👇"
+    },
+    {
+      "tipo": "antes",
+      "img": "img/diagrama-labirinto.jpg",
+      "selo": "❌ O ERRO",
+      "titulo_imp": "Layout *labirinto*",
+      "tam_imp": 92,
+      "caixas": [
+        "ilhas altas bloqueiam a vista da loja",
+        "corredor apertado: cliente não quer passar",
+        "caixa longe da saída"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "depois",
+      "img": "img/diagrama-u.jpg",
+      "selo": "✅ A SOLUÇÃO",
+      "titulo_imp": "Percurso *em U*",
+      "tam_imp": 92,
+      "caixas": [
+        "produtos nas paredes, centro respira",
+        "ilha central baixa, até 1,20 m",
+        "caixa no fim do percurso"
+      ],
+      "caixas_y": 70
+    },
+    {
+      "tipo": "texto",
+      "selo": "📐 AS MEDIDAS",
+      "titulo_imp": "Guarde estes\n*3 números*",
+      "tam_imp": 104,
+      "itens": [
+        "Circulação mínima de **90 cm** (ideal **1,20 m**)",
+        "Ilha central de até **1,20 m** de altura",
+        "Caixa no **fim** do percurso, com produtos de impulso"
+      ],
+      "nota": "referências gerais de projeto; cada loja pede ajuste ao seu espaço"
+    },
+    {
+      "tipo": "depois",
+      "img": "img/depois-caso-pausa.jpg",
+      "selo": "✅ NA PRÁTICA",
+      "titulo_imp": "Projeto *aplicado*",
+      "tam_imp": 92,
+      "caixas": [
+        "percurso guiado",
+        "ponto de pausa e luz no produto-foco"
+      ],
+      "credito": "projeto do escritório · imagem 3D"
+    },
+    {
+      "tipo": "texto",
+      "selo": "💬 SUA VEZ",
+      "titulo_imp": "Quantos m² tem\n*a sua loja?*",
+      "tam_imp": 96,
+      "itens": [
+        "Comenta o tamanho da loja aqui embaixo",
+        "Comenta **VENDA** e receba o checklist grátis no direct",
+        "Salva este post pra consultar no seu projeto"
+      ],
+      "nota": "Allan Porto · Arquiteto · CAU-PE A166156-6"
+    }
+  ]
+}

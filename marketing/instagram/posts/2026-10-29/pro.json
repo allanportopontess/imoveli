@@ -1,0 +1,56 @@
+{
+ "tema": "lima",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/Ex6q4rqethg.jpg",
+   "sobre": "vitrine",
+   "linhas": [
+    "Sua vitrine",
+    "tem poucos",
+    "segundos."
+   ],
+   "tam": 150,
+   "y": 200,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/CzbJgV5H7wU.jpg",
+   "grade": "saturate(.7) contrast(1.1)",
+   "tag": "erro",
+   "tag_cor": "#E5392B",
+   "titulo": "Vitrine lotada\nnão vende.",
+   "sub": "Quando tudo aparece, nada se destaca."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/qDBxfh5Idak.jpg",
+   "tag": "solução",
+   "titulo": "1 produto-foco.",
+   "sub": "Na altura do olhar: 1,40 a 1,60 m."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/RzT_Z6QGAbQ.jpg",
+   "tag": "esta semana",
+   "titulo": "Tire o excesso.\nIlumine o foco.",
+   "tam": 96,
+   "sub": "Troque a vitrine a cada 15 a 30 dias."
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/HZBMsBpWoKw.jpg",
+   "linhas": [
+    "Qual é o",
+    "produto-foco",
+    "da sua",
+    "vitrine?"
+   ],
+   "tam": 128,
+   "y": 220,
+   "cta": "Comenta VENDA e receba o checklist grátis",
+   "cta2": "💾 salva pra montar a sua"
+  }
+ ]
+}

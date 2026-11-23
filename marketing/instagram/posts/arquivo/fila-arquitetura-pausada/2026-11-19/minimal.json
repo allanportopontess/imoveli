@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/d5yfKfMSk9o.jpg",
+      "texto": "Banheiro novo\nsem *quebra-quebra*.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/paY5Ow4GZis.jpg",
+      "rotulo": "01 · Metais",
+      "texto": "Torneira preta, banheiro *outro*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/XzQwJsEbWiI.jpg",
+      "rotulo": "02 · Espelho",
+      "texto": "Espelho grande, espaço *maior*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/8oyLrs2k-AM.jpg",
+      "rotulo": "03 · Toalhas",
+      "texto": "Toalha combinando. Cara de *hotel*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/00l8o8UJI_Y.jpg",
+      "texto": "Sem obra.\nSem *drama*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "img/real/FTHUv-f98Uc.jpg",
+      "texto": "Seu banheiro\ntá *pronto*?",
+      "cta": "Salve para a próxima reforma"
+    }
+  ]
+}

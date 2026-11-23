@@ -1,0 +1,63 @@
+{
+ "tema": "azul",
+ "slides": [
+  {
+   "tipo": "frase",
+   "img": "img/real/TswOPhWcrmQ.jpg",
+   "sobre": "regularização de imóvel",
+   "linhas": [
+    "Os papéis",
+    "que provam",
+    "que é seu."
+   ],
+   "tam": 140,
+   "y": 200,
+   "cta": "arrasta →"
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/uKGZiYnF9Ys.jpg",
+   "tag": "prova de tempo",
+   "titulo": "Contas de\nvários anos.",
+   "sub": "IPTU, luz, água e correspondências."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/UHSc9d0WgGA.jpg",
+   "tag": "prova de posse",
+   "titulo": "Os vizinhos\nconfirmam.",
+   "sub": "Declaração de quem te vê morar ali."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/CXj2uFlySyI.jpg",
+   "tag": "organize",
+   "titulo": "Uma pasta,\npor ano.",
+   "sub": "Papel solto se perde."
+  },
+  {
+   "tipo": "foco",
+   "img": "img/real/HtBlQdxfG9k.jpg",
+   "tag": "parte técnica",
+   "titulo": "Planta e\nmemorial.",
+   "sub": "Medida errada vira exigência do cartório.",
+   "marca": {
+    "x": 270,
+    "y": 720,
+    "r": 120
+   }
+  },
+  {
+   "tipo": "frase",
+   "img": "img/real/kGE6fLbfKys.jpg",
+   "linhas": [
+    "Ficou com",
+    "dúvida?"
+   ],
+   "tam": 170,
+   "y": 230,
+   "cta": "Comenta aqui que eu respondo",
+   "cta2": "⚠️ educativo: cada caso precisa de advogado"
+  }
+ ]
+}

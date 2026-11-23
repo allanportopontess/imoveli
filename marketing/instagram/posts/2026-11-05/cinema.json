@@ -1,0 +1,48 @@
+{
+ "grade": "quente",
+ "slides": [
+  {
+   "tipo": "gancho",
+   "img": "img/real/KfqgYzoH3Vk.jpg",
+   "sobre": "Uma loja linda",
+   "texto": "Você entra.\nAcha tudo lindo.\nE sai *sem comprar*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/cMT-u75jwAs.jpg",
+   "cap": "Capítulo 1",
+   "texto": "O produto era bom.\nO preço, *justo*."
+  },
+  {
+   "tipo": "cena",
+   "img": "img/real/E496lLBWGDY.jpg",
+   "cap": "Capítulo 2",
+   "texto": "O problema?\nVocê não *viu* nada."
+  },
+  {
+   "tipo": "virada",
+   "img": "img/real/Apw4z0D9xVE.jpg",
+   "cap": "A virada",
+   "texto": "Luz geral mostra a loja.\nLuz de destaque\n*vende o produto*.",
+   "tam": 92
+  },
+  {
+   "tipo": "detalhe",
+   "img": "img/real/hljsm19I4Ps.jpg",
+   "cap": "O que muda",
+   "texto": "Spot no que você\nquer *vender*.",
+   "itens": [
+    "luz quente",
+    "produto-foco",
+    "sombra a favor"
+   ]
+  },
+  {
+   "tipo": "fecho",
+   "img": "img/real/KfqgYzoH3Vk.jpg",
+   "pos": "30% center",
+   "texto": "Sua loja é *vista*\nou só iluminada?",
+   "cta": "Comente VENDA"
+  }
+ ]
+}

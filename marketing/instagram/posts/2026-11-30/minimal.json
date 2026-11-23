@@ -1,0 +1,51 @@
+{
+  "marca": {
+    "handle": "@flat_refugiourbano",
+    "rodape": "Refúgio Urbano · Flat em Caruaru",
+    "logo": "flat/img/logo.webp",
+    "papel": "#F1EAE3",
+    "tinta": "#2A2420",
+    "cinza": "#9A8E80",
+    "acento": "#8B6B4C",
+    "local": "Caruaru, PE"
+  },
+  "slides": [
+    {
+      "tipo": "capa",
+      "img": "img/real/IJkSskfEqrM.jpg",
+      "texto": "Check-in sem\n*estresse*, em 3 passos.",
+      "grad": 0.55,
+      "grad_h": 680
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/1AmEImwtnFk.jpg",
+      "rotulo": "Passo 1",
+      "texto": "Salve o *endereço*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/H84kQcOMVzQ.jpg",
+      "rotulo": "Passo 2",
+      "texto": "Avise o seu *horário*."
+    },
+    {
+      "tipo": "foto",
+      "img": "img/real/KqqKF9lDg8Q.jpg",
+      "rotulo": "Passo 3",
+      "texto": "Leia as *instruções*."
+    },
+    {
+      "tipo": "frase",
+      "img": "img/real/R3qXlr78Rfo.jpg",
+      "texto": "Chegou?\nÉ só *entrar*."
+    },
+    {
+      "tipo": "fecho",
+      "img": "flat/img/corredor-janela.jpg",
+      "pos": "center 55%",
+      "texto": "Self check-in\nno seu *horário*.",
+      "cta": "Reserve pelo link da bio"
+    }
+  ]
+}
